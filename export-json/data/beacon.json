@@ -1,0 +1,25 @@
+{
+  "beacon": {
+    "type": "beacon",
+    "name": "beacon",
+    "icon": "__base__/graphics/icons/beacon.png",
+    "flags": [
+      "placeable-player",
+      "player-creation"
+    ],
+    "allowed_effects": [
+      "consumption",
+      "speed",
+      "pollution"
+    ],
+    "supply_area_distance": 3,
+    "energy_source": {
+      "type": "electric"
+    },
+    "energy_usage": "480kW",
+    "distribution_effectivity": 0.5,
+    "module_specification": {
+      "module_slots": 2
+    }
+  }
+}

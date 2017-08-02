@@ -4,3 +4,5 @@
 /.DS_Store
 /dist
 /*.swp
+/icons
+/icons-unused

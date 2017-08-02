@@ -1,0 +1,220 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
+import { actions } from '../state/reducers';
+import { graphSelector } from '../state/selectors';
+import { getBlockTypeRadius } from '../util';
+import { calcAngle, calcMidpoint, calcAngledDistance, calcRadian, calcDistance } from '../util/math';
+import HoverContainer from './HoverContainer';
+import Icon from './Icon';
+
+export class BlockConnection extends Component {
+
+    static propTypes = {
+        connectionId: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+
+        srcCX: PropTypes.number.isRequired,
+        srcCY: PropTypes.number.isRequired,
+        srcRadius: PropTypes.number.isRequired,
+
+        destCX: PropTypes.number.isRequired,
+        destCY: PropTypes.number.isRequired,
+        destRadius: PropTypes.number.isRequired,
+
+        meta: PropTypes.object.isRequired,
+
+        isValid: PropTypes.bool,
+        isCyclic: PropTypes.bool,
+        isRelatedHovered: PropTypes.bool,
+        isHoverDisabled: PropTypes.bool,
+        isHovered: PropTypes.bool,
+        onHoverOver: PropTypes.func,
+        onHoverOut: PropTypes.func,
+    };
+
+    static defaultProps = {
+        isValid: true,
+        isCyclic: false,
+        isRelatedHovered: false,
+        isHoverDisabled: false,
+        isHovered: false,
+        onHoverOver: null,
+        onHoverOut: null,
+    };
+
+    renderResults(x1, y1, x2, y2, deg) {
+        const { meta, isHoverDisabled, isHovered, isRelatedHovered } = this.props;
+
+        if (!meta || !Array.isArray(meta.results) || !meta.results.length) {
+            return null;
+        }
+
+        const radius = !isHoverDisabled && (isHovered || isRelatedHovered) ? 13 : 5;
+        const { x, y } = calcMidpoint(x1, y1, x2, y2);
+        const maxDistance = calcDistance(x1, y1, x2, y2);
+        const startDistance = (meta.results.length - 1) * (radius * 2 + 4) / 2;
+
+        if (maxDistance < startDistance * 2 + radius * 2 + 10) {
+            deg += 90;
+        }
+
+        return (
+            <g>
+                {!isHoverDisabled && isHovered && <rect
+                    x={x - (radius + 2) * meta.results.length}
+                    y={y - radius - 4}
+                    width={(radius * 2 + 4) * meta.results.length}
+                    height={(radius + 4) * 2}
+                    transform={`rotate(${deg}, ${x}, ${y})`}
+                    fill="transparent"
+                />}
+                {meta.results.map((result, i) => {
+                    const distanceFromStart = startDistance - (i * (radius * 2 + 4));
+                    const { x: ax, y: ay } = calcAngledDistance(x, y, deg, distanceFromStart);
+
+                    return (
+                        <g key={i} className="block-connector block-connector--out"
+                            transform={`translate(${ax}, ${ay})`}>
+                            <circle
+                                className="block-connector__bg block-connector__bg--out"
+                                r={radius}
+                            />
+                            {!isHoverDisabled && (isHovered || isRelatedHovered) && <Icon
+                                className={`block-connector__img block-connector__img--out`}
+                                type={result.type} name={result.name}
+                                size={16}
+                            />}
+                        </g>
+                    );
+                })}
+            </g>
+        );
+    }
+
+    renderDistribution(x1, y1, x2, y2, deg) {
+        const { meta, isHoverDisabled, isHovered, isRelatedHovered } = this.props;
+
+        if (!meta || !Array.isArray(meta.distributions) || !meta.distributions.length) {
+            return null;
+        }
+
+        const radius = !isHoverDisabled && (isHovered || isRelatedHovered) ? 13 : 5;
+        const { x, y } = calcMidpoint(x1, y1, x2, y2);
+        const maxDistance = calcDistance(x1, y1, x2, y2);
+        const startDistance = (meta.distributions.length - 1) * (radius * 2 + 4) / 2;
+
+        if (maxDistance < startDistance * 2 + radius * 2 + 10) {
+            deg += 90;
+        }
+
+        return (
+            <g>
+                {!isHoverDisabled && isHovered && <rect
+                    x={x - (radius + 2) * meta.distributions.length}
+                    y={y - radius - 4}
+                    width={(radius * 2 + 4) * meta.distributions.length}
+                    height={(radius + 4) * 2}
+                    transform={`rotate(${deg}, ${x}, ${y})`}
+                    fill="transparent"
+                />}
+                {meta.distributions.map((distribution, i) => {
+                    const distanceFromStart = startDistance - (i * (radius * 2 + 4));
+                    const { x: ax, y: ay } = calcAngledDistance(x, y, deg, distanceFromStart);
+
+                    return (
+                        <g key={i} className="block-connector block-connector--effect"
+                            transform={`translate(${ax}, ${ay})`}>
+                            <circle
+                                className="block-connector__bg block-connector__bg--effect"
+                                r={radius}
+                            />
+                            {!isHoverDisabled && (isHovered || isRelatedHovered) && <text
+                                textAnchor="middle"
+                                y={4}
+                                className="block-connector__text"
+                            >{distribution.blocksAffected || '*'}×{distribution.effectPerBlock}</text>}
+                        </g>
+                    );
+                })}
+            </g>
+        );
+    }
+
+    render() {
+        const {
+            connectionId, type,
+            srcCX, srcCY, srcRadius,
+            destCX, destCY, destRadius,
+            isValid,
+            isHovered, onHoverOver, onHoverOut,
+        } = this.props;
+
+        if (!connectionId || srcCX == null || destCX == null) {
+            return null;
+        }
+
+        const deg = calcAngle(srcCX, srcCY, destCX, destCY);
+        const { x: x1, y: y1 } = calcRadian(srcCX, srcCY, srcRadius, deg);
+        const { x: x2, y: y2 } = calcRadian(destCX, destCY, destRadius + 10, 180 + deg);
+
+        const className = ClassNames('block-connection', {
+            'block-connection--invalid': !isValid,
+        });
+
+        return (
+            <HoverContainer data-connection-id={connectionId}
+                className={className}
+                isHovered={isHovered}
+                onHoverOver={onHoverOver}
+                onHoverOut={onHoverOut}
+                hoverTimeout={200}
+            >
+                <line className="block-connection__line" x1={x1} y1={y1} x2={x2} y2={y2} strokeWidth={2}/>
+                <line className="block-connection__hover" x1={x1} y1={y1} x2={x2} y2={y2} strokeWidth={16} stroke="transparent"/>
+                <path className="block-connection__arrow" d="M0 -5 l 0 10 l 10 -5 l -10 -5" transform={`translate(${x2}, ${y2}) rotate(${deg})`}/>
+
+                {type === 'result' && this.renderResults(x1, y1, x2, y2, deg)}
+                {type === 'effect' && this.renderDistribution(x1, y1, x2, y2, deg)}
+            </HoverContainer>
+        );
+    }
+}
+
+const mapStateToProps = (state, { connectionId }) => {
+    const graph = graphSelector(state);
+    const networkId = graph.connectionToNetwork[connectionId];
+    const isCyclic = !!networkId && !!graph.networks[networkId].cyclicConnections[connectionId];
+
+    const connection = state.connections[connectionId];
+    const srcBlock = connection && state.blocks[connection.srcBlockId];
+    const destBlock = connection && state.blocks[connection.destBlockId];
+
+    return {
+        ...connection,
+        isValid: !isCyclic,
+        isCyclic,
+        isHoverDisabled: state.selection.isBoxSelecting,
+        isHovered: state.focused === connectionId,
+        isRelatedHovered: state.focused === connection.srcBlockId || state.focused === connection.destBlockId,
+        srcCX: srcBlock && srcBlock.x,
+        srcCY: srcBlock && srcBlock.y,
+        srcRadius: getBlockTypeRadius(srcBlock && srcBlock.type, !state.selection.isBoxSelecting && state.focused === connection.srcBlockId),
+
+        destCX: destBlock && destBlock.x,
+        destCY: destBlock && destBlock.y,
+        destRadius: getBlockTypeRadius(destBlock && destBlock.type, !state.selection.isBoxSelecting && state.focused === connection.destBlockId),
+    };
+};
+
+const mapDispatchToProps = (dispatch, { connectionId }) => ({
+    onHoverOver: () => dispatch(actions.focus(connectionId)),
+    onHoverOut: () => dispatch(actions.blur(connectionId)),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    (stateProps, dispatchProps) => Object.assign({}, stateProps, dispatchProps)
+)(BlockConnection);

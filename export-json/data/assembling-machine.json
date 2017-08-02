@@ -1,0 +1,164 @@
+{
+  "assembling-machine-1": {
+    "type": "assembling-machine",
+    "name": "assembling-machine-1",
+    "icon": "__base__/graphics/icons/assembling-machine-1.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "crafting_categories": [
+      "crafting"
+    ],
+    "crafting_speed": 0.5,
+    "energy_source": {
+      "type": "electric"
+    },
+    "energy_usage": "90kW",
+    "ingredient_count": 2
+  },
+  "assembling-machine-2": {
+    "type": "assembling-machine",
+    "name": "assembling-machine-2",
+    "icon": "__base__/graphics/icons/assembling-machine-2.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "crafting_categories": [
+      "crafting",
+      "advanced-crafting",
+      "crafting-with-fluid"
+    ],
+    "crafting_speed": 0.75,
+    "energy_source": {
+      "type": "electric"
+    },
+    "energy_usage": "150kW",
+    "ingredient_count": 4,
+    "module_specification": {
+      "module_slots": 2
+    },
+    "allowed_effects": [
+      "consumption",
+      "speed",
+      "productivity",
+      "pollution"
+    ]
+  },
+  "assembling-machine-3": {
+    "type": "assembling-machine",
+    "name": "assembling-machine-3",
+    "icon": "__base__/graphics/icons/assembling-machine-3.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "crafting_categories": [
+      "crafting",
+      "advanced-crafting",
+      "crafting-with-fluid"
+    ],
+    "crafting_speed": 1.25,
+    "energy_source": {
+      "type": "electric"
+    },
+    "energy_usage": "210kW",
+    "ingredient_count": 6,
+    "module_specification": {
+      "module_slots": 4
+    },
+    "allowed_effects": [
+      "consumption",
+      "speed",
+      "productivity",
+      "pollution"
+    ]
+  },
+  "oil-refinery": {
+    "type": "assembling-machine",
+    "name": "oil-refinery",
+    "icon": "__base__/graphics/icons/oil-refinery.png",
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "module_specification": {
+      "module_slots": 3
+    },
+    "allowed_effects": [
+      "consumption",
+      "speed",
+      "productivity",
+      "pollution"
+    ],
+    "crafting_categories": [
+      "oil-processing"
+    ],
+    "crafting_speed": 1,
+    "energy_source": {
+      "type": "electric"
+    },
+    "energy_usage": "420kW",
+    "ingredient_count": 4
+  },
+  "chemical-plant": {
+    "type": "assembling-machine",
+    "name": "chemical-plant",
+    "icon": "__base__/graphics/icons/chemical-plant.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "module_specification": {
+      "module_slots": 3
+    },
+    "allowed_effects": [
+      "consumption",
+      "speed",
+      "productivity",
+      "pollution"
+    ],
+    "crafting_speed": 1.25,
+    "energy_source": {
+      "type": "electric"
+    },
+    "energy_usage": "210kW",
+    "ingredient_count": 4,
+    "crafting_categories": [
+      "chemistry"
+    ]
+  },
+  "centrifuge": {
+    "type": "assembling-machine",
+    "name": "centrifuge",
+    "icon": "__base__/graphics/icons/centrifuge.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "crafting_speed": 0.75,
+    "crafting_categories": [
+      "centrifuging"
+    ],
+    "energy_source": {
+      "type": "electric"
+    },
+    "energy_usage": "350kW",
+    "ingredient_count": 2,
+    "module_specification": {
+      "module_slots": 2
+    },
+    "allowed_effects": [
+      "consumption",
+      "speed",
+      "productivity",
+      "pollution"
+    ]
+  }
+}

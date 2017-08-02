@@ -1,0 +1,50 @@
+{
+  "water": {
+    "type": "fluid",
+    "name": "water",
+    "icon": "__base__/graphics/icons/fluid/water.png",
+    "order": "a[fluid]-a[water]"
+  },
+  "steam": {
+    "type": "fluid",
+    "name": "steam",
+    "icon": "__base__/graphics/icons/fluid/steam.png",
+    "order": "a[fluid]-b[steam]"
+  },
+  "crude-oil": {
+    "type": "fluid",
+    "name": "crude-oil",
+    "icon": "__base__/graphics/icons/fluid/crude-oil.png",
+    "order": "a[fluid]-b[crude-oil]"
+  },
+  "heavy-oil": {
+    "type": "fluid",
+    "name": "heavy-oil",
+    "icon": "__base__/graphics/icons/fluid/heavy-oil.png",
+    "order": "a[fluid]-c[heavy-oil]"
+  },
+  "light-oil": {
+    "type": "fluid",
+    "name": "light-oil",
+    "icon": "__base__/graphics/icons/fluid/light-oil.png",
+    "order": "a[fluid]-d[light-oil]"
+  },
+  "petroleum-gas": {
+    "type": "fluid",
+    "name": "petroleum-gas",
+    "icon": "__base__/graphics/icons/fluid/petroleum-gas.png",
+    "order": "a[fluid]-e[petroleum-gas]"
+  },
+  "lubricant": {
+    "type": "fluid",
+    "name": "lubricant",
+    "icon": "__base__/graphics/icons/fluid/lubricant.png",
+    "order": "e[lubricant]"
+  },
+  "sulfuric-acid": {
+    "type": "fluid",
+    "name": "sulfuric-acid",
+    "icon": "__base__/graphics/icons/fluid/sulfuric-acid.png",
+    "order": "a[fluid]-f[sulfuric-acid]"
+  }
+}

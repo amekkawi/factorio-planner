@@ -1,0 +1,103 @@
+{
+  "copper-ore": {
+    "type": "resource",
+    "name": "copper-ore",
+    "icon": "__base__/graphics/icons/copper-ore.png",
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a-b-a",
+    "minable": {
+      "hardness": 0.9,
+      "mining_time": 2,
+      "result": "copper-ore"
+    },
+    "category": "basic-solid"
+  },
+  "iron-ore": {
+    "type": "resource",
+    "name": "iron-ore",
+    "icon": "__base__/graphics/icons/iron-ore.png",
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a-b-a",
+    "minable": {
+      "hardness": 0.9,
+      "mining_time": 2,
+      "result": "iron-ore"
+    },
+    "category": "basic-solid"
+  },
+  "coal": {
+    "type": "resource",
+    "name": "coal",
+    "icon": "__base__/graphics/icons/coal.png",
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a-b-a",
+    "minable": {
+      "hardness": 0.9,
+      "mining_time": 2,
+      "result": "coal"
+    },
+    "category": "basic-solid"
+  },
+  "stone": {
+    "type": "resource",
+    "name": "stone",
+    "icon": "__base__/graphics/icons/stone.png",
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a-b-a",
+    "minable": {
+      "hardness": 0.4,
+      "mining_time": 2,
+      "result": "stone"
+    },
+    "category": "basic-solid"
+  },
+  "crude-oil": {
+    "type": "resource",
+    "name": "crude-oil",
+    "icon": "__base__/graphics/icons/crude-oil.png",
+    "flags": [
+      "placeable-neutral"
+    ],
+    "category": "basic-fluid",
+    "order": "a-b-a",
+    "infinite": true,
+    "minable": {
+      "hardness": 1,
+      "mining_time": 1,
+      "results": [
+        {
+          "type": "fluid",
+          "name": "crude-oil",
+          "amount_min": 10,
+          "amount_max": 10,
+          "probability": 1
+        }
+      ]
+    }
+  },
+  "uranium-ore": {
+    "type": "resource",
+    "name": "uranium-ore",
+    "icon": "__base__/graphics/icons/uranium-ore.png",
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a-b-e",
+    "minable": {
+      "hardness": 0.9,
+      "mining_time": 4,
+      "result": "uranium-ore",
+      "fluid_amount": 10,
+      "required_fluid": "sulfuric-acid"
+    },
+    "category": "basic-solid"
+  }
+}

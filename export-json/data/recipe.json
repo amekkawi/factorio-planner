@@ -1,0 +1,4990 @@
+{
+  "copper-plate": {
+    "type": "recipe",
+    "name": "copper-plate",
+    "category": "smelting",
+    "energy_required": 3.5,
+    "ingredients": [
+      [
+        "copper-ore",
+        1
+      ]
+    ],
+    "result": "copper-plate"
+  },
+  "iron-plate": {
+    "type": "recipe",
+    "name": "iron-plate",
+    "category": "smelting",
+    "energy_required": 3.5,
+    "ingredients": [
+      [
+        "iron-ore",
+        1
+      ]
+    ],
+    "result": "iron-plate"
+  },
+  "stone-brick": {
+    "type": "recipe",
+    "name": "stone-brick",
+    "category": "smelting",
+    "energy_required": 3.5,
+    "ingredients": [
+      [
+        "stone",
+        2
+      ]
+    ],
+    "result": "stone-brick"
+  },
+  "wood": {
+    "type": "recipe",
+    "name": "wood",
+    "ingredients": [
+      [
+        "raw-wood",
+        1
+      ]
+    ],
+    "result": "wood",
+    "result_count": 2,
+    "category": "crafting"
+  },
+  "wooden-chest": {
+    "type": "recipe",
+    "name": "wooden-chest",
+    "ingredients": [
+      [
+        "wood",
+        4
+      ]
+    ],
+    "result": "wooden-chest",
+    "category": "crafting"
+  },
+  "iron-stick": {
+    "type": "recipe",
+    "name": "iron-stick",
+    "ingredients": [
+      [
+        "iron-plate",
+        1
+      ]
+    ],
+    "result": "iron-stick",
+    "result_count": 2,
+    "category": "crafting"
+  },
+  "iron-axe": {
+    "type": "recipe",
+    "name": "iron-axe",
+    "ingredients": [
+      [
+        "iron-stick",
+        2
+      ],
+      [
+        "iron-plate",
+        3
+      ]
+    ],
+    "result": "iron-axe",
+    "category": "crafting"
+  },
+  "stone-furnace": {
+    "type": "recipe",
+    "name": "stone-furnace",
+    "ingredients": [
+      [
+        "stone",
+        5
+      ]
+    ],
+    "result": "stone-furnace",
+    "category": "crafting"
+  },
+  "boiler": {
+    "type": "recipe",
+    "name": "boiler",
+    "ingredients": [
+      [
+        "stone-furnace",
+        1
+      ],
+      [
+        "pipe",
+        4
+      ]
+    ],
+    "result": "boiler",
+    "category": "crafting"
+  },
+  "steam-engine": {
+    "type": "recipe",
+    "name": "steam-engine",
+    "normal": {
+      "ingredients": [
+        [
+          "iron-gear-wheel",
+          8
+        ],
+        [
+          "pipe",
+          5
+        ],
+        [
+          "iron-plate",
+          10
+        ]
+      ],
+      "result": "steam-engine"
+    },
+    "expensive": {
+      "ingredients": [
+        [
+          "iron-gear-wheel",
+          10
+        ],
+        [
+          "pipe",
+          5
+        ],
+        [
+          "iron-plate",
+          50
+        ]
+      ],
+      "result": "steam-engine"
+    },
+    "category": "crafting"
+  },
+  "iron-gear-wheel": {
+    "type": "recipe",
+    "name": "iron-gear-wheel",
+    "normal": {
+      "ingredients": [
+        [
+          "iron-plate",
+          2
+        ]
+      ],
+      "result": "iron-gear-wheel"
+    },
+    "expensive": {
+      "ingredients": [
+        [
+          "iron-plate",
+          4
+        ]
+      ],
+      "result": "iron-gear-wheel"
+    },
+    "category": "crafting"
+  },
+  "electronic-circuit": {
+    "type": "recipe",
+    "name": "electronic-circuit",
+    "normal": {
+      "ingredients": [
+        [
+          "iron-plate",
+          1
+        ],
+        [
+          "copper-cable",
+          3
+        ]
+      ],
+      "result": "electronic-circuit"
+    },
+    "expensive": {
+      "ingredients": [
+        [
+          "iron-plate",
+          2
+        ],
+        [
+          "copper-cable",
+          10
+        ]
+      ],
+      "result": "electronic-circuit"
+    },
+    "category": "crafting"
+  },
+  "transport-belt": {
+    "type": "recipe",
+    "name": "transport-belt",
+    "ingredients": [
+      [
+        "iron-plate",
+        1
+      ],
+      [
+        "iron-gear-wheel",
+        1
+      ]
+    ],
+    "result": "transport-belt",
+    "result_count": 2,
+    "category": "crafting"
+  },
+  "electric-mining-drill": {
+    "type": "recipe",
+    "name": "electric-mining-drill",
+    "normal": {
+      "energy_required": 2,
+      "ingredients": [
+        [
+          "electronic-circuit",
+          3
+        ],
+        [
+          "iron-gear-wheel",
+          5
+        ],
+        [
+          "iron-plate",
+          10
+        ]
+      ],
+      "result": "electric-mining-drill"
+    },
+    "expensive": {
+      "energy_required": 2,
+      "ingredients": [
+        [
+          "electronic-circuit",
+          5
+        ],
+        [
+          "iron-gear-wheel",
+          10
+        ],
+        [
+          "iron-plate",
+          20
+        ]
+      ],
+      "result": "electric-mining-drill"
+    },
+    "category": "crafting"
+  },
+  "burner-mining-drill": {
+    "type": "recipe",
+    "name": "burner-mining-drill",
+    "normal": {
+      "energy_required": 2,
+      "ingredients": [
+        [
+          "iron-gear-wheel",
+          3
+        ],
+        [
+          "stone-furnace",
+          1
+        ],
+        [
+          "iron-plate",
+          3
+        ]
+      ],
+      "result": "burner-mining-drill"
+    },
+    "expensive": {
+      "energy_required": 4,
+      "ingredients": [
+        [
+          "iron-gear-wheel",
+          6
+        ],
+        [
+          "stone-furnace",
+          2
+        ],
+        [
+          "iron-plate",
+          6
+        ]
+      ],
+      "result": "burner-mining-drill"
+    },
+    "category": "crafting"
+  },
+  "inserter": {
+    "type": "recipe",
+    "name": "inserter",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        1
+      ],
+      [
+        "iron-gear-wheel",
+        1
+      ],
+      [
+        "iron-plate",
+        1
+      ]
+    ],
+    "result": "inserter",
+    "category": "crafting"
+  },
+  "burner-inserter": {
+    "type": "recipe",
+    "name": "burner-inserter",
+    "ingredients": [
+      [
+        "iron-plate",
+        1
+      ],
+      [
+        "iron-gear-wheel",
+        1
+      ]
+    ],
+    "result": "burner-inserter",
+    "category": "crafting"
+  },
+  "pipe": {
+    "type": "recipe",
+    "name": "pipe",
+    "normal": {
+      "ingredients": [
+        [
+          "iron-plate",
+          1
+        ]
+      ],
+      "result": "pipe"
+    },
+    "expensive": {
+      "ingredients": [
+        [
+          "iron-plate",
+          2
+        ]
+      ],
+      "result": "pipe"
+    },
+    "category": "crafting"
+  },
+  "offshore-pump": {
+    "type": "recipe",
+    "name": "offshore-pump",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        2
+      ],
+      [
+        "pipe",
+        1
+      ],
+      [
+        "iron-gear-wheel",
+        1
+      ]
+    ],
+    "result": "offshore-pump",
+    "category": "crafting"
+  },
+  "copper-cable": {
+    "type": "recipe",
+    "name": "copper-cable",
+    "ingredients": [
+      [
+        "copper-plate",
+        1
+      ]
+    ],
+    "result": "copper-cable",
+    "result_count": 2,
+    "category": "crafting"
+  },
+  "small-electric-pole": {
+    "type": "recipe",
+    "name": "small-electric-pole",
+    "ingredients": [
+      [
+        "wood",
+        2
+      ],
+      [
+        "copper-cable",
+        2
+      ]
+    ],
+    "result": "small-electric-pole",
+    "result_count": 2,
+    "category": "crafting"
+  },
+  "pistol": {
+    "type": "recipe",
+    "name": "pistol",
+    "energy_required": 5,
+    "ingredients": [
+      [
+        "copper-plate",
+        5
+      ],
+      [
+        "iron-plate",
+        5
+      ]
+    ],
+    "result": "pistol",
+    "category": "crafting"
+  },
+  "submachine-gun": {
+    "type": "recipe",
+    "name": "submachine-gun",
+    "normal": {
+      "energy_required": 10,
+      "ingredients": [
+        [
+          "iron-gear-wheel",
+          10
+        ],
+        [
+          "copper-plate",
+          5
+        ],
+        [
+          "iron-plate",
+          10
+        ]
+      ],
+      "result": "submachine-gun"
+    },
+    "expensive": {
+      "energy_required": 10,
+      "ingredients": [
+        [
+          "iron-gear-wheel",
+          15
+        ],
+        [
+          "copper-plate",
+          20
+        ],
+        [
+          "iron-plate",
+          30
+        ]
+      ],
+      "result": "submachine-gun"
+    },
+    "category": "crafting"
+  },
+  "firearm-magazine": {
+    "type": "recipe",
+    "name": "firearm-magazine",
+    "energy_required": 1,
+    "ingredients": [
+      [
+        "iron-plate",
+        4
+      ]
+    ],
+    "result": "firearm-magazine",
+    "result_count": 1,
+    "category": "crafting"
+  },
+  "light-armor": {
+    "type": "recipe",
+    "name": "light-armor",
+    "energy_required": 3,
+    "ingredients": [
+      [
+        "iron-plate",
+        40
+      ]
+    ],
+    "result": "light-armor",
+    "category": "crafting"
+  },
+  "radar": {
+    "type": "recipe",
+    "name": "radar",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        5
+      ],
+      [
+        "iron-gear-wheel",
+        5
+      ],
+      [
+        "iron-plate",
+        10
+      ]
+    ],
+    "result": "radar",
+    "category": "crafting"
+  },
+  "small-lamp": {
+    "type": "recipe",
+    "name": "small-lamp",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        1
+      ],
+      [
+        "iron-stick",
+        3
+      ],
+      [
+        "iron-plate",
+        1
+      ]
+    ],
+    "result": "small-lamp",
+    "category": "crafting"
+  },
+  "pipe-to-ground": {
+    "type": "recipe",
+    "name": "pipe-to-ground",
+    "ingredients": [
+      [
+        "pipe",
+        10
+      ],
+      [
+        "iron-plate",
+        5
+      ]
+    ],
+    "result_count": 2,
+    "result": "pipe-to-ground",
+    "category": "crafting"
+  },
+  "assembling-machine-1": {
+    "type": "recipe",
+    "name": "assembling-machine-1",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        3
+      ],
+      [
+        "iron-gear-wheel",
+        5
+      ],
+      [
+        "iron-plate",
+        9
+      ]
+    ],
+    "result": "assembling-machine-1",
+    "category": "crafting"
+  },
+  "repair-pack": {
+    "type": "recipe",
+    "name": "repair-pack",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        2
+      ],
+      [
+        "iron-gear-wheel",
+        2
+      ]
+    ],
+    "result": "repair-pack",
+    "category": "crafting"
+  },
+  "gun-turret": {
+    "type": "recipe",
+    "name": "gun-turret",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "iron-gear-wheel",
+        10
+      ],
+      [
+        "copper-plate",
+        10
+      ],
+      [
+        "iron-plate",
+        20
+      ]
+    ],
+    "result": "gun-turret",
+    "category": "crafting"
+  },
+  "piercing-rounds-magazine": {
+    "type": "recipe",
+    "name": "piercing-rounds-magazine",
+    "energy_required": 3,
+    "ingredients": [
+      [
+        "firearm-magazine",
+        1
+      ],
+      [
+        "steel-plate",
+        1
+      ],
+      [
+        "copper-plate",
+        5
+      ]
+    ],
+    "result": "piercing-rounds-magazine",
+    "category": "crafting"
+  },
+  "uranium-rounds-magazine": {
+    "type": "recipe",
+    "name": "uranium-rounds-magazine",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "piercing-rounds-magazine",
+        1
+      ],
+      [
+        "uranium-238",
+        1
+      ]
+    ],
+    "result": "uranium-rounds-magazine",
+    "category": "crafting"
+  },
+  "rocket": {
+    "type": "recipe",
+    "name": "rocket",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "electronic-circuit",
+        1
+      ],
+      [
+        "explosives",
+        1
+      ],
+      [
+        "iron-plate",
+        2
+      ]
+    ],
+    "result": "rocket",
+    "category": "crafting"
+  },
+  "explosive-rocket": {
+    "type": "recipe",
+    "name": "explosive-rocket",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "rocket",
+        1
+      ],
+      [
+        "explosives",
+        2
+      ]
+    ],
+    "result": "explosive-rocket",
+    "category": "crafting"
+  },
+  "atomic-bomb": {
+    "type": "recipe",
+    "name": "atomic-bomb",
+    "energy_required": 50,
+    "ingredients": [
+      [
+        "processing-unit",
+        20
+      ],
+      [
+        "explosives",
+        10
+      ],
+      [
+        "uranium-235",
+        30
+      ]
+    ],
+    "result": "atomic-bomb",
+    "category": "crafting"
+  },
+  "shotgun-shell": {
+    "type": "recipe",
+    "name": "shotgun-shell",
+    "energy_required": 3,
+    "ingredients": [
+      [
+        "copper-plate",
+        2
+      ],
+      [
+        "iron-plate",
+        2
+      ]
+    ],
+    "result": "shotgun-shell",
+    "category": "crafting"
+  },
+  "piercing-shotgun-shell": {
+    "type": "recipe",
+    "name": "piercing-shotgun-shell",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "shotgun-shell",
+        2
+      ],
+      [
+        "copper-plate",
+        5
+      ],
+      [
+        "steel-plate",
+        2
+      ]
+    ],
+    "result": "piercing-shotgun-shell",
+    "category": "crafting"
+  },
+  "railgun-dart": {
+    "type": "recipe",
+    "name": "railgun-dart",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "steel-plate",
+        5
+      ],
+      [
+        "electronic-circuit",
+        5
+      ]
+    ],
+    "result": "railgun-dart",
+    "category": "crafting"
+  },
+  "cannon-shell": {
+    "type": "recipe",
+    "name": "cannon-shell",
+    "normal": {
+      "energy_required": 8,
+      "ingredients": [
+        [
+          "steel-plate",
+          2
+        ],
+        [
+          "plastic-bar",
+          2
+        ],
+        [
+          "explosives",
+          1
+        ]
+      ],
+      "result": "cannon-shell"
+    },
+    "expensive": {
+      "energy_required": 8,
+      "ingredients": [
+        [
+          "steel-plate",
+          4
+        ],
+        [
+          "plastic-bar",
+          4
+        ],
+        [
+          "explosives",
+          1
+        ]
+      ],
+      "result": "cannon-shell"
+    },
+    "category": "crafting"
+  },
+  "explosive-cannon-shell": {
+    "type": "recipe",
+    "name": "explosive-cannon-shell",
+    "normal": {
+      "energy_required": 8,
+      "ingredients": [
+        [
+          "steel-plate",
+          2
+        ],
+        [
+          "plastic-bar",
+          2
+        ],
+        [
+          "explosives",
+          2
+        ]
+      ],
+      "result": "explosive-cannon-shell"
+    },
+    "expensive": {
+      "energy_required": 8,
+      "ingredients": [
+        [
+          "steel-plate",
+          4
+        ],
+        [
+          "plastic-bar",
+          4
+        ],
+        [
+          "explosives",
+          2
+        ]
+      ],
+      "result": "explosive-cannon-shell"
+    },
+    "category": "crafting"
+  },
+  "uranium-cannon-shell": {
+    "type": "recipe",
+    "name": "uranium-cannon-shell",
+    "energy_required": 12,
+    "ingredients": [
+      [
+        "cannon-shell",
+        1
+      ],
+      [
+        "uranium-238",
+        1
+      ]
+    ],
+    "result": "uranium-cannon-shell",
+    "category": "crafting"
+  },
+  "explosive-uranium-cannon-shell": {
+    "type": "recipe",
+    "name": "explosive-uranium-cannon-shell",
+    "energy_required": 12,
+    "ingredients": [
+      [
+        "explosive-cannon-shell",
+        1
+      ],
+      [
+        "uranium-238",
+        1
+      ]
+    ],
+    "result": "explosive-uranium-cannon-shell",
+    "category": "crafting"
+  },
+  "flamethrower-ammo": {
+    "type": "recipe",
+    "name": "flamethrower-ammo",
+    "category": "chemistry",
+    "energy_required": 6,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 5
+      },
+      {
+        "type": "fluid",
+        "name": "light-oil",
+        "amount": 50
+      },
+      {
+        "type": "fluid",
+        "name": "heavy-oil",
+        "amount": 50
+      }
+    ],
+    "result": "flamethrower-ammo"
+  },
+  "poison-capsule": {
+    "type": "recipe",
+    "name": "poison-capsule",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "steel-plate",
+        3
+      ],
+      [
+        "electronic-circuit",
+        3
+      ],
+      [
+        "coal",
+        10
+      ]
+    ],
+    "result": "poison-capsule",
+    "category": "crafting"
+  },
+  "slowdown-capsule": {
+    "type": "recipe",
+    "name": "slowdown-capsule",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "steel-plate",
+        2
+      ],
+      [
+        "electronic-circuit",
+        2
+      ],
+      [
+        "coal",
+        5
+      ]
+    ],
+    "result": "slowdown-capsule",
+    "category": "crafting"
+  },
+  "grenade": {
+    "type": "recipe",
+    "name": "grenade",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "iron-plate",
+        5
+      ],
+      [
+        "coal",
+        10
+      ]
+    ],
+    "result": "grenade",
+    "category": "crafting"
+  },
+  "cluster-grenade": {
+    "type": "recipe",
+    "name": "cluster-grenade",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "grenade",
+        7
+      ],
+      [
+        "explosives",
+        5
+      ],
+      [
+        "steel-plate",
+        5
+      ]
+    ],
+    "result": "cluster-grenade",
+    "category": "crafting"
+  },
+  "defender-capsule": {
+    "type": "recipe",
+    "name": "defender-capsule",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "piercing-rounds-magazine",
+        1
+      ],
+      [
+        "electronic-circuit",
+        2
+      ],
+      [
+        "iron-gear-wheel",
+        3
+      ]
+    ],
+    "result": "defender-capsule",
+    "category": "crafting"
+  },
+  "distractor-capsule": {
+    "type": "recipe",
+    "name": "distractor-capsule",
+    "energy_required": 15,
+    "ingredients": [
+      [
+        "defender-capsule",
+        4
+      ],
+      [
+        "advanced-circuit",
+        3
+      ]
+    ],
+    "result": "distractor-capsule",
+    "category": "crafting"
+  },
+  "destroyer-capsule": {
+    "type": "recipe",
+    "name": "destroyer-capsule",
+    "energy_required": 15,
+    "ingredients": [
+      [
+        "distractor-capsule",
+        4
+      ],
+      [
+        "speed-module",
+        1
+      ]
+    ],
+    "result": "destroyer-capsule",
+    "category": "crafting"
+  },
+  "discharge-defense-remote": {
+    "type": "recipe",
+    "name": "discharge-defense-remote",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        1
+      ]
+    ],
+    "result": "discharge-defense-remote",
+    "category": "crafting"
+  },
+  "night-vision-equipment": {
+    "type": "recipe",
+    "name": "night-vision-equipment",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "steel-plate",
+        10
+      ]
+    ],
+    "result": "night-vision-equipment",
+    "category": "crafting"
+  },
+  "energy-shield-equipment": {
+    "type": "recipe",
+    "name": "energy-shield-equipment",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "steel-plate",
+        10
+      ]
+    ],
+    "result": "energy-shield-equipment",
+    "category": "crafting"
+  },
+  "energy-shield-mk2-equipment": {
+    "type": "recipe",
+    "name": "energy-shield-mk2-equipment",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "energy-shield-equipment",
+        10
+      ],
+      [
+        "processing-unit",
+        10
+      ]
+    ],
+    "result": "energy-shield-mk2-equipment",
+    "category": "crafting"
+  },
+  "battery-equipment": {
+    "type": "recipe",
+    "name": "battery-equipment",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "battery",
+        5
+      ],
+      [
+        "steel-plate",
+        10
+      ]
+    ],
+    "result": "battery-equipment",
+    "category": "crafting"
+  },
+  "battery-mk2-equipment": {
+    "type": "recipe",
+    "name": "battery-mk2-equipment",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "battery-equipment",
+        10
+      ],
+      [
+        "processing-unit",
+        20
+      ]
+    ],
+    "result": "battery-mk2-equipment",
+    "category": "crafting"
+  },
+  "solar-panel-equipment": {
+    "type": "recipe",
+    "name": "solar-panel-equipment",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "solar-panel",
+        5
+      ],
+      [
+        "advanced-circuit",
+        1
+      ],
+      [
+        "steel-plate",
+        5
+      ]
+    ],
+    "result": "solar-panel-equipment",
+    "category": "crafting"
+  },
+  "fusion-reactor-equipment": {
+    "type": "recipe",
+    "name": "fusion-reactor-equipment",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "processing-unit",
+        250
+      ]
+    ],
+    "result": "fusion-reactor-equipment",
+    "category": "crafting"
+  },
+  "personal-laser-defense-equipment": {
+    "type": "recipe",
+    "name": "personal-laser-defense-equipment",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "processing-unit",
+        1
+      ],
+      [
+        "steel-plate",
+        5
+      ],
+      [
+        "laser-turret",
+        5
+      ]
+    ],
+    "result": "personal-laser-defense-equipment",
+    "category": "crafting"
+  },
+  "discharge-defense-equipment": {
+    "type": "recipe",
+    "name": "discharge-defense-equipment",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "processing-unit",
+        5
+      ],
+      [
+        "steel-plate",
+        20
+      ],
+      [
+        "laser-turret",
+        10
+      ]
+    ],
+    "result": "discharge-defense-equipment",
+    "category": "crafting"
+  },
+  "exoskeleton-equipment": {
+    "type": "recipe",
+    "name": "exoskeleton-equipment",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "processing-unit",
+        10
+      ],
+      [
+        "electric-engine-unit",
+        30
+      ],
+      [
+        "steel-plate",
+        20
+      ]
+    ],
+    "result": "exoskeleton-equipment",
+    "category": "crafting"
+  },
+  "personal-roboport-equipment": {
+    "type": "recipe",
+    "name": "personal-roboport-equipment",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "advanced-circuit",
+        10
+      ],
+      [
+        "iron-gear-wheel",
+        40
+      ],
+      [
+        "steel-plate",
+        20
+      ],
+      [
+        "battery",
+        45
+      ]
+    ],
+    "result": "personal-roboport-equipment",
+    "category": "crafting"
+  },
+  "personal-roboport-mk2-equipment": {
+    "type": "recipe",
+    "name": "personal-roboport-mk2-equipment",
+    "energy_required": 20,
+    "ingredients": [
+      [
+        "personal-roboport-equipment",
+        5
+      ],
+      [
+        "processing-unit",
+        100
+      ]
+    ],
+    "result": "personal-roboport-mk2-equipment",
+    "category": "crafting"
+  },
+  "steel-plate": {
+    "type": "recipe",
+    "name": "steel-plate",
+    "category": "smelting",
+    "normal": {
+      "energy_required": 17.5,
+      "ingredients": [
+        [
+          "iron-plate",
+          5
+        ]
+      ],
+      "result": "steel-plate"
+    },
+    "expensive": {
+      "energy_required": 35,
+      "ingredients": [
+        [
+          "iron-plate",
+          10
+        ]
+      ],
+      "result": "steel-plate"
+    }
+  },
+  "basic-oil-processing": {
+    "type": "recipe",
+    "name": "basic-oil-processing",
+    "category": "oil-processing",
+    "energy_required": 5,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "crude-oil",
+        "amount": 100
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "heavy-oil",
+        "amount": 30
+      },
+      {
+        "type": "fluid",
+        "name": "light-oil",
+        "amount": 30
+      },
+      {
+        "type": "fluid",
+        "name": "petroleum-gas",
+        "amount": 40
+      }
+    ],
+    "icon": "__base__/graphics/icons/fluid/basic-oil-processing.png",
+    "subgroup": "fluid-recipes",
+    "order": "a[oil-processing]-a[basic-oil-processing]"
+  },
+  "advanced-oil-processing": {
+    "type": "recipe",
+    "name": "advanced-oil-processing",
+    "category": "oil-processing",
+    "energy_required": 5,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 50
+      },
+      {
+        "type": "fluid",
+        "name": "crude-oil",
+        "amount": 100
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "heavy-oil",
+        "amount": 10
+      },
+      {
+        "type": "fluid",
+        "name": "light-oil",
+        "amount": 45
+      },
+      {
+        "type": "fluid",
+        "name": "petroleum-gas",
+        "amount": 55
+      }
+    ],
+    "icon": "__base__/graphics/icons/fluid/advanced-oil-processing.png",
+    "subgroup": "fluid-recipes",
+    "order": "a[oil-processing]-b[advanced-oil-processing]"
+  },
+  "coal-liquefaction": {
+    "type": "recipe",
+    "name": "coal-liquefaction",
+    "category": "oil-processing",
+    "energy_required": 5,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "coal",
+        "amount": 10
+      },
+      {
+        "type": "fluid",
+        "name": "heavy-oil",
+        "amount": 25
+      },
+      {
+        "type": "fluid",
+        "name": "steam",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "heavy-oil",
+        "amount": 35
+      },
+      {
+        "type": "fluid",
+        "name": "light-oil",
+        "amount": 15
+      },
+      {
+        "type": "fluid",
+        "name": "petroleum-gas",
+        "amount": 20
+      }
+    ],
+    "icon": "__base__/graphics/icons/fluid/coal-liquefaction.png",
+    "subgroup": "fluid-recipes",
+    "order": "a[oil-processing]-c[coal-liquefaction]"
+  },
+  "heavy-oil-cracking": {
+    "type": "recipe",
+    "name": "heavy-oil-cracking",
+    "category": "chemistry",
+    "energy_required": 3,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 30
+      },
+      {
+        "type": "fluid",
+        "name": "heavy-oil",
+        "amount": 40
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "light-oil",
+        "amount": 30
+      }
+    ],
+    "icon": "__base__/graphics/icons/fluid/heavy-oil-cracking.png",
+    "subgroup": "fluid-recipes",
+    "order": "b[fluid-chemistry]-a[heavy-oil-cracking]"
+  },
+  "light-oil-cracking": {
+    "type": "recipe",
+    "name": "light-oil-cracking",
+    "category": "chemistry",
+    "energy_required": 3,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 30
+      },
+      {
+        "type": "fluid",
+        "name": "light-oil",
+        "amount": 30
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "petroleum-gas",
+        "amount": 20
+      }
+    ],
+    "icon": "__base__/graphics/icons/fluid/light-oil-cracking.png",
+    "subgroup": "fluid-recipes",
+    "order": "b[fluid-chemistry]-b[light-oil-cracking]"
+  },
+  "sulfuric-acid": {
+    "type": "recipe",
+    "name": "sulfuric-acid",
+    "category": "chemistry",
+    "energy_required": 1,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "sulfur",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "iron-plate",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 100
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "sulfuric-acid",
+        "amount": 50
+      }
+    ],
+    "subgroup": "fluid-recipes"
+  },
+  "plastic-bar": {
+    "type": "recipe",
+    "name": "plastic-bar",
+    "category": "chemistry",
+    "energy_required": 1,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "petroleum-gas",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "coal",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "plastic-bar",
+        "amount": 2
+      }
+    ]
+  },
+  "solid-fuel-from-light-oil": {
+    "type": "recipe",
+    "name": "solid-fuel-from-light-oil",
+    "category": "chemistry",
+    "energy_required": 3,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "light-oil",
+        "amount": 10
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "solid-fuel",
+        "amount": 1
+      }
+    ],
+    "icon": "__base__/graphics/icons/solid-fuel-from-light-oil.png",
+    "subgroup": "fluid-recipes",
+    "order": "b[fluid-chemistry]-c[solid-fuel-from-light-oil]"
+  },
+  "solid-fuel-from-petroleum-gas": {
+    "type": "recipe",
+    "name": "solid-fuel-from-petroleum-gas",
+    "category": "chemistry",
+    "energy_required": 3,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "petroleum-gas",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "solid-fuel",
+        "amount": 1
+      }
+    ],
+    "icon": "__base__/graphics/icons/solid-fuel-from-petroleum-gas.png",
+    "subgroup": "fluid-recipes",
+    "order": "b[fluid-chemistry]-d[solid-fuel-from-petroleum-gas]"
+  },
+  "solid-fuel-from-heavy-oil": {
+    "type": "recipe",
+    "name": "solid-fuel-from-heavy-oil",
+    "category": "chemistry",
+    "energy_required": 3,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "heavy-oil",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "solid-fuel",
+        "amount": 1
+      }
+    ],
+    "icon": "__base__/graphics/icons/solid-fuel-from-heavy-oil.png",
+    "subgroup": "fluid-recipes",
+    "order": "b[fluid-chemistry]-e[solid-fuel-from-heavy-oil]"
+  },
+  "sulfur": {
+    "type": "recipe",
+    "name": "sulfur",
+    "category": "chemistry",
+    "energy_required": 1,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 30
+      },
+      {
+        "type": "fluid",
+        "name": "petroleum-gas",
+        "amount": 30
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "sulfur",
+        "amount": 2
+      }
+    ]
+  },
+  "lubricant": {
+    "type": "recipe",
+    "name": "lubricant",
+    "category": "chemistry",
+    "energy_required": 1,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "heavy-oil",
+        "amount": 10
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "lubricant",
+        "amount": 10
+      }
+    ],
+    "subgroup": "fluid-recipes"
+  },
+  "empty-barrel": {
+    "type": "recipe",
+    "name": "empty-barrel",
+    "category": "crafting",
+    "energy_required": 1,
+    "subgroup": "intermediate-product",
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "long-handed-inserter": {
+    "type": "recipe",
+    "name": "long-handed-inserter",
+    "ingredients": [
+      [
+        "iron-gear-wheel",
+        1
+      ],
+      [
+        "iron-plate",
+        1
+      ],
+      [
+        "inserter",
+        1
+      ]
+    ],
+    "result": "long-handed-inserter",
+    "category": "crafting"
+  },
+  "fast-inserter": {
+    "type": "recipe",
+    "name": "fast-inserter",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        2
+      ],
+      [
+        "iron-plate",
+        2
+      ],
+      [
+        "inserter",
+        1
+      ]
+    ],
+    "result": "fast-inserter",
+    "category": "crafting"
+  },
+  "filter-inserter": {
+    "type": "recipe",
+    "name": "filter-inserter",
+    "ingredients": [
+      [
+        "fast-inserter",
+        1
+      ],
+      [
+        "electronic-circuit",
+        4
+      ]
+    ],
+    "result": "filter-inserter",
+    "category": "crafting"
+  },
+  "stack-inserter": {
+    "type": "recipe",
+    "name": "stack-inserter",
+    "ingredients": [
+      [
+        "iron-gear-wheel",
+        15
+      ],
+      [
+        "electronic-circuit",
+        15
+      ],
+      [
+        "advanced-circuit",
+        1
+      ],
+      [
+        "fast-inserter",
+        1
+      ]
+    ],
+    "result": "stack-inserter",
+    "category": "crafting"
+  },
+  "stack-filter-inserter": {
+    "type": "recipe",
+    "name": "stack-filter-inserter",
+    "ingredients": [
+      [
+        "stack-inserter",
+        1
+      ],
+      [
+        "electronic-circuit",
+        5
+      ]
+    ],
+    "result": "stack-filter-inserter",
+    "category": "crafting"
+  },
+  "speed-module": {
+    "type": "recipe",
+    "name": "speed-module",
+    "ingredients": [
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "electronic-circuit",
+        5
+      ]
+    ],
+    "energy_required": 15,
+    "result": "speed-module",
+    "category": "crafting"
+  },
+  "speed-module-2": {
+    "type": "recipe",
+    "name": "speed-module-2",
+    "ingredients": [
+      [
+        "speed-module",
+        4
+      ],
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "processing-unit",
+        5
+      ]
+    ],
+    "energy_required": 30,
+    "result": "speed-module-2",
+    "category": "crafting"
+  },
+  "speed-module-3": {
+    "type": "recipe",
+    "name": "speed-module-3",
+    "ingredients": [
+      [
+        "speed-module-2",
+        5
+      ],
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "processing-unit",
+        5
+      ]
+    ],
+    "energy_required": 60,
+    "result": "speed-module-3",
+    "category": "crafting"
+  },
+  "productivity-module": {
+    "type": "recipe",
+    "name": "productivity-module",
+    "ingredients": [
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "electronic-circuit",
+        5
+      ]
+    ],
+    "energy_required": 15,
+    "result": "productivity-module",
+    "category": "crafting"
+  },
+  "productivity-module-2": {
+    "type": "recipe",
+    "name": "productivity-module-2",
+    "ingredients": [
+      [
+        "productivity-module",
+        4
+      ],
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "processing-unit",
+        5
+      ]
+    ],
+    "energy_required": 30,
+    "result": "productivity-module-2",
+    "category": "crafting"
+  },
+  "productivity-module-3": {
+    "type": "recipe",
+    "name": "productivity-module-3",
+    "ingredients": [
+      [
+        "productivity-module-2",
+        5
+      ],
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "processing-unit",
+        5
+      ]
+    ],
+    "energy_required": 60,
+    "result": "productivity-module-3",
+    "category": "crafting"
+  },
+  "effectivity-module": {
+    "type": "recipe",
+    "name": "effectivity-module",
+    "ingredients": [
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "electronic-circuit",
+        5
+      ]
+    ],
+    "energy_required": 15,
+    "result": "effectivity-module",
+    "category": "crafting"
+  },
+  "effectivity-module-2": {
+    "type": "recipe",
+    "name": "effectivity-module-2",
+    "ingredients": [
+      [
+        "effectivity-module",
+        4
+      ],
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "processing-unit",
+        5
+      ]
+    ],
+    "energy_required": 30,
+    "result": "effectivity-module-2",
+    "category": "crafting"
+  },
+  "effectivity-module-3": {
+    "type": "recipe",
+    "name": "effectivity-module-3",
+    "ingredients": [
+      [
+        "effectivity-module-2",
+        5
+      ],
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "processing-unit",
+        5
+      ]
+    ],
+    "energy_required": 60,
+    "result": "effectivity-module-3",
+    "category": "crafting"
+  },
+  "player-port": {
+    "type": "recipe",
+    "name": "player-port",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        10
+      ],
+      [
+        "iron-gear-wheel",
+        5
+      ],
+      [
+        "iron-plate",
+        1
+      ]
+    ],
+    "result": "player-port",
+    "category": "crafting"
+  },
+  "fast-transport-belt": {
+    "type": "recipe",
+    "name": "fast-transport-belt",
+    "ingredients": [
+      [
+        "iron-gear-wheel",
+        5
+      ],
+      [
+        "transport-belt",
+        1
+      ]
+    ],
+    "result": "fast-transport-belt",
+    "category": "crafting"
+  },
+  "express-transport-belt": {
+    "type": "recipe",
+    "name": "express-transport-belt",
+    "category": "crafting-with-fluid",
+    "normal": {
+      "ingredients": [
+        [
+          "iron-gear-wheel",
+          10
+        ],
+        [
+          "fast-transport-belt",
+          1
+        ],
+        {
+          "type": "fluid",
+          "name": "lubricant",
+          "amount": 20
+        }
+      ],
+      "result": "express-transport-belt"
+    },
+    "expensive": {
+      "ingredients": [
+        [
+          "iron-gear-wheel",
+          20
+        ],
+        [
+          "fast-transport-belt",
+          1
+        ],
+        {
+          "type": "fluid",
+          "name": "lubricant",
+          "amount": 20
+        }
+      ],
+      "result": "express-transport-belt"
+    }
+  },
+  "solar-panel": {
+    "type": "recipe",
+    "name": "solar-panel",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "steel-plate",
+        5
+      ],
+      [
+        "electronic-circuit",
+        15
+      ],
+      [
+        "copper-plate",
+        5
+      ]
+    ],
+    "result": "solar-panel",
+    "category": "crafting"
+  },
+  "assembling-machine-2": {
+    "type": "recipe",
+    "name": "assembling-machine-2",
+    "normal": {
+      "ingredients": [
+        [
+          "iron-plate",
+          9
+        ],
+        [
+          "electronic-circuit",
+          3
+        ],
+        [
+          "iron-gear-wheel",
+          5
+        ],
+        [
+          "assembling-machine-1",
+          1
+        ]
+      ],
+      "result": "assembling-machine-2"
+    },
+    "expensive": {
+      "ingredients": [
+        [
+          "iron-plate",
+          20
+        ],
+        [
+          "electronic-circuit",
+          5
+        ],
+        [
+          "iron-gear-wheel",
+          10
+        ],
+        [
+          "assembling-machine-1",
+          1
+        ]
+      ],
+      "result": "assembling-machine-2"
+    },
+    "category": "crafting"
+  },
+  "assembling-machine-3": {
+    "type": "recipe",
+    "name": "assembling-machine-3",
+    "ingredients": [
+      [
+        "speed-module",
+        4
+      ],
+      [
+        "assembling-machine-2",
+        2
+      ]
+    ],
+    "result": "assembling-machine-3",
+    "category": "crafting"
+  },
+  "car": {
+    "type": "recipe",
+    "name": "car",
+    "ingredients": [
+      [
+        "engine-unit",
+        8
+      ],
+      [
+        "iron-plate",
+        20
+      ],
+      [
+        "steel-plate",
+        5
+      ]
+    ],
+    "result": "car",
+    "category": "crafting"
+  },
+  "tank": {
+    "type": "recipe",
+    "name": "tank",
+    "normal": {
+      "ingredients": [
+        [
+          "engine-unit",
+          32
+        ],
+        [
+          "steel-plate",
+          50
+        ],
+        [
+          "iron-gear-wheel",
+          15
+        ],
+        [
+          "advanced-circuit",
+          10
+        ]
+      ],
+      "result": "tank"
+    },
+    "expensive": {
+      "ingredients": [
+        [
+          "engine-unit",
+          64
+        ],
+        [
+          "steel-plate",
+          100
+        ],
+        [
+          "iron-gear-wheel",
+          30
+        ],
+        [
+          "advanced-circuit",
+          20
+        ]
+      ],
+      "result": "tank"
+    },
+    "category": "crafting"
+  },
+  "rail": {
+    "type": "recipe",
+    "name": "rail",
+    "ingredients": [
+      [
+        "stone",
+        1
+      ],
+      [
+        "iron-stick",
+        1
+      ],
+      [
+        "steel-plate",
+        1
+      ]
+    ],
+    "result": "rail",
+    "result_count": 2,
+    "category": "crafting"
+  },
+  "locomotive": {
+    "type": "recipe",
+    "name": "locomotive",
+    "ingredients": [
+      [
+        "engine-unit",
+        20
+      ],
+      [
+        "electronic-circuit",
+        10
+      ],
+      [
+        "steel-plate",
+        30
+      ]
+    ],
+    "result": "locomotive",
+    "category": "crafting"
+  },
+  "cargo-wagon": {
+    "type": "recipe",
+    "name": "cargo-wagon",
+    "ingredients": [
+      [
+        "iron-gear-wheel",
+        10
+      ],
+      [
+        "iron-plate",
+        20
+      ],
+      [
+        "steel-plate",
+        20
+      ]
+    ],
+    "result": "cargo-wagon",
+    "category": "crafting"
+  },
+  "fluid-wagon": {
+    "type": "recipe",
+    "name": "fluid-wagon",
+    "energy_required": 1.5,
+    "ingredients": [
+      [
+        "iron-gear-wheel",
+        10
+      ],
+      [
+        "steel-plate",
+        16
+      ],
+      [
+        "pipe",
+        8
+      ],
+      [
+        "storage-tank",
+        3
+      ]
+    ],
+    "result": "fluid-wagon",
+    "category": "crafting"
+  },
+  "train-stop": {
+    "type": "recipe",
+    "name": "train-stop",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        5
+      ],
+      [
+        "iron-plate",
+        10
+      ],
+      [
+        "steel-plate",
+        3
+      ]
+    ],
+    "result": "train-stop",
+    "category": "crafting"
+  },
+  "rail-signal": {
+    "type": "recipe",
+    "name": "rail-signal",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        1
+      ],
+      [
+        "iron-plate",
+        5
+      ]
+    ],
+    "result": "rail-signal",
+    "category": "crafting"
+  },
+  "rail-chain-signal": {
+    "type": "recipe",
+    "name": "rail-chain-signal",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        1
+      ],
+      [
+        "iron-plate",
+        5
+      ]
+    ],
+    "result": "rail-chain-signal",
+    "category": "crafting"
+  },
+  "heavy-armor": {
+    "type": "recipe",
+    "name": "heavy-armor",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "copper-plate",
+        100
+      ],
+      [
+        "steel-plate",
+        50
+      ]
+    ],
+    "result": "heavy-armor",
+    "category": "crafting"
+  },
+  "modular-armor": {
+    "type": "recipe",
+    "name": "modular-armor",
+    "energy_required": 15,
+    "ingredients": [
+      [
+        "advanced-circuit",
+        30
+      ],
+      [
+        "steel-plate",
+        50
+      ]
+    ],
+    "result": "modular-armor",
+    "category": "crafting"
+  },
+  "power-armor": {
+    "type": "recipe",
+    "name": "power-armor",
+    "energy_required": 20,
+    "ingredients": [
+      [
+        "processing-unit",
+        40
+      ],
+      [
+        "electric-engine-unit",
+        20
+      ],
+      [
+        "steel-plate",
+        40
+      ]
+    ],
+    "result": "power-armor",
+    "category": "crafting"
+  },
+  "power-armor-mk2": {
+    "type": "recipe",
+    "name": "power-armor-mk2",
+    "energy_required": 25,
+    "ingredients": [
+      [
+        "effectivity-module-3",
+        5
+      ],
+      [
+        "speed-module-3",
+        5
+      ],
+      [
+        "processing-unit",
+        40
+      ],
+      [
+        "steel-plate",
+        40
+      ]
+    ],
+    "result": "power-armor-mk2",
+    "category": "crafting"
+  },
+  "iron-chest": {
+    "type": "recipe",
+    "name": "iron-chest",
+    "ingredients": [
+      [
+        "iron-plate",
+        8
+      ]
+    ],
+    "result": "iron-chest",
+    "category": "crafting"
+  },
+  "steel-chest": {
+    "type": "recipe",
+    "name": "steel-chest",
+    "ingredients": [
+      [
+        "steel-plate",
+        8
+      ]
+    ],
+    "result": "steel-chest",
+    "category": "crafting"
+  },
+  "stone-wall": {
+    "type": "recipe",
+    "name": "stone-wall",
+    "ingredients": [
+      [
+        "stone-brick",
+        5
+      ]
+    ],
+    "result": "stone-wall",
+    "category": "crafting"
+  },
+  "gate": {
+    "type": "recipe",
+    "name": "gate",
+    "ingredients": [
+      [
+        "stone-wall",
+        1
+      ],
+      [
+        "steel-plate",
+        2
+      ],
+      [
+        "electronic-circuit",
+        2
+      ]
+    ],
+    "result": "gate",
+    "category": "crafting"
+  },
+  "flamethrower": {
+    "type": "recipe",
+    "name": "flamethrower",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "steel-plate",
+        5
+      ],
+      [
+        "iron-gear-wheel",
+        10
+      ]
+    ],
+    "result": "flamethrower",
+    "category": "crafting"
+  },
+  "land-mine": {
+    "type": "recipe",
+    "name": "land-mine",
+    "energy_required": 5,
+    "ingredients": [
+      [
+        "steel-plate",
+        1
+      ],
+      [
+        "explosives",
+        2
+      ]
+    ],
+    "result": "land-mine",
+    "result_count": 4,
+    "category": "crafting"
+  },
+  "rocket-launcher": {
+    "type": "recipe",
+    "name": "rocket-launcher",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "iron-plate",
+        5
+      ],
+      [
+        "iron-gear-wheel",
+        5
+      ],
+      [
+        "electronic-circuit",
+        5
+      ]
+    ],
+    "result": "rocket-launcher",
+    "category": "crafting"
+  },
+  "shotgun": {
+    "type": "recipe",
+    "name": "shotgun",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "iron-plate",
+        15
+      ],
+      [
+        "iron-gear-wheel",
+        5
+      ],
+      [
+        "copper-plate",
+        10
+      ],
+      [
+        "wood",
+        5
+      ]
+    ],
+    "result": "shotgun",
+    "category": "crafting"
+  },
+  "combat-shotgun": {
+    "type": "recipe",
+    "name": "combat-shotgun",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "steel-plate",
+        15
+      ],
+      [
+        "iron-gear-wheel",
+        5
+      ],
+      [
+        "copper-plate",
+        10
+      ],
+      [
+        "wood",
+        10
+      ]
+    ],
+    "result": "combat-shotgun",
+    "category": "crafting"
+  },
+  "railgun": {
+    "type": "recipe",
+    "name": "railgun",
+    "energy_required": 8,
+    "ingredients": [
+      [
+        "steel-plate",
+        15
+      ],
+      [
+        "copper-plate",
+        15
+      ],
+      [
+        "electronic-circuit",
+        10
+      ],
+      [
+        "advanced-circuit",
+        5
+      ]
+    ],
+    "result": "railgun",
+    "category": "crafting"
+  },
+  "science-pack-1": {
+    "type": "recipe",
+    "name": "science-pack-1",
+    "energy_required": 5,
+    "ingredients": [
+      [
+        "copper-plate",
+        1
+      ],
+      [
+        "iron-gear-wheel",
+        1
+      ]
+    ],
+    "result": "science-pack-1",
+    "category": "crafting"
+  },
+  "science-pack-2": {
+    "type": "recipe",
+    "name": "science-pack-2",
+    "energy_required": 6,
+    "ingredients": [
+      [
+        "inserter",
+        1
+      ],
+      [
+        "transport-belt",
+        1
+      ]
+    ],
+    "result": "science-pack-2",
+    "category": "crafting"
+  },
+  "science-pack-3": {
+    "type": "recipe",
+    "name": "science-pack-3",
+    "energy_required": 12,
+    "ingredients": [
+      [
+        "advanced-circuit",
+        1
+      ],
+      [
+        "engine-unit",
+        1
+      ],
+      [
+        "electric-mining-drill",
+        1
+      ]
+    ],
+    "result": "science-pack-3",
+    "category": "crafting"
+  },
+  "military-science-pack": {
+    "type": "recipe",
+    "name": "military-science-pack",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "piercing-rounds-magazine",
+        1
+      ],
+      [
+        "grenade",
+        1
+      ],
+      [
+        "gun-turret",
+        1
+      ]
+    ],
+    "result_count": 2,
+    "result": "military-science-pack",
+    "category": "crafting"
+  },
+  "production-science-pack": {
+    "type": "recipe",
+    "name": "production-science-pack",
+    "energy_required": 14,
+    "ingredients": [
+      [
+        "electric-engine-unit",
+        1
+      ],
+      [
+        "assembling-machine-1",
+        1
+      ],
+      [
+        "electric-furnace",
+        1
+      ]
+    ],
+    "result_count": 2,
+    "result": "production-science-pack",
+    "category": "crafting"
+  },
+  "high-tech-science-pack": {
+    "type": "recipe",
+    "name": "high-tech-science-pack",
+    "energy_required": 14,
+    "ingredients": [
+      [
+        "battery",
+        1
+      ],
+      [
+        "processing-unit",
+        3
+      ],
+      [
+        "speed-module",
+        1
+      ],
+      [
+        "copper-cable",
+        30
+      ]
+    ],
+    "result_count": 2,
+    "result": "high-tech-science-pack",
+    "category": "crafting"
+  },
+  "lab": {
+    "type": "recipe",
+    "name": "lab",
+    "energy_required": 3,
+    "ingredients": [
+      [
+        "electronic-circuit",
+        10
+      ],
+      [
+        "iron-gear-wheel",
+        10
+      ],
+      [
+        "transport-belt",
+        4
+      ]
+    ],
+    "result": "lab",
+    "category": "crafting"
+  },
+  "red-wire": {
+    "type": "recipe",
+    "name": "red-wire",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        1
+      ],
+      [
+        "copper-cable",
+        1
+      ]
+    ],
+    "result": "red-wire",
+    "category": "crafting"
+  },
+  "green-wire": {
+    "type": "recipe",
+    "name": "green-wire",
+    "ingredients": [
+      [
+        "electronic-circuit",
+        1
+      ],
+      [
+        "copper-cable",
+        1
+      ]
+    ],
+    "result": "green-wire",
+    "category": "crafting"
+  },
+  "underground-belt": {
+    "type": "recipe",
+    "name": "underground-belt",
+    "energy_required": 1,
+    "ingredients": [
+      [
+        "iron-plate",
+        10
+      ],
+      [
+        "transport-belt",
+        5
+      ]
+    ],
+    "result_count": 2,
+    "result": "underground-belt",
+    "category": "crafting"
+  },
+  "fast-underground-belt": {
+    "type": "recipe",
+    "name": "fast-underground-belt",
+    "ingredients": [
+      [
+        "iron-gear-wheel",
+        40
+      ],
+      [
+        "underground-belt",
+        2
+      ]
+    ],
+    "result_count": 2,
+    "result": "fast-underground-belt",
+    "category": "crafting"
+  },
+  "express-underground-belt": {
+    "type": "recipe",
+    "name": "express-underground-belt",
+    "category": "crafting-with-fluid",
+    "ingredients": [
+      [
+        "iron-gear-wheel",
+        80
+      ],
+      [
+        "fast-underground-belt",
+        2
+      ],
+      {
+        "type": "fluid",
+        "name": "lubricant",
+        "amount": 40
+      }
+    ],
+    "result_count": 2,
+    "result": "express-underground-belt"
+  },
+  "loader": {
+    "type": "recipe",
+    "name": "loader",
+    "energy_required": 1,
+    "ingredients": [
+      [
+        "inserter",
+        5
+      ],
+      [
+        "electronic-circuit",
+        5
+      ],
+      [
+        "iron-gear-wheel",
+        5
+      ],
+      [
+        "iron-plate",
+        5
+      ],
+      [
+        "transport-belt",
+        5
+      ]
+    ],
+    "result": "loader",
+    "category": "crafting"
+  },
+  "fast-loader": {
+    "type": "recipe",
+    "name": "fast-loader",
+    "energy_required": 3,
+    "ingredients": [
+      [
+        "fast-transport-belt",
+        5
+      ],
+      [
+        "loader",
+        1
+      ]
+    ],
+    "result": "fast-loader",
+    "category": "crafting"
+  },
+  "express-loader": {
+    "type": "recipe",
+    "name": "express-loader",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "express-transport-belt",
+        5
+      ],
+      [
+        "fast-loader",
+        1
+      ]
+    ],
+    "result": "express-loader",
+    "category": "crafting"
+  },
+  "splitter": {
+    "type": "recipe",
+    "name": "splitter",
+    "energy_required": 1,
+    "ingredients": [
+      [
+        "electronic-circuit",
+        5
+      ],
+      [
+        "iron-plate",
+        5
+      ],
+      [
+        "transport-belt",
+        4
+      ]
+    ],
+    "result": "splitter",
+    "category": "crafting"
+  },
+  "fast-splitter": {
+    "type": "recipe",
+    "name": "fast-splitter",
+    "energy_required": 2,
+    "ingredients": [
+      [
+        "splitter",
+        1
+      ],
+      [
+        "iron-gear-wheel",
+        10
+      ],
+      [
+        "electronic-circuit",
+        10
+      ]
+    ],
+    "result": "fast-splitter",
+    "category": "crafting"
+  },
+  "express-splitter": {
+    "type": "recipe",
+    "name": "express-splitter",
+    "category": "crafting-with-fluid",
+    "energy_required": 2,
+    "ingredients": [
+      [
+        "fast-splitter",
+        1
+      ],
+      [
+        "iron-gear-wheel",
+        10
+      ],
+      [
+        "advanced-circuit",
+        10
+      ],
+      {
+        "type": "fluid",
+        "name": "lubricant",
+        "amount": 80
+      }
+    ],
+    "result": "express-splitter"
+  },
+  "advanced-circuit": {
+    "type": "recipe",
+    "name": "advanced-circuit",
+    "normal": {
+      "energy_required": 6,
+      "ingredients": [
+        [
+          "electronic-circuit",
+          2
+        ],
+        [
+          "plastic-bar",
+          2
+        ],
+        [
+          "copper-cable",
+          4
+        ]
+      ],
+      "result": "advanced-circuit"
+    },
+    "expensive": {
+      "energy_required": 6,
+      "ingredients": [
+        [
+          "electronic-circuit",
+          2
+        ],
+        [
+          "plastic-bar",
+          4
+        ],
+        [
+          "copper-cable",
+          8
+        ]
+      ],
+      "result": "advanced-circuit"
+    },
+    "category": "crafting"
+  },
+  "processing-unit": {
+    "type": "recipe",
+    "name": "processing-unit",
+    "category": "crafting-with-fluid",
+    "normal": {
+      "energy_required": 10,
+      "ingredients": [
+        [
+          "electronic-circuit",
+          20
+        ],
+        [
+          "advanced-circuit",
+          2
+        ],
+        {
+          "type": "fluid",
+          "name": "sulfuric-acid",
+          "amount": 5
+        }
+      ],
+      "result": "processing-unit"
+    },
+    "expensive": {
+      "energy_required": 10,
+      "ingredients": [
+        [
+          "electronic-circuit",
+          20
+        ],
+        [
+          "advanced-circuit",
+          2
+        ],
+        {
+          "type": "fluid",
+          "name": "sulfuric-acid",
+          "amount": 10
+        }
+      ],
+      "result": "processing-unit"
+    }
+  },
+  "logistic-robot": {
+    "type": "recipe",
+    "name": "logistic-robot",
+    "ingredients": [
+      [
+        "flying-robot-frame",
+        1
+      ],
+      [
+        "advanced-circuit",
+        2
+      ]
+    ],
+    "result": "logistic-robot",
+    "category": "crafting"
+  },
+  "construction-robot": {
+    "type": "recipe",
+    "name": "construction-robot",
+    "ingredients": [
+      [
+        "flying-robot-frame",
+        1
+      ],
+      [
+        "electronic-circuit",
+        2
+      ]
+    ],
+    "result": "construction-robot",
+    "category": "crafting"
+  },
+  "logistic-chest-passive-provider": {
+    "type": "recipe",
+    "name": "logistic-chest-passive-provider",
+    "ingredients": [
+      [
+        "steel-chest",
+        1
+      ],
+      [
+        "electronic-circuit",
+        3
+      ],
+      [
+        "advanced-circuit",
+        1
+      ]
+    ],
+    "result": "logistic-chest-passive-provider",
+    "category": "crafting"
+  },
+  "logistic-chest-active-provider": {
+    "type": "recipe",
+    "name": "logistic-chest-active-provider",
+    "ingredients": [
+      [
+        "steel-chest",
+        1
+      ],
+      [
+        "electronic-circuit",
+        3
+      ],
+      [
+        "advanced-circuit",
+        1
+      ]
+    ],
+    "result": "logistic-chest-active-provider",
+    "category": "crafting"
+  },
+  "logistic-chest-storage": {
+    "type": "recipe",
+    "name": "logistic-chest-storage",
+    "ingredients": [
+      [
+        "steel-chest",
+        1
+      ],
+      [
+        "electronic-circuit",
+        3
+      ],
+      [
+        "advanced-circuit",
+        1
+      ]
+    ],
+    "result": "logistic-chest-storage",
+    "category": "crafting"
+  },
+  "logistic-chest-requester": {
+    "type": "recipe",
+    "name": "logistic-chest-requester",
+    "ingredients": [
+      [
+        "steel-chest",
+        1
+      ],
+      [
+        "electronic-circuit",
+        3
+      ],
+      [
+        "advanced-circuit",
+        1
+      ]
+    ],
+    "result": "logistic-chest-requester",
+    "category": "crafting"
+  },
+  "rocket-silo": {
+    "type": "recipe",
+    "name": "rocket-silo",
+    "ingredients": [
+      [
+        "steel-plate",
+        1000
+      ],
+      [
+        "concrete",
+        1000
+      ],
+      [
+        "pipe",
+        100
+      ],
+      [
+        "processing-unit",
+        200
+      ],
+      [
+        "electric-engine-unit",
+        200
+      ]
+    ],
+    "energy_required": 30,
+    "result": "rocket-silo",
+    "category": "crafting"
+  },
+  "roboport": {
+    "type": "recipe",
+    "name": "roboport",
+    "ingredients": [
+      [
+        "steel-plate",
+        45
+      ],
+      [
+        "iron-gear-wheel",
+        45
+      ],
+      [
+        "advanced-circuit",
+        45
+      ]
+    ],
+    "result": "roboport",
+    "energy_required": 10,
+    "category": "crafting"
+  },
+  "steel-axe": {
+    "type": "recipe",
+    "name": "steel-axe",
+    "ingredients": [
+      [
+        "steel-plate",
+        5
+      ],
+      [
+        "iron-stick",
+        2
+      ]
+    ],
+    "result": "steel-axe",
+    "category": "crafting"
+  },
+  "big-electric-pole": {
+    "type": "recipe",
+    "name": "big-electric-pole",
+    "ingredients": [
+      [
+        "steel-plate",
+        5
+      ],
+      [
+        "copper-plate",
+        5
+      ]
+    ],
+    "result": "big-electric-pole",
+    "category": "crafting"
+  },
+  "substation": {
+    "type": "recipe",
+    "name": "substation",
+    "ingredients": [
+      [
+        "steel-plate",
+        10
+      ],
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "copper-plate",
+        5
+      ]
+    ],
+    "result": "substation",
+    "category": "crafting"
+  },
+  "medium-electric-pole": {
+    "type": "recipe",
+    "name": "medium-electric-pole",
+    "ingredients": [
+      [
+        "steel-plate",
+        2
+      ],
+      [
+        "copper-plate",
+        2
+      ]
+    ],
+    "result": "medium-electric-pole",
+    "category": "crafting"
+  },
+  "accumulator": {
+    "type": "recipe",
+    "name": "accumulator",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "iron-plate",
+        2
+      ],
+      [
+        "battery",
+        5
+      ]
+    ],
+    "result": "accumulator",
+    "category": "crafting"
+  },
+  "steel-furnace": {
+    "type": "recipe",
+    "name": "steel-furnace",
+    "ingredients": [
+      [
+        "steel-plate",
+        6
+      ],
+      [
+        "stone-brick",
+        10
+      ]
+    ],
+    "result": "steel-furnace",
+    "energy_required": 3,
+    "category": "crafting"
+  },
+  "electric-furnace": {
+    "type": "recipe",
+    "name": "electric-furnace",
+    "ingredients": [
+      [
+        "steel-plate",
+        10
+      ],
+      [
+        "advanced-circuit",
+        5
+      ],
+      [
+        "stone-brick",
+        10
+      ]
+    ],
+    "result": "electric-furnace",
+    "energy_required": 5,
+    "category": "crafting"
+  },
+  "beacon": {
+    "type": "recipe",
+    "name": "beacon",
+    "energy_required": 15,
+    "ingredients": [
+      [
+        "electronic-circuit",
+        20
+      ],
+      [
+        "advanced-circuit",
+        20
+      ],
+      [
+        "steel-plate",
+        10
+      ],
+      [
+        "copper-cable",
+        10
+      ]
+    ],
+    "result": "beacon",
+    "category": "crafting"
+  },
+  "pumpjack": {
+    "type": "recipe",
+    "name": "pumpjack",
+    "energy_required": 5,
+    "ingredients": [
+      [
+        "steel-plate",
+        5
+      ],
+      [
+        "iron-gear-wheel",
+        10
+      ],
+      [
+        "electronic-circuit",
+        5
+      ],
+      [
+        "pipe",
+        10
+      ]
+    ],
+    "result": "pumpjack",
+    "category": "crafting"
+  },
+  "oil-refinery": {
+    "type": "recipe",
+    "name": "oil-refinery",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "steel-plate",
+        15
+      ],
+      [
+        "iron-gear-wheel",
+        10
+      ],
+      [
+        "stone-brick",
+        10
+      ],
+      [
+        "electronic-circuit",
+        10
+      ],
+      [
+        "pipe",
+        10
+      ]
+    ],
+    "result": "oil-refinery",
+    "category": "crafting"
+  },
+  "engine-unit": {
+    "type": "recipe",
+    "name": "engine-unit",
+    "energy_required": 10,
+    "category": "advanced-crafting",
+    "ingredients": [
+      [
+        "steel-plate",
+        1
+      ],
+      [
+        "iron-gear-wheel",
+        1
+      ],
+      [
+        "pipe",
+        2
+      ]
+    ],
+    "result": "engine-unit"
+  },
+  "electric-engine-unit": {
+    "type": "recipe",
+    "name": "electric-engine-unit",
+    "category": "crafting-with-fluid",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "engine-unit",
+        1
+      ],
+      {
+        "type": "fluid",
+        "name": "lubricant",
+        "amount": 15
+      },
+      [
+        "electronic-circuit",
+        2
+      ]
+    ],
+    "result": "electric-engine-unit"
+  },
+  "flying-robot-frame": {
+    "type": "recipe",
+    "name": "flying-robot-frame",
+    "energy_required": 20,
+    "ingredients": [
+      [
+        "electric-engine-unit",
+        1
+      ],
+      [
+        "battery",
+        2
+      ],
+      [
+        "steel-plate",
+        1
+      ],
+      [
+        "electronic-circuit",
+        3
+      ]
+    ],
+    "result": "flying-robot-frame",
+    "category": "crafting"
+  },
+  "explosives": {
+    "type": "recipe",
+    "name": "explosives",
+    "category": "chemistry",
+    "normal": {
+      "energy_required": 5,
+      "ingredients": [
+        {
+          "type": "item",
+          "name": "sulfur",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "name": "coal",
+          "amount": 1
+        },
+        {
+          "type": "fluid",
+          "name": "water",
+          "amount": 10
+        }
+      ],
+      "result": "explosives"
+    },
+    "expensive": {
+      "energy_required": 5,
+      "ingredients": [
+        {
+          "type": "item",
+          "name": "sulfur",
+          "amount": 2
+        },
+        {
+          "type": "item",
+          "name": "coal",
+          "amount": 2
+        },
+        {
+          "type": "fluid",
+          "name": "water",
+          "amount": 10
+        }
+      ],
+      "result": "explosives"
+    }
+  },
+  "battery": {
+    "type": "recipe",
+    "name": "battery",
+    "category": "chemistry",
+    "normal": {
+      "energy_required": 5,
+      "ingredients": [
+        {
+          "type": "fluid",
+          "name": "sulfuric-acid",
+          "amount": 20
+        },
+        [
+          "iron-plate",
+          1
+        ],
+        [
+          "copper-plate",
+          1
+        ]
+      ],
+      "result": "battery"
+    },
+    "expensive": {
+      "energy_required": 5,
+      "ingredients": [
+        {
+          "type": "fluid",
+          "name": "sulfuric-acid",
+          "amount": 40
+        },
+        [
+          "iron-plate",
+          1
+        ],
+        [
+          "copper-plate",
+          1
+        ]
+      ],
+      "result": "battery"
+    }
+  },
+  "storage-tank": {
+    "type": "recipe",
+    "name": "storage-tank",
+    "energy_required": 3,
+    "ingredients": [
+      [
+        "iron-plate",
+        20
+      ],
+      [
+        "steel-plate",
+        5
+      ]
+    ],
+    "result": "storage-tank",
+    "category": "crafting"
+  },
+  "pump": {
+    "type": "recipe",
+    "name": "pump",
+    "energy_required": 2,
+    "ingredients": [
+      [
+        "engine-unit",
+        1
+      ],
+      [
+        "steel-plate",
+        1
+      ],
+      [
+        "pipe",
+        1
+      ]
+    ],
+    "result": "pump",
+    "category": "crafting"
+  },
+  "chemical-plant": {
+    "type": "recipe",
+    "name": "chemical-plant",
+    "energy_required": 5,
+    "ingredients": [
+      [
+        "steel-plate",
+        5
+      ],
+      [
+        "iron-gear-wheel",
+        5
+      ],
+      [
+        "electronic-circuit",
+        5
+      ],
+      [
+        "pipe",
+        5
+      ]
+    ],
+    "result": "chemical-plant",
+    "category": "crafting"
+  },
+  "small-plane": {
+    "type": "recipe",
+    "name": "small-plane",
+    "energy_required": 30,
+    "category": "crafting",
+    "ingredients": [
+      [
+        "plastic-bar",
+        100
+      ],
+      [
+        "advanced-circuit",
+        200
+      ],
+      [
+        "electric-engine-unit",
+        20
+      ],
+      [
+        "battery",
+        100
+      ]
+    ],
+    "result": "small-plane"
+  },
+  "arithmetic-combinator": {
+    "type": "recipe",
+    "name": "arithmetic-combinator",
+    "ingredients": [
+      [
+        "copper-cable",
+        5
+      ],
+      [
+        "electronic-circuit",
+        5
+      ]
+    ],
+    "result": "arithmetic-combinator",
+    "category": "crafting"
+  },
+  "decider-combinator": {
+    "type": "recipe",
+    "name": "decider-combinator",
+    "ingredients": [
+      [
+        "copper-cable",
+        5
+      ],
+      [
+        "electronic-circuit",
+        5
+      ]
+    ],
+    "result": "decider-combinator",
+    "category": "crafting"
+  },
+  "constant-combinator": {
+    "type": "recipe",
+    "name": "constant-combinator",
+    "ingredients": [
+      [
+        "copper-cable",
+        5
+      ],
+      [
+        "electronic-circuit",
+        2
+      ]
+    ],
+    "result": "constant-combinator",
+    "category": "crafting"
+  },
+  "power-switch": {
+    "type": "recipe",
+    "name": "power-switch",
+    "energy_required": 2,
+    "ingredients": [
+      [
+        "iron-plate",
+        5
+      ],
+      [
+        "copper-cable",
+        5
+      ],
+      [
+        "electronic-circuit",
+        2
+      ]
+    ],
+    "result": "power-switch",
+    "category": "crafting"
+  },
+  "programmable-speaker": {
+    "type": "recipe",
+    "name": "programmable-speaker",
+    "energy_required": 2,
+    "ingredients": [
+      [
+        "iron-plate",
+        5
+      ],
+      [
+        "copper-cable",
+        5
+      ],
+      [
+        "electronic-circuit",
+        4
+      ]
+    ],
+    "result": "programmable-speaker",
+    "category": "crafting"
+  },
+  "low-density-structure": {
+    "type": "recipe",
+    "name": "low-density-structure",
+    "category": "crafting",
+    "normal": {
+      "energy_required": 30,
+      "ingredients": [
+        [
+          "steel-plate",
+          10
+        ],
+        [
+          "copper-plate",
+          5
+        ],
+        [
+          "plastic-bar",
+          5
+        ]
+      ],
+      "result": "low-density-structure"
+    },
+    "expensive": {
+      "energy_required": 30,
+      "ingredients": [
+        [
+          "steel-plate",
+          10
+        ],
+        [
+          "copper-plate",
+          10
+        ],
+        [
+          "plastic-bar",
+          10
+        ]
+      ],
+      "result": "low-density-structure"
+    }
+  },
+  "rocket-fuel": {
+    "type": "recipe",
+    "name": "rocket-fuel",
+    "energy_required": 30,
+    "category": "crafting",
+    "ingredients": [
+      [
+        "solid-fuel",
+        10
+      ]
+    ],
+    "result": "rocket-fuel"
+  },
+  "rocket-control-unit": {
+    "type": "recipe",
+    "name": "rocket-control-unit",
+    "energy_required": 30,
+    "category": "crafting",
+    "ingredients": [
+      [
+        "processing-unit",
+        1
+      ],
+      [
+        "speed-module",
+        1
+      ]
+    ],
+    "result": "rocket-control-unit"
+  },
+  "rocket-part": {
+    "type": "recipe",
+    "name": "rocket-part",
+    "energy_required": 3,
+    "category": "rocket-building",
+    "ingredients": [
+      [
+        "low-density-structure",
+        10
+      ],
+      [
+        "rocket-fuel",
+        10
+      ],
+      [
+        "rocket-control-unit",
+        10
+      ]
+    ],
+    "result": "rocket-part"
+  },
+  "satellite": {
+    "type": "recipe",
+    "name": "satellite",
+    "energy_required": 3,
+    "category": "crafting",
+    "ingredients": [
+      [
+        "low-density-structure",
+        100
+      ],
+      [
+        "solar-panel",
+        100
+      ],
+      [
+        "accumulator",
+        100
+      ],
+      [
+        "radar",
+        5
+      ],
+      [
+        "processing-unit",
+        100
+      ],
+      [
+        "rocket-fuel",
+        50
+      ]
+    ],
+    "result": "satellite"
+  },
+  "concrete": {
+    "type": "recipe",
+    "name": "concrete",
+    "energy_required": 10,
+    "category": "crafting-with-fluid",
+    "ingredients": [
+      [
+        "stone-brick",
+        5
+      ],
+      [
+        "iron-ore",
+        1
+      ],
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 100
+      }
+    ],
+    "result": "concrete",
+    "result_count": 10
+  },
+  "hazard-concrete": {
+    "type": "recipe",
+    "name": "hazard-concrete",
+    "energy_required": 0.25,
+    "category": "crafting",
+    "ingredients": [
+      [
+        "concrete",
+        10
+      ]
+    ],
+    "result": "hazard-concrete",
+    "result_count": 10
+  },
+  "landfill": {
+    "type": "recipe",
+    "name": "landfill",
+    "energy_required": 0.5,
+    "category": "crafting",
+    "ingredients": [
+      [
+        "stone",
+        20
+      ]
+    ],
+    "result": "landfill",
+    "result_count": 1
+  },
+  "electric-energy-interface": {
+    "type": "recipe",
+    "name": "electric-energy-interface",
+    "energy_required": 0.5,
+    "ingredients": [
+      [
+        "iron-plate",
+        2
+      ],
+      [
+        "electronic-circuit",
+        5
+      ]
+    ],
+    "result": "electric-energy-interface",
+    "category": "crafting"
+  },
+  "nuclear-reactor": {
+    "type": "recipe",
+    "name": "nuclear-reactor",
+    "energy_required": 4,
+    "ingredients": [
+      [
+        "concrete",
+        500
+      ],
+      [
+        "steel-plate",
+        500
+      ],
+      [
+        "advanced-circuit",
+        500
+      ],
+      [
+        "copper-plate",
+        500
+      ]
+    ],
+    "result": "nuclear-reactor",
+    "category": "crafting"
+  },
+  "centrifuge": {
+    "type": "recipe",
+    "name": "centrifuge",
+    "energy_required": 4,
+    "ingredients": [
+      [
+        "concrete",
+        100
+      ],
+      [
+        "steel-plate",
+        50
+      ],
+      [
+        "advanced-circuit",
+        100
+      ],
+      [
+        "iron-gear-wheel",
+        100
+      ]
+    ],
+    "result": "centrifuge",
+    "category": "crafting"
+  },
+  "uranium-processing": {
+    "type": "recipe",
+    "name": "uranium-processing",
+    "energy_required": 10,
+    "category": "centrifuging",
+    "ingredients": [
+      [
+        "uranium-ore",
+        10
+      ]
+    ],
+    "icon": "__base__/graphics/icons/uranium-processing.png",
+    "subgroup": "raw-material",
+    "order": "h[uranium-processing]",
+    "results": [
+      {
+        "name": "uranium-235",
+        "probability": 0.007,
+        "amount": 1,
+        "type": "item"
+      },
+      {
+        "name": "uranium-238",
+        "probability": 0.993,
+        "amount": 1,
+        "type": "item"
+      }
+    ]
+  },
+  "kovarex-enrichment-process": {
+    "type": "recipe",
+    "name": "kovarex-enrichment-process",
+    "energy_required": 50,
+    "category": "centrifuging",
+    "ingredients": [
+      [
+        "uranium-235",
+        40
+      ],
+      [
+        "uranium-238",
+        5
+      ]
+    ],
+    "icon": "__base__/graphics/icons/kovarex-enrichment-process.png",
+    "subgroup": "intermediate-product",
+    "order": "r[uranium-processing]-c[kovarex-enrichment-process]",
+    "results": [
+      {
+        "name": "uranium-235",
+        "amount": 41,
+        "type": "item"
+      },
+      {
+        "name": "uranium-238",
+        "amount": 2,
+        "type": "item"
+      }
+    ]
+  },
+  "nuclear-fuel-reprocessing": {
+    "type": "recipe",
+    "name": "nuclear-fuel-reprocessing",
+    "energy_required": 50,
+    "category": "centrifuging",
+    "ingredients": [
+      [
+        "used-up-uranium-fuel-cell",
+        5
+      ]
+    ],
+    "icon": "__base__/graphics/icons/nuclear-fuel-reprocessing.png",
+    "subgroup": "intermediate-product",
+    "order": "r[uranium-processing]-b[nuclear-fuel-reprocessing]",
+    "results": [
+      {
+        "name": "uranium-238",
+        "amount": 3,
+        "type": "item"
+      }
+    ]
+  },
+  "uranium-fuel-cell": {
+    "type": "recipe",
+    "name": "uranium-fuel-cell",
+    "energy_required": 10,
+    "ingredients": [
+      [
+        "iron-plate",
+        10
+      ],
+      [
+        "uranium-235",
+        1
+      ],
+      [
+        "uranium-238",
+        19
+      ]
+    ],
+    "result": "uranium-fuel-cell",
+    "result_count": 10,
+    "category": "crafting"
+  },
+  "heat-exchanger": {
+    "type": "recipe",
+    "name": "heat-exchanger",
+    "ingredients": [
+      [
+        "steel-plate",
+        10
+      ],
+      [
+        "copper-plate",
+        100
+      ],
+      [
+        "pipe",
+        10
+      ]
+    ],
+    "result": "heat-exchanger",
+    "category": "crafting"
+  },
+  "heat-pipe": {
+    "type": "recipe",
+    "name": "heat-pipe",
+    "ingredients": [
+      [
+        "steel-plate",
+        10
+      ],
+      [
+        "copper-plate",
+        20
+      ]
+    ],
+    "result": "heat-pipe",
+    "category": "crafting"
+  },
+  "steam-turbine": {
+    "type": "recipe",
+    "name": "steam-turbine",
+    "ingredients": [
+      [
+        "iron-gear-wheel",
+        50
+      ],
+      [
+        "copper-plate",
+        50
+      ],
+      [
+        "pipe",
+        20
+      ]
+    ],
+    "result": "steam-turbine",
+    "category": "crafting"
+  },
+  "laser-turret": {
+    "type": "recipe",
+    "name": "laser-turret",
+    "energy_required": 20,
+    "ingredients": [
+      [
+        "steel-plate",
+        20
+      ],
+      [
+        "electronic-circuit",
+        20
+      ],
+      [
+        "battery",
+        12
+      ]
+    ],
+    "result": "laser-turret",
+    "category": "crafting"
+  },
+  "flamethrower-turret": {
+    "type": "recipe",
+    "name": "flamethrower-turret",
+    "energy_required": 20,
+    "ingredients": [
+      [
+        "steel-plate",
+        30
+      ],
+      [
+        "iron-gear-wheel",
+        15
+      ],
+      [
+        "pipe",
+        10
+      ],
+      [
+        "engine-unit",
+        5
+      ]
+    ],
+    "result": "flamethrower-turret",
+    "category": "crafting"
+  },
+  "fill-water-barrel": {
+    "type": "recipe",
+    "name": "fill-water-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "fill-barrel",
+    "order": "b[fill-water-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-side-mask.png",
+        "tint": {
+          "r": 0,
+          "g": 0.34,
+          "b": 0.6,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-top-mask.png",
+        "tint": {
+          "r": 0.7,
+          "g": 0.7,
+          "b": 0.7,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/water.png",
+        "scale": 0.5,
+        "shift": [
+          4,
+          -8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "water-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "empty-water-barrel": {
+    "type": "recipe",
+    "name": "empty-water-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "empty-barrel",
+    "order": "c[empty-water-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-side-mask.png",
+        "tint": {
+          "r": 0,
+          "g": 0.34,
+          "b": 0.6,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-top-mask.png",
+        "tint": {
+          "r": 0.7,
+          "g": 0.7,
+          "b": 0.7,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/water.png",
+        "scale": 0.5,
+        "shift": [
+          7,
+          8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "water-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "fill-crude-oil-barrel": {
+    "type": "recipe",
+    "name": "fill-crude-oil-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "fill-barrel",
+    "order": "b[fill-crude-oil-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-side-mask.png",
+        "tint": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-top-mask.png",
+        "tint": {
+          "r": 0.5,
+          "g": 0.5,
+          "b": 0.5,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/crude-oil.png",
+        "scale": 0.5,
+        "shift": [
+          4,
+          -8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "crude-oil",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "crude-oil-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "empty-crude-oil-barrel": {
+    "type": "recipe",
+    "name": "empty-crude-oil-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "empty-barrel",
+    "order": "c[empty-crude-oil-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-side-mask.png",
+        "tint": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-top-mask.png",
+        "tint": {
+          "r": 0.5,
+          "g": 0.5,
+          "b": 0.5,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/crude-oil.png",
+        "scale": 0.5,
+        "shift": [
+          7,
+          8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "crude-oil-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "crude-oil",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "fill-heavy-oil-barrel": {
+    "type": "recipe",
+    "name": "fill-heavy-oil-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "fill-barrel",
+    "order": "b[fill-heavy-oil-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-side-mask.png",
+        "tint": {
+          "r": 0.5,
+          "g": 0.04,
+          "b": 0,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-top-mask.png",
+        "tint": {
+          "r": 0.85,
+          "g": 0.6,
+          "b": 0.3,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/heavy-oil.png",
+        "scale": 0.5,
+        "shift": [
+          4,
+          -8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "heavy-oil",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "heavy-oil-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "empty-heavy-oil-barrel": {
+    "type": "recipe",
+    "name": "empty-heavy-oil-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "empty-barrel",
+    "order": "c[empty-heavy-oil-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-side-mask.png",
+        "tint": {
+          "r": 0.5,
+          "g": 0.04,
+          "b": 0,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-top-mask.png",
+        "tint": {
+          "r": 0.85,
+          "g": 0.6,
+          "b": 0.3,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/heavy-oil.png",
+        "scale": 0.5,
+        "shift": [
+          7,
+          8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "heavy-oil-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "heavy-oil",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "fill-light-oil-barrel": {
+    "type": "recipe",
+    "name": "fill-light-oil-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "fill-barrel",
+    "order": "b[fill-light-oil-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-side-mask.png",
+        "tint": {
+          "r": 0.57,
+          "g": 0.33,
+          "b": 0,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-top-mask.png",
+        "tint": {
+          "r": 1,
+          "g": 0.73,
+          "b": 0.07,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/light-oil.png",
+        "scale": 0.5,
+        "shift": [
+          4,
+          -8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "light-oil",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "light-oil-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "empty-light-oil-barrel": {
+    "type": "recipe",
+    "name": "empty-light-oil-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "empty-barrel",
+    "order": "c[empty-light-oil-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-side-mask.png",
+        "tint": {
+          "r": 0.57,
+          "g": 0.33,
+          "b": 0,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-top-mask.png",
+        "tint": {
+          "r": 1,
+          "g": 0.73,
+          "b": 0.07,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/light-oil.png",
+        "scale": 0.5,
+        "shift": [
+          7,
+          8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "light-oil-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "light-oil",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "fill-petroleum-gas-barrel": {
+    "type": "recipe",
+    "name": "fill-petroleum-gas-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "fill-barrel",
+    "order": "b[fill-petroleum-gas-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-side-mask.png",
+        "tint": {
+          "r": 0.3,
+          "g": 0.1,
+          "b": 0.3,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-top-mask.png",
+        "tint": {
+          "r": 0.8,
+          "g": 0.8,
+          "b": 0.8,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/petroleum-gas.png",
+        "scale": 0.5,
+        "shift": [
+          4,
+          -8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "petroleum-gas",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "petroleum-gas-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "empty-petroleum-gas-barrel": {
+    "type": "recipe",
+    "name": "empty-petroleum-gas-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "empty-barrel",
+    "order": "c[empty-petroleum-gas-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-side-mask.png",
+        "tint": {
+          "r": 0.3,
+          "g": 0.1,
+          "b": 0.3,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-top-mask.png",
+        "tint": {
+          "r": 0.8,
+          "g": 0.8,
+          "b": 0.8,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/petroleum-gas.png",
+        "scale": 0.5,
+        "shift": [
+          7,
+          8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "petroleum-gas-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "petroleum-gas",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "fill-lubricant-barrel": {
+    "type": "recipe",
+    "name": "fill-lubricant-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "fill-barrel",
+    "order": "b[fill-lubricant-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-side-mask.png",
+        "tint": {
+          "r": 0.15,
+          "g": 0.32,
+          "b": 0.03,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-top-mask.png",
+        "tint": {
+          "r": 0.43,
+          "g": 0.75,
+          "b": 0.31,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/lubricant.png",
+        "scale": 0.5,
+        "shift": [
+          4,
+          -8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "lubricant",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "lubricant-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "empty-lubricant-barrel": {
+    "type": "recipe",
+    "name": "empty-lubricant-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "empty-barrel",
+    "order": "c[empty-lubricant-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-side-mask.png",
+        "tint": {
+          "r": 0.15,
+          "g": 0.32,
+          "b": 0.03,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-top-mask.png",
+        "tint": {
+          "r": 0.43,
+          "g": 0.75,
+          "b": 0.31,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/lubricant.png",
+        "scale": 0.5,
+        "shift": [
+          7,
+          8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "lubricant-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "lubricant",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "fill-sulfuric-acid-barrel": {
+    "type": "recipe",
+    "name": "fill-sulfuric-acid-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "fill-barrel",
+    "order": "b[fill-sulfuric-acid-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-side-mask.png",
+        "tint": {
+          "r": 0.75,
+          "g": 0.65,
+          "b": 0.1,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill-top-mask.png",
+        "tint": {
+          "r": 0.7,
+          "g": 1,
+          "b": 0.1,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/sulfuric-acid.png",
+        "scale": 0.5,
+        "shift": [
+          4,
+          -8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "sulfuric-acid",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "sulfuric-acid-barrel",
+        "amount": 1
+      }
+    ]
+  },
+  "empty-sulfuric-acid-barrel": {
+    "type": "recipe",
+    "name": "empty-sulfuric-acid-barrel",
+    "category": "crafting-with-fluid",
+    "energy_required": 1,
+    "subgroup": "empty-barrel",
+    "order": "c[empty-sulfuric-acid-barrel]",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-side-mask.png",
+        "tint": {
+          "r": 0.75,
+          "g": 0.65,
+          "b": 0.1,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty-top-mask.png",
+        "tint": {
+          "r": 0.7,
+          "g": 1,
+          "b": 0.1,
+          "a": 0.75
+        }
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/sulfuric-acid.png",
+        "scale": 0.5,
+        "shift": [
+          7,
+          8
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "sulfuric-acid-barrel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "sulfuric-acid",
+        "amount": 250
+      },
+      {
+        "type": "item",
+        "name": "empty-barrel",
+        "amount": 1
+      }
+    ]
+  }
+}
