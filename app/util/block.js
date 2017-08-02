@@ -2,25 +2,18 @@ import { warn } from '../util';
 import {
     getProto,
     getRecipeCycle,
-    getResourceCycle,
     isValidModulesForProto,
     isValidModulesForRecipe,
     isValidRecipeForProto,
-    isValidResourceForProto,
     recipeGetIngredients,
     recipeGetResults,
-    resourceGetIngredients,
-    resourceGetResults,
 } from '../factorio';
 
 import { isEffectReceiver, isEffectSender, isValidEffectDistribution } from './effect';
 
 export function getBlockBaseCycle(block) {
-    if (block.type === 'AssemblingMachineBlock' || block.type === 'FurnaceBlock') {
-        return getRecipeCycle(getBlockProto(block), getProto('recipe', block.recipeName));
-    }
-    else if (block.type === 'MiningDrillBlock') {
-        return getResourceCycle(getBlockProto(block), getProto('resource', block.resourceName));
+    if (block.type === 'AssemblingMachineBlock' || block.type === 'FurnaceBlock' || block.type === 'MiningDrillBlock') {
+        return getRecipeCycle(getBlockProto(block), getBlockRecipeProto(block));
     }
     else if (block.type === 'SupplyBlock') {
         return 1;
@@ -37,21 +30,12 @@ export function getBlockBaseCycle(block) {
  * @return {boolean}
  */
 export function isIngredientReceiver(type) {
-    return type === 'AssemblingMachineBlock';
+    return type === 'AssemblingMachineBlock' || type === 'FurnaceBlock';
 }
 
 export function getIngredientReceiverIngredients(block) {
-    if (block.type === 'AssemblingMachineBlock' || block.type === 'FurnaceBlock') {
-        const recipeProto = getProto('recipe', block.recipeName);
-        return recipeProto && recipeGetIngredients(recipeProto);
-    }
-    else if (block.type === 'MiningDrillBlock') {
-        const resourceProto = getProto('resource', block.resourceName);
-        return resourceProto && resourceGetIngredients(resourceProto);
-    }
-    else {
-        return null;
-    }
+    const recipeProto = getBlockRecipeProto(block);
+    return recipeProto && recipeGetIngredients(recipeProto);
 }
 
 /**
@@ -61,49 +45,62 @@ export function getIngredientReceiverIngredients(block) {
  * @return {boolean}
  */
 export function isIngredientSender(type) {
-    return type === 'AssemblingMachineBlock' || type === 'SupplyBlock';
+    return type === 'AssemblingMachineBlock' || type === 'FurnaceBlock'
+        || type === 'MiningDrillBlock' || type === 'SupplyBlock';
+}
+
+export function getBlockRecipeProto(block) {
+    if (block.type === 'AssemblingMachineBlock' || block.type === 'FurnaceBlock' || block.type === 'MiningDrillBlock') {
+        return getProto(block.recipeType || 'recipe', block.recipeName);
+    }
+    else {
+        return null;
+    }
 }
 
 export function getIngredientSenderResults(block) {
-    if (block.type === 'AssemblingMachineBlock' || block.type === 'FurnaceBlock') {
-        const recipeProto = getProto('recipe', block.recipeName);
-        return recipeProto && recipeGetResults(recipeProto);
-    }
-    else if (block.type === 'MiningDrillBlock') {
-        const resourceProto = getProto('resource', block.resourceName);
-        return resourceProto && resourceGetResults(resourceProto);
-    }
-    else if (block.type === 'SupplyBlock') {
+    if (block.type === 'SupplyBlock') {
         return [block.result];
     }
     else {
-        throw new Error(`getIngredientSenderResults not supported for ${block.type}`);
+        const recipeProto = getBlockRecipeProto(block);
+        return recipeProto && recipeGetResults(recipeProto);
+    }
+}
+
+/**
+ * Get the proto type for the block.
+ *
+ * @param {string} blockType
+ * @returns {string|null}
+ */
+export function getProtoNameForBlockType(blockType) {
+    if (blockType === 'AssemblingMachineBlock') {
+        return 'assembling-machine';
+    }
+    else if (blockType === 'FurnaceBlock') {
+        return 'furnace';
+    }
+    else if (blockType === 'MiningDrillBlock') {
+        return 'mining-drill';
+    }
+    else if (blockType === 'BeaconBlock') {
+        return 'beacon';
+    }
+    else {
+        return null;
     }
 }
 
 export function getBlockProto(block) {
-    if (block.type === 'AssemblingMachineBlock') {
-        return getProto('assembling-machine', block.name);
-    }
-    else if (block.type === 'FurnaceBlock') {
-        return getProto('furnace', block.name);
-    }
-    else if (block.type === 'MiningDrillBlock') {
-        return getProto('mining-drill', block.name);
-    }
-    else if (block.type === 'BeaconBlock') {
-        return getProto('beacon', block.name);
-    }
-    else {
-        return null;
-        //throw new Error(`getBlockProto not supported for ${block.type}`);
-    }
+    const protoType = getProtoNameForBlockType(block.type);
+    return protoType && getProto(protoType, block.name);
 }
 
 export function validateBlock(block) {
-    if (block.type === 'AssemblingMachineBlock' || block.type === 'FurnaceBlock') {
+    if (block.type === 'AssemblingMachineBlock' || block.type === 'FurnaceBlock' || block.type === 'MiningDrillBlock') {
         const blockProto = getBlockProto(block);
-        const recipeProto = getProto('recipe', block.recipeName);
+        const recipeProto = getBlockRecipeProto(block);
         const isValidRecipe = isValidRecipeForProto(blockProto, recipeProto);
         const isValidModules = !block.modules || isValidModulesForProto(blockProto, block.modules)
             && isValidModulesForRecipe(recipeProto, block.modules);
@@ -111,18 +108,6 @@ export function validateBlock(block) {
         return {
             isValid: isValidRecipe && isValidModules,
             isValidRecipe,
-            isValidModules,
-        };
-    }
-    else if (block.type === 'MiningDrillBlock') {
-        const blockProto = getBlockProto(block);
-        const resourceProto = getProto('resource', block.resourceName);
-        const isValidResource = isValidResourceForProto(blockProto, resourceProto);
-        const isValidModules = !block.modules || isValidModulesForProto(blockProto, block.modules);
-
-        return {
-            isValid: isValidResource && isValidModules,
-            isValidResource,
             isValidModules,
         };
     }

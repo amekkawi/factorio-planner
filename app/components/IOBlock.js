@@ -11,16 +11,19 @@ import IORing from './IORing';
 import Icon from './Icon';
 import BlockModules from './BlockModules';
 import BlockConnector, { BlockConnector as BlockConnectorMini } from './BlockConnector';
+import { getBlockRecipeProto, getIngredientReceiverIngredients, getIngredientSenderResults, getProtoNameForBlockType } from '../util/block';
 
-class AssemblingMachineBlock extends Component {
+class IOBlock extends Component {
 
     static propTypes = {
         blockId: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
 
         x: PropTypes.number,
         y: PropTypes.number,
         quantity: PropTypes.number,
+        recipeType: PropTypes.string,
         recipeName: PropTypes.string,
         modules: PropTypes.arrayOf(PropTypes.string),
         ringRotate: PropTypes.number,
@@ -35,15 +38,21 @@ class AssemblingMachineBlock extends Component {
         isValidModules: PropTypes.bool,
 
         isHoverDisabled: PropTypes.bool,
+
         isHovered: PropTypes.bool,
         onHoverOver: PropTypes.func,
         onHoverOut: PropTypes.func,
+
+        isRecipeHovered: PropTypes.bool,
+        onHoverRecipeOver: PropTypes.func,
+        onHoverRecipeOut: PropTypes.func,
     };
 
     static defaultProps = {
         x: 0,
         y: 0,
         quantity: 1,
+        recipeType: 'recipe',
         recipeName: null,
         modules: [],
         ringRotate: 0,
@@ -58,16 +67,19 @@ class AssemblingMachineBlock extends Component {
         isHovered: false,
         onHoverOver: null,
         onHoverOut: null,
+        isRecipeHovered: false,
+        onHoverRecipeOver: null,
+        onHoverRecipeOut: null,
     };
 
-    renderAssemblingMachine(assemblingMachine, quantity) {
+    renderBlockIcon(blockProto, quantity) {
         const quantityOffset = quantity > 99 ? 8
             : quantity > 9 ? 4 : 0;
 
         return (
-            <g className="block__assembler">
-                {!assemblingMachine && <circle cx={-11 - quantityOffset} cy={-30} r={16} fill="red"/>}
-                {assemblingMachine && <Icon size={22} cx={-11 - quantityOffset} cy={-30} type={assemblingMachine.type} name={assemblingMachine.name}/>}
+            <g className="block__protoicon">
+                {!blockProto && <circle cx={-11 - quantityOffset} cy={-30} r={16} fill="red"/>}
+                {blockProto && <Icon size={22} cx={-11 - quantityOffset} cy={-30} type={blockProto.type} name={blockProto.name}/>}
                 <text className="block__multiplier" x={6 - quantityOffset} y={-23}>x{quantity}</text>
             </g>
         );
@@ -81,15 +93,25 @@ class AssemblingMachineBlock extends Component {
         this.props.onHoverRecipeOut();
     };
 
-    renderRecipe(recipe) {
-        const { isValidRecipe, isHoverDisabled, isHovered, isRecipeHovered } = this.props;
+    renderRecipeIcon() {
+        const {
+            isValidRecipe,
+            isHoverDisabled,
+            isHovered,
+            isRecipeHovered,
+            onHoverRecipeOver,
+            onHoverRecipeOut,
+        } = this.props;
 
-        const Container = !isHoverDisabled && isHovered ? HoverContainer : 'g';
+        const recipeProto = getBlockRecipeProto(this.props);
+        const hoverEnabled = !isHoverDisabled && isHovered && onHoverRecipeOver && onHoverRecipeOut;
+
+        const Container = hoverEnabled ? HoverContainer : 'g';
         const containerProps = {
             className: 'block__recipe',
         };
 
-        if (!isHoverDisabled && isHovered) {
+        if (hoverEnabled) {
             Object.assign(containerProps, {
                 hoverDelay: 75,
                 isHovered: isRecipeHovered,
@@ -101,18 +123,15 @@ class AssemblingMachineBlock extends Component {
         return (
             <Container {...containerProps}>
                 {!isValidRecipe && <circle cy={31} r={16} fill="red"/>}
-                {recipe && <Icon size={32} cy={31} type={recipe.type} name={recipe.name}/>}
+                {recipeProto && <Icon size={32} cy={31} type={recipeProto.type} name={recipeProto.name}/>}
             </Container>
         );
     }
 
-    renderConnectors(recipe, radius, width) {
-        const {
-            blockId, isHoverDisabled, isHovered, ringRotate,
-        } = this.props;
-
-        const ingredients = recipe && factorio.recipeGetIngredients(recipe);
-        const results = recipe && factorio.recipeGetResults(recipe);
+    renderConnectors(radius, width) {
+        const { blockId, isHoverDisabled, isHovered, ringRotate } = this.props;
+        const ingredients = getIngredientReceiverIngredients(this.props);
+        const results = getIngredientSenderResults(this.props);
         const connectors = [];
 
         if (ingredients) {
@@ -165,6 +184,21 @@ class AssemblingMachineBlock extends Component {
         ));
     }
 
+    renderModules(blockProto) {
+        const { modules, isValidModules } = this.props;
+        if (!blockProto || !blockProto.module_specification || !blockProto.module_specification.module_slots) {
+            return null;
+        }
+
+        return (
+            <BlockModules
+                moduleSlots={blockProto.module_specification.module_slots}
+                modules={modules}
+                isValid={isValidModules}
+            />
+        );
+    }
+
     handleMouseDown = (evt) => {
         const { isSelected, onSelectAdd, onSelectRemove, onSelectSet } = this.props;
         if (isSelected) {
@@ -182,13 +216,12 @@ class AssemblingMachineBlock extends Component {
 
     render() {
         const {
-            blockId, name, x, y, quantity, recipeName, modules, ringRotate,
-            isValid, isValidModules, isSelected,
+            blockId, type, name, x, y, quantity, ringRotate,
+            isValid, isSelected,
             isHoverDisabled, isHovered, onHoverOver, onHoverOut,
         } = this.props;
 
-        const assemblingMachine = factorio.getProto('assembling-machine', name);
-        const recipe = factorio.getProto('recipe', recipeName);
+        const blockProto = factorio.getProto(getProtoNameForBlockType(type), name);
 
         const baseRadius = 54;
         const width = 22;
@@ -233,17 +266,10 @@ class AssemblingMachineBlock extends Component {
                     fill="none"
                 />}
 
-                {this.renderConnectors(recipe, baseRadius, !isHoverDisabled && isHovered ? width : 6)}
-
-                {this.renderAssemblingMachine(assemblingMachine, quantity)}
-
-                {assemblingMachine && assemblingMachine.module_specification && <BlockModules
-                    moduleSlots={assemblingMachine.module_specification.module_slots}
-                    modules={modules}
-                    isValid={isValidModules}
-                />}
-
-                {this.renderRecipe(recipe)}
+                {this.renderConnectors(baseRadius, !isHoverDisabled && isHovered ? width : 6)}
+                {this.renderBlockIcon(blockProto, quantity)}
+                {this.renderModules(blockProto)}
+                {this.renderRecipeIcon()}
             </HoverContainer>
         );
     }
@@ -276,4 +302,4 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps,
     (stateProps, dispatchProps) => Object.assign({}, stateProps, dispatchProps)
-)(AssemblingMachineBlock);
+)(IOBlock);

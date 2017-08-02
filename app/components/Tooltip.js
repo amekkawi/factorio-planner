@@ -7,13 +7,14 @@ import { blockIOSelector } from '../state/selectors';
 
 let pageX = 0;
 let pageY = 0;
-const handlers = new Set();
+const mouseMoveComponents = new Set();
 window.addEventListener('mousemove', (event) => {
     pageX = event.pageX;
     pageY = event.pageY;
-    for (const handler of handlers) {
-        if (handlers.has(handler)) {
-            handler(event.pageX, event.pageY);
+    for (const component of mouseMoveComponents) {
+        // Double check in case the handler was removed while iterating.
+        if (mouseMoveComponents.has(component)) {
+            component.handleMouseMove(event.pageX, event.pageY);
         }
     }
 });
@@ -66,7 +67,7 @@ const TooltipIOContent = connect((state) => {
     };
 
     render() {
-        const { blockId, input, output, effect } = this.props;
+        const { input, output, effect } = this.props;
 
         const effectsHTML = [];
 
@@ -90,15 +91,15 @@ const TooltipIOContent = connect((state) => {
         return (
             <div className="tooltip__content tooltip__content--io">
                 {effectsHTML.length > 0 && <div className="tooltip__items-box tooltip__items-box--modules">{effectsHTML}</div>}
-                <div className="tooltip__items-box-container">
+                {(input || output) && <div className="tooltip__items-box-container">
                     {input && <div className="tooltip__items-box tooltip__items-box--ingredients">
                         {input.map((ingredient, i) => <div key={i}><TooltipIcon type={ingredient.type} name={ingredient.name}/> {parseFloat(ingredient.rate.toFixed(3))}<span style={{ opacity: 0.5 }}>/sec</span></div>)}
                     </div>}
-                    <div className="tooltip__items-box-arrow">►</div>
+                    {input && output && <div className="tooltip__items-box-arrow">►</div>}
                     {output && <div className="tooltip__items-box tooltip__items-box--results">
                         {output.map((result, i) => <div key={i}><TooltipIcon type={result.type} name={result.name}/> {parseFloat(result.rate.toFixed(3))}<span style={{ opacity: 0.5 }}>/sec</span></div>)}
                     </div>}
-                </div>
+                </div>}
             </div>
         );
     }
@@ -116,11 +117,11 @@ class TooltipBox extends Component {
     };
 
     componentDidMount() {
-        handlers.add(this.handleMouseMove);
+        mouseMoveComponents.add(this);
     }
 
     componentWillUnmount() {
-        handlers.delete(this.handleMouseMove);
+        mouseMoveComponents.delete(this);
     }
 
     handleMouseMove = (pageX, pageY) => {

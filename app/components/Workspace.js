@@ -7,9 +7,7 @@ import IconDefs from './IconDefs';
 import SurfaceGrid from './SurfaceGrid';
 import SelectionBox from './SelectionBox';
 import BlockConnection from './BlockConnection';
-import AssemblingMachineBlock from './AssemblingMachineBlock';
-import FurnaceBlock from './FurnaceBlock';
-import MiningDrillBlock from './MiningDrillBlock';
+import IOBlock from './IOBlock';
 import BeaconBlock from './BeaconBlock';
 import SupplyBlock from './SupplyBlock';
 
@@ -18,16 +16,10 @@ function SurfaceBlockFactory(props) {
 
     switch (type) {
         case 'AssemblingMachineBlock':
-            return (
-                <AssemblingMachineBlock blockId={props.blockId}/>
-            );
         case 'FurnaceBlock':
-            return (
-                <FurnaceBlock blockId={props.blockId}/>
-            );
         case 'MiningDrillBlock':
             return (
-                <MiningDrillBlock blockId={props.blockId}/>
+                <IOBlock blockId={props.blockId}/>
             );
         case 'BeaconBlock':
             return (

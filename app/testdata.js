@@ -161,7 +161,8 @@ export default {
             x: 850,
             y: 300,
             quantity: 1,
-            resourceName: 'iron-ore',
+            recipeType: 'resource',
+            recipeName: 'iron-ore',
             modules: [
                 'productivity-module-3',
             ],
@@ -174,7 +175,8 @@ export default {
             x: 1000,
             y: 300,
             quantity: 1,
-            resourceName: 'uranium-ore',
+            recipeType: 'resource',
+            recipeName: 'uranium-ore',
             modules: [
                 'productivity-module-3',
             ],
@@ -256,7 +258,8 @@ export default {
             x: 1000,
             y: 450,
             quantity: 1,
-            resourceName: 'crude-oil',
+            recipeType: 'resource',
+            recipeName: 'crude-oil',
             modules: [
                 'productivity-module-3',
             ],

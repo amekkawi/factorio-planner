@@ -20,37 +20,56 @@ export function recipeGetIngredients(recipeProto) {
         return ret;
     }
 
-    const ingredients = recipeProto.ingredients
-        || recipeProto.normal && recipeProto.normal.ingredients;
+    if (recipeProto.type === 'recipe') {
+        const ingredients = recipeProto.ingredients
+            || recipeProto.normal && recipeProto.normal.ingredients;
 
-    if (recipeProto.type !== 'recipe') {
-        throw new Error(`Invalid type: ${recipeProto.type}.${recipeProto.name}`);
-    }
-
-    if (!ingredients) {
-        throw new Error(`Missing ingredients for ${recipeProto.name}`);
-    }
-
-    ret = ingredients.map((ingredient) => {
-        if (Array.isArray(ingredient)) {
-            return {
-                type: 'item',
-                name: ingredient[0],
-                amount: ingredient[1],
-            };
+        if (recipeProto.type !== 'recipe') {
+            throw new Error(`Invalid type: ${recipeProto.type}.${recipeProto.name}`);
         }
-        else {
-            return ingredient.type
-                ? ingredient
-                : {
+
+        if (!ingredients) {
+            throw new Error(`Missing ingredients for ${recipeProto.name}`);
+        }
+
+        ret = ingredients.map((ingredient) => {
+            if (Array.isArray(ingredient)) {
+                return {
                     type: 'item',
-                    ...ingredient,
+                    name: ingredient[0],
+                    amount: ingredient[1],
                 };
-        }
-    });
+            }
+            else {
+                return ingredient.type
+                    ? ingredient
+                    : {
+                        type: 'item',
+                        ...ingredient,
+                    };
+            }
+        });
 
-    recipeGetIngredients_cache.set(recipeProto, ret);
-    return ret;
+        recipeGetIngredients_cache.set(recipeProto, ret);
+        return ret;
+    }
+    else if (recipeProto.type === 'resource') {
+        if (recipeProto.minable && recipeProto.minable.required_fluid) {
+            ret = [
+                {
+                    type: 'fluid',
+                    name: recipeProto.minable.required_fluid,
+                    amount: recipeProto.minable.fluid_amount,
+                },
+            ];
+        }
+
+        recipeGetIngredients_cache.set(recipeProto, ret);
+        return ret;
+    }
+    else {
+        throw new Error(`Invalid proto for recipeGetIngredients: ${recipeProto.type}.${recipeProto.name}`);
+    }
 }
 
 const recipeGetResults_cache = new Map();
@@ -60,91 +79,72 @@ export function recipeGetResults(recipeProto) {
         return ret;
     }
 
-    const result = recipeProto.result
-        || recipeProto.normal && recipeProto.normal.result;
+    if (recipeProto.type === 'recipe') {
+        const result = recipeProto.result
+            || recipeProto.normal && recipeProto.normal.result;
 
-    if (result) {
-        ret = [
-            {
-                type: 'item',
-                name: result,
-                amount: recipeProto.result_count || recipeProto.normal && recipeProto.normal.result_count || 1,
-            },
-        ];
-    }
-    else {
-        ret = recipeProto.results
-            || recipeProto.normal && recipeProto.normal.results;
-    }
+        if (result) {
+            ret = [
+                {
+                    type: 'item',
+                    name: result,
+                    amount: recipeProto.result_count || recipeProto.normal && recipeProto.normal.result_count || 1,
+                },
+            ];
+        }
+        else {
+            ret = recipeProto.results
+                || recipeProto.normal && recipeProto.normal.results;
+        }
 
-    if (!ret) {
-        throw new Error('Recipe missing results');
-    }
+        if (!ret) {
+            throw new Error('Recipe missing results');
+        }
 
-    recipeGetResults_cache.set(recipeProto, ret);
-    return ret;
-}
-
-const resourceGetIngredients_cache = new Map();
-export function resourceGetIngredients(resourceProto) {
-    let ret = resourceGetIngredients_cache.get(resourceProto);
-    if (ret) {
+        recipeGetResults_cache.set(recipeProto, ret);
         return ret;
     }
+    else if (recipeProto.type === 'resource') {
+        const result = recipeProto.minable && recipeProto.minable.result;
 
-    if (resourceProto.minable && resourceProto.minable.required_fluid) {
-        ret = [
-            {
-                type: 'fluid',
-                name: resourceProto.minable.required_fluid,
-                amount: resourceProto.minable.fluid_amount,
-            },
-        ];
-    }
+        if (result) {
+            ret = [
+                {
+                    type: 'item',
+                    name: result,
+                    amount: 1,
+                },
+            ];
+        }
+        else {
+            ret = recipeProto.minable && recipeProto.minable.results;
+        }
 
-    resourceGetIngredients_cache.set(resourceProto, ret);
-    return ret;
-}
+        if (!ret) {
+            throw new Error('Resource missing minable results');
+        }
 
-const resourceGetResults_cache = new Map();
-export function resourceGetResults(resourceProto) {
-    let ret = resourceGetResults_cache.get(resourceProto);
-    if (ret) {
+        recipeGetResults_cache.set(recipeProto, ret);
         return ret;
     }
-
-    const result = resourceProto.minable && resourceProto.minable.result;
-
-    if (result) {
-        ret = [
-            {
-                type: 'item',
-                name: result,
-                amount: 1,
-            },
-        ];
-    }
     else {
-        ret = resourceProto.minable && resourceProto.minable.results;
+        throw new Error(`Invalid proto for recipeGetIngredients: ${recipeProto.type}.${recipeProto.name}`);
     }
-
-    if (!ret) {
-        throw new Error('Resource missing minable results');
-    }
-
-    resourceGetResults_cache.set(resourceProto, ret);
-    return ret;
 }
 
 export function getRecipeCycle(blockProto, recipeProto) {
-    const energy_required = recipeProto.energy_required || recipeProto.normal && recipeProto.normal.energy_required || 0.5;
-    return energy_required / blockProto.crafting_speed;
-}
-
-export function getResourceCycle(blockProto, resourceProto) {
-    const { mining_power, mining_speed } = blockProto;
-    const { mining_time, hardness } = resourceProto.minable;
-    return mining_time / ((mining_power - hardness) * mining_speed);
+    if (recipeProto.type === 'recipe') {
+        const energy_required = recipeProto.energy_required || recipeProto.normal && recipeProto.normal.energy_required || 0.5;
+        return energy_required / blockProto.crafting_speed;
+    }
+    else if (recipeProto.type === 'resource') {
+        const { mining_power, mining_speed } = blockProto;
+        const { mining_time, hardness } = recipeProto.minable;
+        return mining_time / ((mining_power - hardness) * mining_speed);
+    }
+    else {
+        throw new Error(`Invalid proto for getRecipeCycle: ${recipeProto.type}.${recipeProto.name}`);
+    }
 }
 
 const getIcon_cache = new Map();
@@ -200,13 +200,24 @@ export function isValidRecipeForProto(blockProto, recipeProto) {
         return false;
     }
 
-    if (!Array.isArray(blockProto.crafting_categories)
-        || blockProto.crafting_categories.indexOf(recipeProto.category) < 0) {
-        return false;
-    }
+    if (recipeProto.type === 'recipe') {
+        if (!Array.isArray(blockProto.crafting_categories)
+            || blockProto.crafting_categories.indexOf(recipeProto.category) < 0) {
+            return false;
+        }
 
-    const ingredients = recipeGetIngredients(recipeProto);
-    if (ingredients && ingredients.length > blockProto.ingredient_count) {
+        const ingredients = recipeGetIngredients(recipeProto);
+        if (ingredients && ingredients.length > blockProto.ingredient_count) {
+            return false;
+        }
+    }
+    else if (recipeProto.type === 'resource') {
+        if (!Array.isArray(blockProto.resource_categories)
+            || blockProto.resource_categories.indexOf(recipeProto.category) < 0) {
+            return false;
+        }
+    }
+    else {
         return false;
     }
 
@@ -253,11 +264,16 @@ export function isValidModuleForProto(allowedEffects, module) {
 }
 
 export function isValidModuleForRecipe(recipeProto, module) {
-    if (typeof module === 'string') {
-        module = getProto('module', module);
-    }
+    if (recipeProto.type === 'recipe') {
+        if (typeof module === 'string') {
+            module = getProto('module', module);
+        }
 
-    return !module.limitation || module.limitation.includes(recipeProto.name);
+        return !module.limitation || module.limitation.includes(recipeProto.name);
+    }
+    else {
+        return recipeProto.type === 'resource';
+    }
 }
 
 export function isValidModulesForRecipe(recipeProto, modules) {
@@ -268,18 +284,5 @@ export function isValidModulesForRecipe(recipeProto, modules) {
             }
         }
     }
-    return true;
-}
-
-export function isValidResourceForProto(blockProto, resourceProto) {
-    if (!blockProto || !resourceProto) {
-        return false;
-    }
-
-    if (!Array.isArray(blockProto.resource_categories)
-        || blockProto.resource_categories.indexOf(resourceProto.category) < 0) {
-        return false;
-    }
-
     return true;
 }
