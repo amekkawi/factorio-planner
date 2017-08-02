@@ -32,11 +32,12 @@ export const actions = {
         }
     },
 
-    boxSelectionStart: (x, y) => ({
+    boxSelectionStart: (x, y, isAdd = false) => ({
         type: types.BOX_SELECTION_START,
         payload: {
             x,
             y,
+            isAdd,
         },
     }),
 
@@ -142,28 +143,6 @@ export function surfaceReducer(state = {
                 ...state,
                 offsetX: action.payload.offsetX,
                 offsetY: action.payload.offsetY,
-                boxSelectionEndX: state.boxSelectionEndX + (state.offsetX - action.payload.offsetX),
-                boxSelectionEndY: state.boxSelectionEndY + (state.offsetY - action.payload.offsetY),
-            };
-        case types.BOX_SELECTION_START:
-            return {
-                ...state,
-                isBoxSelecting: true,
-                boxSelectionStartX: action.payload.x,
-                boxSelectionStartY: action.payload.y,
-                boxSelectionEndX: action.payload.x,
-                boxSelectionEndY: action.payload.y,
-            };
-        case types.BOX_SELECTION_MOVE:
-            return {
-                ...state,
-                boxSelectionEndX: action.payload.x,
-                boxSelectionEndY: action.payload.y,
-            };
-        case types.BOX_SELECTION_END:
-            return {
-                ...state,
-                isBoxSelecting: false,
             };
         default:
             return state;
@@ -181,6 +160,7 @@ export function blockIdsReducer(state = [], action) {
 
 export function selectionReducer(state = {
     isBoxSelecting: false,
+    boxSelectionStartIsAdd: false,
     boxSelectionStartX: 0,
     boxSelectionStartY: 0,
     boxSelectionEndX: 0,
@@ -188,6 +168,34 @@ export function selectionReducer(state = {
     byId: {},
 }, action) {
     switch (action.type) {
+        case types.PAN_SURFACE:
+            return {
+                ...state,
+                boxSelectionEndX: state.boxSelectionEndX + (state.offsetX - action.payload.offsetX),
+                boxSelectionEndY: state.boxSelectionEndY + (state.offsetY - action.payload.offsetY),
+            };
+        case types.BOX_SELECTION_START:
+            return {
+                ...state,
+                isBoxSelecting: true,
+                boxSelectionStartIsAdd: action.payload.isAdd,
+                boxSelectionStartX: action.payload.x,
+                boxSelectionStartY: action.payload.y,
+                boxSelectionEndX: action.payload.x,
+                boxSelectionEndY: action.payload.y,
+                byId: action.payload.isAdd ? state.byId : {},
+            };
+        case types.BOX_SELECTION_MOVE:
+            return {
+                ...state,
+                boxSelectionEndX: action.payload.x,
+                boxSelectionEndY: action.payload.y,
+            };
+        case types.BOX_SELECTION_END:
+            return {
+                ...state,
+                isBoxSelecting: false,
+            };
         case types.SELECTION_ADD:
             return {
                 ...state,

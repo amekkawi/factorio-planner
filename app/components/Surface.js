@@ -40,7 +40,8 @@ export class Surface extends Component {
         if (evt.target === evt.currentTarget) {
             onBoxSelectionStart(
                 evt.clientX - surfaceLeft - offsetX,
-                evt.clientY - surfaceTop - offsetY
+                evt.clientY - surfaceTop - offsetY,
+                evt.shiftKey || evt.altKey || evt.metaKey
             );
         }
     };
@@ -98,7 +99,7 @@ export default connect((state) => ({
     isBoxSelecting: state.selection.isBoxSelecting,
 }), (dispatch) => ({
     onPanSurface: (dx, dy) => dispatch(actions.panSurface(dx, dy)),
-    onBoxSelectionStart: (x, y) => dispatch(actions.boxSelectionStart(x, y)),
+    onBoxSelectionStart: (x, y, isAdd) => dispatch(actions.boxSelectionStart(x, y, isAdd)),
     onBoxSelectionMove: (x, y) => dispatch(actions.boxSelectionMove(x, y)),
     onBoxSelectionEnd: () => dispatch(actions.boxSelectionEnd()),
 }))(Surface);

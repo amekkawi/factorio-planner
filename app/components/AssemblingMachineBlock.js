@@ -5,6 +5,7 @@ import ClassNames from 'classnames';
 import * as factorio from '../factorio';
 import { actions } from '../state/reducers';
 import { validatedBlocksSelector } from '../state/selectors';
+import * as platformUtil from '../util/platform';
 import HoverContainer from './HoverContainer';
 import IORing from './IORing';
 import Icon from './Icon';
@@ -167,11 +168,11 @@ class AssemblingMachineBlock extends Component {
     handleMouseDown = (evt) => {
         const { isSelected, onSelectAdd, onSelectRemove, onSelectSet } = this.props;
         if (isSelected) {
-            if (onSelectRemove && evt.metaKey) { // TODO: Different key for non-Mac?
+            if (onSelectRemove && platformUtil.isMouseEventMultiSelectionRemove(evt)) {
                 onSelectRemove();
             }
         }
-        else if (onSelectAdd && (evt.shiftKey || evt.metaKey || evt.altKey || evt.ctrlKey)) {
+        else if (onSelectAdd && platformUtil.isMouseEventMultiSelection(evt)) {
             onSelectAdd();
         }
         else if (onSelectSet) {
