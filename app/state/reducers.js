@@ -128,7 +128,7 @@ export const actions = {
         dispatch({
             type: types.DRAG_SELECTION_END,
             payload: {
-                ids: Object.keys(state.selection.byId),
+                ids: Object.keys(state.surface.selectedById),
                 deltaX: dragDelta && dragDelta.x,
                 deltaY: dragDelta && dragDelta.y,
             },
@@ -197,6 +197,13 @@ export const actions = {
 export function surfaceReducer(state = {
     offsetX: 0,
     offsetY: 0,
+    isBoxSelecting: false,
+    boxSelectionStartIsAdd: false,
+    boxSelectionStartX: 0,
+    boxSelectionStartY: 0,
+    boxSelectionEndX: 0,
+    boxSelectionEndY: 0,
+    selectedById: {},
     isDragging: false,
     dragStartX: null,
     dragStartY: null,
@@ -209,6 +216,66 @@ export function surfaceReducer(state = {
                 ...state,
                 offsetX: action.payload.offsetX,
                 offsetY: action.payload.offsetY,
+                boxSelectionEndX: state.boxSelectionEndX + (state.offsetX - action.payload.offsetX),
+                boxSelectionEndY: state.boxSelectionEndY + (state.offsetY - action.payload.offsetY),
+            };
+        case types.KEY_ESCAPE:
+            return {
+                ...state,
+                isDragging: false,
+                dragStartX: null,
+                dragStartY: null,
+                dragEndX: null,
+                dragEndY: null,
+                isBoxSelecting: false,
+            };
+        case types.BOX_SELECTION_START:
+            return {
+                ...state,
+                isBoxSelecting: true,
+                boxSelectionStartIsAdd: action.payload.isAdd,
+                boxSelectionStartX: action.payload.x,
+                boxSelectionStartY: action.payload.y,
+                boxSelectionEndX: action.payload.x,
+                boxSelectionEndY: action.payload.y,
+                selectedById: action.payload.isAdd ? state.selectedById : {},
+            };
+        case types.BOX_SELECTION_MOVE:
+            return {
+                ...state,
+                boxSelectionEndX: action.payload.x,
+                boxSelectionEndY: action.payload.y,
+            };
+        case types.BOX_SELECTION_END:
+            return {
+                ...state,
+                isBoxSelecting: false,
+            };
+        case types.SELECTION_ADD:
+            return {
+                ...state,
+                selectedById: {
+                    ...state.selectedById,
+                    [action.payload.id]: true,
+                },
+            };
+        case types.SELECTION_REMOVE: {
+            const ret = {
+                ...state,
+                selectedById: {
+                    ...state.selectedById,
+                },
+            };
+            delete ret.selectedById[action.payload.id];
+            return ret;
+        }
+        case types.SELECTION_SET:
+            return {
+                ...state,
+                selectedById: action.payload.ids.reduce((ret, id) => {
+                    ret[id] = true;
+                    return ret;
+                }, {}),
             };
         case types.DRAG_SELECTION_START:
             return {
@@ -230,7 +297,6 @@ export function surfaceReducer(state = {
                 dragEndY: action.payload.y,
             };
         case types.DRAG_SELECTION_END:
-        case types.KEY_ESCAPE:
             return {
                 ...state,
                 isDragging: false,
@@ -248,76 +314,6 @@ export function blockIdsReducer(state = [], action) {
     switch (action.type) {
         case types.LOAD_PLAN:
             return Object.keys(action.payload.plan.blocks || {});
-        default:
-            return state;
-    }
-}
-
-export function selectionReducer(state = {
-    isBoxSelecting: false,
-    boxSelectionStartIsAdd: false,
-    boxSelectionStartX: 0,
-    boxSelectionStartY: 0,
-    boxSelectionEndX: 0,
-    boxSelectionEndY: 0,
-    byId: {},
-}, action) {
-    switch (action.type) {
-        case types.PAN_SURFACE:
-            return {
-                ...state,
-                boxSelectionEndX: state.boxSelectionEndX + (state.offsetX - action.payload.offsetX),
-                boxSelectionEndY: state.boxSelectionEndY + (state.offsetY - action.payload.offsetY),
-            };
-        case types.BOX_SELECTION_START:
-            return {
-                ...state,
-                isBoxSelecting: true,
-                boxSelectionStartIsAdd: action.payload.isAdd,
-                boxSelectionStartX: action.payload.x,
-                boxSelectionStartY: action.payload.y,
-                boxSelectionEndX: action.payload.x,
-                boxSelectionEndY: action.payload.y,
-                byId: action.payload.isAdd ? state.byId : {},
-            };
-        case types.BOX_SELECTION_MOVE:
-            return {
-                ...state,
-                boxSelectionEndX: action.payload.x,
-                boxSelectionEndY: action.payload.y,
-            };
-        case types.BOX_SELECTION_END:
-        case types.KEY_ESCAPE:
-            return {
-                ...state,
-                isBoxSelecting: false,
-            };
-        case types.SELECTION_ADD:
-            return {
-                ...state,
-                byId: {
-                    ...state.byId,
-                    [action.payload.id]: true,
-                },
-            };
-        case types.SELECTION_REMOVE: {
-            const ret = {
-                ...state,
-                byId: {
-                    ...state.byId,
-                },
-            };
-            delete ret.byId[action.payload.id];
-            return ret;
-        }
-        case types.SELECTION_SET:
-            return {
-                ...state,
-                byId: action.payload.ids.reduce((ret, id) => {
-                    ret[id] = true;
-                    return ret;
-                }, {}),
-            };
         default:
             return state;
     }
@@ -419,7 +415,6 @@ export function tooltipReducer(state = null, action) {
 
 export default combineReducers({
     surface: surfaceReducer,
-    selection: selectionReducer,
     icons: iconsReducer,
     tooltip: tooltipReducer,
     focused: focusedReducer,

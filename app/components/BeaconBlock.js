@@ -146,7 +146,7 @@ const mapStateToProps = (state, { blockId }) => {
     return {
         blockId: blockId,
         dragDelta: dragDeltaSelector(state),
-        isSelected: !!state.selection.byId[blockId],
+        isSelected: !!state.surface.selectedById[blockId],
         isHovered: state.focused === blockId,
         ...block,
     };

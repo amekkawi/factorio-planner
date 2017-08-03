@@ -290,8 +290,8 @@ const mapStateToProps = (state, { blockId }) => {
         ...block,
         blockId: blockId,
         dragDelta: dragDeltaSelector(state),
-        isSelected: !!state.selection.byId[blockId],
-        isHoverDisabled: state.selection.isBoxSelecting || state.surface.isDragging,
+        isSelected: !!state.surface.selectedById[blockId],
+        isHoverDisabled: state.surface.isBoxSelecting || state.surface.isDragging,
         isHovered: state.focused === blockId,
         isRecipeHovered: !!state.tooltip && state.tooltip.sourceId === `${blockId}_io`,
     };

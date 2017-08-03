@@ -103,7 +103,7 @@ class SupplyBlock extends Component {
 
 const mapStateToProps = (state, { blockId }) => ({
     blockId: blockId,
-    isSelected: !!state.selection.byId[blockId],
+    isSelected: !!state.surface.selectedById[blockId],
     dragDelta: dragDeltaSelector(state),
     isHovered: state.focused === blockId,
     ...(state.blocks[blockId] || {}),

@@ -262,15 +262,15 @@ const mapStateToProps = (state, { connectionId }) => {
     const srcBlock = connection && state.blocks[connection.srcBlockId];
     const destBlock = connection && state.blocks[connection.destBlockId];
 
-    const isHoverDisabled = state.selection.isBoxSelecting || state.surface.isDragging;
-    const isSrcDragging = srcBlock && state.surface.isDragging && state.selection.byId[connection.srcBlockId];
-    const isDestDragging = destBlock && state.surface.isDragging && state.selection.byId[connection.destBlockId];
+    const isHoverDisabled = state.surface.isBoxSelecting || state.surface.isDragging;
+    const isSrcDragging = srcBlock && state.surface.isDragging && state.surface.selectedById[connection.srcBlockId];
+    const isDestDragging = destBlock && state.surface.isDragging && state.surface.selectedById[connection.destBlockId];
 
     return {
         ...connection,
         isValid: !isCyclic,
         isCyclic,
-        isSelected: !!state.selection.byId[connectionId],
+        isSelected: !!state.surface.selectedById[connectionId],
         isHoverDisabled,
         isHovered: state.focused === connectionId,
         isRelatedHovered: state.focused === connection.srcBlockId || state.focused === connection.destBlockId,

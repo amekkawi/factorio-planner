@@ -133,7 +133,7 @@ export class Surface extends Component {
 export default connect((state) => ({
     offsetX: state.surface.offsetX,
     offsetY: state.surface.offsetY,
-    isBoxSelecting: state.selection.isBoxSelecting,
+    isBoxSelecting: state.surface.isBoxSelecting,
     isDragging: state.surface.isDragging,
 }), (dispatch) => ({
     onSelectAll: () => dispatch(actions.selectionAll()),

@@ -44,9 +44,9 @@ export class SelectionBox extends Component {
 }
 
 export default connect((state) => ({
-    isBoxSelecting: state.selection.isBoxSelecting,
-    boxSelectionStartX: state.selection.boxSelectionStartX || 0,
-    boxSelectionStartY: state.selection.boxSelectionStartY || 0,
-    boxSelectionEndX: state.selection.boxSelectionEndX || 0,
-    boxSelectionEndY: state.selection.boxSelectionEndY || 0,
+    isBoxSelecting: state.surface.isBoxSelecting,
+    boxSelectionStartX: state.surface.boxSelectionStartX || 0,
+    boxSelectionStartY: state.surface.boxSelectionStartY || 0,
+    boxSelectionEndX: state.surface.boxSelectionEndX || 0,
+    boxSelectionEndY: state.surface.boxSelectionEndY || 0,
 }))(SelectionBox);
