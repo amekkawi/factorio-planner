@@ -1,6 +1,7 @@
 export function buildGraph(blocks, connections) {
     const nodes = {};
 
+    // Go through all connections and associate them with the blocks.
     for (const connectionId of Object.keys(connections)) {
         const connection = connections[connectionId];
 
@@ -8,12 +9,16 @@ export function buildGraph(blocks, connections) {
             blockId: connection.srcBlockId,
             outbound: {},
             inbound: {},
+            downstream: {},
+            upstream: {},
         });
 
         const destNode = nodes[connection.destBlockId] || (nodes[connection.destBlockId] = {
             blockId: connection.destBlockId,
             outbound: {},
             inbound: {},
+            downstream: {},
+            upstream: {},
         });
 
         // Verify the connection is between two different blocks.
@@ -26,20 +31,23 @@ export function buildGraph(blocks, connections) {
             throw new Error(`Connection ${connectionId} duplicates ${srcNode.outbound[connection.destBlockId].connectionId} between block ${srcNode.blockId} and ${destNode.blockId}`);
         }
 
+        // Add the connection to src/dest nodes.
         srcNode.outbound[connection.destBlockId] = connectionId;
         destNode.inbound[connection.srcBlockId] = connectionId;
     }
 
     const rootNodes = new Set();
 
-    // Go through the actual blocks and determine roots
+    // Go through the actual blocks and determine roots.
     for (const blockId of Object.keys(blocks)) {
 
-        // Create a node for blocks that aren't connected.
+        // Create node if it doesn't exist (which means the block has no connections).
         const node = nodes[blockId] || (nodes[blockId] = {
             blockId: blockId,
             outbound: {},
             inbound: {},
+            downstream: {},
+            upstream: {},
         });
 
         // Roots have no inbound connections.
@@ -59,7 +67,6 @@ export function buildGraph(blocks, connections) {
     const connectionToNetwork = {};
     let nextNetworkId = 1;
 
-    // Cyclic checking
     for (const rootNode of rootNodes) {
         const networkId = `n${nextNetworkId++}`;
         const network = networks[networkId] = {
@@ -93,7 +100,7 @@ export function buildGraph(blocks, connections) {
 
         while (next()) {
             // Skip blocks in the inbound queue if already visited.
-            // This happens if a connection is cyclic.
+            // This can happen if a connection is cyclic.
             if (!isOutbound && network.nodes[node.blockId]) {
                 continue;
             }
@@ -114,22 +121,23 @@ export function buildGraph(blocks, connections) {
                 network.leafs.push(node.blockId);
             }
 
-            // Queue outbound connections for traversal.
+            // Process outbound connections.
             for (const blockId of Object.keys(node.outbound)) {
                 const connectionId = node.outbound[blockId];
+                const connection = connections[connectionId];
                 connectionToNetwork[connectionId] = networkId;
 
-                // Queue block if is unvisited.
-                if (!network.nodes[blockId]) {
-                    outboundQueue.push(nodes[blockId]);
-                }
+                const destNode = nodes[connection.destBlockId];
 
-                // Mark connection as cyclic if
-                else if (isOutbound) {
+                // Connection is cyclic if destination node is upstream of source node.
+                if (node.upstream[connection.destBlockId]) {
                     node.isCyclic = true;
                     network.isCyclic = true;
                     network.cyclicConnections[connectionId] = blockId;
-                    //console.warn(`Cyclic connection ${connectionId} to ${blockId}`);
+                }
+                else {
+                    propagateDownstream(nodes, node, destNode);
+                    outboundQueue.push(nodes[blockId]);
                 }
             }
 
@@ -153,4 +161,24 @@ export function buildGraph(blocks, connections) {
         nodeToNetwork,
         connectionToNetwork,
     };
+}
+
+function propagateDownstream(nodes, srcNode, destNode) {
+    // Include dest and dest's downstream into src's downstream.
+    srcNode.downstream[destNode.blockId] = true;
+    Object.assign(srcNode.downstream, destNode.downstream);
+
+    // Propogate new src's downstream to nodes upstream of src.
+    for (const blockId of Object.keys(srcNode.upstream)) {
+        Object.assign(nodes[blockId].downstream, srcNode.downstream);
+    }
+
+    // Include src and src's upstream into dest's upstream.
+    destNode.upstream[srcNode.blockId] = true;
+    Object.assign(destNode.upstream, srcNode.upstream);
+
+    // Propogate new dest's upstream to nodes downstream of dest.
+    for (const blockId of Object.keys(destNode.downstream)) {
+        Object.assign(nodes[blockId].upstream, destNode.upstream);
+    }
 }
