@@ -40,13 +40,14 @@ export class Surface extends Component {
     };
 
     handleKeyDown = (evt) => {
-        evt.preventDefault();
         const { onKeyEscape, onSelectAll } = this.props;
 
         if (evt.keyCode === 27) {
+            evt.preventDefault();
             onKeyEscape();
         }
         else if (evt.keyCode === 65 && (isMac && evt.metaKey || !isMac && evt.ctrlKey)) {
+            evt.preventDefault();
             onSelectAll();
         }
     };
