@@ -1,4 +1,4 @@
-export default {
+export const v1 = {
     ver: 1,
     blocks: {
         b1: {
@@ -530,3 +530,260 @@ export default {
         },
     },
 };
+
+export const v2 = {
+    ver: 1,
+    blocks: {
+        b1: {
+            blockId: 'b1',
+            type: 'AssemblingMachineBlock',
+            x: 142,
+            y: 186,
+            quantity: 8,
+            name: 'assembling-machine-3',
+            recipeName: 'science-pack-3',
+            modules: [
+                'productivity-module-3',
+                'productivity-module-3',
+                'productivity-module-3',
+                'productivity-module-3',
+            ],
+        },
+        b2: {
+            blockId: 'b2',
+            type: 'BeaconBlock',
+            x: 300,
+            y: 75,
+            quantity: 4,
+            name: 'beacon',
+            modules: [
+                'speed-module-3',
+                'speed-module-3',
+            ],
+        },
+        b3: {
+            blockId: 'b3',
+            type: 'AssemblingMachineBlock',
+            x: 460,
+            y: 207,
+            quantity: 7,
+            name: 'assembling-machine-3',
+            recipeName: 'engine-unit',
+            modules: [
+                'productivity-module-3',
+                'productivity-module-3',
+                'productivity-module-3',
+                'productivity-module-3',
+            ],
+        },
+        b4: {
+            blockId: 'b4',
+            type: 'AssemblingMachineBlock',
+            x: 290,
+            y: 369,
+            quantity: 2,
+            name: 'assembling-machine-3',
+            recipeName: 'electric-mining-drill',
+            modules: [
+                'speed-module-3',
+                'speed-module-3',
+                //'speed-module-3',
+                //'speed-module-3',
+            ],
+        },
+        b5: {
+            blockId: 'b5',
+            type: 'FurnaceBlock',
+            x: 633,
+            y: 89,
+            quantity: 8,
+            name: 'electric-furnace',
+            recipeName: 'steel-plate',
+            modules: [
+                'productivity-module-3',
+                'productivity-module-3',
+            ],
+        },
+        b6: {
+            blockId: 'b6',
+            type: 'AssemblingMachineBlock',
+            x: 502,
+            y: 391,
+            quantity: 4,
+            name: 'assembling-machine-3',
+            recipeName: 'iron-gear-wheel',
+            modules: [
+                'productivity-module-3',
+                'productivity-module-3',
+                'productivity-module-3',
+                'productivity-module-3',
+            ],
+        },
+        b7: {
+            blockId: 'b6',
+            type: 'AssemblingMachineBlock',
+            x: 658,
+            y: 287,
+            quantity: 1,
+            name: 'assembling-machine-3',
+            recipeName: 'pipe',
+            modules: [],
+        },
+    },
+    connections: {
+        c1: {
+            connectionId: 'c1',
+            type: 'effect',
+            srcBlockId: 'b2',
+            destBlockId: 'b1',
+            meta: {
+                distributions: [
+                    {
+                        effectPerBlock: 3,
+                        blocksAffected: -2,
+                    },
+                    {
+                        effectPerBlock: 2,
+                        blocksAffected: 2,
+                    },
+                ],
+            },
+        },
+        c2: {
+            connectionId: 'c2',
+            type: 'effect',
+            srcBlockId: 'b2',
+            destBlockId: 'b3',
+            meta: {
+                distributions: [
+                    {
+                        effectPerBlock: 3,
+                        blocksAffected: -2,
+                    },
+                    {
+                        effectPerBlock: 2,
+                        blocksAffected: 2,
+                    },
+                ],
+            },
+        },
+        c3: {
+            connectionId: 'c3',
+            type: 'result',
+            srcBlockId: 'b3',
+            destBlockId: 'b1',
+            meta: {
+                results: [
+                    {
+                        type: 'item',
+                        name: 'engine-unit',
+                    },
+                ],
+            },
+        },
+        c4: {
+            connectionId: 'c4',
+            type: 'result',
+            srcBlockId: 'b4',
+            destBlockId: 'b1',
+            meta: {
+                results: [
+                    {
+                        type: 'item',
+                        name: 'electric-mining-drill',
+                    },
+                ],
+            },
+        },
+        c5: {
+            connectionId: 'c5',
+            type: 'effect',
+            srcBlockId: 'b2',
+            destBlockId: 'b5',
+            meta: {
+                distributions: [
+                    {
+                        effectPerBlock: 3,
+                        blocksAffected: -2,
+                    },
+                    {
+                        effectPerBlock: 2,
+                        blocksAffected: 2,
+                    },
+                ],
+            },
+        },
+        c6: {
+            connectionId: 'c6',
+            type: 'result',
+            srcBlockId: 'b5',
+            destBlockId: 'b3',
+            meta: {
+                results: [
+                    {
+                        type: 'item',
+                        name: 'steel-plate',
+                    },
+                ],
+            },
+        },
+        c7: {
+            connectionId: 'c7',
+            type: 'result',
+            srcBlockId: 'b6',
+            destBlockId: 'b3',
+            meta: {
+                results: [
+                    {
+                        type: 'item',
+                        name: 'iron-gear-wheel',
+                    },
+                ],
+            },
+        },
+        c8: {
+            connectionId: 'c8',
+            type: 'result',
+            srcBlockId: 'b7',
+            destBlockId: 'b3',
+            meta: {
+                results: [
+                    {
+                        type: 'item',
+                        name: 'pipe',
+                    },
+                ],
+            },
+        },
+        c9: {
+            connectionId: 'c9',
+            type: 'result',
+            srcBlockId: 'b6',
+            destBlockId: 'b4',
+            meta: {
+                results: [
+                    {
+                        type: 'item',
+                        name: 'iron-gear-wheel',
+                    },
+                ],
+            },
+        },
+        c10: {
+            connectionId: 'c10',
+            type: 'effect',
+            srcBlockId: 'b2',
+            destBlockId: 'b6',
+            meta: {
+                distributions: [
+                    {
+                        effectPerBlock: 2,
+                        blocksAffected: 0,
+                    },
+                ],
+            },
+        },
+    },
+};
+
+export default v2;
