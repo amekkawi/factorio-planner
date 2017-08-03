@@ -12,6 +12,7 @@ export class Surface extends Component {
         offsetX: PropTypes.number,
         offsetY: PropTypes.number,
         isBoxSelecting: PropTypes.bool,
+        isDragging: PropTypes.bool,
 
         onSelectAll: PropTypes.func.isRequired,
         onKeyEscape: PropTypes.func.isRequired,
@@ -19,12 +20,15 @@ export class Surface extends Component {
         onBoxSelectionStart: PropTypes.func.isRequired,
         onBoxSelectionMove: PropTypes.func.isRequired,
         onBoxSelectionEnd: PropTypes.func.isRequired,
+        onDragSelectionMove: PropTypes.func.isRequired,
+        onDragSelectionEnd: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
         offsetX: 0,
         offsetY: 0,
         isBoxSelecting: false,
+        isDragging: false,
     };
 
     handleWheel = (event) => {
