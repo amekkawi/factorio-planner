@@ -25,7 +25,7 @@ const commonStrip = {
     output_fluid_box: Joi.any().strip(),
     radius_visualisation_picture: Joi.any().strip(),
     monitor_visualization_tint: Joi.any().strip(),
-    circuit_connector_sprites: Joi.any().strip()
+    circuit_connector_sprites: Joi.any().strip(),
 };
 
 const icons = Joi.array().min(1)
@@ -35,14 +35,14 @@ const icons = Joi.array().min(1)
             r: Joi.number().min(0).max(1).required(),
             g: Joi.number().min(0).max(1).required(),
             b: Joi.number().min(0).max(1).required(),
-            a: Joi.number().min(0).max(1).required()
+            a: Joi.number().min(0).max(1).required(),
         }),
         scale: Joi.number().min(0).max(1),
         shift: Joi.array().length(2)
             .ordered(
                 Joi.number().required().integer(),
                 Joi.number().required().integer()
-            )
+            ),
     }));
 
 const ingredients = Joi.array()
@@ -58,7 +58,7 @@ const ingredients = Joi.array()
             .keys({
                 type: Joi.string().valid('item', 'fluid').required(),
                 name: Joi.string().required().min(1),
-                amount: Joi.number().integer().required().min(1)
+                amount: Joi.number().integer().required().min(1),
             })
     ]);
 
@@ -68,7 +68,7 @@ const results = Joi.array()
             type: Joi.string().valid('item', 'fluid').default('item'),
             name: Joi.string().required().min(1),
             amount: Joi.number().integer().min(0),
-            probability: Joi.number().greater(0)
+            probability: Joi.number().greater(0),
         })
     )
     .min(1);
@@ -80,13 +80,13 @@ const crafting = Joi.object()
         result: Joi.string().min(1),
         results,
         energy_required: Joi.number().greater(0),
-        requester_paste_multiplier: Joi.number().strip()
+        requester_paste_multiplier: Joi.number().strip(),
     });
 
 const minable = Joi.object().keys({
     hardness: Joi.number().greater(0),
     mining_time: Joi.number().greater(0).required(),
-    result: Joi.string().min(1).required()
+    result: Joi.string().min(1).required(),
 });
 
 const allowed_effects = Joi.array()
@@ -94,7 +94,7 @@ const allowed_effects = Joi.array()
         'consumption',
         'speed',
         'productivity',
-        'pollution'
+        'pollution',
     ]));
 
 const energy_source = Joi.object().keys({
@@ -113,7 +113,7 @@ const energy_source = Joi.object().keys({
         .when('type', { is: 'nuclear', then: Joi.required() }),
     effectivity: Joi.number().greater(0).disallow()
         .when('type', { is: 'burner', then: Joi.required() }),
-    smoke: Joi.any().strip()
+    smoke: Joi.any().strip(),
 });
 
 const energy_usage = Joi.string().regex(/^\d+[mk]W$/);
@@ -126,7 +126,7 @@ const module_specification = Joi.object().keys({
 
 const baseSchema = Joi.object().keys({
     type: Joi.string().required().min(1),
-    name: Joi.string().required().min(1)
+    name: Joi.string().required().min(1),
 });
 
 function createSchemaForType(type) {
@@ -155,7 +155,7 @@ function createSchemaForType(type) {
                 allow_decomposition: Joi.boolean().strip(),
                 hide_from_stats: Joi.boolean().strip(),
                 main_product: Joi.string().valid('').strip(),
-                crafting_machine_tint: Joi.any().strip()
+                crafting_machine_tint: Joi.any().strip(),
             })
             .and('normal', 'expensive')
             .xor('result', 'results', 'normal')
@@ -202,7 +202,7 @@ function createSchemaForType(type) {
                 working_visualisations_disabled: Joi.array().strip(),
                 pipe_covers: Joi.object().strip(),
                 drawing_box: Joi.array().strip(),
-                light: Joi.object().strip()
+                light: Joi.object().strip(),
             })
             .and('module_specification', 'allowed_effects');
     }
@@ -237,7 +237,7 @@ function createSchemaForType(type) {
                 circuit_wire_max_distance: Joi.any().strip(),
                 dying_explosion: Joi.string().strip(),
                 vector_to_place_result: Joi.any().strip(),
-                drawing_box: Joi.any().strip()
+                drawing_box: Joi.any().strip(),
             });
     }
     else if (type === 'beacon') {
@@ -310,7 +310,7 @@ function createSchemaForType(type) {
                 trigger_radius: Joi.number().strip(),
                 fuel_acceleration_multiplier: Joi.number().greater(0).strip(),
                 fuel_top_speed_multiplier: Joi.number().greater(0).strip(),
-                burnt_result: Joi.any().strip()
+                burnt_result: Joi.any().strip(),
             })
             .and('fuel_value', 'fuel_category');
     }
@@ -326,25 +326,25 @@ function createSchemaForType(type) {
                 effect: Joi.object().required()
                     .keys({
                         productivity: Joi.object().keys({
-                            bonus: Joi.number().required()
+                            bonus: Joi.number().required(),
                         }),
                         consumption: Joi.object().keys({
-                            bonus: Joi.number().required()
+                            bonus: Joi.number().required(),
                         }),
                         pollution: Joi.object().keys({
-                            bonus: Joi.number().required()
+                            bonus: Joi.number().required(),
                         }),
                         speed: Joi.object().keys({
-                            bonus: Joi.number().required()
-                        })
+                            bonus: Joi.number().required(),
+                        }),
                     }),
                 limitation: Joi.array().items(Joi.string().min(1)),
 
                 stack_size: Joi.number().strip(),
                 default_request_amount: Joi.number().strip(),
                 limitation_message_key: Joi.string().strip(),
-                requester_paste_multiplier: Joi.number().strip()
-            })
+                requester_paste_multiplier: Joi.number().strip(),
+            });
     }
     else if (type === 'resource') {
         return baseSchema
@@ -367,16 +367,16 @@ function createSchemaForType(type) {
                                 amount: Joi.number().integer().min(0),
                                 amount_min: Joi.number().integer().min(0),
                                 amount_max: Joi.number().integer().min(Joi.ref('amount_min')),
-                                probability: Joi.number().greater(0)
+                                probability: Joi.number().greater(0),
                             })
-                            .xor('amount', 'amount_min')
-                            .and('amount_min', 'amount_max')
+                                .xor('amount', 'amount_min')
+                                .and('amount_min', 'amount_max')
                         )
                         .min(1),
                     required_fluid: Joi.string(),
                     fluid_amount: Joi.number().min(1).integer(),
 
-                    mining_particle: Joi.string().strip()
+                    mining_particle: Joi.string().strip(),
                 })
                     .xor('result', 'results')
                     .and('required_fluid', 'fluid_amount'),
@@ -398,7 +398,20 @@ function createSchemaForType(type) {
                 effect_animation_period_deviation: Joi.any().strip(),
                 effect_darkness_multiplier: Joi.any().strip(),
                 min_effect_alpha: Joi.any().strip(),
-                max_effect_alpha: Joi.any().strip()
+                max_effect_alpha: Joi.any().strip(),
+            });
+    }
+    else if (type === 'tool') {
+        return baseSchema
+            .keys({
+                icon: Joi.string().min(1),
+                flags: Joi.array().items(Joi.string()),
+                subgroup: Joi.string().min(1),
+                order: Joi.string().min(1),
+
+                stack_size: Joi.number().integer().strip(),
+                durability: Joi.number().integer().strip(),
+                durability_description_key: Joi.string().strip(),
             });
     }
     else {

@@ -9,3 +9,4 @@ exports["mining-drill"] = require("./mining-drill.json");
 exports["module"] = require("./module.json");
 exports["recipe"] = require("./recipe.json");
 exports["resource"] = require("./resource.json");
+exports["tool"] = require("./tool.json");

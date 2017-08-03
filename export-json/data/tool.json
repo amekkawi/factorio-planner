@@ -1,0 +1,72 @@
+{
+  "science-pack-1": {
+    "type": "tool",
+    "name": "science-pack-1",
+    "icon": "__base__/graphics/icons/science-pack-1.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "science-pack",
+    "order": "a[science-pack-1]"
+  },
+  "science-pack-2": {
+    "type": "tool",
+    "name": "science-pack-2",
+    "icon": "__base__/graphics/icons/science-pack-2.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "science-pack",
+    "order": "b[science-pack-2]"
+  },
+  "science-pack-3": {
+    "type": "tool",
+    "name": "science-pack-3",
+    "icon": "__base__/graphics/icons/science-pack-3.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "science-pack",
+    "order": "c[science-pack-3]"
+  },
+  "military-science-pack": {
+    "type": "tool",
+    "name": "military-science-pack",
+    "icon": "__base__/graphics/icons/military-science-pack.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "science-pack",
+    "order": "d[military-science-pack]"
+  },
+  "production-science-pack": {
+    "type": "tool",
+    "name": "production-science-pack",
+    "icon": "__base__/graphics/icons/production-science-pack.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "science-pack",
+    "order": "e[production-science-pack]"
+  },
+  "high-tech-science-pack": {
+    "type": "tool",
+    "name": "high-tech-science-pack",
+    "icon": "__base__/graphics/icons/high-tech-science-pack.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "science-pack",
+    "order": "f[high-tech-science-pack]"
+  },
+  "space-science-pack": {
+    "type": "tool",
+    "name": "space-science-pack",
+    "icon": "__base__/graphics/icons/space-science-pack.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "science-pack",
+    "order": "g[space-science-pack]"
+  }
+}

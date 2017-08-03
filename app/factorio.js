@@ -84,13 +84,18 @@ export function recipeGetResults(recipeProto) {
             || recipeProto.normal && recipeProto.normal.result;
 
         if (result) {
-            ret = [
-                {
-                    type: 'item',
-                    name: result,
-                    amount: recipeProto.result_count || recipeProto.normal && recipeProto.normal.result_count || 1,
-                },
-            ];
+            for (const type of ['item', 'tool']) {
+                if (exportData[type][result]) {
+                    ret = [
+                        {
+                            type,
+                            name: result,
+                            amount: recipeProto.result_count || recipeProto.normal && recipeProto.normal.result_count || 1,
+                        },
+                    ];
+                    break;
+                }
+            }
         }
         else {
             ret = recipeProto.results
