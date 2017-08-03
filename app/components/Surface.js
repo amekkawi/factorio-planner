@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actions } from '../state/reducers';
+import { isMac } from '../util/platform';
 
 export class Surface extends Component {
 
@@ -12,6 +13,8 @@ export class Surface extends Component {
         offsetY: PropTypes.number,
         isBoxSelecting: PropTypes.bool,
 
+        onSelectAll: PropTypes.func.isRequired,
+        onKeyEscape: PropTypes.func.isRequired,
         onPanSurface: PropTypes.func.isRequired,
         onBoxSelectionStart: PropTypes.func.isRequired,
         onBoxSelectionMove: PropTypes.func.isRequired,
@@ -32,7 +35,21 @@ export class Surface extends Component {
         evt.preventDefault();
     };
 
+    handleKeyDown = (evt) => {
+        evt.preventDefault();
+        const { onKeyEscape, onSelectAll } = this.props;
+
+        if (evt.keyCode === 27) {
+            onKeyEscape();
+        }
+        else if (evt.keyCode === 65 && (isMac && evt.metaKey || !isMac && evt.ctrlKey)) {
+            onSelectAll();
+        }
+    };
+
     handleMouseDown = (evt) => {
+        evt.currentTarget.focus();
+
         const { onBoxSelectionStart, offsetX, offsetY, onDragSelectionInit } = this.props;
         evt.preventDefault();
 
@@ -83,11 +100,7 @@ export class Surface extends Component {
             );
         }
         else if (isDragging) {
-            const { top: surfaceTop, left: surfaceLeft } = evt.currentTarget.getBoundingClientRect();
-            onDragSelectionEnd(
-                evt.clientX - surfaceLeft - offsetX,
-                evt.clientY - surfaceTop - offsetY
-            );
+            onDragSelectionEnd();
         }
     };
 
@@ -101,8 +114,10 @@ export class Surface extends Component {
 
         return (
             <svg className="surface"
+                tabIndex="0"
                 onWheel={onPanSurface ? this.handleWheel : null}
                 onContextMenu={this.handleContextMenu}
+                onKeyDown={this.handleKeyDown}
                 onMouseDown={this.handleMouseDown}
                 onMouseUp={isBoxSelecting || isDragging ? this.handleMouseUp : null}
                 onMouseMove={isBoxSelecting || isDragging ? this.handleMouseMove : null}
@@ -121,11 +136,13 @@ export default connect((state) => ({
     isBoxSelecting: state.selection.isBoxSelecting,
     isDragging: state.surface.isDragging,
 }), (dispatch) => ({
+    onSelectAll: () => dispatch(actions.selectionAll()),
+    onKeyEscape: () => dispatch(actions.keyEscape()),
     onPanSurface: (dx, dy) => dispatch(actions.panSurface(dx, dy)),
     onBoxSelectionStart: (x, y, isAdd) => dispatch(actions.boxSelectionStart(x, y, isAdd)),
     onBoxSelectionMove: (x, y) => dispatch(actions.boxSelectionMove(x, y)),
     onBoxSelectionEnd: () => dispatch(actions.boxSelectionEnd()),
     onDragSelectionInit: (x, y) => dispatch(actions.dragSelectionInit(x, y)),
     onDragSelectionMove: (x, y) => dispatch(actions.dragSelectionMove(x, y)),
-    onDragSelectionEnd: (x, y) => dispatch(actions.dragSelectionEnd(x, y)),
+    onDragSelectionEnd: () => dispatch(actions.dragSelectionEnd()),
 }))(Surface);

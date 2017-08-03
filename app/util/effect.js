@@ -7,7 +7,7 @@ import { data as factorioData } from '../factorio';
  * @return {boolean}
  */
 export function isEffectReceiver(type) {
-    return type === 'AssemblingMachineBlock';
+    return type === 'AssemblingMachineBlock' || type === 'MiningDrillBlock' || type === 'FurnaceBlock';
 }
 
 export function isEffectSender(type) {

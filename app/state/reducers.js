@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
+import { dragDeltaSelector } from './selectors';
 
 export const types = {
+    KEY_SELECT_ALL: 'KEY_SELECT_ALL',
+    KEY_ESCAPE: 'KEY_ESCAPE',
     PAN_SURFACE: 'PAN_SURFACE',
     BOX_SELECTION_START: 'BOX_SELECTION_START',
     BOX_SELECTION_MOVE: 'BOX_SELECTION_MOVE',
@@ -21,6 +24,10 @@ export const types = {
 };
 
 export const actions = {
+    keyEscape: () => ({
+        type: types.KEY_ESCAPE,
+    }),
+
     panSurface: (dx, dy) => (dispatch, getState) => {
         const { offsetX, offsetY } = getState().surface;
         const payload = {
@@ -56,6 +63,16 @@ export const actions = {
     boxSelectionEnd: () => ({
         type: types.BOX_SELECTION_END,
     }),
+
+    selectionAll: () => (dispatch, getState) => {
+        const { blockIds, connectionIds } = getState();
+        dispatch({
+            type: types.SELECTION_SET,
+            payload: {
+                ids: blockIds.concat(connectionIds),
+            },
+        });
+    },
 
     selectionAdd: (id) => ({
         type: types.SELECTION_ADD,
@@ -104,13 +121,19 @@ export const actions = {
         },
     }),
 
-    dragSelectionEnd: (x, y) => ({
-        type: types.DRAG_SELECTION_END,
-        payload: {
-            x,
-            y,
-        },
-    }),
+    dragSelectionEnd: () => (dispatch, getState) => {
+        const state = getState();
+        const dragDelta = dragDeltaSelector(state);
+
+        dispatch({
+            type: types.DRAG_SELECTION_END,
+            payload: {
+                ids: Object.keys(state.selection.byId),
+                deltaX: dragDelta && dragDelta.x,
+                deltaY: dragDelta && dragDelta.y,
+            },
+        });
+    },
 
     loadPlan: (plan) => ({
         type: types.LOAD_PLAN,
@@ -174,6 +197,11 @@ export const actions = {
 export function surfaceReducer(state = {
     offsetX: 0,
     offsetY: 0,
+    isDragging: false,
+    dragStartX: null,
+    dragStartY: null,
+    dragEndX: null,
+    dragEndY: null,
 }, action) {
     switch (action.type) {
         case types.PAN_SURFACE:
@@ -202,6 +230,7 @@ export function surfaceReducer(state = {
                 dragEndY: action.payload.y,
             };
         case types.DRAG_SELECTION_END:
+        case types.KEY_ESCAPE:
             return {
                 ...state,
                 isDragging: false,
@@ -258,6 +287,7 @@ export function selectionReducer(state = {
                 boxSelectionEndY: action.payload.y,
             };
         case types.BOX_SELECTION_END:
+        case types.KEY_ESCAPE:
             return {
                 ...state,
                 isBoxSelecting: false,
@@ -297,6 +327,22 @@ export function blocksReducer(state = {}, action) {
     switch (action.type) {
         case types.LOAD_PLAN:
             return action.payload.plan.blocks || {};
+        case types.DRAG_SELECTION_END: {
+            const keysSet = new Set(action.payload.ids);
+            return Object.keys(state).reduce((ret, blockId) => {
+                if (keysSet.has(blockId)) {
+                    ret[blockId] = {
+                        ...state[blockId],
+                        x: state[blockId].x + action.payload.deltaX,
+                        y: state[blockId].y + action.payload.deltaY,
+                    };
+                }
+                else {
+                    ret[blockId] = state[blockId];
+                }
+                return ret;
+            }, {});
+        }
         default:
             return state;
     }
