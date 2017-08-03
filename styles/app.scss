@@ -54,6 +54,11 @@ svg text {
   background-color: #FFF;
 }
 
+.selected-box {
+  pointer-events: none;
+  fill: rgba(0, 0, 0, .3);
+}
+
 .selection-box {
   pointer-events: none;
   stroke: rgba(0, 0, 0, .5);

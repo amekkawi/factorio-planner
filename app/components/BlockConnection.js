@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
+import * as platformUtil from '../util/platform';
 import { actions } from '../state/reducers';
-import { graphSelector } from '../state/selectors';
+import { dragDeltaSelector, graphSelector } from '../state/selectors';
 import { getBlockTypeRadius } from '../util';
 import { calcAngle, calcMidpoint, calcAngledDistance, calcRadian, calcDistance } from '../util/math';
 import HoverContainer from './HoverContainer';
@@ -23,10 +24,23 @@ export class BlockConnection extends Component {
         destCY: PropTypes.number.isRequired,
         destRadius: PropTypes.number.isRequired,
 
+        isSrcDragging: PropTypes.bool,
+        isDestDragging: PropTypes.bool,
+        dragDelta: PropTypes.oneOfType([
+            PropTypes.object,
+            PropTypes.bool
+        ]),
+
         meta: PropTypes.object.isRequired,
+
+        isSelected: PropTypes.bool,
+        onSelectAdd: PropTypes.func,
+        onSelectRemove: PropTypes.func,
+        onSelectSet: PropTypes.func,
 
         isValid: PropTypes.bool,
         isCyclic: PropTypes.bool,
+
         isRelatedHovered: PropTypes.bool,
         isHoverDisabled: PropTypes.bool,
         isHovered: PropTypes.bool,
@@ -38,6 +52,13 @@ export class BlockConnection extends Component {
         isValid: true,
         isCyclic: false,
         isRelatedHovered: false,
+        isSrcDragging: false,
+        isDestDragging: false,
+        dragDelta: false,
+        isSelected: false,
+        onSelectAdd: null,
+        onSelectRemove: null,
+        onSelectSet: null,
         isHoverDisabled: false,
         isHovered: false,
         onHoverOver: null,
@@ -142,12 +163,55 @@ export class BlockConnection extends Component {
         );
     }
 
+    renderSelectionBox(x1, y1, x2, y2) {
+        const {
+            isSelected,
+        } = this.props;
+
+        if (!isSelected) {
+            return null;
+        }
+
+        const { x: mx, y: my } = calcMidpoint(x1, y1, x2, y2);
+        const distance = Math.max(5, calcDistance(x1, y1, x2, y2));
+        const deg = calcAngle(x1, y1, x2, y2);
+
+        return (
+            <rect
+                className="selected-box"
+                x={mx - (distance / 2)}
+                y={my - 5}
+                width={distance}
+                height={10}
+                rx="10"
+                ry="10"
+                transform={`rotate(${deg} ${mx} ${my})`}
+            />
+        );
+    }
+
+    handleMouseDown = (evt) => {
+        const { isSelected, onSelectAdd, onSelectRemove, onSelectSet } = this.props;
+        if (isSelected) {
+            if (onSelectRemove && platformUtil.isMouseEventMultiSelectionRemove(evt)) {
+                onSelectRemove();
+            }
+        }
+        else if (onSelectAdd && platformUtil.isMouseEventMultiSelection(evt)) {
+            onSelectAdd();
+        }
+        else if (onSelectSet) {
+            onSelectSet();
+        }
+    };
+
     render() {
         const {
             connectionId, type,
             srcCX, srcCY, srcRadius,
             destCX, destCY, destRadius,
             isValid,
+            isSrcDragging, isDestDragging, dragDelta,
             isHovered, onHoverOver, onHoverOut,
         } = this.props;
 
@@ -155,9 +219,14 @@ export class BlockConnection extends Component {
             return null;
         }
 
-        const deg = calcAngle(srcCX, srcCY, destCX, destCY);
-        const { x: x1, y: y1 } = calcRadian(srcCX, srcCY, srcRadius, deg);
-        const { x: x2, y: y2 } = calcRadian(destCX, destCY, destRadius + 10, 180 + deg);
+        const srcCXAdjusted = srcCX + (isSrcDragging && dragDelta ? dragDelta.x : 0);
+        const srcCYAdjusted = srcCY + (isSrcDragging && dragDelta ? dragDelta.y : 0);
+        const destCXAdjusted = destCX + (isDestDragging && dragDelta ? dragDelta.x : 0);
+        const destCYAdjusted = destCY + (isDestDragging && dragDelta ? dragDelta.y : 0);
+
+        const deg = calcAngle(srcCXAdjusted, srcCYAdjusted, destCXAdjusted, destCYAdjusted);
+        const { x: x1, y: y1 } = calcRadian(srcCXAdjusted, srcCYAdjusted, srcRadius, deg);
+        const { x: x2, y: y2 } = calcRadian(destCXAdjusted, destCYAdjusted, destRadius + 10, 180 + deg);
 
         const className = ClassNames('block-connection', {
             'block-connection--invalid': !isValid,
@@ -166,6 +235,7 @@ export class BlockConnection extends Component {
         return (
             <HoverContainer data-connection-id={connectionId}
                 className={className}
+                onMouseDown={this.handleMouseDown}
                 isHovered={isHovered}
                 onHoverOver={onHoverOver}
                 onHoverOut={onHoverOut}
@@ -174,6 +244,7 @@ export class BlockConnection extends Component {
                 <line className="block-connection__line" x1={x1} y1={y1} x2={x2} y2={y2} strokeWidth={2}/>
                 <line className="block-connection__hover" x1={x1} y1={y1} x2={x2} y2={y2} strokeWidth={16} stroke="transparent"/>
                 <path className="block-connection__arrow" d="M0 -5 l 0 10 l 10 -5 l -10 -5" transform={`translate(${x2}, ${y2}) rotate(${deg})`}/>
+                {this.renderSelectionBox(x1, y1, x2, y2)}
 
                 {type === 'result' && this.renderResults(x1, y1, x2, y2, deg)}
                 {type === 'effect' && this.renderDistribution(x1, y1, x2, y2, deg)}
@@ -191,24 +262,37 @@ const mapStateToProps = (state, { connectionId }) => {
     const srcBlock = connection && state.blocks[connection.srcBlockId];
     const destBlock = connection && state.blocks[connection.destBlockId];
 
+    const isHoverDisabled = state.selection.isBoxSelecting || state.surface.isDragging;
+    const isSrcDragging = srcBlock && state.surface.isDragging && state.selection.byId[connection.srcBlockId];
+    const isDestDragging = destBlock && state.surface.isDragging && state.selection.byId[connection.destBlockId];
+
     return {
         ...connection,
         isValid: !isCyclic,
         isCyclic,
-        isHoverDisabled: state.selection.isBoxSelecting,
+        isSelected: !!state.selection.byId[connectionId],
+        isHoverDisabled,
         isHovered: state.focused === connectionId,
         isRelatedHovered: state.focused === connection.srcBlockId || state.focused === connection.destBlockId,
+
+        isSrcDragging,
+        isDestDragging,
+        dragDelta: isSrcDragging || isDestDragging ? dragDeltaSelector(state) : false,
+
         srcCX: srcBlock && srcBlock.x,
         srcCY: srcBlock && srcBlock.y,
-        srcRadius: getBlockTypeRadius(srcBlock && srcBlock.type, !state.selection.isBoxSelecting && state.focused === connection.srcBlockId),
+        srcRadius: getBlockTypeRadius(srcBlock && srcBlock.type, !isHoverDisabled && state.focused === connection.srcBlockId),
 
         destCX: destBlock && destBlock.x,
         destCY: destBlock && destBlock.y,
-        destRadius: getBlockTypeRadius(destBlock && destBlock.type, !state.selection.isBoxSelecting && state.focused === connection.destBlockId),
+        destRadius: getBlockTypeRadius(destBlock && destBlock.type, !isHoverDisabled && state.focused === connection.destBlockId),
     };
 };
 
 const mapDispatchToProps = (dispatch, { connectionId }) => ({
+    onSelectAdd: () => dispatch(actions.selectionAdd(connectionId)),
+    onSelectRemove: () => dispatch(actions.selectionRemove(connectionId)),
+    onSelectSet: () => dispatch(actions.selectionSet([connectionId])),
     onHoverOver: () => dispatch(actions.focus(connectionId)),
     onHoverOut: () => dispatch(actions.blur(connectionId)),
 });

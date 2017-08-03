@@ -11,6 +11,19 @@ import {
 } from '../util/effect';
 import { memoize, createKeyMemoizedSelector, arrayValuesEqualityCheck } from '../util/selector';
 import { getProto } from '../factorio';
+import { calcDistance } from '../util/math';
+
+export const dragDeltaSelector = createSelector(
+    (state) => state.surface.dragStartX,
+    (state) => state.surface.dragStartY,
+    (state) => state.surface.dragEndX,
+    (state) => state.surface.dragEndY,
+    (x1, y1, x2, y2) =>
+        calcDistance(x1, y1, x2, y2) > 2 ? {
+            x: x2 - x1,
+            y: y2 - y1,
+        } : false,
+);
 
 export const graphSelector = createSelectorCreator(memoize, { skipHead: 2 })(
     (state) => state.blocks,

@@ -8,6 +8,10 @@ export const types = {
     SELECTION_ADD: 'SELECTION_ADD',
     SELECTION_REMOVE: 'SELECTION_REMOVE',
     SELECTION_SET: 'SELECTION_SET',
+    DRAG_SELECTION_START: 'DRAG_SELECTION_START',
+    DRAG_SELECTION_INIT: 'DRAG_SELECTION_INIT',
+    DRAG_SELECTION_MOVE: 'DRAG_SELECTION_MOVE',
+    DRAG_SELECTION_END: 'DRAG_SELECTION_END',
     LOAD_PLAN: 'LOAD_PLAN',
     LOAD_ICON: 'LOAD_ICON',
     FOCUS: 'FOCUS',
@@ -71,6 +75,40 @@ export const actions = {
         type: types.SELECTION_SET,
         payload: {
             ids,
+        },
+    }),
+
+    dragSelectionStart: () => ({
+        type: types.DRAG_SELECTION_START,
+    }),
+
+    dragSelectionInit: (x, y) => (dispatch, getState) => {
+        if (!getState().surface.isDragging) {
+            return;
+        }
+
+        dispatch({
+            type: types.DRAG_SELECTION_INIT,
+            payload: {
+                x,
+                y,
+            },
+        });
+    },
+
+    dragSelectionMove: (x, y) => ({
+        type: types.DRAG_SELECTION_MOVE,
+        payload: {
+            x,
+            y,
+        },
+    }),
+
+    dragSelectionEnd: (x, y) => ({
+        type: types.DRAG_SELECTION_END,
+        payload: {
+            x,
+            y,
         },
     }),
 
@@ -143,6 +181,34 @@ export function surfaceReducer(state = {
                 ...state,
                 offsetX: action.payload.offsetX,
                 offsetY: action.payload.offsetY,
+            };
+        case types.DRAG_SELECTION_START:
+            return {
+                ...state,
+                isDragging: true,
+            };
+        case types.DRAG_SELECTION_INIT:
+            return {
+                ...state,
+                dragStartX: action.payload.x,
+                dragStartY: action.payload.y,
+                dragEndX: action.payload.x,
+                dragEndY: action.payload.y,
+            };
+        case types.DRAG_SELECTION_MOVE:
+            return {
+                ...state,
+                dragEndX: action.payload.x,
+                dragEndY: action.payload.y,
+            };
+        case types.DRAG_SELECTION_END:
+            return {
+                ...state,
+                isDragging: false,
+                dragStartX: null,
+                dragStartY: null,
+                dragEndX: null,
+                dragEndY: null,
             };
         default:
             return state;

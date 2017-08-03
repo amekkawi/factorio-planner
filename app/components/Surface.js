@@ -33,21 +33,28 @@ export class Surface extends Component {
     };
 
     handleMouseDown = (evt) => {
-        const { onBoxSelectionStart, offsetX, offsetY } = this.props;
-        const { top: surfaceTop, left: surfaceLeft } = evt.currentTarget.getBoundingClientRect();
+        const { onBoxSelectionStart, offsetX, offsetY, onDragSelectionInit } = this.props;
         evt.preventDefault();
 
         if (evt.target === evt.currentTarget) {
+            const { top: surfaceTop, left: surfaceLeft } = evt.currentTarget.getBoundingClientRect();
             onBoxSelectionStart(
                 evt.clientX - surfaceLeft - offsetX,
                 evt.clientY - surfaceTop - offsetY,
                 evt.shiftKey || evt.altKey || evt.metaKey
             );
         }
+        else {
+            const { top: surfaceTop, left: surfaceLeft } = evt.currentTarget.getBoundingClientRect();
+            onDragSelectionInit(
+                evt.clientX - surfaceLeft - offsetX,
+                evt.clientY - surfaceTop - offsetY,
+            );
+        }
     };
 
     handleMouseMove = (evt) => {
-        const { isBoxSelecting, onBoxSelectionMove, offsetX, offsetY } = this.props;
+        const { isBoxSelecting, onBoxSelectionMove, offsetX, offsetY, isDragging, onDragSelectionMove } = this.props;
         evt.preventDefault();
 
         if (isBoxSelecting) {
@@ -57,13 +64,27 @@ export class Surface extends Component {
                 evt.clientY - surfaceTop - offsetY
             );
         }
+        else if (isDragging) {
+            const { top: surfaceTop, left: surfaceLeft } = evt.currentTarget.getBoundingClientRect();
+            onDragSelectionMove(
+                evt.clientX - surfaceLeft - offsetX,
+                evt.clientY - surfaceTop - offsetY
+            );
+        }
     };
 
     handleMouseUp = (evt) => {
-        const { isBoxSelecting, onBoxSelectionEnd, offsetX, offsetY } = this.props;
+        const { isBoxSelecting, onBoxSelectionEnd, offsetX, offsetY, isDragging, onDragSelectionEnd } = this.props;
         if (isBoxSelecting) {
             const { top: surfaceTop, left: surfaceLeft } = evt.currentTarget.getBoundingClientRect();
             onBoxSelectionEnd(
+                evt.clientX - surfaceLeft - offsetX,
+                evt.clientY - surfaceTop - offsetY
+            );
+        }
+        else if (isDragging) {
+            const { top: surfaceTop, left: surfaceLeft } = evt.currentTarget.getBoundingClientRect();
+            onDragSelectionEnd(
                 evt.clientX - surfaceLeft - offsetX,
                 evt.clientY - surfaceTop - offsetY
             );
@@ -75,6 +96,7 @@ export class Surface extends Component {
             offsetX, offsetY,
             onPanSurface,
             isBoxSelecting,
+            isDragging,
         } = this.props;
 
         return (
@@ -82,8 +104,8 @@ export class Surface extends Component {
                 onWheel={onPanSurface ? this.handleWheel : null}
                 onContextMenu={this.handleContextMenu}
                 onMouseDown={this.handleMouseDown}
-                onMouseUp={isBoxSelecting ? this.handleMouseUp : null}
-                onMouseMove={isBoxSelecting ? this.handleMouseMove : null}
+                onMouseUp={isBoxSelecting || isDragging ? this.handleMouseUp : null}
+                onMouseMove={isBoxSelecting || isDragging ? this.handleMouseMove : null}
             >
                 <g transform={`translate(${offsetX}, ${offsetY})`}>
                     {this.props.children}
@@ -97,9 +119,13 @@ export default connect((state) => ({
     offsetX: state.surface.offsetX,
     offsetY: state.surface.offsetY,
     isBoxSelecting: state.selection.isBoxSelecting,
+    isDragging: state.surface.isDragging,
 }), (dispatch) => ({
     onPanSurface: (dx, dy) => dispatch(actions.panSurface(dx, dy)),
     onBoxSelectionStart: (x, y, isAdd) => dispatch(actions.boxSelectionStart(x, y, isAdd)),
     onBoxSelectionMove: (x, y) => dispatch(actions.boxSelectionMove(x, y)),
     onBoxSelectionEnd: () => dispatch(actions.boxSelectionEnd()),
+    onDragSelectionInit: (x, y) => dispatch(actions.dragSelectionInit(x, y)),
+    onDragSelectionMove: (x, y) => dispatch(actions.dragSelectionMove(x, y)),
+    onDragSelectionEnd: (x, y) => dispatch(actions.dragSelectionEnd(x, y)),
 }))(Surface);

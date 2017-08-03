@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 import * as factorio from '../factorio';
 import { actions } from '../state/reducers';
-import { validatedBlocksSelector } from '../state/selectors';
+import { dragDeltaSelector, validatedBlocksSelector } from '../state/selectors';
 import * as platformUtil from '../util/platform';
 import HoverContainer from './HoverContainer';
 import IORing from './IORing';
@@ -33,6 +33,12 @@ class IOBlock extends Component {
         onSelectRemove: PropTypes.func,
         onSelectSet: PropTypes.func,
 
+        dragDelta: PropTypes.oneOfType([
+            PropTypes.object,
+            PropTypes.bool,
+        ]),
+        onDragSelectionStart: PropTypes.func,
+
         isValid: PropTypes.bool,
         isValidRecipe: PropTypes.bool,
         isValidModules: PropTypes.bool,
@@ -60,6 +66,8 @@ class IOBlock extends Component {
         onSelectAdd: null,
         onSelectRemove: null,
         onSelectSet: null,
+        dragDelta: false,
+        onDragSelectionStart: null,
         isValid: true,
         isValidRecipe: true,
         isValidModules: true,
@@ -200,23 +208,29 @@ class IOBlock extends Component {
     }
 
     handleMouseDown = (evt) => {
-        const { isSelected, onSelectAdd, onSelectRemove, onSelectSet } = this.props;
+        const { isSelected, onSelectAdd, onSelectRemove, onSelectSet, onDragSelectionStart } = this.props;
         if (isSelected) {
             if (onSelectRemove && platformUtil.isMouseEventMultiSelectionRemove(evt)) {
                 onSelectRemove();
             }
+            else {
+                onDragSelectionStart && onDragSelectionStart();
+            }
         }
         else if (onSelectAdd && platformUtil.isMouseEventMultiSelection(evt)) {
             onSelectAdd();
+            onDragSelectionStart && onDragSelectionStart();
         }
         else if (onSelectSet) {
             onSelectSet();
+            onDragSelectionStart && onDragSelectionStart();
         }
     };
 
     render() {
         const {
-            blockId, type, name, x, y, quantity, ringRotate,
+            blockId, type, name, x, y, dragDelta,
+            quantity, ringRotate,
             isValid, isSelected,
             isHoverDisabled, isHovered, onHoverOver, onHoverOut,
         } = this.props;
@@ -229,12 +243,17 @@ class IOBlock extends Component {
         return (
             <HoverContainer className="block"
                 data-block-id={blockId}
-                transform={`translate(${x}, ${y})`}
+                transform={`translate(${x + (isSelected && dragDelta ? dragDelta.x : 0)}, ${y + (isSelected && dragDelta ? dragDelta.y : 0)})`}
                 onMouseDown={this.handleMouseDown}
                 isHovered={isHovered}
                 onHoverOver={onHoverOver}
                 onHoverOut={onHoverOut}
                 hoverTimeout={200}>
+
+                {isSelected && <circle
+                    className="selected-box"
+                    r={baseRadius + (!isHoverDisabled && isHovered ? width : 6) + 5}
+                />}
 
                 <circle
                     className="block__bg block__bg--ingredients"
@@ -255,17 +274,6 @@ class IOBlock extends Component {
                     fill="none"
                 />
 
-                {isSelected && <rect
-                    x={-baseRadius}
-                    y={-baseRadius}
-                    width={baseRadius * 2}
-                    height={baseRadius * 2}
-                    style={{ pointerEvents: 'none' }}
-                    stroke="#000"
-                    strokeWidth="2"
-                    fill="none"
-                />}
-
                 {this.renderConnectors(baseRadius, !isHoverDisabled && isHovered ? width : 6)}
                 {this.renderBlockIcon(blockProto, quantity)}
                 {this.renderModules(blockProto)}
@@ -275,27 +283,29 @@ class IOBlock extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const block = validatedBlocksSelector(state)[ownProps.blockId];
+const mapStateToProps = (state, { blockId }) => {
+    const block = validatedBlocksSelector(state)[blockId];
 
     return {
         ...block,
-        blockId: ownProps.blockId,
-        isSelected: !!state.selection.byId[ownProps.blockId],
-        isHoverDisabled: state.selection.isBoxSelecting,
-        isHovered: state.focused === ownProps.blockId,
-        isRecipeHovered: !!state.tooltip && state.tooltip.sourceId === `${ownProps.blockId}_io`,
+        blockId: blockId,
+        dragDelta: dragDeltaSelector(state),
+        isSelected: !!state.selection.byId[blockId],
+        isHoverDisabled: state.selection.isBoxSelecting || state.surface.isDragging,
+        isHovered: state.focused === blockId,
+        isRecipeHovered: !!state.tooltip && state.tooltip.sourceId === `${blockId}_io`,
     };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    onSelectAdd: () => dispatch(actions.selectionAdd(ownProps.blockId)),
-    onSelectRemove: () => dispatch(actions.selectionRemove(ownProps.blockId)),
-    onSelectSet: () => dispatch(actions.selectionSet([ownProps.blockId])),
-    onHoverOver: () => dispatch(actions.focus(ownProps.blockId)),
-    onHoverOut: () => dispatch(actions.blur(ownProps.blockId)),
-    onHoverRecipeOver: () => dispatch(actions.showTooltip(`${ownProps.blockId}_io`, 'block-io', { blockId: ownProps.blockId })),
-    onHoverRecipeOut: () => dispatch(actions.hideTooltip(`${ownProps.blockId}_io`)),
+const mapDispatchToProps = (dispatch, { blockId }) => ({
+    onSelectAdd: () => dispatch(actions.selectionAdd(blockId)),
+    onSelectRemove: () => dispatch(actions.selectionRemove(blockId)),
+    onSelectSet: () => dispatch(actions.selectionSet([blockId])),
+    onDragSelectionStart: () => dispatch(actions.dragSelectionStart()),
+    onHoverOver: () => dispatch(actions.focus(blockId)),
+    onHoverOut: () => dispatch(actions.blur(blockId)),
+    onHoverRecipeOver: () => dispatch(actions.showTooltip(`${blockId}_io`, 'block-io', { blockId: blockId })),
+    onHoverRecipeOut: () => dispatch(actions.hideTooltip(`${blockId}_io`)),
 });
 
 export default connect(
