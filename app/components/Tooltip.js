@@ -8,13 +8,13 @@ import { blockIOSelector } from '../state/selectors';
 let pageX = 0;
 let pageY = 0;
 const mouseMoveComponents = new Set();
-window.addEventListener('mousemove', (event) => {
-    pageX = event.pageX;
-    pageY = event.pageY;
+window.addEventListener('mousemove', (evt) => {
+    pageX = evt.pageX;
+    pageY = evt.pageY;
     for (const component of mouseMoveComponents) {
         // Double check in case the handler was removed while iterating.
         if (mouseMoveComponents.has(component)) {
-            component.handleMouseMove(event.pageX, event.pageY);
+            component.handleMouseMove(evt.pageX, evt.pageY);
         }
     }
 });

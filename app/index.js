@@ -4,19 +4,46 @@ import ReactDOM from 'react-dom';
 import { configureStore } from './state/store';
 import rootReducer, { actions as reducerActions } from './state/reducers';
 import Root from './Root';
+import throttle from 'lodash.throttle';
 
 const rootEl = document.getElementById('root');
 
-const render = (Component, store) => {
+const render = (Component, store, cb) => {
     ReactDOM.render(
         <AppContainer>
             <Component store={store}/>
         </AppContainer>,
-        rootEl
+        rootEl,
+        cb
     );
 };
 
 const store = configureStore(rootReducer);
+
+window.addEventListener('focus', checkDefaultFocus);
+document.addEventListener('focusout', () => {
+    setTimeout(checkDefaultFocus, 1);
+});
+function checkDefaultFocus() {
+    if (document.activeElement === document.body) {
+        const el = document.getElementById('DefaultFocus');
+        if (el) {
+            el.focus();
+        }
+    }
+}
+
+// Monitor window viewport size.
+dispatchWindowSize();
+window.addEventListener('resize', throttle(dispatchWindowSize, 100));
+function dispatchWindowSize() {
+    store.dispatch(
+        reducerActions.resizeWindow(
+            window.innerWidth,
+            window.innerHeight
+        ),
+    );
+}
 
 // TODO: Remove test data
 store.dispatch(
@@ -25,7 +52,10 @@ store.dispatch(
     )
 );
 
-render(Root, store);
+render(Root, store, () => {
+    // Focus the surface on load.
+    checkDefaultFocus();
+});
 
 if (module.hot) {
     module.hot.accept('./Root', () => {

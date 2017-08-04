@@ -2,9 +2,10 @@ import { combineReducers } from 'redux';
 import { dragDeltaSelector } from './selectors';
 
 export const types = {
-    KEY_SELECT_ALL: 'KEY_SELECT_ALL',
     KEY_ESCAPE: 'KEY_ESCAPE',
+    RESIZE_WINDOW: 'RESIZE_WINDOW',
     PAN_SURFACE: 'PAN_SURFACE',
+    ZOOM_SURFACE: 'ZOOM_SURFACE',
     BOX_SELECTION_START: 'BOX_SELECTION_START',
     BOX_SELECTION_MOVE: 'BOX_SELECTION_MOVE',
     BOX_SELECTION_END: 'BOX_SELECTION_END',
@@ -23,22 +24,58 @@ export const types = {
     HIDE_TOOLTIP: 'HIDE_TOOLTIP',
 };
 
+const horizPadding = 18;
+const vertPadding = 38;
+
+function restrainViewDimension(padding, windowSize, domainSize, zoom, offset) {
+    return Math.min(windowSize - 100 - padding, Math.max(-domainSize * zoom + 100, offset))
+}
+
 export const actions = {
     keyEscape: () => ({
         type: types.KEY_ESCAPE,
     }),
 
+    resizeWindow: (windowWidth, windowHeight) => ({
+        type: types.RESIZE_WINDOW,
+        payload: {
+            windowWidth,
+            windowHeight,
+        },
+    }),
+
     panSurface: (dx, dy) => (dispatch, getState) => {
-        const { offsetX, offsetY } = getState().surface;
+        const {
+            windowWidth, windowHeight,
+            domainWidth, domainHeight,
+            offsetX, offsetY, zoom,
+        } = getState().surface;
+
         const payload = {
-            offsetX: Math.min(0, Math.max(-300, offsetX + dx)),
-            offsetY: Math.min(0, Math.max(-300, offsetY + dy)),
+            offsetX: restrainViewDimension(horizPadding, windowWidth, domainWidth, zoom, offsetX + dx),
+            offsetY: restrainViewDimension(vertPadding, windowHeight, domainHeight, zoom, offsetY + dy),
         };
 
         if (offsetX !== payload.offsetX || offsetY !== payload.offsetY) {
             dispatch({
                 type: types.PAN_SURFACE,
                 payload,
+            });
+        }
+    },
+
+    zoomSurface: (delta, x = 0, y = 0) => (dispatch, getState) => {
+        const { zoom: prevZoom } = getState().surface;
+        const zoom = Math.max(0.25, Math.min(1, prevZoom * Math.pow(2, delta / 300)));
+
+        if (prevZoom !== zoom) {
+            dispatch({
+                type: types.ZOOM_SURFACE,
+                payload: {
+                    zoom,
+                    x,
+                    y,
+                },
             });
         }
     },
@@ -197,6 +234,11 @@ export const actions = {
 export function surfaceReducer(state = {
     offsetX: 0,
     offsetY: 0,
+    zoom: 1,
+    windowWidth: 0,
+    windowHeight: 0,
+    domainWidth: 2000,
+    domainHeight: 1000,
     isBoxSelecting: false,
     boxSelectionStartIsAdd: false,
     boxSelectionStartX: 0,
@@ -211,6 +253,17 @@ export function surfaceReducer(state = {
     dragEndY: null,
 }, action) {
     switch (action.type) {
+        case types.RESIZE_WINDOW: {
+            const { windowWidth, windowHeight } = action.payload;
+            const { offsetX, offsetY, domainWidth, domainHeight, zoom } = state;
+            return {
+                ...state,
+                windowWidth: windowWidth,
+                windowHeight: windowHeight,
+                offsetX: restrainViewDimension(horizPadding, windowWidth, domainWidth, zoom, offsetX),
+                offsetY: restrainViewDimension(vertPadding, windowHeight, domainHeight, zoom, offsetY),
+            };
+        }
         case types.PAN_SURFACE:
             return {
                 ...state,
@@ -219,6 +272,22 @@ export function surfaceReducer(state = {
                 boxSelectionEndX: state.boxSelectionEndX + (state.offsetX - action.payload.offsetX),
                 boxSelectionEndY: state.boxSelectionEndY + (state.offsetY - action.payload.offsetY),
             };
+        case types.ZOOM_SURFACE: {
+            const { x, y, zoom } = action.payload;
+            const {
+                offsetX, offsetY,
+                windowWidth, windowHeight,
+                domainWidth, domainHeight,
+                zoom: prevZoom,
+            } = state;
+
+            return {
+                ...state,
+                zoom: action.payload.zoom,
+                offsetX: restrainViewDimension(horizPadding, windowWidth, domainWidth, zoom, offsetX - (x * (zoom - prevZoom))),
+                offsetY: restrainViewDimension(vertPadding, windowHeight, domainHeight, zoom, offsetY - (y * (zoom - prevZoom))),
+            };
+        }
         case types.KEY_ESCAPE:
             return {
                 ...state,
@@ -392,6 +461,7 @@ export function focusedReducer(state = null, action) {
                 ? null
                 : state;
         case types.PAN_SURFACE:
+        case types.ZOOM_SURFACE:
             return null;
         default:
             return state;
@@ -407,6 +477,7 @@ export function tooltipReducer(state = null, action) {
                 ? null
                 : state;
         case types.PAN_SURFACE:
+        case types.ZOOM_SURFACE:
             return null;
         default:
             return state;

@@ -14,3 +14,7 @@ export function isMouseEventMultiSelectionRemove(evt) {
 export function isMouseEventContextMenu(evt) {
     return evt.button === 2 || isMac && evt.button === 0 && evt.ctrlKey;
 }
+
+export function determineWheelDelta(delta, deltaMode) {
+    return -delta * (deltaMode ? 120 : 1);
+}

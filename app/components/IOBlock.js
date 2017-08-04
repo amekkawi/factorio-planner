@@ -103,6 +103,7 @@ class IOBlock extends Component {
 
     renderRecipeIcon() {
         const {
+            simpleMode,
             isValidRecipe,
             isHoverDisabled,
             isHovered,
@@ -130,8 +131,8 @@ class IOBlock extends Component {
 
         return (
             <Container {...containerProps}>
-                {!isValidRecipe && <circle cy={31} r={16} fill="red"/>}
-                {recipeProto && <Icon size={32} cy={31} type={recipeProto.type} name={recipeProto.name}/>}
+                {!isValidRecipe && <circle cy={simpleMode ? 0 : 31} r={simpleMode ? 32 : 16} fill="red"/>}
+                {recipeProto && <Icon size={simpleMode ? 64 : 32} cy={simpleMode ? 0 : 31} type={recipeProto.type} name={recipeProto.name}/>}
             </Container>
         );
     }
@@ -231,7 +232,7 @@ class IOBlock extends Component {
         const {
             blockId, type, name, x, y, dragDelta,
             quantity, ringRotate,
-            isValid, isSelected,
+            simpleMode, isValid, isSelected,
             isHoverDisabled, isHovered, onHoverOver, onHoverOut,
         } = this.props;
 
@@ -275,8 +276,8 @@ class IOBlock extends Component {
                 />
 
                 {this.renderConnectors(baseRadius, !isHoverDisabled && isHovered ? width : 6)}
-                {this.renderBlockIcon(blockProto, quantity)}
-                {this.renderModules(blockProto)}
+                {!simpleMode && this.renderBlockIcon(blockProto, quantity)}
+                {!simpleMode && this.renderModules(blockProto)}
                 {this.renderRecipeIcon()}
             </HoverContainer>
         );
@@ -289,7 +290,9 @@ const mapStateToProps = (state, { blockId }) => {
     return {
         ...block,
         blockId: blockId,
+        type: block.type,
         dragDelta: dragDeltaSelector(state),
+        simpleMode: state.surface.zoom < 0.5,
         isSelected: !!state.surface.selectedById[blockId],
         isHoverDisabled: state.surface.isBoxSelecting || state.surface.isDragging,
         isHovered: state.focused === blockId,
