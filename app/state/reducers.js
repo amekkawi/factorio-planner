@@ -26,9 +26,10 @@ export const types = {
 
 const horizPadding = 18;
 const vertPadding = 38;
+const minimumViewable = 200;
 
 function restrainViewDimension(padding, windowSize, domainSize, zoom, offset) {
-    return Math.min(windowSize - 100 - padding, Math.max(-domainSize * zoom + 100, offset))
+    return Math.min(windowSize - minimumViewable - padding, Math.max(-domainSize * zoom + minimumViewable, offset))
 }
 
 export const actions = {
@@ -64,7 +65,7 @@ export const actions = {
         }
     },
 
-    zoomSurface: (delta, x = 0, y = 0) => (dispatch, getState) => {
+    zoomSurface: (delta, x = null, y = null) => (dispatch, getState) => {
         const { zoom: prevZoom } = getState().surface;
         const zoom = Math.max(0.25, Math.min(1, prevZoom * Math.pow(2, delta / 300)));
 
@@ -269,8 +270,8 @@ export function surfaceReducer(state = {
                 ...state,
                 offsetX: action.payload.offsetX,
                 offsetY: action.payload.offsetY,
-                boxSelectionEndX: state.boxSelectionEndX + (state.offsetX - action.payload.offsetX),
-                boxSelectionEndY: state.boxSelectionEndY + (state.offsetY - action.payload.offsetY),
+                boxSelectionEndX: state.boxSelectionEndX + (state.offsetX - action.payload.offsetX) / state.zoom,
+                boxSelectionEndY: state.boxSelectionEndY + (state.offsetY - action.payload.offsetY) / state.zoom,
             };
         case types.ZOOM_SURFACE: {
             const { x, y, zoom } = action.payload;
@@ -281,11 +282,16 @@ export function surfaceReducer(state = {
                 zoom: prevZoom,
             } = state;
 
+            // // TODO: Properly calculate view center point for zooming when x/y is not specified.
+            // const zoomX = x == null
+            //     ? 0
+            //     : x;
+
             return {
                 ...state,
                 zoom: action.payload.zoom,
-                offsetX: restrainViewDimension(horizPadding, windowWidth, domainWidth, zoom, offsetX - (x * (zoom - prevZoom))),
-                offsetY: restrainViewDimension(vertPadding, windowHeight, domainHeight, zoom, offsetY - (y * (zoom - prevZoom))),
+                offsetX: restrainViewDimension(horizPadding, windowWidth, domainWidth, zoom, offsetX - ((x ? x : windowWidth / 2) * (zoom - prevZoom))),
+                offsetY: restrainViewDimension(vertPadding, windowHeight, domainHeight, zoom, offsetY - ((y ? y : windowHeight / 2) * (zoom - prevZoom))),
             };
         }
         case types.KEY_ESCAPE:

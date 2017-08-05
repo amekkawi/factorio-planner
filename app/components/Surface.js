@@ -4,6 +4,40 @@ import { connect } from 'react-redux';
 import { actions } from '../state/reducers';
 import { determineWheelDelta, isMac } from '../util/platform';
 
+const directionalKeys = {
+    87: { // w
+        y: -1,
+    },
+    83: { // s
+        y: 1,
+    },
+    65: { // a
+        x: -1,
+    },
+    68: { // d
+        x: 1,
+    },
+    38: { // ArrowUp
+        y: -1,
+    },
+    40: { // ArrowDown
+        y: 1,
+    },
+    37: { // ArrowLeft
+        x: -1,
+    },
+    39: { // ArrowRight
+        x: 1,
+    },
+};
+
+const zoomKeys = {
+    81: -1, // q
+    69: 1, // e
+    33: 1, // PageUp
+    34: -1, // PageDown
+};
+
 export class Surface extends Component {
 
     static propTypes = {
@@ -35,6 +69,23 @@ export class Surface extends Component {
         isDragging: false,
     };
 
+    stopKeyPanning() {
+        if (this._setIntervalKeyPan != null) {
+            clearInterval(this._setIntervalKeyPan);
+            delete this._setIntervalKeyPan;
+            delete this._panX;
+            delete this._panY;
+        }
+    }
+
+    stopKeyZooming() {
+        if (this._setIntervalKeyZoom != null) {
+            clearInterval(this._setIntervalKeyZoom);
+            delete this._setIntervalKeyZoom;
+            delete this._panZ;
+        }
+    }
+
     handleWheel = (evt) => {
         const { onPanSurface, onZoomSurface, offsetX, offsetY, zoom } = this.props;
 
@@ -61,16 +112,89 @@ export class Surface extends Component {
     };
 
     handleKeyDown = (evt) => {
-        const { onKeyEscape, onSelectAll } = this.props;
+        const { onKeyEscape, onSelectAll, onPanSurface, onZoomSurface } = this.props;
 
         if (evt.keyCode === 27) {
             evt.preventDefault();
+            this.stopKeyPanning();
+            this.stopKeyZooming();
             onKeyEscape();
         }
+
         else if (evt.keyCode === 65 && (isMac && evt.metaKey || !isMac && evt.ctrlKey)) {
             evt.preventDefault();
             onSelectAll();
         }
+
+        else if (directionalKeys[evt.keyCode]) {
+            evt.preventDefault();
+            const { x, y } = directionalKeys[evt.keyCode];
+
+            this.stopKeyZooming();
+            this._panX = x || this._panX || 0;
+            this._panY = y || this._panY || 0;
+
+            if (this._setIntervalKeyPan == null) {
+                this._setIntervalKeyPan = setInterval(() => {
+                    onPanSurface(
+                        -this._panX * 15,
+                        -this._panY * 15,
+                    );
+                }, 16);
+            }
+        }
+
+        else if (zoomKeys[evt.keyCode]) {
+            evt.preventDefault();
+            const z = zoomKeys[evt.keyCode];
+
+            this.stopKeyPanning();
+            this._panZ = z || this._panZ || 0;
+
+            if (this._setIntervalKeyZoom == null) {
+                this._setIntervalKeyZoom = setInterval(() => {
+                    onZoomSurface(
+                        this._panZ * 15,
+                    );
+                }, 16);
+            }
+        }
+
+        else {
+            this.stopKeyPanning();
+            this.stopKeyZooming();
+        }
+    };
+
+    handleKeyUp = (evt) => {
+        if (directionalKeys[evt.keyCode]) {
+            evt.preventDefault();
+
+            if (this._setIntervalKeyPan != null) {
+                const { x, y } = directionalKeys[evt.keyCode];
+                this._panX = x === this._panX ? 0 : this._panX;
+                this._panY = y === this._panY ? 0 : this._panY;
+
+                if (this._panX === 0 && this._panY === 0) {
+                    this.stopKeyPanning();
+                }
+            }
+        }
+
+        else if (zoomKeys[evt.keyCode]) {
+            evt.preventDefault();
+
+            if (this._setIntervalKeyZoom != null) {
+                const z = zoomKeys[evt.keyCode];
+                if (this._panZ === z) {
+                    this.stopKeyZooming();
+                }
+            }
+        }
+    };
+
+    handleBlur = () => {
+        this.stopKeyPanning();
     };
 
     handleMouseDown = (evt) => {
@@ -145,9 +269,11 @@ export class Surface extends Component {
                 onWheel={onZoomSurface || onPanSurface ? this.handleWheel : null}
                 onContextMenu={this.handleContextMenu}
                 onKeyDown={this.handleKeyDown}
+                onKeyUp={this.handleKeyUp}
                 onMouseDown={this.handleMouseDown}
                 onMouseUp={isBoxSelecting || isDragging ? this.handleMouseUp : null}
                 onMouseMove={isBoxSelecting || isDragging ? this.handleMouseMove : null}
+                onBlur={this.handleBlur}
                 ref={(elem) => { this.svgRef = elem; }}
             >
                 <g transform={`translate(${offsetX}, ${offsetY}) scale(${zoom})`}>
