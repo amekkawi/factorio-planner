@@ -188,7 +188,7 @@ export function calculateInputRates(block, effect) {
         .map(({ type, name, amount }) => ({
             type,
             name,
-            rate: amount / cycle * (1 + (effect ? effect.productivity : 0)) * block.quantity,
+            rate: amount / cycle * block.quantity,
         }));
 }
 
