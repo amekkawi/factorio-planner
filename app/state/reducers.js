@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import { dragDeltaSelector } from './selectors';
+import { createBlock } from '../models/Block';
+import { createConnection } from '../models/Connection';
 
 export const types = {
     KEY_ESCAPE: 'KEY_ESCAPE',
@@ -397,7 +399,11 @@ export function blockIdsReducer(state = [], action) {
 export function blocksReducer(state = {}, action) {
     switch (action.type) {
         case types.LOAD_PLAN:
-            return action.payload.plan.blocks || {};
+            return Object.keys(action.payload.plan.blocks || {})
+                .reduce((ret, blockId) => {
+                    ret[blockId] = createBlock(blockId, action.payload.plan.blocks[blockId]);
+                    return ret;
+                }, {});
         case types.DRAG_SELECTION_END: {
             const keysSet = new Set(action.payload.ids);
             return Object.keys(state).reduce((ret, blockId) => {
@@ -431,7 +437,11 @@ export function connectionIdsReducer(state = [], action) {
 export function connectionsReducer(state = {}, action) {
     switch (action.type) {
         case types.LOAD_PLAN:
-            return action.payload.plan.connections || {};
+            return Object.keys(action.payload.plan.connections || {})
+                .reduce((ret, connectionId) => {
+                    ret[connectionId] = createConnection(connectionId, action.payload.plan.connections[connectionId]);
+                    return ret;
+                }, {});
         default:
             return state;
     }
