@@ -27,7 +27,7 @@ getRawFileNames()
             const fileName = fileNames.shift();
             if (fileName) {
                 console.log(`Processing "${fileName}"...`);
-                return readJsonFile(path.join(__dirname, 'raw', fileName))
+                return readJsonFile(path.join(__dirname, 'raw/proto', fileName))
                     .then((json) => {
                         return Promise.resolve(json)
                             .then(filterKeys)
@@ -96,7 +96,7 @@ getRawFileNames()
 
 function getRawFileNames() {
     return new Promise((resolve, reject) => {
-        fs.readdir(path.join(__dirname, 'raw'), (err, files) => {
+        fs.readdir(path.join(__dirname, 'raw/proto'), (err, files) => {
             if (err) {
                 reject(err);
             }
@@ -121,7 +121,7 @@ function readJsonFile(path) {
             else {
                 resolve(data);
             }
-        })
+        });
     })
         .then((data) => JSON.parse(data));
 }
@@ -135,7 +135,7 @@ function writeFile(path, data) {
             else {
                 resolve();
             }
-        })
+        });
     });
 }
 

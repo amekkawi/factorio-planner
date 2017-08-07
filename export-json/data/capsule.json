@@ -1,0 +1,92 @@
+{
+  "raw-fish": {
+    "type": "capsule",
+    "name": "raw-fish",
+    "icon": "__base__/graphics/icons/fish.png",
+    "flags": [
+      "goes-to-quickbar"
+    ],
+    "subgroup": "raw-resource",
+    "order": "h[raw-fish]"
+  },
+  "grenade": {
+    "type": "capsule",
+    "name": "grenade",
+    "icon": "__base__/graphics/icons/grenade.png",
+    "flags": [
+      "goes-to-quickbar"
+    ],
+    "subgroup": "capsule",
+    "order": "a[grenade]-a[normal]"
+  },
+  "cluster-grenade": {
+    "type": "capsule",
+    "name": "cluster-grenade",
+    "icon": "__base__/graphics/icons/cluster-grenade.png",
+    "flags": [
+      "goes-to-quickbar"
+    ],
+    "subgroup": "capsule",
+    "order": "a[grenade]-b[cluster]"
+  },
+  "poison-capsule": {
+    "type": "capsule",
+    "name": "poison-capsule",
+    "icon": "__base__/graphics/icons/poison-capsule.png",
+    "flags": [
+      "goes-to-quickbar"
+    ],
+    "subgroup": "capsule",
+    "order": "b[poison-capsule]"
+  },
+  "slowdown-capsule": {
+    "type": "capsule",
+    "name": "slowdown-capsule",
+    "icon": "__base__/graphics/icons/slowdown-capsule.png",
+    "flags": [
+      "goes-to-quickbar"
+    ],
+    "subgroup": "capsule",
+    "order": "c[slowdown-capsule]"
+  },
+  "defender-capsule": {
+    "type": "capsule",
+    "name": "defender-capsule",
+    "icon": "__base__/graphics/icons/defender-capsule.png",
+    "flags": [
+      "goes-to-quickbar"
+    ],
+    "subgroup": "capsule",
+    "order": "d[defender-capsule]"
+  },
+  "distractor-capsule": {
+    "type": "capsule",
+    "name": "distractor-capsule",
+    "icon": "__base__/graphics/icons/distractor-capsule.png",
+    "flags": [
+      "goes-to-quickbar"
+    ],
+    "subgroup": "capsule",
+    "order": "e[defender-capsule]"
+  },
+  "destroyer-capsule": {
+    "type": "capsule",
+    "name": "destroyer-capsule",
+    "icon": "__base__/graphics/icons/destroyer-capsule.png",
+    "flags": [
+      "goes-to-quickbar"
+    ],
+    "subgroup": "capsule",
+    "order": "f[destroyer-capsule]"
+  },
+  "discharge-defense-remote": {
+    "type": "capsule",
+    "name": "discharge-defense-remote",
+    "icon": "__base__/graphics/equipment/discharge-defense-equipment-ability.png",
+    "flags": [
+      "goes-to-quickbar"
+    ],
+    "subgroup": "capsule",
+    "order": "z"
+  }
+}

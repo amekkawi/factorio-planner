@@ -7,9 +7,27 @@ import {
     isValidRecipeForProto,
     recipeGetIngredients,
     recipeGetResults,
+    validRecipesForProto,
 } from '../factorio';
 
 import { isEffectReceiver, isEffectSender, isValidEffectDistribution } from './effect';
+
+export function isBlockId(id) {
+    return !!id && id[0] === 'b';
+}
+
+export function isConnectorId(id) {
+    return !!id && id[0] === 'c';
+}
+
+export function validRecipesForBlock(block) {
+    if (block.type === 'AssemblingMachineBlock' || block.type === 'FurnaceBlock' || block.type === 'MiningDrillBlock') {
+        return validRecipesForProto(getBlockProto(block));
+    }
+    else {
+        return [];
+    }
+}
 
 export function getBlockBaseCycle(block) {
     if (block.type === 'AssemblingMachineBlock' || block.type === 'FurnaceBlock' || block.type === 'MiningDrillBlock') {

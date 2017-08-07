@@ -146,10 +146,10 @@ function createSchemaForType(type) {
                 results,
                 normal: crafting,
                 expensive: crafting,
+                enabled: Joi.boolean().default(true),
 
                 // Stripped
                 localised_name: Joi.array().strip(),
-                enabled: Joi.boolean().strip(),
                 hidden: Joi.boolean().strip(),
                 requester_paste_multiplier: Joi.number().strip(),
                 allow_decomposition: Joi.boolean().strip(),
@@ -412,6 +412,76 @@ function createSchemaForType(type) {
                 stack_size: Joi.number().integer().strip(),
                 durability: Joi.number().integer().strip(),
                 durability_description_key: Joi.string().strip(),
+            });
+    }
+    else if (type === 'capsule') {
+        return baseSchema
+            .keys({
+                icon: Joi.string().min(1),
+                flags: Joi.array().items(Joi.string()),
+                subgroup: Joi.string().min(1),
+                order: Joi.string().min(1),
+
+                capsule_action: Joi.any().strip(),
+                stack_size: Joi.number().integer().strip(),
+                durability: Joi.number().integer().strip(),
+                durability_description_key: Joi.string().strip(),
+            });
+    }
+    else if (type === 'ammo') {
+        return baseSchema
+            .keys({
+                icon: Joi.string().min(1),
+                flags: Joi.array().items(Joi.string()),
+                subgroup: Joi.string().min(1),
+                order: Joi.string().min(1),
+
+                ammo_type: Joi.any().strip(),
+                magazine_size: Joi.number().strip(),
+                stack_size: Joi.number().integer().strip(),
+                durability: Joi.number().integer().strip(),
+                durability_description_key: Joi.string().strip(),
+            });
+    }
+    else if (type === 'technology') {
+        return baseSchema
+            .keys({
+                icon: Joi.string().min(1),
+                effects: Joi.array().items(
+                    Joi.object().keys({
+                        type: Joi.string().valid('unlock-recipe'),
+                        recipe: Joi.string().required(),
+                    }),
+                    Joi.object().keys({
+                        type: Joi.string().valid([
+                            'ammo-damage',
+                            'train-braking-force-bonus',
+                            'laboratory-speed',
+                            'num-quick-bars',
+                            'ghost-time-to-live',
+                            'worker-robot-speed',
+                            'worker-robot-storage',
+                            'character-logistic-slots',
+                            'character-logistic-trash-slots',
+                            'auto-character-logistic-trash-slots',
+                            'gun-speed',
+                            'turret-attack',
+                            'maximum-following-robots-count',
+                            'mining-drill-productivity-bonus',
+                            'stack-inserter-capacity-bonus',
+                            'inserter-stack-size-bonus',
+                        ]),
+                    }).unknown(true)
+                ),
+                order: Joi.string().min(1),
+
+                level: Joi.number().strip(),
+                upgrade: Joi.boolean().strip(),
+                max_level: Joi.any().strip(),
+                unit: Joi.object().required().strip(),
+                prerequisites: Joi.array().strip(),
+                localised_name: Joi.array().strip(),
+                localised_description: Joi.any().strip(),
             });
     }
     else {

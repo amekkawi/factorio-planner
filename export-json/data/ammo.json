@@ -1,0 +1,143 @@
+{
+  "firearm-magazine": {
+    "type": "ammo",
+    "name": "firearm-magazine",
+    "icon": "__base__/graphics/icons/firearm-magazine.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "a[basic-clips]-a[firearm-magazine]"
+  },
+  "piercing-rounds-magazine": {
+    "type": "ammo",
+    "name": "piercing-rounds-magazine",
+    "icon": "__base__/graphics/icons/piercing-rounds-magazine.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "a[basic-clips]-b[piercing-rounds-magazine]"
+  },
+  "uranium-rounds-magazine": {
+    "type": "ammo",
+    "name": "uranium-rounds-magazine",
+    "icon": "__base__/graphics/icons/uranium-rounds-magazine.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "a[basic-clips]-c[uranium-rounds-magazine]"
+  },
+  "flamethrower-ammo": {
+    "type": "ammo",
+    "name": "flamethrower-ammo",
+    "icon": "__base__/graphics/icons/flamethrower-ammo.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "e[flamethrower]"
+  },
+  "rocket": {
+    "type": "ammo",
+    "name": "rocket",
+    "icon": "__base__/graphics/icons/rocket.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "d[rocket-launcher]-a[basic]"
+  },
+  "explosive-rocket": {
+    "type": "ammo",
+    "name": "explosive-rocket",
+    "icon": "__base__/graphics/icons/explosive-rocket.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "d[rocket-launcher]-b[explosive]"
+  },
+  "atomic-bomb": {
+    "type": "ammo",
+    "name": "atomic-bomb",
+    "icon": "__base__/graphics/icons/atomic-bomb.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "d[rocket-launcher]-c[atomic-bomb]"
+  },
+  "shotgun-shell": {
+    "type": "ammo",
+    "name": "shotgun-shell",
+    "icon": "__base__/graphics/icons/shotgun-shell.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "b[shotgun]-a[basic]"
+  },
+  "piercing-shotgun-shell": {
+    "type": "ammo",
+    "name": "piercing-shotgun-shell",
+    "icon": "__base__/graphics/icons/piercing-shotgun-shell.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "b[shotgun]-b[piercing]"
+  },
+  "railgun-dart": {
+    "type": "ammo",
+    "name": "railgun-dart",
+    "icon": "__base__/graphics/icons/railgun-ammo.png",
+    "flags": [
+      "goes-to-main-inventory",
+      "hidden"
+    ],
+    "subgroup": "ammo",
+    "order": "c[railgun]"
+  },
+  "cannon-shell": {
+    "type": "ammo",
+    "name": "cannon-shell",
+    "icon": "__base__/graphics/icons/cannon-shell.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "d[cannon-shell]-a[basic]"
+  },
+  "explosive-cannon-shell": {
+    "type": "ammo",
+    "name": "explosive-cannon-shell",
+    "icon": "__base__/graphics/icons/explosive-cannon-shell.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "d[cannon-shell]-c[explosive]"
+  },
+  "uranium-cannon-shell": {
+    "type": "ammo",
+    "name": "uranium-cannon-shell",
+    "icon": "__base__/graphics/icons/uranium-cannon-shell.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "d[cannon-shell]-c[uranium]"
+  },
+  "explosive-uranium-cannon-shell": {
+    "type": "ammo",
+    "name": "explosive-uranium-cannon-shell",
+    "icon": "__base__/graphics/icons/explosive-uranium-cannon-shell.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "ammo",
+    "order": "d[explosive-cannon-shell]-c[uranium]"
+  }
+}

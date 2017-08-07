@@ -5,12 +5,78 @@ import * as exportIcons from '../export-json/data/icons';
 export const data = exportData;
 export const icons = exportIcons;
 
+const unlockableRecipeSet = new Set();
+for (const technologyKey of Object.keys(exportData.technology)) {
+    const technologyProto = exportData.technology[technologyKey];
+    if (technologyProto.effects) {
+        for (const effect of technologyProto.effects) {
+            if (effect.type === 'unlock-recipe') {
+                unlockableRecipeSet.add(effect.recipe);
+            }
+        }
+    }
+}
+
+const allowedRecipeSet = new Set();
+for (const recipeKey of Object.keys(exportData.recipe)) {
+    const recipeProto = exportData.recipe[recipeKey];
+    if (recipeProto.enabled || unlockableRecipeSet.has(recipeProto.name)) {
+        allowedRecipeSet.add(recipeProto);
+    }
+    else {
+        console.log('Omitting recipe', recipeProto.name);
+    }
+}
+
 export function getProto(type, name) {
     const proto = data[type] && data[type][name] || null;
     if (!proto) {
         warn(`No proto for ${type}.${name}`);
     }
     return proto;
+}
+
+export function getTypeForName(name) {
+    for (const type of ['item', 'tool', 'module', 'capsule', 'ammo']) {
+        if (exportData[type][name]) {
+            return type;
+        }
+    }
+
+    warn(`Could got guess type for ${name}`);
+    return 'item';
+}
+
+const validRecipesForProto_cache = new Map();
+export function validRecipesForProto(proto) {
+    let ret = validRecipesForProto_cache.get(proto);
+    if (ret) {
+        return ret;
+    }
+
+    ret = [];
+
+    if (proto.crafting_categories) {
+        for (const recipeProto of allowedRecipeSet) {
+            if (isValidRecipeForProto(proto, recipeProto)) {
+                ret.push(recipeProto);
+            }
+        }
+    }
+
+    if (proto.resource_categories) {
+        for (const resourceKey of Object.keys(exportData.resource)) {
+            const resourceProto = exportData.resource[resourceKey];
+            if (isValidRecipeForProto(proto, resourceProto)) {
+                ret.push(resourceProto);
+            }
+        }
+    }
+
+    ret.sort(protoComparator);
+
+    validRecipesForProto_cache.set(proto, ret);
+    return ret;
 }
 
 const recipeGetIngredients_cache = new Map();
@@ -35,7 +101,7 @@ export function recipeGetIngredients(recipeProto) {
         ret = ingredients.map((ingredient) => {
             if (Array.isArray(ingredient)) {
                 return {
-                    type: 'item',
+                    type: getTypeForName(ingredient[0]),
                     name: ingredient[0],
                     amount: ingredient[1],
                 };
@@ -44,7 +110,7 @@ export function recipeGetIngredients(recipeProto) {
                 return ingredient.type
                     ? ingredient
                     : {
-                        type: 'item',
+                        type: getTypeForName(ingredient.name),
                         ...ingredient,
                     };
             }
@@ -84,18 +150,13 @@ export function recipeGetResults(recipeProto) {
             || recipeProto.normal && recipeProto.normal.result;
 
         if (result) {
-            for (const type of ['item', 'tool']) {
-                if (exportData[type][result]) {
-                    ret = [
-                        {
-                            type,
-                            name: result,
-                            amount: recipeProto.result_count || recipeProto.normal && recipeProto.normal.result_count || 1,
-                        },
-                    ];
-                    break;
-                }
-            }
+            ret = [
+                {
+                    type: getTypeForName(result),
+                    name: result,
+                    amount: recipeProto.result_count || recipeProto.normal && recipeProto.normal.result_count || 1,
+                },
+            ];
         }
         else {
             ret = recipeProto.results
@@ -103,7 +164,8 @@ export function recipeGetResults(recipeProto) {
         }
 
         if (!ret) {
-            throw new Error('Recipe missing results');
+            warn(`Recipe ${recipeProto.type}.${recipeProto.name} missing results`);
+            ret = [];
         }
 
         recipeGetResults_cache.set(recipeProto, ret);
@@ -115,7 +177,7 @@ export function recipeGetResults(recipeProto) {
         if (result) {
             ret = [
                 {
-                    type: 'item',
+                    type: getTypeForName(result),
                     name: result,
                     amount: 1,
                 },
@@ -200,25 +262,23 @@ export function getIcon(proto) {
     return null;
 }
 
-export function isValidRecipeForProto(blockProto, recipeProto) {
-    if (!blockProto || !recipeProto) {
+export function isValidRecipeForProto(proto, recipeProto) {
+    if (!proto || !recipeProto) {
         return false;
     }
 
     if (recipeProto.type === 'recipe') {
-        if (!Array.isArray(blockProto.crafting_categories)
-            || blockProto.crafting_categories.indexOf(recipeProto.category) < 0) {
+        if (!proto.crafting_categories || proto.crafting_categories.indexOf(recipeProto.category) < 0) {
             return false;
         }
 
         const ingredients = recipeGetIngredients(recipeProto);
-        if (ingredients && ingredients.length > blockProto.ingredient_count) {
+        if (ingredients && ingredients.length > proto.ingredient_count) {
             return false;
         }
     }
     else if (recipeProto.type === 'resource') {
-        if (!Array.isArray(blockProto.resource_categories)
-            || blockProto.resource_categories.indexOf(recipeProto.category) < 0) {
+        if (!proto.resource_categories || proto.resource_categories.indexOf(recipeProto.category) < 0) {
             return false;
         }
     }
@@ -290,4 +350,8 @@ export function isValidModulesForRecipe(recipeProto, modules) {
         }
     }
     return true;
+}
+
+export function protoComparator(a, b) {
+    return a.name < b.name ? -1 : a.name > b.name ? 1 : a.type < b.type ? -1 : a.type > b.type ? 1 : 0;
 }

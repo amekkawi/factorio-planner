@@ -1,8 +1,10 @@
 'use strict';
 
 exports.includeRaw = [
+    'ammo.json',
     'assembling-machine.json',
     'beacon.json',
+    'capsule.json',
     //'boiler.json',
     'fluid.json',
     //'fuel-category.json',
@@ -22,5 +24,6 @@ exports.includeRaw = [
     //'resource-category.json',
     //'rocket-silo.json',
     //'solar-panel.json',
+    'technology.json',
     'tool.json',
 ];

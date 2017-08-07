@@ -1,0 +1,3324 @@
+{
+  "steel-processing": {
+    "type": "technology",
+    "name": "steel-processing",
+    "icon": "__base__/graphics/technology/steel-processing.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "steel-plate"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "steel-chest"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "steel-axe"
+      }
+    ],
+    "order": "c-a"
+  },
+  "military": {
+    "type": "technology",
+    "name": "military",
+    "icon": "__base__/graphics/technology/military.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "submachine-gun"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "shotgun"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "shotgun-shell"
+      }
+    ],
+    "order": "e-a-a"
+  },
+  "military-2": {
+    "type": "technology",
+    "name": "military-2",
+    "icon": "__base__/graphics/technology/military.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "piercing-rounds-magazine"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "grenade"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "military-science-pack"
+      }
+    ],
+    "order": "e-a-b"
+  },
+  "uranium-ammo": {
+    "type": "technology",
+    "name": "uranium-ammo",
+    "icon": "__base__/graphics/technology/uranium-ammo.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "uranium-rounds-magazine"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "uranium-cannon-shell"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "explosive-uranium-cannon-shell"
+      }
+    ],
+    "order": "e-a-b"
+  },
+  "atomic-bomb": {
+    "type": "technology",
+    "name": "atomic-bomb",
+    "icon": "__base__/graphics/technology/atomic-bomb.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "atomic-bomb"
+      }
+    ],
+    "order": "e-a-b"
+  },
+  "military-3": {
+    "type": "technology",
+    "name": "military-3",
+    "icon": "__base__/graphics/technology/military.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "poison-capsule"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "slowdown-capsule"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "combat-shotgun"
+      }
+    ],
+    "order": "e-a-c"
+  },
+  "cluster-grenade": {
+    "type": "technology",
+    "name": "cluster-grenade",
+    "icon": "__base__/graphics/technology/cluster-grenade.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "cluster-grenade"
+      }
+    ],
+    "order": "e-a-d"
+  },
+  "grenade-damage-1": {
+    "type": "technology",
+    "name": "grenade-damage-1",
+    "icon": "__base__/graphics/technology/grenade-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "grenade",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-a"
+  },
+  "grenade-damage-2": {
+    "type": "technology",
+    "name": "grenade-damage-2",
+    "icon": "__base__/graphics/technology/grenade-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "grenade",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-a"
+  },
+  "grenade-damage-3": {
+    "type": "technology",
+    "name": "grenade-damage-3",
+    "icon": "__base__/graphics/technology/grenade-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "grenade",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-a"
+  },
+  "grenade-damage-4": {
+    "type": "technology",
+    "name": "grenade-damage-4",
+    "icon": "__base__/graphics/technology/grenade-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "grenade",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-a"
+  },
+  "grenade-damage-5": {
+    "type": "technology",
+    "name": "grenade-damage-5",
+    "icon": "__base__/graphics/technology/grenade-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "grenade",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-a"
+  },
+  "grenade-damage-6": {
+    "type": "technology",
+    "name": "grenade-damage-6",
+    "icon": "__base__/graphics/technology/grenade-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "grenade",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-a"
+  },
+  "grenade-damage-7": {
+    "type": "technology",
+    "name": "grenade-damage-7",
+    "icon": "__base__/graphics/technology/grenade-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "grenade",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-a"
+  },
+  "military-4": {
+    "type": "technology",
+    "name": "military-4",
+    "icon": "__base__/graphics/technology/military.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "piercing-shotgun-shell"
+      }
+    ],
+    "order": "e-a-e"
+  },
+  "automation": {
+    "type": "technology",
+    "name": "automation",
+    "icon": "__base__/graphics/technology/automation.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "assembling-machine-1"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "long-handed-inserter"
+      }
+    ],
+    "order": "a-b-a"
+  },
+  "electronics": {
+    "type": "technology",
+    "name": "electronics",
+    "icon": "__base__/graphics/technology/electronics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "filter-inserter"
+      }
+    ],
+    "order": "a-d-a"
+  },
+  "automation-2": {
+    "type": "technology",
+    "name": "automation-2",
+    "icon": "__base__/graphics/technology/automation.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "assembling-machine-2"
+      }
+    ],
+    "order": "a-b-b"
+  },
+  "automation-3": {
+    "type": "technology",
+    "name": "automation-3",
+    "icon": "__base__/graphics/technology/automation.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "assembling-machine-3"
+      }
+    ],
+    "order": "a-b-c"
+  },
+  "explosives": {
+    "type": "technology",
+    "name": "explosives",
+    "icon": "__base__/graphics/technology/explosives.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "explosives"
+      }
+    ],
+    "order": "a-e-d"
+  },
+  "flammables": {
+    "type": "technology",
+    "name": "flammables",
+    "icon": "__base__/graphics/technology/flammables.png",
+    "order": "e-c-a"
+  },
+  "land-mine": {
+    "type": "technology",
+    "name": "land-mine",
+    "icon": "__base__/graphics/technology/land-mine.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "land-mine"
+      }
+    ],
+    "order": "e-e"
+  },
+  "flamethrower": {
+    "type": "technology",
+    "name": "flamethrower",
+    "icon": "__base__/graphics/technology/flamethrower.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "flamethrower"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "flamethrower-ammo"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "flamethrower-turret"
+      }
+    ],
+    "order": "e-c-b"
+  },
+  "circuit-network": {
+    "type": "technology",
+    "name": "circuit-network",
+    "icon": "__base__/graphics/technology/circuit-network.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "red-wire"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "green-wire"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "arithmetic-combinator"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "decider-combinator"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "constant-combinator"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "power-switch"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "programmable-speaker"
+      }
+    ],
+    "order": "a-d-d"
+  },
+  "advanced-electronics": {
+    "type": "technology",
+    "name": "advanced-electronics",
+    "icon": "__base__/graphics/technology/advanced-electronics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "advanced-circuit"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "science-pack-3"
+      }
+    ],
+    "order": "a-d-b"
+  },
+  "advanced-electronics-2": {
+    "type": "technology",
+    "name": "advanced-electronics-2",
+    "icon": "__base__/graphics/technology/advanced-electronics-2.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "processing-unit"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "high-tech-science-pack"
+      }
+    ],
+    "order": "a-d-c"
+  },
+  "logistics": {
+    "type": "technology",
+    "name": "logistics",
+    "icon": "__base__/graphics/technology/logistics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "underground-belt"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "fast-inserter"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "splitter"
+      }
+    ],
+    "order": "a-f-a"
+  },
+  "railway": {
+    "type": "technology",
+    "name": "railway",
+    "icon": "__base__/graphics/technology/railway.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "rail"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "locomotive"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "cargo-wagon"
+      }
+    ],
+    "order": "c-g-a"
+  },
+  "fluid-wagon": {
+    "type": "technology",
+    "name": "fluid-wagon",
+    "icon": "__base__/graphics/technology/fluid-wagon.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "fluid-wagon"
+      }
+    ],
+    "order": "c-g-a-b"
+  },
+  "automated-rail-transportation": {
+    "type": "technology",
+    "name": "automated-rail-transportation",
+    "icon": "__base__/graphics/technology/automated-rail-transportation.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "train-stop"
+      }
+    ],
+    "order": "c-g-b"
+  },
+  "rail-signals": {
+    "type": "technology",
+    "name": "rail-signals",
+    "icon": "__base__/graphics/technology/rail-signals.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "rail-signal"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "rail-chain-signal"
+      }
+    ],
+    "order": "c-g-c"
+  },
+  "braking-force-1": {
+    "type": "technology",
+    "name": "braking-force-1",
+    "icon": "__base__/graphics/technology/braking-force.png",
+    "effects": [
+      {
+        "type": "train-braking-force-bonus",
+        "modifier": 0.1
+      }
+    ],
+    "order": "b-f-a"
+  },
+  "braking-force-2": {
+    "type": "technology",
+    "name": "braking-force-2",
+    "icon": "__base__/graphics/technology/braking-force.png",
+    "effects": [
+      {
+        "type": "train-braking-force-bonus",
+        "modifier": 0.15
+      }
+    ],
+    "order": "b-f-b"
+  },
+  "braking-force-3": {
+    "type": "technology",
+    "name": "braking-force-3",
+    "icon": "__base__/graphics/technology/braking-force.png",
+    "effects": [
+      {
+        "type": "train-braking-force-bonus",
+        "modifier": 0.15
+      }
+    ],
+    "order": "b-f-c"
+  },
+  "braking-force-4": {
+    "type": "technology",
+    "name": "braking-force-4",
+    "icon": "__base__/graphics/technology/braking-force.png",
+    "effects": [
+      {
+        "type": "train-braking-force-bonus",
+        "modifier": 0.15
+      }
+    ],
+    "order": "b-f-d"
+  },
+  "braking-force-5": {
+    "type": "technology",
+    "name": "braking-force-5",
+    "icon": "__base__/graphics/technology/braking-force.png",
+    "effects": [
+      {
+        "type": "train-braking-force-bonus",
+        "modifier": 0.15
+      }
+    ],
+    "order": "b-f-e"
+  },
+  "braking-force-6": {
+    "type": "technology",
+    "name": "braking-force-6",
+    "icon": "__base__/graphics/technology/braking-force.png",
+    "effects": [
+      {
+        "type": "train-braking-force-bonus",
+        "modifier": 0.15
+      }
+    ],
+    "order": "b-f-f"
+  },
+  "braking-force-7": {
+    "type": "technology",
+    "name": "braking-force-7",
+    "icon": "__base__/graphics/technology/braking-force.png",
+    "effects": [
+      {
+        "type": "train-braking-force-bonus",
+        "modifier": 0.15
+      }
+    ],
+    "order": "b-f-g"
+  },
+  "automobilism": {
+    "type": "technology",
+    "name": "automobilism",
+    "icon": "__base__/graphics/technology/automobilism.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "car"
+      }
+    ],
+    "order": "e-b"
+  },
+  "tanks": {
+    "type": "technology",
+    "name": "tanks",
+    "icon": "__base__/graphics/technology/tanks.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "tank"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "cannon-shell"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "explosive-cannon-shell"
+      }
+    ],
+    "order": "e-c-c"
+  },
+  "logistics-2": {
+    "type": "technology",
+    "name": "logistics-2",
+    "icon": "__base__/graphics/technology/logistics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "fast-transport-belt"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "fast-underground-belt"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "fast-splitter"
+      }
+    ],
+    "order": "a-f-b"
+  },
+  "logistics-3": {
+    "type": "technology",
+    "name": "logistics-3",
+    "icon": "__base__/graphics/technology/logistics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "express-transport-belt"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "express-underground-belt"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "express-splitter"
+      }
+    ],
+    "order": "a-f-c"
+  },
+  "optics": {
+    "type": "technology",
+    "name": "optics",
+    "icon": "__base__/graphics/technology/optics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "small-lamp"
+      }
+    ],
+    "order": "a-h-a"
+  },
+  "solar-energy": {
+    "type": "technology",
+    "name": "solar-energy",
+    "icon": "__base__/graphics/technology/solar-energy.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "solar-panel"
+      }
+    ],
+    "order": "a-h-c"
+  },
+  "laser": {
+    "type": "technology",
+    "name": "laser",
+    "icon": "__base__/graphics/technology/laser.png",
+    "order": "a-h-b"
+  },
+  "rocketry": {
+    "type": "technology",
+    "name": "rocketry",
+    "icon": "__base__/graphics/technology/rocketry.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "rocket-launcher"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "rocket"
+      }
+    ],
+    "order": "e-g"
+  },
+  "explosive-rocketry": {
+    "type": "technology",
+    "name": "explosive-rocketry",
+    "icon": "__base__/graphics/technology/explosive-rocketry.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "explosive-rocket"
+      }
+    ],
+    "order": "e-h"
+  },
+  "heavy-armor": {
+    "type": "technology",
+    "name": "heavy-armor",
+    "icon": "__base__/graphics/technology/armor-making.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "heavy-armor"
+      }
+    ],
+    "order": "g-a-b"
+  },
+  "modular-armor": {
+    "type": "technology",
+    "name": "modular-armor",
+    "icon": "__base__/graphics/technology/armor-making.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "modular-armor"
+      }
+    ],
+    "order": "g-a-c"
+  },
+  "power-armor": {
+    "type": "technology",
+    "name": "power-armor",
+    "icon": "__base__/graphics/technology/power-armor.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "power-armor"
+      }
+    ],
+    "order": "g-c-a"
+  },
+  "power-armor-2": {
+    "type": "technology",
+    "name": "power-armor-2",
+    "icon": "__base__/graphics/technology/power-armor-mk2.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "power-armor-mk2"
+      }
+    ],
+    "order": "g-c-b"
+  },
+  "turrets": {
+    "type": "technology",
+    "name": "turrets",
+    "icon": "__base__/graphics/technology/turrets.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "gun-turret"
+      }
+    ],
+    "order": "a-j-a"
+  },
+  "laser-turrets": {
+    "type": "technology",
+    "name": "laser-turrets",
+    "icon": "__base__/graphics/technology/laser-turrets.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "laser-turret"
+      }
+    ],
+    "order": "a-j-b"
+  },
+  "stone-walls": {
+    "type": "technology",
+    "name": "stone-walls",
+    "icon": "__base__/graphics/technology/stone-walls.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "stone-wall"
+      }
+    ],
+    "order": "a-k-a"
+  },
+  "gates": {
+    "type": "technology",
+    "name": "gates",
+    "icon": "__base__/graphics/technology/gates.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "gate"
+      }
+    ],
+    "order": "a-l-a"
+  },
+  "flying": {
+    "type": "technology",
+    "name": "flying",
+    "icon": "__base__/graphics/technology/flying.png",
+    "order": "c-h"
+  },
+  "robotics": {
+    "type": "technology",
+    "name": "robotics",
+    "icon": "__base__/graphics/technology/robotics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "flying-robot-frame"
+      }
+    ],
+    "order": "c-i"
+  },
+  "rocket-silo": {
+    "type": "technology",
+    "name": "rocket-silo",
+    "icon": "__base__/graphics/technology/rocket-silo.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "rocket-silo"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "low-density-structure"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "rocket-fuel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "rocket-control-unit"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "rocket-part"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "satellite"
+      }
+    ],
+    "order": "k-a"
+  },
+  "research-speed-1": {
+    "type": "technology",
+    "name": "research-speed-1",
+    "icon": "__base__/graphics/technology/research-speed.png",
+    "effects": [
+      {
+        "type": "laboratory-speed",
+        "modifier": 0.2
+      }
+    ],
+    "order": "c-m-a"
+  },
+  "research-speed-2": {
+    "type": "technology",
+    "name": "research-speed-2",
+    "icon": "__base__/graphics/technology/research-speed.png",
+    "effects": [
+      {
+        "type": "laboratory-speed",
+        "modifier": 0.3
+      }
+    ],
+    "order": "c-m-b"
+  },
+  "research-speed-3": {
+    "type": "technology",
+    "name": "research-speed-3",
+    "icon": "__base__/graphics/technology/research-speed.png",
+    "effects": [
+      {
+        "type": "laboratory-speed",
+        "modifier": 0.4
+      }
+    ],
+    "order": "c-m-c"
+  },
+  "research-speed-4": {
+    "type": "technology",
+    "name": "research-speed-4",
+    "icon": "__base__/graphics/technology/research-speed.png",
+    "effects": [
+      {
+        "type": "laboratory-speed",
+        "modifier": 0.5
+      }
+    ],
+    "order": "c-m-d"
+  },
+  "research-speed-5": {
+    "type": "technology",
+    "name": "research-speed-5",
+    "icon": "__base__/graphics/technology/research-speed.png",
+    "effects": [
+      {
+        "type": "laboratory-speed",
+        "modifier": 0.5
+      }
+    ],
+    "order": "c-m-d"
+  },
+  "research-speed-6": {
+    "type": "technology",
+    "name": "research-speed-6",
+    "icon": "__base__/graphics/technology/research-speed.png",
+    "effects": [
+      {
+        "type": "laboratory-speed",
+        "modifier": 0.6
+      }
+    ],
+    "order": "c-m-d"
+  },
+  "electric-energy-distribution-1": {
+    "type": "technology",
+    "name": "electric-energy-distribution-1",
+    "icon": "__base__/graphics/technology/electric-energy-distribution.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "medium-electric-pole"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "big-electric-pole"
+      }
+    ],
+    "order": "c-e-b"
+  },
+  "electric-energy-distribution-2": {
+    "type": "technology",
+    "name": "electric-energy-distribution-2",
+    "icon": "__base__/graphics/technology/electric-energy-distribution.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "substation"
+      }
+    ],
+    "order": "c-e-c"
+  },
+  "electric-energy-accumulators-1": {
+    "type": "technology",
+    "name": "electric-energy-accumulators-1",
+    "icon": "__base__/graphics/technology/electric-energy-acumulators.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "accumulator"
+      }
+    ],
+    "order": "c-e-a"
+  },
+  "advanced-material-processing": {
+    "type": "technology",
+    "name": "advanced-material-processing",
+    "icon": "__base__/graphics/technology/advanced-material-processing.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "steel-furnace"
+      }
+    ],
+    "order": "c-c-a"
+  },
+  "advanced-material-processing-2": {
+    "type": "technology",
+    "name": "advanced-material-processing-2",
+    "icon": "__base__/graphics/technology/advanced-material-processing.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "electric-furnace"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "production-science-pack"
+      }
+    ],
+    "order": "c-c-b"
+  },
+  "concrete": {
+    "type": "technology",
+    "name": "concrete",
+    "icon": "__base__/graphics/technology/concrete.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "concrete"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "hazard-concrete"
+      }
+    ],
+    "order": "c-c-c"
+  },
+  "effect-transmission": {
+    "type": "technology",
+    "name": "effect-transmission",
+    "icon": "__base__/graphics/technology/effect-transmission.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "beacon"
+      }
+    ],
+    "order": "i-i"
+  },
+  "toolbelt": {
+    "type": "technology",
+    "name": "toolbelt",
+    "icon": "__base__/graphics/technology/toolbelt.png",
+    "effects": [
+      {
+        "type": "num-quick-bars",
+        "modifier": 1
+      }
+    ],
+    "order": "c-k-m"
+  },
+  "engine": {
+    "type": "technology",
+    "name": "engine",
+    "icon": "__base__/graphics/technology/engine.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "engine-unit"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "pump"
+      }
+    ],
+    "order": "b-a"
+  },
+  "electric-engine": {
+    "type": "technology",
+    "name": "electric-engine",
+    "icon": "__base__/graphics/technology/electric-engine.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "electric-engine-unit"
+      }
+    ],
+    "order": "b-b"
+  },
+  "battery": {
+    "type": "technology",
+    "name": "battery",
+    "icon": "__base__/graphics/technology/battery.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "battery"
+      }
+    ],
+    "order": "b-c"
+  },
+  "landfill": {
+    "type": "technology",
+    "name": "landfill",
+    "icon": "__base__/graphics/technology/landfill.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "landfill"
+      }
+    ],
+    "order": "b-d"
+  },
+  "construction-robotics": {
+    "type": "technology",
+    "name": "construction-robotics",
+    "icon": "__base__/graphics/technology/construction-robotics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "roboport"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "logistic-chest-passive-provider"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "logistic-chest-storage"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "construction-robot"
+      },
+      {
+        "type": "ghost-time-to-live",
+        "modifier": 216000
+      }
+    ],
+    "order": "c-k-a"
+  },
+  "logistic-robotics": {
+    "type": "technology",
+    "name": "logistic-robotics",
+    "icon": "__base__/graphics/technology/logistic-robotics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "roboport"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "logistic-chest-passive-provider"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "logistic-chest-storage"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "logistic-robot"
+      }
+    ],
+    "order": "c-k-c"
+  },
+  "logistic-system": {
+    "type": "technology",
+    "name": "logistic-system",
+    "icon": "__base__/graphics/technology/logistic-system.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "logistic-chest-active-provider"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "logistic-chest-requester"
+      }
+    ],
+    "order": "c-k-d"
+  },
+  "worker-robots-speed-1": {
+    "type": "technology",
+    "name": "worker-robots-speed-1",
+    "icon": "__base__/graphics/technology/worker-robots-speed.png",
+    "effects": [
+      {
+        "type": "worker-robot-speed",
+        "modifier": 0.35
+      }
+    ],
+    "order": "c-k-f-a"
+  },
+  "worker-robots-speed-2": {
+    "type": "technology",
+    "name": "worker-robots-speed-2",
+    "icon": "__base__/graphics/technology/worker-robots-speed.png",
+    "effects": [
+      {
+        "type": "worker-robot-speed",
+        "modifier": 0.4
+      }
+    ],
+    "order": "c-k-f-b"
+  },
+  "worker-robots-speed-3": {
+    "type": "technology",
+    "name": "worker-robots-speed-3",
+    "icon": "__base__/graphics/technology/worker-robots-speed.png",
+    "effects": [
+      {
+        "type": "worker-robot-speed",
+        "modifier": 0.45
+      }
+    ],
+    "order": "c-k-f-c"
+  },
+  "worker-robots-speed-4": {
+    "type": "technology",
+    "name": "worker-robots-speed-4",
+    "icon": "__base__/graphics/technology/worker-robots-speed.png",
+    "effects": [
+      {
+        "type": "worker-robot-speed",
+        "modifier": 0.55
+      }
+    ],
+    "order": "c-k-f-d"
+  },
+  "worker-robots-speed-5": {
+    "type": "technology",
+    "name": "worker-robots-speed-5",
+    "icon": "__base__/graphics/technology/worker-robots-speed.png",
+    "effects": [
+      {
+        "type": "worker-robot-speed",
+        "modifier": 0.65
+      }
+    ],
+    "order": "c-k-f-e"
+  },
+  "worker-robots-speed-6": {
+    "type": "technology",
+    "name": "worker-robots-speed-6",
+    "icon": "__base__/graphics/technology/worker-robots-speed.png",
+    "effects": [
+      {
+        "type": "worker-robot-speed",
+        "modifier": 0.65
+      }
+    ],
+    "order": "c-k-f-e"
+  },
+  "worker-robots-storage-1": {
+    "type": "technology",
+    "name": "worker-robots-storage-1",
+    "icon": "__base__/graphics/technology/worker-robots-storage.png",
+    "effects": [
+      {
+        "type": "worker-robot-storage",
+        "modifier": 1
+      }
+    ],
+    "order": "c-k-g-a"
+  },
+  "worker-robots-storage-2": {
+    "type": "technology",
+    "name": "worker-robots-storage-2",
+    "icon": "__base__/graphics/technology/worker-robots-storage.png",
+    "effects": [
+      {
+        "type": "worker-robot-storage",
+        "modifier": 1
+      }
+    ],
+    "order": "c-k-g-b"
+  },
+  "worker-robots-storage-3": {
+    "type": "technology",
+    "name": "worker-robots-storage-3",
+    "icon": "__base__/graphics/technology/worker-robots-storage.png",
+    "effects": [
+      {
+        "type": "worker-robot-storage",
+        "modifier": 1
+      }
+    ],
+    "order": "c-k-g-c"
+  },
+  "character-logistic-slots-1": {
+    "type": "technology",
+    "name": "character-logistic-slots-1",
+    "icon": "__base__/graphics/technology/character-logistic-slots.png",
+    "effects": [
+      {
+        "type": "character-logistic-slots",
+        "modifier": 6
+      }
+    ],
+    "order": "c-k-e-a"
+  },
+  "character-logistic-slots-2": {
+    "type": "technology",
+    "name": "character-logistic-slots-2",
+    "icon": "__base__/graphics/technology/character-logistic-slots.png",
+    "effects": [
+      {
+        "type": "character-logistic-slots",
+        "modifier": 6
+      }
+    ],
+    "order": "c-k-e-b"
+  },
+  "character-logistic-slots-3": {
+    "type": "technology",
+    "name": "character-logistic-slots-3",
+    "icon": "__base__/graphics/technology/character-logistic-slots.png",
+    "effects": [
+      {
+        "type": "character-logistic-slots",
+        "modifier": 6
+      }
+    ],
+    "order": "c-k-e-c"
+  },
+  "character-logistic-slots-4": {
+    "type": "technology",
+    "name": "character-logistic-slots-4",
+    "icon": "__base__/graphics/technology/character-logistic-slots.png",
+    "effects": [
+      {
+        "type": "character-logistic-slots",
+        "modifier": 6
+      }
+    ],
+    "order": "c-k-e-d"
+  },
+  "character-logistic-slots-5": {
+    "type": "technology",
+    "name": "character-logistic-slots-5",
+    "icon": "__base__/graphics/technology/character-logistic-slots.png",
+    "effects": [
+      {
+        "type": "character-logistic-slots",
+        "modifier": 6
+      }
+    ],
+    "order": "c-k-e-e"
+  },
+  "character-logistic-slots-6": {
+    "type": "technology",
+    "name": "character-logistic-slots-6",
+    "icon": "__base__/graphics/technology/character-logistic-slots.png",
+    "effects": [
+      {
+        "type": "character-logistic-slots",
+        "modifier": 6
+      }
+    ],
+    "order": "c-k-e-f"
+  },
+  "character-logistic-trash-slots-1": {
+    "type": "technology",
+    "name": "character-logistic-trash-slots-1",
+    "icon": "__base__/graphics/technology/character-logistic-trash-slots.png",
+    "effects": [
+      {
+        "type": "character-logistic-trash-slots",
+        "modifier": 6
+      }
+    ],
+    "order": "c-k-f-a"
+  },
+  "character-logistic-trash-slots-2": {
+    "type": "technology",
+    "name": "character-logistic-trash-slots-2",
+    "icon": "__base__/graphics/technology/character-logistic-trash-slots.png",
+    "effects": [
+      {
+        "type": "character-logistic-trash-slots",
+        "modifier": 6
+      }
+    ],
+    "order": "c-k-f-b"
+  },
+  "auto-character-logistic-trash-slots": {
+    "type": "technology",
+    "name": "auto-character-logistic-trash-slots",
+    "icon": "__base__/graphics/technology/character-auto-logistic-trash-slots.png",
+    "effects": [
+      {
+        "type": "auto-character-logistic-trash-slots",
+        "modifier": true
+      }
+    ],
+    "order": "c-k-f-c"
+  },
+  "shotgun-shell-damage-1": {
+    "type": "technology",
+    "name": "shotgun-shell-damage-1",
+    "icon": "__base__/graphics/technology/shotgun-shell-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-n-a"
+  },
+  "shotgun-shell-damage-2": {
+    "type": "technology",
+    "name": "shotgun-shell-damage-2",
+    "icon": "__base__/graphics/technology/shotgun-shell-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-n-b"
+  },
+  "shotgun-shell-damage-3": {
+    "type": "technology",
+    "name": "shotgun-shell-damage-3",
+    "icon": "__base__/graphics/technology/shotgun-shell-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-c"
+  },
+  "shotgun-shell-damage-4": {
+    "type": "technology",
+    "name": "shotgun-shell-damage-4",
+    "icon": "__base__/graphics/technology/shotgun-shell-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-d"
+  },
+  "shotgun-shell-damage-5": {
+    "type": "technology",
+    "name": "shotgun-shell-damage-5",
+    "icon": "__base__/graphics/technology/shotgun-shell-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-e"
+  },
+  "shotgun-shell-damage-6": {
+    "type": "technology",
+    "name": "shotgun-shell-damage-6",
+    "icon": "__base__/graphics/technology/shotgun-shell-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-n-f"
+  },
+  "shotgun-shell-damage-7": {
+    "type": "technology",
+    "name": "shotgun-shell-damage-7",
+    "icon": "__base__/graphics/technology/shotgun-shell-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-n-f"
+  },
+  "shotgun-shell-speed-1": {
+    "type": "technology",
+    "name": "shotgun-shell-speed-1",
+    "icon": "__base__/graphics/technology/shotgun-shell-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-n-g"
+  },
+  "shotgun-shell-speed-2": {
+    "type": "technology",
+    "name": "shotgun-shell-speed-2",
+    "icon": "__base__/graphics/technology/shotgun-shell-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-h"
+  },
+  "shotgun-shell-speed-3": {
+    "type": "technology",
+    "name": "shotgun-shell-speed-3",
+    "icon": "__base__/graphics/technology/shotgun-shell-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-n-i"
+  },
+  "shotgun-shell-speed-4": {
+    "type": "technology",
+    "name": "shotgun-shell-speed-4",
+    "icon": "__base__/graphics/technology/shotgun-shell-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-n-j"
+  },
+  "shotgun-shell-speed-5": {
+    "type": "technology",
+    "name": "shotgun-shell-speed-5",
+    "icon": "__base__/graphics/technology/shotgun-shell-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-n-k"
+  },
+  "shotgun-shell-speed-6": {
+    "type": "technology",
+    "name": "shotgun-shell-speed-6",
+    "icon": "__base__/graphics/technology/shotgun-shell-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "shotgun-shell",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-n-l"
+  },
+  "laser-turret-damage-1": {
+    "type": "technology",
+    "name": "laser-turret-damage-1",
+    "icon": "__base__/graphics/technology/laser-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "laser-turret",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-n-a"
+  },
+  "laser-turret-damage-2": {
+    "type": "technology",
+    "name": "laser-turret-damage-2",
+    "icon": "__base__/graphics/technology/laser-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "laser-turret",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-n-b"
+  },
+  "laser-turret-damage-3": {
+    "type": "technology",
+    "name": "laser-turret-damage-3",
+    "icon": "__base__/graphics/technology/laser-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "laser-turret",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-n-c"
+  },
+  "laser-turret-damage-4": {
+    "type": "technology",
+    "name": "laser-turret-damage-4",
+    "icon": "__base__/graphics/technology/laser-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "laser-turret",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-n-d"
+  },
+  "laser-turret-damage-5": {
+    "type": "technology",
+    "name": "laser-turret-damage-5",
+    "icon": "__base__/graphics/technology/laser-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "laser-turret",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-n-e"
+  },
+  "laser-turret-damage-6": {
+    "type": "technology",
+    "name": "laser-turret-damage-6",
+    "icon": "__base__/graphics/technology/laser-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "laser-turret",
+        "modifier": 0.5
+      }
+    ],
+    "order": "e-n-f"
+  },
+  "laser-turret-damage-7": {
+    "type": "technology",
+    "name": "laser-turret-damage-7",
+    "icon": "__base__/graphics/technology/laser-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "laser-turret",
+        "modifier": 0.7
+      }
+    ],
+    "order": "e-n-g"
+  },
+  "laser-turret-damage-8": {
+    "type": "technology",
+    "name": "laser-turret-damage-8",
+    "icon": "__base__/graphics/technology/laser-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "laser-turret",
+        "modifier": 0.7
+      }
+    ],
+    "order": "e-n-g"
+  },
+  "laser-turret-speed-1": {
+    "type": "technology",
+    "name": "laser-turret-speed-1",
+    "icon": "__base__/graphics/technology/laser-turret-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "laser-turret",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-n-h"
+  },
+  "laser-turret-speed-2": {
+    "type": "technology",
+    "name": "laser-turret-speed-2",
+    "icon": "__base__/graphics/technology/laser-turret-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "laser-turret",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-n-i"
+  },
+  "laser-turret-speed-3": {
+    "type": "technology",
+    "name": "laser-turret-speed-3",
+    "icon": "__base__/graphics/technology/laser-turret-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "laser-turret",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-n-j"
+  },
+  "laser-turret-speed-4": {
+    "type": "technology",
+    "name": "laser-turret-speed-4",
+    "icon": "__base__/graphics/technology/laser-turret-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "laser-turret",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-n-k"
+  },
+  "laser-turret-speed-5": {
+    "type": "technology",
+    "name": "laser-turret-speed-5",
+    "icon": "__base__/graphics/technology/laser-turret-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "laser-turret",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-n-l"
+  },
+  "laser-turret-speed-6": {
+    "type": "technology",
+    "name": "laser-turret-speed-6",
+    "icon": "__base__/graphics/technology/laser-turret-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "laser-turret",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-n-m"
+  },
+  "laser-turret-speed-7": {
+    "type": "technology",
+    "name": "laser-turret-speed-7",
+    "icon": "__base__/graphics/technology/laser-turret-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "laser-turret",
+        "modifier": 0.5
+      }
+    ],
+    "order": "e-n-n"
+  },
+  "gun-turret-damage-1": {
+    "type": "technology",
+    "name": "gun-turret-damage-1",
+    "icon": "__base__/graphics/technology/gun-turret-damage.png",
+    "effects": [
+      {
+        "type": "turret-attack",
+        "turret_id": "gun-turret",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-o-a"
+  },
+  "gun-turret-damage-2": {
+    "type": "technology",
+    "name": "gun-turret-damage-2",
+    "icon": "__base__/graphics/technology/gun-turret-damage.png",
+    "effects": [
+      {
+        "type": "turret-attack",
+        "turret_id": "gun-turret",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-o-b"
+  },
+  "gun-turret-damage-3": {
+    "type": "technology",
+    "name": "gun-turret-damage-3",
+    "icon": "__base__/graphics/technology/gun-turret-damage.png",
+    "effects": [
+      {
+        "type": "turret-attack",
+        "turret_id": "gun-turret",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-o-c"
+  },
+  "gun-turret-damage-4": {
+    "type": "technology",
+    "name": "gun-turret-damage-4",
+    "icon": "__base__/graphics/technology/gun-turret-damage.png",
+    "effects": [
+      {
+        "type": "turret-attack",
+        "turret_id": "gun-turret",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-o-d"
+  },
+  "gun-turret-damage-5": {
+    "type": "technology",
+    "name": "gun-turret-damage-5",
+    "icon": "__base__/graphics/technology/gun-turret-damage.png",
+    "effects": [
+      {
+        "type": "turret-attack",
+        "turret_id": "gun-turret",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-o-e"
+  },
+  "gun-turret-damage-6": {
+    "type": "technology",
+    "name": "gun-turret-damage-6",
+    "icon": "__base__/graphics/technology/gun-turret-damage.png",
+    "effects": [
+      {
+        "type": "turret-attack",
+        "turret_id": "gun-turret",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-o-f"
+  },
+  "gun-turret-damage-7": {
+    "type": "technology",
+    "name": "gun-turret-damage-7",
+    "icon": "__base__/graphics/technology/gun-turret-damage.png",
+    "effects": [
+      {
+        "type": "turret-attack",
+        "turret_id": "gun-turret",
+        "modifier": 0.7
+      }
+    ],
+    "order": "e-o-f"
+  },
+  "flamethrower-damage-1": {
+    "type": "technology",
+    "name": "flamethrower-damage-1",
+    "icon": "__base__/graphics/technology/flamethrower-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "flamethrower",
+        "modifier": 0.2
+      },
+      {
+        "type": "turret-attack",
+        "turret_id": "flamethrower-turret",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-o-p-a"
+  },
+  "flamethrower-damage-2": {
+    "type": "technology",
+    "name": "flamethrower-damage-2",
+    "icon": "__base__/graphics/technology/flamethrower-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "flamethrower",
+        "modifier": 0.2
+      },
+      {
+        "type": "turret-attack",
+        "turret_id": "flamethrower-turret",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-o-p-b"
+  },
+  "flamethrower-damage-3": {
+    "type": "technology",
+    "name": "flamethrower-damage-3",
+    "icon": "__base__/graphics/technology/flamethrower-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "flamethrower",
+        "modifier": 0.3
+      },
+      {
+        "type": "turret-attack",
+        "turret_id": "flamethrower-turret",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-o-p-c"
+  },
+  "flamethrower-damage-4": {
+    "type": "technology",
+    "name": "flamethrower-damage-4",
+    "icon": "__base__/graphics/technology/flamethrower-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "flamethrower",
+        "modifier": 0.3
+      },
+      {
+        "type": "turret-attack",
+        "turret_id": "flamethrower-turret",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-o-p-d"
+  },
+  "flamethrower-damage-5": {
+    "type": "technology",
+    "name": "flamethrower-damage-5",
+    "icon": "__base__/graphics/technology/flamethrower-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "flamethrower",
+        "modifier": 0.4
+      },
+      {
+        "type": "turret-attack",
+        "turret_id": "flamethrower-turret",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-o-p-e"
+  },
+  "flamethrower-damage-6": {
+    "type": "technology",
+    "name": "flamethrower-damage-6",
+    "icon": "__base__/graphics/technology/flamethrower-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "flamethrower",
+        "modifier": 0.2
+      },
+      {
+        "type": "turret-attack",
+        "turret_id": "flamethrower-turret",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-o-p-f"
+  },
+  "flamethrower-damage-7": {
+    "type": "technology",
+    "name": "flamethrower-damage-7",
+    "icon": "__base__/graphics/technology/flamethrower-turret-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "flamethrower",
+        "modifier": 0.2
+      },
+      {
+        "type": "turret-attack",
+        "turret_id": "flamethrower-turret",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-o-p-f"
+  },
+  "energy-shield-equipment": {
+    "type": "technology",
+    "name": "energy-shield-equipment",
+    "icon": "__base__/graphics/technology/energy-shield-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "energy-shield-equipment"
+      }
+    ],
+    "order": "g-e-a"
+  },
+  "night-vision-equipment": {
+    "type": "technology",
+    "name": "night-vision-equipment",
+    "icon": "__base__/graphics/technology/night-vision-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "night-vision-equipment"
+      }
+    ],
+    "order": "g-g"
+  },
+  "energy-shield-mk2-equipment": {
+    "type": "technology",
+    "name": "energy-shield-mk2-equipment",
+    "icon": "__base__/graphics/technology/energy-shield-mk2-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "energy-shield-mk2-equipment"
+      }
+    ],
+    "order": "g-e-b"
+  },
+  "battery-equipment": {
+    "type": "technology",
+    "name": "battery-equipment",
+    "icon": "__base__/graphics/technology/battery-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "battery-equipment"
+      }
+    ],
+    "order": "g-i-a"
+  },
+  "battery-mk2-equipment": {
+    "type": "technology",
+    "name": "battery-mk2-equipment",
+    "icon": "__base__/graphics/technology/battery-mk2-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "battery-mk2-equipment"
+      }
+    ],
+    "order": "g-i-b"
+  },
+  "solar-panel-equipment": {
+    "type": "technology",
+    "name": "solar-panel-equipment",
+    "icon": "__base__/graphics/technology/solar-panel-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "solar-panel-equipment"
+      }
+    ],
+    "order": "g-k"
+  },
+  "personal-laser-defense-equipment": {
+    "type": "technology",
+    "name": "personal-laser-defense-equipment",
+    "icon": "__base__/graphics/technology/personal-laser-defense-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "personal-laser-defense-equipment"
+      }
+    ],
+    "order": "g-m"
+  },
+  "discharge-defense-equipment": {
+    "type": "technology",
+    "name": "discharge-defense-equipment",
+    "icon": "__base__/graphics/technology/discharge-defense-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "discharge-defense-equipment"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "discharge-defense-remote"
+      }
+    ],
+    "order": "g-o"
+  },
+  "fusion-reactor-equipment": {
+    "type": "technology",
+    "name": "fusion-reactor-equipment",
+    "icon": "__base__/graphics/technology/fusion-reactor-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "fusion-reactor-equipment"
+      }
+    ],
+    "order": "g-l"
+  },
+  "exoskeleton-equipment": {
+    "type": "technology",
+    "name": "exoskeleton-equipment",
+    "icon": "__base__/graphics/technology/exoskeleton-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "exoskeleton-equipment"
+      }
+    ],
+    "order": "g-h"
+  },
+  "personal-roboport-equipment": {
+    "type": "technology",
+    "name": "personal-roboport-equipment",
+    "icon": "__base__/graphics/technology/personal-roboport-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "personal-roboport-equipment"
+      }
+    ],
+    "order": "c-k-d-zz"
+  },
+  "personal-roboport-equipment-2": {
+    "type": "technology",
+    "name": "personal-roboport-equipment-2",
+    "icon": "__base__/graphics/technology/personal-roboport-equipment.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "personal-roboport-mk2-equipment"
+      }
+    ],
+    "order": "c-k-d-zz"
+  },
+  "bullet-damage-1": {
+    "type": "technology",
+    "name": "bullet-damage-1",
+    "icon": "__base__/graphics/technology/bullet-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "bullet",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-l-a"
+  },
+  "bullet-damage-2": {
+    "type": "technology",
+    "name": "bullet-damage-2",
+    "icon": "__base__/graphics/technology/bullet-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "bullet",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-l-b"
+  },
+  "bullet-damage-3": {
+    "type": "technology",
+    "name": "bullet-damage-3",
+    "icon": "__base__/graphics/technology/bullet-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "bullet",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-l-c"
+  },
+  "bullet-damage-4": {
+    "type": "technology",
+    "name": "bullet-damage-4",
+    "icon": "__base__/graphics/technology/bullet-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "bullet",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-l-d"
+  },
+  "bullet-damage-5": {
+    "type": "technology",
+    "name": "bullet-damage-5",
+    "icon": "__base__/graphics/technology/bullet-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "bullet",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-l-e"
+  },
+  "bullet-damage-6": {
+    "type": "technology",
+    "name": "bullet-damage-6",
+    "icon": "__base__/graphics/technology/bullet-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "bullet",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-l-f"
+  },
+  "bullet-damage-7": {
+    "type": "technology",
+    "name": "bullet-damage-7",
+    "icon": "__base__/graphics/technology/bullet-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "bullet",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-l-f"
+  },
+  "bullet-speed-1": {
+    "type": "technology",
+    "name": "bullet-speed-1",
+    "icon": "__base__/graphics/technology/bullet-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "bullet",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-l-g"
+  },
+  "bullet-speed-2": {
+    "type": "technology",
+    "name": "bullet-speed-2",
+    "icon": "__base__/graphics/technology/bullet-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "bullet",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-l-h"
+  },
+  "bullet-speed-3": {
+    "type": "technology",
+    "name": "bullet-speed-3",
+    "icon": "__base__/graphics/technology/bullet-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "bullet",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-l-i"
+  },
+  "bullet-speed-4": {
+    "type": "technology",
+    "name": "bullet-speed-4",
+    "icon": "__base__/graphics/technology/bullet-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "bullet",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-l-j"
+  },
+  "bullet-speed-5": {
+    "type": "technology",
+    "name": "bullet-speed-5",
+    "icon": "__base__/graphics/technology/bullet-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "bullet",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-l-k"
+  },
+  "bullet-speed-6": {
+    "type": "technology",
+    "name": "bullet-speed-6",
+    "icon": "__base__/graphics/technology/bullet-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "bullet",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-l-l"
+  },
+  "fluid-handling": {
+    "type": "technology",
+    "name": "fluid-handling",
+    "icon": "__base__/graphics/technology/fluid-handling.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "storage-tank"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "empty-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "fill-water-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "empty-water-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "fill-crude-oil-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "empty-crude-oil-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "fill-heavy-oil-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "empty-heavy-oil-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "fill-light-oil-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "empty-light-oil-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "fill-petroleum-gas-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "empty-petroleum-gas-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "fill-lubricant-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "empty-lubricant-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "fill-sulfuric-acid-barrel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "empty-sulfuric-acid-barrel"
+      }
+    ],
+    "order": "d-a-a"
+  },
+  "oil-processing": {
+    "type": "technology",
+    "name": "oil-processing",
+    "icon": "__base__/graphics/technology/oil-gathering.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "pumpjack"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "oil-refinery"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "chemical-plant"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "basic-oil-processing"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "solid-fuel-from-light-oil"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "solid-fuel-from-petroleum-gas"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "solid-fuel-from-heavy-oil"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "lubricant"
+      }
+    ],
+    "order": "d-a"
+  },
+  "advanced-oil-processing": {
+    "type": "technology",
+    "name": "advanced-oil-processing",
+    "icon": "__base__/graphics/technology/oil-processing.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "advanced-oil-processing"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "heavy-oil-cracking"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "light-oil-cracking"
+      }
+    ],
+    "order": "d-b"
+  },
+  "coal-liquefaction": {
+    "type": "technology",
+    "name": "coal-liquefaction",
+    "icon": "__base__/graphics/technology/coal-liquefaction.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "coal-liquefaction"
+      }
+    ],
+    "order": "d-c"
+  },
+  "sulfur-processing": {
+    "type": "technology",
+    "name": "sulfur-processing",
+    "icon": "__base__/graphics/technology/sulfur-processing.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "sulfuric-acid"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "sulfur"
+      }
+    ],
+    "order": "d-d"
+  },
+  "plastics": {
+    "type": "technology",
+    "name": "plastics",
+    "icon": "__base__/graphics/technology/plastics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "plastic-bar"
+      }
+    ],
+    "order": "d-e"
+  },
+  "modules": {
+    "type": "technology",
+    "name": "modules",
+    "icon": "__base__/graphics/technology/module.png",
+    "order": "i-a"
+  },
+  "speed-module": {
+    "type": "technology",
+    "name": "speed-module",
+    "icon": "__base__/graphics/technology/speed-module.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "speed-module"
+      }
+    ],
+    "order": "i-c-a"
+  },
+  "speed-module-2": {
+    "type": "technology",
+    "name": "speed-module-2",
+    "icon": "__base__/graphics/technology/speed-module.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "speed-module-2"
+      }
+    ],
+    "order": "i-c-b"
+  },
+  "speed-module-3": {
+    "type": "technology",
+    "name": "speed-module-3",
+    "icon": "__base__/graphics/technology/speed-module.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "speed-module-3"
+      }
+    ],
+    "order": "i-c-c"
+  },
+  "productivity-module": {
+    "type": "technology",
+    "name": "productivity-module",
+    "icon": "__base__/graphics/technology/productivity-module.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "productivity-module"
+      }
+    ],
+    "order": "i-e-a"
+  },
+  "productivity-module-2": {
+    "type": "technology",
+    "name": "productivity-module-2",
+    "icon": "__base__/graphics/technology/productivity-module.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "productivity-module-2"
+      }
+    ],
+    "order": "i-e-b"
+  },
+  "productivity-module-3": {
+    "type": "technology",
+    "name": "productivity-module-3",
+    "icon": "__base__/graphics/technology/productivity-module.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "productivity-module-3"
+      }
+    ],
+    "order": "i-e-c"
+  },
+  "effectivity-module": {
+    "type": "technology",
+    "name": "effectivity-module",
+    "icon": "__base__/graphics/technology/effectivity-module.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "effectivity-module"
+      }
+    ],
+    "order": "i-g-a"
+  },
+  "effectivity-module-2": {
+    "type": "technology",
+    "name": "effectivity-module-2",
+    "icon": "__base__/graphics/technology/effectivity-module.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "effectivity-module-2"
+      }
+    ],
+    "order": "i-g-b"
+  },
+  "effectivity-module-3": {
+    "type": "technology",
+    "name": "effectivity-module-3",
+    "icon": "__base__/graphics/technology/effectivity-module.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "effectivity-module-3"
+      }
+    ],
+    "order": "i-g-c"
+  },
+  "combat-robotics": {
+    "type": "technology",
+    "name": "combat-robotics",
+    "icon": "__base__/graphics/technology/combat-robotics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "defender-capsule"
+      }
+    ],
+    "order": "e-p-a"
+  },
+  "combat-robotics-2": {
+    "type": "technology",
+    "name": "combat-robotics-2",
+    "icon": "__base__/graphics/technology/combat-robotics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "distractor-capsule"
+      }
+    ],
+    "order": "e-p-b-a"
+  },
+  "combat-robotics-3": {
+    "type": "technology",
+    "name": "combat-robotics-3",
+    "icon": "__base__/graphics/technology/combat-robotics.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "destroyer-capsule"
+      }
+    ],
+    "order": "e-p-b-b"
+  },
+  "combat-robot-damage-1": {
+    "type": "technology",
+    "name": "combat-robot-damage-1",
+    "icon": "__base__/graphics/technology/combat-robot-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-laser",
+        "modifier": 0.1
+      },
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-beam",
+        "modifier": 0.1
+      }
+    ],
+    "order": "e-p-c"
+  },
+  "combat-robot-damage-2": {
+    "type": "technology",
+    "name": "combat-robot-damage-2",
+    "icon": "__base__/graphics/technology/combat-robot-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-laser",
+        "modifier": 0.15
+      },
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-beam",
+        "modifier": 0.15
+      }
+    ],
+    "order": "e-p-d"
+  },
+  "combat-robot-damage-3": {
+    "type": "technology",
+    "name": "combat-robot-damage-3",
+    "icon": "__base__/graphics/technology/combat-robot-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-laser",
+        "modifier": 0.2
+      },
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-beam",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-p-e"
+  },
+  "combat-robot-damage-4": {
+    "type": "technology",
+    "name": "combat-robot-damage-4",
+    "icon": "__base__/graphics/technology/combat-robot-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-laser",
+        "modifier": 0.25
+      },
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-beam",
+        "modifier": 0.25
+      }
+    ],
+    "order": "e-p-f"
+  },
+  "combat-robot-damage-5": {
+    "type": "technology",
+    "name": "combat-robot-damage-5",
+    "icon": "__base__/graphics/technology/combat-robot-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-laser",
+        "modifier": 0.3
+      },
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-beam",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-p-g"
+  },
+  "combat-robot-damage-6": {
+    "type": "technology",
+    "name": "combat-robot-damage-6",
+    "icon": "__base__/graphics/technology/combat-robot-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-laser",
+        "modifier": 0.3
+      },
+      {
+        "type": "ammo-damage",
+        "ammo_category": "combat-robot-beam",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-p-g"
+  },
+  "rocket-damage-1": {
+    "type": "technology",
+    "name": "rocket-damage-1",
+    "icon": "__base__/graphics/technology/rocket-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "rocket",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-j-a"
+  },
+  "rocket-damage-2": {
+    "type": "technology",
+    "name": "rocket-damage-2",
+    "icon": "__base__/graphics/technology/rocket-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "rocket",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-j-b"
+  },
+  "rocket-damage-3": {
+    "type": "technology",
+    "name": "rocket-damage-3",
+    "icon": "__base__/graphics/technology/rocket-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "rocket",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-j-c"
+  },
+  "rocket-damage-4": {
+    "type": "technology",
+    "name": "rocket-damage-4",
+    "icon": "__base__/graphics/technology/rocket-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "rocket",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-j-d"
+  },
+  "rocket-damage-5": {
+    "type": "technology",
+    "name": "rocket-damage-5",
+    "icon": "__base__/graphics/technology/rocket-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "rocket",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-j-e"
+  },
+  "rocket-damage-6": {
+    "type": "technology",
+    "name": "rocket-damage-6",
+    "icon": "__base__/graphics/technology/rocket-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "rocket",
+        "modifier": 0.5
+      }
+    ],
+    "order": "e-j-f"
+  },
+  "rocket-damage-7": {
+    "type": "technology",
+    "name": "rocket-damage-7",
+    "icon": "__base__/graphics/technology/rocket-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "rocket",
+        "modifier": 0.5
+      }
+    ],
+    "order": "e-j-f"
+  },
+  "rocket-speed-1": {
+    "type": "technology",
+    "name": "rocket-speed-1",
+    "icon": "__base__/graphics/technology/rocket-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "rocket",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-j-g"
+  },
+  "rocket-speed-2": {
+    "type": "technology",
+    "name": "rocket-speed-2",
+    "icon": "__base__/graphics/technology/rocket-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "rocket",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-j-h"
+  },
+  "rocket-speed-3": {
+    "type": "technology",
+    "name": "rocket-speed-3",
+    "icon": "__base__/graphics/technology/rocket-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "rocket",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-j-i"
+  },
+  "rocket-speed-4": {
+    "type": "technology",
+    "name": "rocket-speed-4",
+    "icon": "__base__/graphics/technology/rocket-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "rocket",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-j-k"
+  },
+  "rocket-speed-5": {
+    "type": "technology",
+    "name": "rocket-speed-5",
+    "icon": "__base__/graphics/technology/rocket-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "rocket",
+        "modifier": 0.4
+      }
+    ],
+    "order": "e-j-l"
+  },
+  "rocket-speed-6": {
+    "type": "technology",
+    "name": "rocket-speed-6",
+    "icon": "__base__/graphics/technology/rocket-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "rocket",
+        "modifier": 0.6
+      }
+    ],
+    "order": "e-j-m"
+  },
+  "rocket-speed-7": {
+    "type": "technology",
+    "name": "rocket-speed-7",
+    "icon": "__base__/graphics/technology/rocket-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "rocket",
+        "modifier": 1
+      }
+    ],
+    "order": "e-j-n"
+  },
+  "cannon-shell-damage-1": {
+    "type": "technology",
+    "name": "cannon-shell-damage-1",
+    "icon": "__base__/graphics/technology/cannon-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "cannon-shell",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-k-a"
+  },
+  "cannon-shell-damage-2": {
+    "type": "technology",
+    "name": "cannon-shell-damage-2",
+    "icon": "__base__/graphics/technology/cannon-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "cannon-shell",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-k-b"
+  },
+  "cannon-shell-damage-3": {
+    "type": "technology",
+    "name": "cannon-shell-damage-3",
+    "icon": "__base__/graphics/technology/cannon-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "cannon-shell",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-k-c"
+  },
+  "cannon-shell-damage-4": {
+    "type": "technology",
+    "name": "cannon-shell-damage-4",
+    "icon": "__base__/graphics/technology/cannon-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "cannon-shell",
+        "modifier": 0.5
+      }
+    ],
+    "order": "e-k-d"
+  },
+  "cannon-shell-damage-5": {
+    "type": "technology",
+    "name": "cannon-shell-damage-5",
+    "icon": "__base__/graphics/technology/cannon-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "cannon-shell",
+        "modifier": 1
+      }
+    ],
+    "order": "e-k-d"
+  },
+  "cannon-shell-damage-6": {
+    "type": "technology",
+    "name": "cannon-shell-damage-6",
+    "icon": "__base__/graphics/technology/cannon-damage.png",
+    "effects": [
+      {
+        "type": "ammo-damage",
+        "ammo_category": "cannon-shell",
+        "modifier": 1
+      }
+    ],
+    "order": "e-k-d"
+  },
+  "cannon-shell-speed-1": {
+    "type": "technology",
+    "name": "cannon-shell-speed-1",
+    "icon": "__base__/graphics/technology/cannon-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "cannon-shell",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-k-g"
+  },
+  "cannon-shell-speed-2": {
+    "type": "technology",
+    "name": "cannon-shell-speed-2",
+    "icon": "__base__/graphics/technology/cannon-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "cannon-shell",
+        "modifier": 0.2
+      }
+    ],
+    "order": "e-k-h"
+  },
+  "cannon-shell-speed-3": {
+    "type": "technology",
+    "name": "cannon-shell-speed-3",
+    "icon": "__base__/graphics/technology/cannon-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "cannon-shell",
+        "modifier": 0.3
+      }
+    ],
+    "order": "e-k-i"
+  },
+  "cannon-shell-speed-4": {
+    "type": "technology",
+    "name": "cannon-shell-speed-4",
+    "icon": "__base__/graphics/technology/cannon-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "cannon-shell",
+        "modifier": 0.6
+      }
+    ],
+    "order": "e-k-j"
+  },
+  "cannon-shell-speed-5": {
+    "type": "technology",
+    "name": "cannon-shell-speed-5",
+    "icon": "__base__/graphics/technology/cannon-speed.png",
+    "effects": [
+      {
+        "type": "gun-speed",
+        "ammo_category": "cannon-shell",
+        "modifier": 1
+      }
+    ],
+    "order": "e-k-k"
+  },
+  "follower-robot-count-1": {
+    "type": "technology",
+    "name": "follower-robot-count-1",
+    "icon": "__base__/graphics/technology/follower-robots.png",
+    "effects": [
+      {
+        "type": "maximum-following-robots-count",
+        "modifier": 4
+      }
+    ],
+    "order": "e-p-b-c"
+  },
+  "follower-robot-count-2": {
+    "type": "technology",
+    "name": "follower-robot-count-2",
+    "icon": "__base__/graphics/technology/follower-robots.png",
+    "effects": [
+      {
+        "type": "maximum-following-robots-count",
+        "modifier": 5
+      }
+    ],
+    "order": "e-p-b-c"
+  },
+  "follower-robot-count-3": {
+    "type": "technology",
+    "name": "follower-robot-count-3",
+    "icon": "__base__/graphics/technology/follower-robots.png",
+    "effects": [
+      {
+        "type": "maximum-following-robots-count",
+        "modifier": 10
+      }
+    ],
+    "order": "e-p-b-c"
+  },
+  "follower-robot-count-4": {
+    "type": "technology",
+    "name": "follower-robot-count-4",
+    "icon": "__base__/graphics/technology/follower-robots.png",
+    "effects": [
+      {
+        "type": "maximum-following-robots-count",
+        "modifier": 10
+      }
+    ],
+    "order": "e-p-b-c"
+  },
+  "follower-robot-count-5": {
+    "type": "technology",
+    "name": "follower-robot-count-5",
+    "icon": "__base__/graphics/technology/follower-robots.png",
+    "effects": [
+      {
+        "type": "maximum-following-robots-count",
+        "modifier": 10
+      }
+    ],
+    "order": "e-p-b-c"
+  },
+  "follower-robot-count-6": {
+    "type": "technology",
+    "name": "follower-robot-count-6",
+    "icon": "__base__/graphics/technology/follower-robots.png",
+    "effects": [
+      {
+        "type": "maximum-following-robots-count",
+        "modifier": 10
+      }
+    ],
+    "order": "e-p-b-c"
+  },
+  "follower-robot-count-7": {
+    "type": "technology",
+    "name": "follower-robot-count-7",
+    "icon": "__base__/graphics/technology/follower-robots.png",
+    "effects": [
+      {
+        "type": "maximum-following-robots-count",
+        "modifier": 10
+      }
+    ],
+    "order": "e-p-b-c"
+  },
+  "nuclear-power": {
+    "type": "technology",
+    "name": "nuclear-power",
+    "icon": "__base__/graphics/technology/nuclear-power.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "nuclear-reactor"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "centrifuge"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "uranium-processing"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "uranium-fuel-cell"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "heat-exchanger"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "heat-pipe"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "steam-turbine"
+      }
+    ],
+    "order": "e-p-b-c"
+  },
+  "kovarex-enrichment-process": {
+    "type": "technology",
+    "name": "kovarex-enrichment-process",
+    "icon": "__base__/graphics/technology/kovarex-enrichment-process.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kovarex-enrichment-process"
+      }
+    ],
+    "order": "e-p-b-c"
+  },
+  "nuclear-fuel-reprocessing": {
+    "type": "technology",
+    "name": "nuclear-fuel-reprocessing",
+    "icon": "__base__/graphics/technology/nuclear-fuel-reprocessing.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "nuclear-fuel-reprocessing"
+      }
+    ],
+    "order": "e-p-b-c"
+  },
+  "mining-productivity-1": {
+    "type": "technology",
+    "name": "mining-productivity-1",
+    "icon": "__base__/graphics/technology/mining-productivity.png",
+    "effects": [
+      {
+        "type": "mining-drill-productivity-bonus",
+        "modifier": 0.02
+      }
+    ],
+    "order": "c-k-f-e"
+  },
+  "mining-productivity-4": {
+    "type": "technology",
+    "name": "mining-productivity-4",
+    "icon": "__base__/graphics/technology/mining-productivity.png",
+    "effects": [
+      {
+        "type": "mining-drill-productivity-bonus",
+        "modifier": 0.02
+      }
+    ],
+    "order": "c-k-f-e"
+  },
+  "mining-productivity-8": {
+    "type": "technology",
+    "name": "mining-productivity-8",
+    "icon": "__base__/graphics/technology/mining-productivity.png",
+    "effects": [
+      {
+        "type": "mining-drill-productivity-bonus",
+        "modifier": 0.02
+      }
+    ],
+    "order": "c-k-f-e"
+  },
+  "mining-productivity-12": {
+    "type": "technology",
+    "name": "mining-productivity-12",
+    "icon": "__base__/graphics/technology/mining-productivity.png",
+    "effects": [
+      {
+        "type": "mining-drill-productivity-bonus",
+        "modifier": 0.02
+      }
+    ],
+    "order": "c-k-f-e"
+  },
+  "mining-productivity-16": {
+    "type": "technology",
+    "name": "mining-productivity-16",
+    "icon": "__base__/graphics/technology/mining-productivity.png",
+    "effects": [
+      {
+        "type": "mining-drill-productivity-bonus",
+        "modifier": 0.02
+      }
+    ],
+    "order": "c-k-f-e"
+  },
+  "stack-inserter": {
+    "type": "technology",
+    "name": "stack-inserter",
+    "icon": "__base__/graphics/technology/stack-inserter.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "stack-inserter"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "stack-filter-inserter"
+      },
+      {
+        "type": "stack-inserter-capacity-bonus",
+        "modifier": 1
+      }
+    ],
+    "order": "c-o-a"
+  },
+  "inserter-capacity-bonus-1": {
+    "type": "technology",
+    "name": "inserter-capacity-bonus-1",
+    "icon": "__base__/graphics/technology/inserter-capacity.png",
+    "effects": [
+      {
+        "type": "stack-inserter-capacity-bonus",
+        "modifier": 1
+      }
+    ],
+    "order": "c-o-b"
+  },
+  "inserter-capacity-bonus-2": {
+    "type": "technology",
+    "name": "inserter-capacity-bonus-2",
+    "icon": "__base__/graphics/technology/inserter-capacity.png",
+    "effects": [
+      {
+        "type": "inserter-stack-size-bonus",
+        "modifier": 1
+      },
+      {
+        "type": "stack-inserter-capacity-bonus",
+        "modifier": 1
+      }
+    ],
+    "order": "c-o-c"
+  },
+  "inserter-capacity-bonus-3": {
+    "type": "technology",
+    "name": "inserter-capacity-bonus-3",
+    "icon": "__base__/graphics/technology/inserter-capacity.png",
+    "effects": [
+      {
+        "type": "stack-inserter-capacity-bonus",
+        "modifier": 1
+      }
+    ],
+    "order": "c-o-d"
+  },
+  "inserter-capacity-bonus-4": {
+    "type": "technology",
+    "name": "inserter-capacity-bonus-4",
+    "icon": "__base__/graphics/technology/inserter-capacity.png",
+    "effects": [
+      {
+        "type": "stack-inserter-capacity-bonus",
+        "modifier": 1
+      }
+    ],
+    "order": "c-o-e"
+  },
+  "inserter-capacity-bonus-5": {
+    "type": "technology",
+    "name": "inserter-capacity-bonus-5",
+    "icon": "__base__/graphics/technology/inserter-capacity.png",
+    "effects": [
+      {
+        "type": "stack-inserter-capacity-bonus",
+        "modifier": 2
+      }
+    ],
+    "order": "c-o-f"
+  },
+  "inserter-capacity-bonus-6": {
+    "type": "technology",
+    "name": "inserter-capacity-bonus-6",
+    "icon": "__base__/graphics/technology/inserter-capacity.png",
+    "effects": [
+      {
+        "type": "stack-inserter-capacity-bonus",
+        "modifier": 2
+      }
+    ],
+    "order": "c-o-g"
+  },
+  "inserter-capacity-bonus-7": {
+    "type": "technology",
+    "name": "inserter-capacity-bonus-7",
+    "icon": "__base__/graphics/technology/inserter-capacity.png",
+    "effects": [
+      {
+        "type": "inserter-stack-size-bonus",
+        "modifier": 1
+      },
+      {
+        "type": "stack-inserter-capacity-bonus",
+        "modifier": 2
+      }
+    ],
+    "order": "c-o-h"
+  }
+}

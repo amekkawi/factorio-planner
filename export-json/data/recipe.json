@@ -10,7 +10,8 @@
         1
       ]
     ],
-    "result": "copper-plate"
+    "result": "copper-plate",
+    "enabled": true
   },
   "iron-plate": {
     "type": "recipe",
@@ -23,13 +24,15 @@
         1
       ]
     ],
-    "result": "iron-plate"
+    "result": "iron-plate",
+    "enabled": true
   },
   "stone-brick": {
     "type": "recipe",
     "name": "stone-brick",
     "category": "smelting",
     "energy_required": 3.5,
+    "enabled": true,
     "ingredients": [
       [
         "stone",
@@ -49,7 +52,8 @@
     ],
     "result": "wood",
     "result_count": 2,
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "wooden-chest": {
     "type": "recipe",
@@ -61,7 +65,8 @@
       ]
     ],
     "result": "wooden-chest",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "iron-stick": {
     "type": "recipe",
@@ -74,7 +79,8 @@
     ],
     "result": "iron-stick",
     "result_count": 2,
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "iron-axe": {
     "type": "recipe",
@@ -90,7 +96,8 @@
       ]
     ],
     "result": "iron-axe",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "stone-furnace": {
     "type": "recipe",
@@ -102,7 +109,8 @@
       ]
     ],
     "result": "stone-furnace",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "boiler": {
     "type": "recipe",
@@ -118,7 +126,8 @@
       ]
     ],
     "result": "boiler",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "steam-engine": {
     "type": "recipe",
@@ -157,7 +166,8 @@
       ],
       "result": "steam-engine"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "iron-gear-wheel": {
     "type": "recipe",
@@ -180,7 +190,8 @@
       ],
       "result": "iron-gear-wheel"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "electronic-circuit": {
     "type": "recipe",
@@ -211,7 +222,8 @@
       ],
       "result": "electronic-circuit"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "transport-belt": {
     "type": "recipe",
@@ -228,7 +240,8 @@
     ],
     "result": "transport-belt",
     "result_count": 2,
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "electric-mining-drill": {
     "type": "recipe",
@@ -269,7 +282,8 @@
       ],
       "result": "electric-mining-drill"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "burner-mining-drill": {
     "type": "recipe",
@@ -310,7 +324,8 @@
       ],
       "result": "burner-mining-drill"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "inserter": {
     "type": "recipe",
@@ -330,7 +345,8 @@
       ]
     ],
     "result": "inserter",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "burner-inserter": {
     "type": "recipe",
@@ -346,7 +362,8 @@
       ]
     ],
     "result": "burner-inserter",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "pipe": {
     "type": "recipe",
@@ -369,7 +386,8 @@
       ],
       "result": "pipe"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "offshore-pump": {
     "type": "recipe",
@@ -389,7 +407,8 @@
       ]
     ],
     "result": "offshore-pump",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "copper-cable": {
     "type": "recipe",
@@ -402,7 +421,8 @@
     ],
     "result": "copper-cable",
     "result_count": 2,
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "small-electric-pole": {
     "type": "recipe",
@@ -419,7 +439,8 @@
     ],
     "result": "small-electric-pole",
     "result_count": 2,
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "pistol": {
     "type": "recipe",
@@ -436,7 +457,8 @@
       ]
     ],
     "result": "pistol",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "submachine-gun": {
     "type": "recipe",
@@ -477,7 +499,8 @@
       ],
       "result": "submachine-gun"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "firearm-magazine": {
     "type": "recipe",
@@ -491,11 +514,13 @@
     ],
     "result": "firearm-magazine",
     "result_count": 1,
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "light-armor": {
     "type": "recipe",
     "name": "light-armor",
+    "enabled": true,
     "energy_required": 3,
     "ingredients": [
       [
@@ -524,11 +549,13 @@
       ]
     ],
     "result": "radar",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "small-lamp": {
     "type": "recipe",
     "name": "small-lamp",
+    "enabled": false,
     "ingredients": [
       [
         "electronic-circuit",
@@ -561,11 +588,13 @@
     ],
     "result_count": 2,
     "result": "pipe-to-ground",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "assembling-machine-1": {
     "type": "recipe",
     "name": "assembling-machine-1",
+    "enabled": false,
     "ingredients": [
       [
         "electronic-circuit",
@@ -597,11 +626,13 @@
       ]
     ],
     "result": "repair-pack",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "gun-turret": {
     "type": "recipe",
     "name": "gun-turret",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -623,6 +654,7 @@
   "piercing-rounds-magazine": {
     "type": "recipe",
     "name": "piercing-rounds-magazine",
+    "enabled": false,
     "energy_required": 3,
     "ingredients": [
       [
@@ -644,6 +676,7 @@
   "uranium-rounds-magazine": {
     "type": "recipe",
     "name": "uranium-rounds-magazine",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -661,6 +694,7 @@
   "rocket": {
     "type": "recipe",
     "name": "rocket",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -682,6 +716,7 @@
   "explosive-rocket": {
     "type": "recipe",
     "name": "explosive-rocket",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -699,6 +734,7 @@
   "atomic-bomb": {
     "type": "recipe",
     "name": "atomic-bomb",
+    "enabled": false,
     "energy_required": 50,
     "ingredients": [
       [
@@ -720,6 +756,7 @@
   "shotgun-shell": {
     "type": "recipe",
     "name": "shotgun-shell",
+    "enabled": false,
     "energy_required": 3,
     "ingredients": [
       [
@@ -737,6 +774,7 @@
   "piercing-shotgun-shell": {
     "type": "recipe",
     "name": "piercing-shotgun-shell",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -758,6 +796,7 @@
   "railgun-dart": {
     "type": "recipe",
     "name": "railgun-dart",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -811,7 +850,8 @@
       ],
       "result": "cannon-shell"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "explosive-cannon-shell": {
     "type": "recipe",
@@ -852,11 +892,13 @@
       ],
       "result": "explosive-cannon-shell"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "uranium-cannon-shell": {
     "type": "recipe",
     "name": "uranium-cannon-shell",
+    "enabled": false,
     "energy_required": 12,
     "ingredients": [
       [
@@ -874,6 +916,7 @@
   "explosive-uranium-cannon-shell": {
     "type": "recipe",
     "name": "explosive-uranium-cannon-shell",
+    "enabled": false,
     "energy_required": 12,
     "ingredients": [
       [
@@ -892,6 +935,7 @@
     "type": "recipe",
     "name": "flamethrower-ammo",
     "category": "chemistry",
+    "enabled": false,
     "energy_required": 6,
     "ingredients": [
       {
@@ -915,6 +959,7 @@
   "poison-capsule": {
     "type": "recipe",
     "name": "poison-capsule",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -936,6 +981,7 @@
   "slowdown-capsule": {
     "type": "recipe",
     "name": "slowdown-capsule",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -957,6 +1003,7 @@
   "grenade": {
     "type": "recipe",
     "name": "grenade",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -974,6 +1021,7 @@
   "cluster-grenade": {
     "type": "recipe",
     "name": "cluster-grenade",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -995,6 +1043,7 @@
   "defender-capsule": {
     "type": "recipe",
     "name": "defender-capsule",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -1016,6 +1065,7 @@
   "distractor-capsule": {
     "type": "recipe",
     "name": "distractor-capsule",
+    "enabled": false,
     "energy_required": 15,
     "ingredients": [
       [
@@ -1033,6 +1083,7 @@
   "destroyer-capsule": {
     "type": "recipe",
     "name": "destroyer-capsule",
+    "enabled": false,
     "energy_required": 15,
     "ingredients": [
       [
@@ -1050,6 +1101,7 @@
   "discharge-defense-remote": {
     "type": "recipe",
     "name": "discharge-defense-remote",
+    "enabled": false,
     "ingredients": [
       [
         "electronic-circuit",
@@ -1062,6 +1114,7 @@
   "night-vision-equipment": {
     "type": "recipe",
     "name": "night-vision-equipment",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -1079,6 +1132,7 @@
   "energy-shield-equipment": {
     "type": "recipe",
     "name": "energy-shield-equipment",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -1096,6 +1150,7 @@
   "energy-shield-mk2-equipment": {
     "type": "recipe",
     "name": "energy-shield-mk2-equipment",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -1113,6 +1168,7 @@
   "battery-equipment": {
     "type": "recipe",
     "name": "battery-equipment",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -1130,6 +1186,7 @@
   "battery-mk2-equipment": {
     "type": "recipe",
     "name": "battery-mk2-equipment",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -1147,6 +1204,7 @@
   "solar-panel-equipment": {
     "type": "recipe",
     "name": "solar-panel-equipment",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -1168,6 +1226,7 @@
   "fusion-reactor-equipment": {
     "type": "recipe",
     "name": "fusion-reactor-equipment",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -1181,6 +1240,7 @@
   "personal-laser-defense-equipment": {
     "type": "recipe",
     "name": "personal-laser-defense-equipment",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -1202,6 +1262,7 @@
   "discharge-defense-equipment": {
     "type": "recipe",
     "name": "discharge-defense-equipment",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -1223,6 +1284,7 @@
   "exoskeleton-equipment": {
     "type": "recipe",
     "name": "exoskeleton-equipment",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -1244,6 +1306,7 @@
   "personal-roboport-equipment": {
     "type": "recipe",
     "name": "personal-roboport-equipment",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -1269,6 +1332,7 @@
   "personal-roboport-mk2-equipment": {
     "type": "recipe",
     "name": "personal-roboport-mk2-equipment",
+    "enabled": false,
     "energy_required": 20,
     "ingredients": [
       [
@@ -1306,12 +1370,14 @@
         ]
       ],
       "result": "steel-plate"
-    }
+    },
+    "enabled": true
   },
   "basic-oil-processing": {
     "type": "recipe",
     "name": "basic-oil-processing",
     "category": "oil-processing",
+    "enabled": false,
     "energy_required": 5,
     "ingredients": [
       {
@@ -1345,6 +1411,7 @@
     "type": "recipe",
     "name": "advanced-oil-processing",
     "category": "oil-processing",
+    "enabled": false,
     "energy_required": 5,
     "ingredients": [
       {
@@ -1383,6 +1450,7 @@
     "type": "recipe",
     "name": "coal-liquefaction",
     "category": "oil-processing",
+    "enabled": false,
     "energy_required": 5,
     "ingredients": [
       {
@@ -1426,6 +1494,7 @@
     "type": "recipe",
     "name": "heavy-oil-cracking",
     "category": "chemistry",
+    "enabled": false,
     "energy_required": 3,
     "ingredients": [
       {
@@ -1454,6 +1523,7 @@
     "type": "recipe",
     "name": "light-oil-cracking",
     "category": "chemistry",
+    "enabled": false,
     "energy_required": 3,
     "ingredients": [
       {
@@ -1483,6 +1553,7 @@
     "name": "sulfuric-acid",
     "category": "chemistry",
     "energy_required": 1,
+    "enabled": false,
     "ingredients": [
       {
         "type": "item",
@@ -1514,6 +1585,7 @@
     "name": "plastic-bar",
     "category": "chemistry",
     "energy_required": 1,
+    "enabled": false,
     "ingredients": [
       {
         "type": "fluid",
@@ -1555,6 +1627,7 @@
     ],
     "icon": "__base__/graphics/icons/solid-fuel-from-light-oil.png",
     "subgroup": "fluid-recipes",
+    "enabled": false,
     "order": "b[fluid-chemistry]-c[solid-fuel-from-light-oil]"
   },
   "solid-fuel-from-petroleum-gas": {
@@ -1578,6 +1651,7 @@
     ],
     "icon": "__base__/graphics/icons/solid-fuel-from-petroleum-gas.png",
     "subgroup": "fluid-recipes",
+    "enabled": false,
     "order": "b[fluid-chemistry]-d[solid-fuel-from-petroleum-gas]"
   },
   "solid-fuel-from-heavy-oil": {
@@ -1601,6 +1675,7 @@
     ],
     "icon": "__base__/graphics/icons/solid-fuel-from-heavy-oil.png",
     "subgroup": "fluid-recipes",
+    "enabled": false,
     "order": "b[fluid-chemistry]-e[solid-fuel-from-heavy-oil]"
   },
   "sulfur": {
@@ -1608,6 +1683,7 @@
     "name": "sulfur",
     "category": "chemistry",
     "energy_required": 1,
+    "enabled": false,
     "ingredients": [
       {
         "type": "fluid",
@@ -1632,6 +1708,7 @@
     "type": "recipe",
     "name": "lubricant",
     "category": "chemistry",
+    "enabled": false,
     "energy_required": 1,
     "ingredients": [
       {
@@ -1655,6 +1732,7 @@
     "category": "crafting",
     "energy_required": 1,
     "subgroup": "intermediate-product",
+    "enabled": false,
     "ingredients": [
       {
         "type": "item",
@@ -1673,6 +1751,7 @@
   "long-handed-inserter": {
     "type": "recipe",
     "name": "long-handed-inserter",
+    "enabled": false,
     "ingredients": [
       [
         "iron-gear-wheel",
@@ -1693,6 +1772,7 @@
   "fast-inserter": {
     "type": "recipe",
     "name": "fast-inserter",
+    "enabled": false,
     "ingredients": [
       [
         "electronic-circuit",
@@ -1713,6 +1793,7 @@
   "filter-inserter": {
     "type": "recipe",
     "name": "filter-inserter",
+    "enabled": false,
     "ingredients": [
       [
         "fast-inserter",
@@ -1729,6 +1810,7 @@
   "stack-inserter": {
     "type": "recipe",
     "name": "stack-inserter",
+    "enabled": false,
     "ingredients": [
       [
         "iron-gear-wheel",
@@ -1753,6 +1835,7 @@
   "stack-filter-inserter": {
     "type": "recipe",
     "name": "stack-filter-inserter",
+    "enabled": false,
     "ingredients": [
       [
         "stack-inserter",
@@ -1769,6 +1852,7 @@
   "speed-module": {
     "type": "recipe",
     "name": "speed-module",
+    "enabled": false,
     "ingredients": [
       [
         "advanced-circuit",
@@ -1786,6 +1870,7 @@
   "speed-module-2": {
     "type": "recipe",
     "name": "speed-module-2",
+    "enabled": false,
     "ingredients": [
       [
         "speed-module",
@@ -1807,6 +1892,7 @@
   "speed-module-3": {
     "type": "recipe",
     "name": "speed-module-3",
+    "enabled": false,
     "ingredients": [
       [
         "speed-module-2",
@@ -1828,6 +1914,7 @@
   "productivity-module": {
     "type": "recipe",
     "name": "productivity-module",
+    "enabled": false,
     "ingredients": [
       [
         "advanced-circuit",
@@ -1845,6 +1932,7 @@
   "productivity-module-2": {
     "type": "recipe",
     "name": "productivity-module-2",
+    "enabled": false,
     "ingredients": [
       [
         "productivity-module",
@@ -1866,6 +1954,7 @@
   "productivity-module-3": {
     "type": "recipe",
     "name": "productivity-module-3",
+    "enabled": false,
     "ingredients": [
       [
         "productivity-module-2",
@@ -1887,6 +1976,7 @@
   "effectivity-module": {
     "type": "recipe",
     "name": "effectivity-module",
+    "enabled": false,
     "ingredients": [
       [
         "advanced-circuit",
@@ -1904,6 +1994,7 @@
   "effectivity-module-2": {
     "type": "recipe",
     "name": "effectivity-module-2",
+    "enabled": false,
     "ingredients": [
       [
         "effectivity-module",
@@ -1925,6 +2016,7 @@
   "effectivity-module-3": {
     "type": "recipe",
     "name": "effectivity-module-3",
+    "enabled": false,
     "ingredients": [
       [
         "effectivity-module-2",
@@ -1946,6 +2038,7 @@
   "player-port": {
     "type": "recipe",
     "name": "player-port",
+    "enabled": false,
     "ingredients": [
       [
         "electronic-circuit",
@@ -1966,6 +2059,7 @@
   "fast-transport-belt": {
     "type": "recipe",
     "name": "fast-transport-belt",
+    "enabled": false,
     "ingredients": [
       [
         "iron-gear-wheel",
@@ -2018,12 +2112,14 @@
         }
       ],
       "result": "express-transport-belt"
-    }
+    },
+    "enabled": true
   },
   "solar-panel": {
     "type": "recipe",
     "name": "solar-panel",
     "energy_required": 10,
+    "enabled": false,
     "ingredients": [
       [
         "steel-plate",
@@ -2086,11 +2182,13 @@
       ],
       "result": "assembling-machine-2"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "assembling-machine-3": {
     "type": "recipe",
     "name": "assembling-machine-3",
+    "enabled": false,
     "ingredients": [
       [
         "speed-module",
@@ -2107,6 +2205,7 @@
   "car": {
     "type": "recipe",
     "name": "car",
+    "enabled": false,
     "ingredients": [
       [
         "engine-unit",
@@ -2169,11 +2268,13 @@
       ],
       "result": "tank"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "rail": {
     "type": "recipe",
     "name": "rail",
+    "enabled": false,
     "ingredients": [
       [
         "stone",
@@ -2195,6 +2296,7 @@
   "locomotive": {
     "type": "recipe",
     "name": "locomotive",
+    "enabled": false,
     "ingredients": [
       [
         "engine-unit",
@@ -2215,6 +2317,7 @@
   "cargo-wagon": {
     "type": "recipe",
     "name": "cargo-wagon",
+    "enabled": false,
     "ingredients": [
       [
         "iron-gear-wheel",
@@ -2235,6 +2338,7 @@
   "fluid-wagon": {
     "type": "recipe",
     "name": "fluid-wagon",
+    "enabled": false,
     "energy_required": 1.5,
     "ingredients": [
       [
@@ -2260,6 +2364,7 @@
   "train-stop": {
     "type": "recipe",
     "name": "train-stop",
+    "enabled": false,
     "ingredients": [
       [
         "electronic-circuit",
@@ -2280,6 +2385,7 @@
   "rail-signal": {
     "type": "recipe",
     "name": "rail-signal",
+    "enabled": false,
     "ingredients": [
       [
         "electronic-circuit",
@@ -2296,6 +2402,7 @@
   "rail-chain-signal": {
     "type": "recipe",
     "name": "rail-chain-signal",
+    "enabled": false,
     "ingredients": [
       [
         "electronic-circuit",
@@ -2312,6 +2419,7 @@
   "heavy-armor": {
     "type": "recipe",
     "name": "heavy-armor",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -2329,6 +2437,7 @@
   "modular-armor": {
     "type": "recipe",
     "name": "modular-armor",
+    "enabled": false,
     "energy_required": 15,
     "ingredients": [
       [
@@ -2346,6 +2455,7 @@
   "power-armor": {
     "type": "recipe",
     "name": "power-armor",
+    "enabled": false,
     "energy_required": 20,
     "ingredients": [
       [
@@ -2367,6 +2477,7 @@
   "power-armor-mk2": {
     "type": "recipe",
     "name": "power-armor-mk2",
+    "enabled": false,
     "energy_required": 25,
     "ingredients": [
       [
@@ -2392,6 +2503,7 @@
   "iron-chest": {
     "type": "recipe",
     "name": "iron-chest",
+    "enabled": true,
     "ingredients": [
       [
         "iron-plate",
@@ -2404,6 +2516,7 @@
   "steel-chest": {
     "type": "recipe",
     "name": "steel-chest",
+    "enabled": false,
     "ingredients": [
       [
         "steel-plate",
@@ -2416,6 +2529,7 @@
   "stone-wall": {
     "type": "recipe",
     "name": "stone-wall",
+    "enabled": false,
     "ingredients": [
       [
         "stone-brick",
@@ -2428,6 +2542,7 @@
   "gate": {
     "type": "recipe",
     "name": "gate",
+    "enabled": false,
     "ingredients": [
       [
         "stone-wall",
@@ -2448,6 +2563,7 @@
   "flamethrower": {
     "type": "recipe",
     "name": "flamethrower",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -2465,6 +2581,7 @@
   "land-mine": {
     "type": "recipe",
     "name": "land-mine",
+    "enabled": false,
     "energy_required": 5,
     "ingredients": [
       [
@@ -2483,6 +2600,7 @@
   "rocket-launcher": {
     "type": "recipe",
     "name": "rocket-launcher",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -2504,6 +2622,7 @@
   "shotgun": {
     "type": "recipe",
     "name": "shotgun",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -2529,6 +2648,7 @@
   "combat-shotgun": {
     "type": "recipe",
     "name": "combat-shotgun",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -2554,6 +2674,7 @@
   "railgun": {
     "type": "recipe",
     "name": "railgun",
+    "enabled": false,
     "energy_required": 8,
     "ingredients": [
       [
@@ -2591,7 +2712,8 @@
       ]
     ],
     "result": "science-pack-1",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "science-pack-2": {
     "type": "recipe",
@@ -2608,11 +2730,13 @@
       ]
     ],
     "result": "science-pack-2",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "science-pack-3": {
     "type": "recipe",
     "name": "science-pack-3",
+    "enabled": false,
     "energy_required": 12,
     "ingredients": [
       [
@@ -2634,6 +2758,7 @@
   "military-science-pack": {
     "type": "recipe",
     "name": "military-science-pack",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -2656,6 +2781,7 @@
   "production-science-pack": {
     "type": "recipe",
     "name": "production-science-pack",
+    "enabled": false,
     "energy_required": 14,
     "ingredients": [
       [
@@ -2678,6 +2804,7 @@
   "high-tech-science-pack": {
     "type": "recipe",
     "name": "high-tech-science-pack",
+    "enabled": false,
     "energy_required": 14,
     "ingredients": [
       [
@@ -2720,11 +2847,13 @@
       ]
     ],
     "result": "lab",
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "red-wire": {
     "type": "recipe",
     "name": "red-wire",
+    "enabled": false,
     "ingredients": [
       [
         "electronic-circuit",
@@ -2741,6 +2870,7 @@
   "green-wire": {
     "type": "recipe",
     "name": "green-wire",
+    "enabled": false,
     "ingredients": [
       [
         "electronic-circuit",
@@ -2757,6 +2887,7 @@
   "underground-belt": {
     "type": "recipe",
     "name": "underground-belt",
+    "enabled": false,
     "energy_required": 1,
     "ingredients": [
       [
@@ -2775,6 +2906,7 @@
   "fast-underground-belt": {
     "type": "recipe",
     "name": "fast-underground-belt",
+    "enabled": false,
     "ingredients": [
       [
         "iron-gear-wheel",
@@ -2793,6 +2925,7 @@
     "type": "recipe",
     "name": "express-underground-belt",
     "category": "crafting-with-fluid",
+    "enabled": false,
     "ingredients": [
       [
         "iron-gear-wheel",
@@ -2814,6 +2947,7 @@
   "loader": {
     "type": "recipe",
     "name": "loader",
+    "enabled": false,
     "energy_required": 1,
     "ingredients": [
       [
@@ -2843,6 +2977,7 @@
   "fast-loader": {
     "type": "recipe",
     "name": "fast-loader",
+    "enabled": false,
     "energy_required": 3,
     "ingredients": [
       [
@@ -2860,6 +2995,7 @@
   "express-loader": {
     "type": "recipe",
     "name": "express-loader",
+    "enabled": false,
     "energy_required": 10,
     "ingredients": [
       [
@@ -2877,6 +3013,7 @@
   "splitter": {
     "type": "recipe",
     "name": "splitter",
+    "enabled": false,
     "energy_required": 1,
     "ingredients": [
       [
@@ -2898,6 +3035,7 @@
   "fast-splitter": {
     "type": "recipe",
     "name": "fast-splitter",
+    "enabled": false,
     "energy_required": 2,
     "ingredients": [
       [
@@ -2920,6 +3058,7 @@
     "type": "recipe",
     "name": "express-splitter",
     "category": "crafting-with-fluid",
+    "enabled": false,
     "energy_required": 2,
     "ingredients": [
       [
@@ -2981,7 +3120,8 @@
       ],
       "result": "advanced-circuit"
     },
-    "category": "crafting"
+    "category": "crafting",
+    "enabled": true
   },
   "processing-unit": {
     "type": "recipe",
@@ -3024,11 +3164,13 @@
         }
       ],
       "result": "processing-unit"
-    }
+    },
+    "enabled": true
   },
   "logistic-robot": {
     "type": "recipe",
     "name": "logistic-robot",
+    "enabled": false,
     "ingredients": [
       [
         "flying-robot-frame",
@@ -3045,6 +3187,7 @@
   "construction-robot": {
     "type": "recipe",
     "name": "construction-robot",
+    "enabled": false,
     "ingredients": [
       [
         "flying-robot-frame",
@@ -3061,6 +3204,7 @@
   "logistic-chest-passive-provider": {
     "type": "recipe",
     "name": "logistic-chest-passive-provider",
+    "enabled": false,
     "ingredients": [
       [
         "steel-chest",
@@ -3081,6 +3225,7 @@
   "logistic-chest-active-provider": {
     "type": "recipe",
     "name": "logistic-chest-active-provider",
+    "enabled": false,
     "ingredients": [
       [
         "steel-chest",
@@ -3101,6 +3246,7 @@
   "logistic-chest-storage": {
     "type": "recipe",
     "name": "logistic-chest-storage",
+    "enabled": false,
     "ingredients": [
       [
         "steel-chest",
@@ -3121,6 +3267,7 @@
   "logistic-chest-requester": {
     "type": "recipe",
     "name": "logistic-chest-requester",
+    "enabled": false,
     "ingredients": [
       [
         "steel-chest",
@@ -3141,6 +3288,7 @@
   "rocket-silo": {
     "type": "recipe",
     "name": "rocket-silo",
+    "enabled": false,
     "ingredients": [
       [
         "steel-plate",
@@ -3170,6 +3318,7 @@
   "roboport": {
     "type": "recipe",
     "name": "roboport",
+    "enabled": false,
     "ingredients": [
       [
         "steel-plate",
@@ -3191,6 +3340,7 @@
   "steel-axe": {
     "type": "recipe",
     "name": "steel-axe",
+    "enabled": false,
     "ingredients": [
       [
         "steel-plate",
@@ -3207,6 +3357,7 @@
   "big-electric-pole": {
     "type": "recipe",
     "name": "big-electric-pole",
+    "enabled": false,
     "ingredients": [
       [
         "steel-plate",
@@ -3223,6 +3374,7 @@
   "substation": {
     "type": "recipe",
     "name": "substation",
+    "enabled": false,
     "ingredients": [
       [
         "steel-plate",
@@ -3243,6 +3395,7 @@
   "medium-electric-pole": {
     "type": "recipe",
     "name": "medium-electric-pole",
+    "enabled": false,
     "ingredients": [
       [
         "steel-plate",
@@ -3260,6 +3413,7 @@
     "type": "recipe",
     "name": "accumulator",
     "energy_required": 10,
+    "enabled": false,
     "ingredients": [
       [
         "iron-plate",
@@ -3288,6 +3442,7 @@
     ],
     "result": "steel-furnace",
     "energy_required": 3,
+    "enabled": false,
     "category": "crafting"
   },
   "electric-furnace": {
@@ -3309,11 +3464,13 @@
     ],
     "result": "electric-furnace",
     "energy_required": 5,
+    "enabled": false,
     "category": "crafting"
   },
   "beacon": {
     "type": "recipe",
     "name": "beacon",
+    "enabled": false,
     "energy_required": 15,
     "ingredients": [
       [
@@ -3359,6 +3516,7 @@
       ]
     ],
     "result": "pumpjack",
+    "enabled": false,
     "category": "crafting"
   },
   "oil-refinery": {
@@ -3388,6 +3546,7 @@
       ]
     ],
     "result": "oil-refinery",
+    "enabled": false,
     "category": "crafting"
   },
   "engine-unit": {
@@ -3409,7 +3568,8 @@
         2
       ]
     ],
-    "result": "engine-unit"
+    "result": "engine-unit",
+    "enabled": false
   },
   "electric-engine-unit": {
     "type": "recipe",
@@ -3431,7 +3591,8 @@
         2
       ]
     ],
-    "result": "electric-engine-unit"
+    "result": "electric-engine-unit",
+    "enabled": false
   },
   "flying-robot-frame": {
     "type": "recipe",
@@ -3456,6 +3617,7 @@
       ]
     ],
     "result": "flying-robot-frame",
+    "enabled": false,
     "category": "crafting"
   },
   "explosives": {
@@ -3503,7 +3665,8 @@
         }
       ],
       "result": "explosives"
-    }
+    },
+    "enabled": true
   },
   "battery": {
     "type": "recipe",
@@ -3546,12 +3709,14 @@
         ]
       ],
       "result": "battery"
-    }
+    },
+    "enabled": true
   },
   "storage-tank": {
     "type": "recipe",
     "name": "storage-tank",
     "energy_required": 3,
+    "enabled": false,
     "ingredients": [
       [
         "iron-plate",
@@ -3569,6 +3734,7 @@
     "type": "recipe",
     "name": "pump",
     "energy_required": 2,
+    "enabled": false,
     "ingredients": [
       [
         "engine-unit",
@@ -3590,6 +3756,7 @@
     "type": "recipe",
     "name": "chemical-plant",
     "energy_required": 5,
+    "enabled": false,
     "ingredients": [
       [
         "steel-plate",
@@ -3615,6 +3782,7 @@
     "type": "recipe",
     "name": "small-plane",
     "energy_required": 30,
+    "enabled": false,
     "category": "crafting",
     "ingredients": [
       [
@@ -3639,6 +3807,7 @@
   "arithmetic-combinator": {
     "type": "recipe",
     "name": "arithmetic-combinator",
+    "enabled": false,
     "ingredients": [
       [
         "copper-cable",
@@ -3655,6 +3824,7 @@
   "decider-combinator": {
     "type": "recipe",
     "name": "decider-combinator",
+    "enabled": false,
     "ingredients": [
       [
         "copper-cable",
@@ -3671,6 +3841,7 @@
   "constant-combinator": {
     "type": "recipe",
     "name": "constant-combinator",
+    "enabled": false,
     "ingredients": [
       [
         "copper-cable",
@@ -3687,6 +3858,7 @@
   "power-switch": {
     "type": "recipe",
     "name": "power-switch",
+    "enabled": false,
     "energy_required": 2,
     "ingredients": [
       [
@@ -3708,6 +3880,7 @@
   "programmable-speaker": {
     "type": "recipe",
     "name": "programmable-speaker",
+    "enabled": false,
     "energy_required": 2,
     "ingredients": [
       [
@@ -3765,12 +3938,14 @@
         ]
       ],
       "result": "low-density-structure"
-    }
+    },
+    "enabled": true
   },
   "rocket-fuel": {
     "type": "recipe",
     "name": "rocket-fuel",
     "energy_required": 30,
+    "enabled": false,
     "category": "crafting",
     "ingredients": [
       [
@@ -3784,6 +3959,7 @@
     "type": "recipe",
     "name": "rocket-control-unit",
     "energy_required": 30,
+    "enabled": false,
     "category": "crafting",
     "ingredients": [
       [
@@ -3801,6 +3977,7 @@
     "type": "recipe",
     "name": "rocket-part",
     "energy_required": 3,
+    "enabled": false,
     "category": "rocket-building",
     "ingredients": [
       [
@@ -3822,6 +3999,7 @@
     "type": "recipe",
     "name": "satellite",
     "energy_required": 3,
+    "enabled": false,
     "category": "crafting",
     "ingredients": [
       [
@@ -3855,6 +4033,7 @@
     "type": "recipe",
     "name": "concrete",
     "energy_required": 10,
+    "enabled": false,
     "category": "crafting-with-fluid",
     "ingredients": [
       [
@@ -3878,6 +4057,7 @@
     "type": "recipe",
     "name": "hazard-concrete",
     "energy_required": 0.25,
+    "enabled": false,
     "category": "crafting",
     "ingredients": [
       [
@@ -3892,6 +4072,7 @@
     "type": "recipe",
     "name": "landfill",
     "energy_required": 0.5,
+    "enabled": false,
     "category": "crafting",
     "ingredients": [
       [
@@ -3906,6 +4087,7 @@
     "type": "recipe",
     "name": "electric-energy-interface",
     "energy_required": 0.5,
+    "enabled": false,
     "ingredients": [
       [
         "iron-plate",
@@ -3923,6 +4105,7 @@
     "type": "recipe",
     "name": "nuclear-reactor",
     "energy_required": 4,
+    "enabled": false,
     "ingredients": [
       [
         "concrete",
@@ -3948,6 +4131,7 @@
     "type": "recipe",
     "name": "centrifuge",
     "energy_required": 4,
+    "enabled": false,
     "ingredients": [
       [
         "concrete",
@@ -3973,6 +4157,7 @@
     "type": "recipe",
     "name": "uranium-processing",
     "energy_required": 10,
+    "enabled": false,
     "category": "centrifuging",
     "ingredients": [
       [
@@ -4002,6 +4187,7 @@
     "type": "recipe",
     "name": "kovarex-enrichment-process",
     "energy_required": 50,
+    "enabled": false,
     "category": "centrifuging",
     "ingredients": [
       [
@@ -4033,6 +4219,7 @@
     "type": "recipe",
     "name": "nuclear-fuel-reprocessing",
     "energy_required": 50,
+    "enabled": false,
     "category": "centrifuging",
     "ingredients": [
       [
@@ -4055,6 +4242,7 @@
     "type": "recipe",
     "name": "uranium-fuel-cell",
     "energy_required": 10,
+    "enabled": false,
     "ingredients": [
       [
         "iron-plate",
@@ -4076,6 +4264,7 @@
   "heat-exchanger": {
     "type": "recipe",
     "name": "heat-exchanger",
+    "enabled": false,
     "ingredients": [
       [
         "steel-plate",
@@ -4096,6 +4285,7 @@
   "heat-pipe": {
     "type": "recipe",
     "name": "heat-pipe",
+    "enabled": false,
     "ingredients": [
       [
         "steel-plate",
@@ -4112,6 +4302,7 @@
   "steam-turbine": {
     "type": "recipe",
     "name": "steam-turbine",
+    "enabled": false,
     "ingredients": [
       [
         "iron-gear-wheel",
@@ -4132,6 +4323,7 @@
   "laser-turret": {
     "type": "recipe",
     "name": "laser-turret",
+    "enabled": false,
     "energy_required": 20,
     "ingredients": [
       [
@@ -4153,6 +4345,7 @@
   "flamethrower-turret": {
     "type": "recipe",
     "name": "flamethrower-turret",
+    "enabled": false,
     "energy_required": 20,
     "ingredients": [
       [
@@ -4182,6 +4375,7 @@
     "energy_required": 1,
     "subgroup": "fill-barrel",
     "order": "b[fill-water-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
@@ -4240,6 +4434,7 @@
     "energy_required": 1,
     "subgroup": "empty-barrel",
     "order": "c[empty-water-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
@@ -4298,6 +4493,7 @@
     "energy_required": 1,
     "subgroup": "fill-barrel",
     "order": "b[fill-crude-oil-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
@@ -4356,6 +4552,7 @@
     "energy_required": 1,
     "subgroup": "empty-barrel",
     "order": "c[empty-crude-oil-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
@@ -4414,6 +4611,7 @@
     "energy_required": 1,
     "subgroup": "fill-barrel",
     "order": "b[fill-heavy-oil-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
@@ -4472,6 +4670,7 @@
     "energy_required": 1,
     "subgroup": "empty-barrel",
     "order": "c[empty-heavy-oil-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
@@ -4530,6 +4729,7 @@
     "energy_required": 1,
     "subgroup": "fill-barrel",
     "order": "b[fill-light-oil-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
@@ -4588,6 +4788,7 @@
     "energy_required": 1,
     "subgroup": "empty-barrel",
     "order": "c[empty-light-oil-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
@@ -4646,6 +4847,7 @@
     "energy_required": 1,
     "subgroup": "fill-barrel",
     "order": "b[fill-petroleum-gas-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
@@ -4704,6 +4906,7 @@
     "energy_required": 1,
     "subgroup": "empty-barrel",
     "order": "c[empty-petroleum-gas-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
@@ -4762,6 +4965,7 @@
     "energy_required": 1,
     "subgroup": "fill-barrel",
     "order": "b[fill-lubricant-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
@@ -4820,6 +5024,7 @@
     "energy_required": 1,
     "subgroup": "empty-barrel",
     "order": "c[empty-lubricant-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
@@ -4878,6 +5083,7 @@
     "energy_required": 1,
     "subgroup": "fill-barrel",
     "order": "b[fill-sulfuric-acid-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-fill.png"
@@ -4936,6 +5142,7 @@
     "energy_required": 1,
     "subgroup": "empty-barrel",
     "order": "c[empty-sulfuric-acid-barrel]",
+    "enabled": false,
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/barrel-empty.png"
