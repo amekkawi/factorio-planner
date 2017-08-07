@@ -16,7 +16,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/static/'
+        publicPath: '/static/',
     },
 
     module: {
@@ -31,8 +31,8 @@ module.exports = {
             {
                 test: /\.json?$/,
                 use: [
-                    'json-loader'
-                ]
+                    'json-loader',
+                ],
             },
             {
                 test: /\.scss$/,
@@ -44,17 +44,17 @@ module.exports = {
                             //modules: true,
                             //localIdentName: '[local]'
                             //localIdentName: '[name]---[local]---[hash:base64:5]'
-                        }
+                        },
                     },
-                    'sass-loader'
-                ]
+                    'sass-loader',
+                ],
             },
             {
                 test: /\.css$/,
                 use: [
                     'style-loader',
-                    'css-loader'
-                ]
+                    'css-loader',
+                ],
             },
             {
                 test: /\.(jpg|png|svg)$/,
@@ -62,7 +62,7 @@ module.exports = {
                 options: {
                     limit: 25000,
                 },
-            }
+            },
         ],
     },
 
@@ -72,7 +72,7 @@ module.exports = {
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development')
-        })
+        }),
     ],
 
     devServer: {
