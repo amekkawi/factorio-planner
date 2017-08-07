@@ -68,6 +68,25 @@ getRawFileNames()
         })();
     })
     .then(() => {
+        console.log('Saving lang-en-base.json');
+        return readIniFile(path.join(__dirname, 'raw/locale/en/base.cfg'))
+            .then((json) => {
+                return writeFile(
+                    path.join(__dirname, 'data', 'lang-en-base.json'),
+                    JSON.stringify(Object.keys(json).reduce((ret, key) => {
+                        if (filtering.includeLang.indexOf(key) >= 0) {
+                            ret[key] = json[key];
+                        }
+                        return ret;
+                    }, {}))
+                )
+                    .catch((err) => {
+                        console.error(`Failed to save lang-en-base.json: ${err.message}`);
+                        throw err;
+                    });
+            });
+    })
+    .then(() => {
         return PromiseMap(Array.from(icons).sort(), (icon) => {
             const iconPath = `../../icons/${icon.replace(/^__base__\//, '')}`;
             return statFile(path.join(__dirname, `data/${iconPath}`))
@@ -110,6 +129,47 @@ function getRawFileNames() {
 
 function isRawFile(filename) {
     return filename.match(/^.+\.json$/);
+}
+
+function readIniFile(path) {
+    return new Promise((resolve, reject) => {
+        fs.readFile(path, { encoding: 'utf8' }, (err, data) => {
+            if (err) {
+                reject(err);
+            }
+            else {
+                resolve(data);
+            }
+        });
+    })
+        .then((data) => {
+            const ret = {};
+            let section = null;
+            for (const line of data.split(/\n/g)) {
+                if (line.length) {
+                    const match = line.match(/^(?:\[(.+)]|([A-Za-z0-9#_-]+)=(.*))$/);
+                    if (match) {
+                        if (match[1]) {
+                            section = match[1];
+                            ret[section] = {};
+                        }
+                        else if (match[2] && section != null) {
+                            // TODO: Handle escaped characters (i.e. "\n")
+                            ret[section][match[2]] = match[3];
+                        }
+                        else {
+                            // eslint-disable-next-line no-console
+                            console.log('orphan line', match);
+                        }
+                    }
+                    else {
+                        // eslint-disable-next-line no-console
+                        console.log('not match', JSON.stringify(line));
+                    }
+                }
+            }
+            return ret;
+        });
 }
 
 function readJsonFile(path) {

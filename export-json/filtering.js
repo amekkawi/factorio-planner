@@ -27,3 +27,11 @@ exports.includeRaw = [
     'technology.json',
     'tool.json',
 ];
+
+exports.includeLang = [
+    'entity-name',
+    'fluid-name',
+    'item-name',
+    'recipe-name',
+    'technology-name',
+];
