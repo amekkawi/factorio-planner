@@ -50,6 +50,10 @@ export function defaultVal(defaultVal) {
 export function allow(values, {
     message = 'is not a valid value',
 } = {}) {
+    if (!values || !Array.isArray(values)) {
+        throw new Error('invalid argument for allow()');
+    }
+
     values = new Set(values);
     return function(val) {
         if (!values.has(val)) {
