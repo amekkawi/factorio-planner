@@ -118,23 +118,27 @@ export function getBlockProto(block) {
 export function validateBlock(block) {
     if (block.type === 'AssemblingMachineBlock' || block.type === 'FurnaceBlock' || block.type === 'MiningDrillBlock') {
         const blockProto = getBlockProto(block);
+        const isValidProto = !!blockProto;
         const recipeProto = getBlockRecipeProto(block);
-        const isValidRecipe = isValidRecipeForProto(blockProto, recipeProto);
-        const isValidModules = !block.modules || isValidModulesForProto(blockProto, block.modules)
+        const isValidRecipe = isValidProto && isValidRecipeForProto(blockProto, recipeProto);
+        const isValidModules = isValidProto && !block.modules || isValidModulesForProto(blockProto, block.modules)
             && isValidModulesForRecipe(recipeProto, block.modules);
 
         return {
-            isValid: isValidRecipe && isValidModules,
+            isValid: isValidProto && isValidRecipe && isValidModules,
+            isValidProto,
             isValidRecipe,
             isValidModules,
         };
     }
     else if (block.type === 'BeaconBlock') {
         const blockProto = getBlockProto(block);
-        const isValidModules = !block.modules || isValidModulesForProto(blockProto, block.modules);
+        const isValidProto = !!blockProto;
+        const isValidModules = isValidProto && !block.modules || isValidModulesForProto(blockProto, block.modules);
 
         return {
             isValid: isValidModules,
+            isValidProto,
             isValidModules,
         };
     }
@@ -145,12 +149,15 @@ export function validateBlock(block) {
     }
     else {
         warn(`Unexpected block type for ${block.blockId}: ${block.type}`);
+        return {
+            isValid: false,
+        };
     }
 }
 
 export function isValidConnection(connection, srcBlock, destBlock) {
-    if (connection.type === 'results') {
-        if (!isIngredientSender(srcBlock.type) || isIngredientReceiver(destBlock.type)) {
+    if (connection.type === 'result') {
+        if (!isIngredientSender(srcBlock.type) || !isIngredientReceiver(destBlock.type)) {
             return false;
         }
 
@@ -160,11 +167,9 @@ export function isValidConnection(connection, srcBlock, destBlock) {
             return false;
         }
 
+        // Make sure the src outputs the results and the dest needs the results as ingredients.
         for (const result of connection.meta.results) {
-            const resultComparator = ingredientComparator.bind(null, result);
-
-            // Make sure the src outputs the result and the dest needs it as an ingredient.
-            if (!srcResults.some(resultComparator) || !destIngredients.some(resultComparator)) {
+            if (!isValidConnectionResult(srcResults, destIngredients, result)) {
                 return false;
             }
         }
@@ -186,8 +191,24 @@ export function isValidConnection(connection, srcBlock, destBlock) {
 
         return true;
     }
+    else {
+        warn(`Unexpected connection type: ${connection.type}`);
+    }
 
     return false;
+}
+
+/**
+ * Make sure the src outputs the result and the dest needs it as an ingredient.
+ *
+ * @param srcResults
+ * @param destIngredients
+ * @param result
+ * @returns {boolean}
+ */
+export function isValidConnectionResult(srcResults, destIngredients, result) {
+    const resultComparator = ingredientComparator.bind(null, result);
+    return srcResults.some(resultComparator) && destIngredients.some(resultComparator);
 }
 
 export function calculateOutputRates(block, effect) {
