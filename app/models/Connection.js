@@ -52,12 +52,18 @@ schemaByType.effect = V.object()
     });
 
 export function createConnection(connectionId, props) {
-    if (!props || !schemaByType[props.type]) {
-        baseSchema.validate(props);
+    try {
+        if (!props || !schemaByType[props.type]) {
+            baseSchema.validate(props);
+        }
+        else {
+            props = schemaByType[props.type].validate(props);
+            props.connectionId = connectionId;
+            return props;
+        }
     }
-    else {
-        props = schemaByType[props.type].validate(props);
-        props.connectionId = connectionId;
-        return props;
+    catch (err) {
+        err.message = `[Connection ${connectionId}] ${err.message}`;
+        throw err;
     }
 }

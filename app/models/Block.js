@@ -63,12 +63,18 @@ schemaByType.SupplyBlock = V.object()
     });
 
 export function createBlock(blockId, props) {
-    if (!props || !schemaByType[props.type]) {
-        baseSchema.validate(props);
+    try {
+        if (!props || !schemaByType[props.type]) {
+            baseSchema.validate(props);
+        }
+        else {
+            props = schemaByType[props.type].validate(props);
+            props.blockId = blockId;
+            return props;
+        }
     }
-    else {
-        props = schemaByType[props.type].validate(props);
-        props.blockId = blockId;
-        return props;
+    catch (err) {
+        err.message = `[Block ${blockId}] ${err.message}`;
+        throw err;
     }
 }
