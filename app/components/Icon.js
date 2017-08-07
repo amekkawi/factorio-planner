@@ -31,6 +31,13 @@ export class Icon extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        const { type, name, loadIcon } = this.props;
+        if ((type !== nextProps.type || name !== nextProps.name) && loadIcon) {
+            loadIcon(nextProps.type, nextProps.name);
+        }
+    }
+
     render() {
         const {
             type, name, className,
