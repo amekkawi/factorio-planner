@@ -24,6 +24,7 @@ for (const recipeKey of Object.keys(exportData.recipe)) {
         allowedRecipeSet.add(recipeProto);
     }
     else {
+        // eslint-disable-next-line no-console
         console.log('Omitting recipe', recipeProto.name);
     }
 }

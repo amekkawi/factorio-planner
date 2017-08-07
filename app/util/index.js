@@ -2,6 +2,7 @@ const warnings = new Set();
 export function warn(message) {
     if (!warnings.has(message)) {
         warnings.add(message);
+        // eslint-disable-next-line no-console
         console.warn(message);
     }
 }
