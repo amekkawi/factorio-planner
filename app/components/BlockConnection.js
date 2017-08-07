@@ -4,7 +4,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import * as platformUtil from '../util/platform';
 import { actions } from '../state/reducers';
-import { dragDeltaSelector, graphSelector } from '../state/selectors';
+import { dragDeltaSelector, graphSelector, validatedConnectionsSelector } from '../state/selectors';
 import { getBlockTypeRadius } from '../util';
 import { calcAngle, calcMidpoint, calcAngledDistance, calcRadian, calcDistance } from '../util/math';
 import HoverContainer from './HoverContainer';
@@ -258,7 +258,7 @@ const mapStateToProps = (state, { connectionId }) => {
     const networkId = graph.connectionToNetwork[connectionId];
     const isCyclic = !!networkId && !!graph.networks[networkId].cyclicConnections[connectionId];
 
-    const connection = state.connections[connectionId];
+    const connection = validatedConnectionsSelector(state)[connectionId];
     const srcBlock = connection && state.blocks[connection.srcBlockId];
     const destBlock = connection && state.blocks[connection.destBlockId];
 
@@ -268,7 +268,7 @@ const mapStateToProps = (state, { connectionId }) => {
 
     return {
         ...connection,
-        isValid: !isCyclic,
+        isValid: connection.isValid && !isCyclic,
         isCyclic,
         isSelected: !!state.surface.selectedById[connectionId],
         isHoverDisabled,

@@ -232,11 +232,11 @@ class IOBlock extends Component {
         const {
             blockId, type, name, x, y, dragDelta,
             quantity, ringRotate,
-            simpleMode, isValid, isSelected,
+            simpleMode, isValid, isValidProto, isSelected,
             isHoverDisabled, isHovered, onHoverOver, onHoverOut,
         } = this.props;
 
-        const blockProto = factorio.getProto(getProtoNameForBlockType(type), name);
+        const blockProto = isValidProto && factorio.getProto(getProtoNameForBlockType(type), name);
 
         const baseRadius = 54;
         const width = 22;
@@ -277,7 +277,7 @@ class IOBlock extends Component {
 
                 {this.renderConnectors(baseRadius, !isHoverDisabled && isHovered ? width : 6)}
                 {!simpleMode && this.renderBlockIcon(blockProto, quantity)}
-                {!simpleMode && this.renderModules(blockProto)}
+                {!simpleMode && isValidProto && this.renderModules(blockProto)}
                 {this.renderRecipeIcon()}
             </HoverContainer>
         );
