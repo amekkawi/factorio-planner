@@ -20,7 +20,7 @@ const schemaByType = {};
 schemaByType.AssemblingMachineBlock = V.object()
     .keys({
         ...baseKeys,
-        quantity: V.required().number().integer().min(1),
+        quantity: V.default(1).number().integer().min(1),
         name: V.string().min(1),
         recipeType: V.string().min(1),
         recipeName: V.string().min(1),
@@ -38,7 +38,7 @@ schemaByType.MiningDrillBlock = schemaByType.AssemblingMachineBlock;
 schemaByType.BeaconBlock = V.object()
     .keys({
         ...baseKeys,
-        quantity: V.required().number().integer().min(1),
+        quantity: V.default(1).number().integer().min(1),
         name: V.string().min(1),
         modules: V.array()
             .default(Array)
@@ -51,13 +51,12 @@ schemaByType.BeaconBlock = V.object()
 schemaByType.SupplyBlock = V.object()
     .keys({
         ...baseKeys,
-        quantity: V.required().number().integer().min(1),
         name: V.string().min(1),
         result: V.object().required().keys({
             type: V.string().min(1),
             name: V.string().min(1),
             rate: V.alternatives().try([
-                V.allow('infinite'),
+                V.allow(['infinite']),
                 V.number().greater(0),
             ]).default('infinite'),
         }),
