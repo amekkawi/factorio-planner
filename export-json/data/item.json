@@ -1410,6 +1410,12 @@
   "water-barrel": {
     "type": "item",
     "name": "water-barrel",
+    "localised_name": [
+      "item-name.filled-barrel",
+      [
+        "fluid-name.water"
+      ]
+    ],
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/empty-barrel.png"
@@ -1442,6 +1448,12 @@
   "crude-oil-barrel": {
     "type": "item",
     "name": "crude-oil-barrel",
+    "localised_name": [
+      "item-name.filled-barrel",
+      [
+        "fluid-name.crude-oil"
+      ]
+    ],
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/empty-barrel.png"
@@ -1474,6 +1486,12 @@
   "heavy-oil-barrel": {
     "type": "item",
     "name": "heavy-oil-barrel",
+    "localised_name": [
+      "item-name.filled-barrel",
+      [
+        "fluid-name.heavy-oil"
+      ]
+    ],
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/empty-barrel.png"
@@ -1506,6 +1524,12 @@
   "light-oil-barrel": {
     "type": "item",
     "name": "light-oil-barrel",
+    "localised_name": [
+      "item-name.filled-barrel",
+      [
+        "fluid-name.light-oil"
+      ]
+    ],
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/empty-barrel.png"
@@ -1538,6 +1562,12 @@
   "petroleum-gas-barrel": {
     "type": "item",
     "name": "petroleum-gas-barrel",
+    "localised_name": [
+      "item-name.filled-barrel",
+      [
+        "fluid-name.petroleum-gas"
+      ]
+    ],
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/empty-barrel.png"
@@ -1570,6 +1600,12 @@
   "lubricant-barrel": {
     "type": "item",
     "name": "lubricant-barrel",
+    "localised_name": [
+      "item-name.filled-barrel",
+      [
+        "fluid-name.lubricant"
+      ]
+    ],
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/empty-barrel.png"
@@ -1602,6 +1638,12 @@
   "sulfuric-acid-barrel": {
     "type": "item",
     "name": "sulfuric-acid-barrel",
+    "localised_name": [
+      "item-name.filled-barrel",
+      [
+        "fluid-name.sulfuric-acid"
+      ]
+    ],
     "icons": [
       {
         "icon": "__base__/graphics/icons/fluid/barreling/empty-barrel.png"

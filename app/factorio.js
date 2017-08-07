@@ -1,9 +1,24 @@
 import { warn } from './util';
 import * as exportData from '../export-json/data/index';
 import * as exportIcons from '../export-json/data/icons';
+import * as exportLang from '../export-json/lang/index';
+
+// TODO: Detect lang and also allow user-override.
+export const langId = 'en';
 
 export const data = exportData;
 export const icons = exportIcons;
+export const lang = exportLang;
+
+export const langByPath = Object.keys(lang).reduce((ret, language) => {
+    ret[language] = Object.keys(lang[language]).reduce((ret, section) => {
+        for (const key of Object.keys(lang[language][section])) {
+            ret[`${section}.${key}`] = lang[language][section][key];
+        }
+        return ret;
+    }, {});
+    return ret;
+}, {});
 
 const unlockableRecipeSet = new Set();
 for (const technologyKey of Object.keys(exportData.technology)) {
@@ -38,7 +53,7 @@ export function getProto(type, name) {
 }
 
 export function getTypeForName(name) {
-    for (const type of ['item', 'tool', 'module', 'capsule', 'ammo']) {
+    for (const type of ['item', 'tool', 'module', 'capsule', 'ammo', 'assembling-machine']) {
         if (exportData[type][name]) {
             return type;
         }
@@ -135,7 +150,10 @@ export function recipeGetIngredients(recipeProto) {
         return ret;
     }
     else {
-        throw new Error(`Invalid proto for recipeGetIngredients: ${recipeProto.type}.${recipeProto.name}`);
+        ret = [];
+        //warn(`No ingredients for proto: ${recipeProto.type}.${recipeProto.name}`);
+        recipeGetIngredients_cache.set(recipeProto, ret);
+        return ret;
     }
 }
 
@@ -196,7 +214,10 @@ export function recipeGetResults(recipeProto) {
         return ret;
     }
     else {
-        throw new Error(`Invalid proto for recipeGetIngredients: ${recipeProto.type}.${recipeProto.name}`);
+        //warn(`No results for proto: ${recipeProto.type}.${recipeProto.name}`);
+        ret = [];
+        recipeGetResults_cache.set(recipeProto, ret);
+        return ret;
     }
 }
 
@@ -291,7 +312,7 @@ export function isValidRecipeForProto(proto, recipeProto) {
 }
 
 export function isValidModulesForProto(blockProto, modules) {
-    if (!modules.length) {
+    if (!blockProto || !modules.length) {
         return true;
     }
 
@@ -354,5 +375,63 @@ export function isValidModulesForRecipe(recipeProto, modules) {
 }
 
 export function protoComparator(a, b) {
-    return a.name < b.name ? -1 : a.name > b.name ? 1 : a.type < b.type ? -1 : a.type > b.type ? 1 : 0;
+    const aLocalized = getLocalizedName(a);
+    const bLocalized = getLocalizedName(a);
+    return aLocalized < bLocalized ? -1 : aLocalized > bLocalized ? 1
+        : a.name < b.name ? -1 : a.name > b.name ? 1
+            : a.type < b.type ? -1 : a.type > b.type ? 1
+                : 0;
+}
+
+const getLocalizedName_cache = new Map();
+export function getLocalizedName(proto, defaultNull = false) {
+    let ret = getLocalizedName_cache.get(proto);
+    if (ret || ret === null) {
+        return ret || ret === null && defaultNull ? ret : `${proto.type}.${proto.name}`;
+    }
+
+    ret = null;
+
+    if (proto.localised_name) {
+        const base = proto.localised_name[0];
+        const params = proto.localised_name[1];
+
+        let localizedBase = langByPath[langId][base];
+        if (localizedBase) {
+            ret = localizedBase;
+
+            for (let i = 0; i < params.length; i++) {
+                const localizedReplacement = langByPath[langId][params[i]];
+                if (localizedReplacement) {
+                    ret = ret.replace(`__${i+1}__`, localizedReplacement);
+                }
+            }
+        }
+    }
+
+    if (ret === null) {
+        const localizedType = langByPath[langId][`${proto.type}-name.${proto.name}`]
+            || langByPath[langId][`entity-name.${proto.place_result || proto.name}`]
+            || langByPath[langId][`item-name.${proto.place_result || proto.name}`];
+
+        if (localizedType) {
+            ret = localizedType;
+        }
+    }
+
+    if (ret === null) {
+        const results = recipeGetResults(proto);
+        const resultProto = results.length && getProto(results[0].type, results[0].name);
+        if (resultProto) {
+            ret = getLocalizedName(resultProto, true);
+        }
+    }
+
+    if (ret === null) {
+        warn(`no localised_name for ${proto.type}.${proto.name}`);
+        ret = null;
+    }
+
+    getLocalizedName_cache.set(proto, ret);
+    return ret || ret === null && defaultNull ? ret : `${proto.type}.${proto.name}`;
 }

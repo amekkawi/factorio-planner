@@ -4371,6 +4371,12 @@
   "fill-water-barrel": {
     "type": "recipe",
     "name": "fill-water-barrel",
+    "localised_name": [
+      "recipe-name.fill-barrel",
+      [
+        "fluid-name.water"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "fill-barrel",
@@ -4430,6 +4436,12 @@
   "empty-water-barrel": {
     "type": "recipe",
     "name": "empty-water-barrel",
+    "localised_name": [
+      "recipe-name.empty-filled-barrel",
+      [
+        "fluid-name.water"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "empty-barrel",
@@ -4489,6 +4501,12 @@
   "fill-crude-oil-barrel": {
     "type": "recipe",
     "name": "fill-crude-oil-barrel",
+    "localised_name": [
+      "recipe-name.fill-barrel",
+      [
+        "fluid-name.crude-oil"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "fill-barrel",
@@ -4548,6 +4566,12 @@
   "empty-crude-oil-barrel": {
     "type": "recipe",
     "name": "empty-crude-oil-barrel",
+    "localised_name": [
+      "recipe-name.empty-filled-barrel",
+      [
+        "fluid-name.crude-oil"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "empty-barrel",
@@ -4607,6 +4631,12 @@
   "fill-heavy-oil-barrel": {
     "type": "recipe",
     "name": "fill-heavy-oil-barrel",
+    "localised_name": [
+      "recipe-name.fill-barrel",
+      [
+        "fluid-name.heavy-oil"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "fill-barrel",
@@ -4666,6 +4696,12 @@
   "empty-heavy-oil-barrel": {
     "type": "recipe",
     "name": "empty-heavy-oil-barrel",
+    "localised_name": [
+      "recipe-name.empty-filled-barrel",
+      [
+        "fluid-name.heavy-oil"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "empty-barrel",
@@ -4725,6 +4761,12 @@
   "fill-light-oil-barrel": {
     "type": "recipe",
     "name": "fill-light-oil-barrel",
+    "localised_name": [
+      "recipe-name.fill-barrel",
+      [
+        "fluid-name.light-oil"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "fill-barrel",
@@ -4784,6 +4826,12 @@
   "empty-light-oil-barrel": {
     "type": "recipe",
     "name": "empty-light-oil-barrel",
+    "localised_name": [
+      "recipe-name.empty-filled-barrel",
+      [
+        "fluid-name.light-oil"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "empty-barrel",
@@ -4843,6 +4891,12 @@
   "fill-petroleum-gas-barrel": {
     "type": "recipe",
     "name": "fill-petroleum-gas-barrel",
+    "localised_name": [
+      "recipe-name.fill-barrel",
+      [
+        "fluid-name.petroleum-gas"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "fill-barrel",
@@ -4902,6 +4956,12 @@
   "empty-petroleum-gas-barrel": {
     "type": "recipe",
     "name": "empty-petroleum-gas-barrel",
+    "localised_name": [
+      "recipe-name.empty-filled-barrel",
+      [
+        "fluid-name.petroleum-gas"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "empty-barrel",
@@ -4961,6 +5021,12 @@
   "fill-lubricant-barrel": {
     "type": "recipe",
     "name": "fill-lubricant-barrel",
+    "localised_name": [
+      "recipe-name.fill-barrel",
+      [
+        "fluid-name.lubricant"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "fill-barrel",
@@ -5020,6 +5086,12 @@
   "empty-lubricant-barrel": {
     "type": "recipe",
     "name": "empty-lubricant-barrel",
+    "localised_name": [
+      "recipe-name.empty-filled-barrel",
+      [
+        "fluid-name.lubricant"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "empty-barrel",
@@ -5079,6 +5151,12 @@
   "fill-sulfuric-acid-barrel": {
     "type": "recipe",
     "name": "fill-sulfuric-acid-barrel",
+    "localised_name": [
+      "recipe-name.fill-barrel",
+      [
+        "fluid-name.sulfuric-acid"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "fill-barrel",
@@ -5138,6 +5216,12 @@
   "empty-sulfuric-acid-barrel": {
     "type": "recipe",
     "name": "empty-sulfuric-acid-barrel",
+    "localised_name": [
+      "recipe-name.empty-filled-barrel",
+      [
+        "fluid-name.sulfuric-acid"
+      ]
+    ],
     "category": "crafting-with-fluid",
     "energy_required": 1,
     "subgroup": "empty-barrel",

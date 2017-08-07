@@ -124,6 +124,11 @@ const module_specification = Joi.object().keys({
     module_info_multi_row_initial_height_modifier: Joi.number().strip()
 });
 
+const localised_name = Joi.array().items(
+    Joi.string().required(),
+    Joi.array().items(Joi.string())
+)
+
 const baseSchema = Joi.object().keys({
     type: Joi.string().required().min(1),
     name: Joi.string().required().min(1),
@@ -147,9 +152,9 @@ function createSchemaForType(type) {
                 normal: crafting,
                 expensive: crafting,
                 enabled: Joi.boolean().default(true),
+                localised_name,
 
                 // Stripped
-                localised_name: Joi.array().strip(),
                 hidden: Joi.boolean().strip(),
                 requester_paste_multiplier: Joi.number().strip(),
                 allow_decomposition: Joi.boolean().strip(),
@@ -298,12 +303,12 @@ function createSchemaForType(type) {
                 subgroup: Joi.string().min(1),
                 fuel_value: Joi.string().regex(/^\d+[GM]J$/),
                 fuel_category: Joi.string().valid('chemical', 'nuclear'),
+                localised_name,
+                place_result: Joi.string(),
 
-                localised_name: Joi.array().strip(),
                 stack_size: Joi.number().integer().min(1).strip(),
                 place_as_tile: Joi.object().strip(),
                 dark_background_icon: Joi.any().strip(),
-                place_result: Joi.string().strip(),
                 placed_as_equipment_result: Joi.string().strip(),
                 default_request_amount: Joi.number().strip(),
                 damage_radius: Joi.number().strip(),
@@ -474,13 +479,13 @@ function createSchemaForType(type) {
                     }).unknown(true)
                 ),
                 order: Joi.string().min(1),
+                localised_name,
 
                 level: Joi.number().strip(),
                 upgrade: Joi.boolean().strip(),
                 max_level: Joi.any().strip(),
                 unit: Joi.object().required().strip(),
                 prerequisites: Joi.array().strip(),
-                localised_name: Joi.array().strip(),
                 localised_description: Joi.any().strip(),
             });
     }

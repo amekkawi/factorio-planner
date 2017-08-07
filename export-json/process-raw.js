@@ -9,7 +9,7 @@ const icons = new Set();
 getRawFileNames()
     .then((fileNames) => fileNames.filter((fileName) => filtering.includeRaw.indexOf(fileName) >= 0))
     .then((fileNames) => {
-        console.log('Saving index.json');
+        console.log('Saving data/index.json');
         return writeFile(
             path.join(__dirname, 'data', 'index.js'),
             `'use strict';\n\n${fileNames.map((fileName) => {
@@ -68,23 +68,61 @@ getRawFileNames()
         })();
     })
     .then(() => {
-        console.log('Saving lang-en-base.json');
-        return readIniFile(path.join(__dirname, 'raw/locale/en/base.cfg'))
-            .then((json) => {
-                return writeFile(
-                    path.join(__dirname, 'data', 'lang-en-base.json'),
-                    JSON.stringify(Object.keys(json).reduce((ret, key) => {
-                        if (filtering.includeLang.indexOf(key) >= 0) {
-                            ret[key] = json[key];
-                        }
-                        return ret;
-                    }, {}))
-                )
-                    .catch((err) => {
-                        console.error(`Failed to save lang-en-base.json: ${err.message}`);
-                        throw err;
-                    });
+        const langNames = ['en'];
+        console.log('Saving lang/index.js');
+        return writeFile(
+            path.join(__dirname, 'lang', 'index.js'),
+            `'use strict';\n\n${langNames.map((langName) => {
+                return `exports[${JSON.stringify(langName.replace(/\.json$/, ''))}] = require(${JSON.stringify(`./${langName}.json`)});`;
+            }).join('\n')}\n`
+        )
+            .then(() => langNames)
+            .catch((err) => {
+                console.error(`Failed to save data index: ${err.message}`);
+                throw err;
             });
+    })
+    .then((langNames) => {
+        langNames = langNames.slice(0);
+        return (function next() {
+            const langName = langNames.shift();
+            if (langName) {
+                console.log(`Processing "${langName}"...`);
+                return readIniFile(path.join(__dirname, 'raw/locale', langName, 'base.cfg'))
+                    .then((json) => {
+                        return Promise.resolve()
+                            .then(() => {
+                                // Filter the sections.
+                                return Object.keys(json).reduce((ret, key) => {
+                                    if (filtering.includeLang.indexOf(key) >= 0) {
+                                        ret[key] = json[key];
+                                    }
+                                    return ret;
+                                }, {});
+                            })
+                            .then((data) => {
+                                return writeFile(
+                                    path.join(__dirname, 'lang', 'en.json'),
+                                    JSON.stringify(data, null, 2)
+                                )
+                                    .catch((err) => {
+                                        console.error(`Failed to write output for "${langName}": ${err.message}`);
+                                        throw err;
+                                    })
+                            }, (err) => {
+                                console.error(`Failed to filter sections for "${langName}": ${err.message}`);
+                                throw err;
+                            })
+                    }, (err) => {
+                        console.error(`Failed to read "${langName}": ${err.message}`);
+                        throw err;
+                    })
+                    .then(next);
+            }
+            else {
+                return Promise.resolve();
+            }
+        })();
     })
     .then(() => {
         return PromiseMap(Array.from(icons).sort(), (icon) => {
