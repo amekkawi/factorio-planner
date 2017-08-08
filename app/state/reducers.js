@@ -5,9 +5,9 @@ import { createConnection } from '../models/Connection';
 
 export const types = {
     KEY_ESCAPE: 'KEY_ESCAPE',
-    RESIZE_WINDOW: 'RESIZE_WINDOW',
-    PAN_SURFACE: 'PAN_SURFACE',
-    ZOOM_SURFACE: 'ZOOM_SURFACE',
+    WINDOW_RESIZE: 'WINDOW_RESIZE',
+    SURFACE_PAN: 'SURFACE_PAN',
+    SURFACE_ZOOM: 'SURFACE_ZOOM',
     BOX_SELECTION_START: 'BOX_SELECTION_START',
     BOX_SELECTION_MOVE: 'BOX_SELECTION_MOVE',
     BOX_SELECTION_END: 'BOX_SELECTION_END',
@@ -40,7 +40,7 @@ export const actions = {
     }),
 
     resizeWindow: (windowWidth, windowHeight) => ({
-        type: types.RESIZE_WINDOW,
+        type: types.WINDOW_RESIZE,
         payload: {
             windowWidth,
             windowHeight,
@@ -61,7 +61,7 @@ export const actions = {
 
         if (offsetX !== payload.offsetX || offsetY !== payload.offsetY) {
             dispatch({
-                type: types.PAN_SURFACE,
+                type: types.SURFACE_PAN,
                 payload,
             });
         }
@@ -73,7 +73,7 @@ export const actions = {
 
         if (prevZoom !== zoom) {
             dispatch({
-                type: types.ZOOM_SURFACE,
+                type: types.SURFACE_ZOOM,
                 payload: {
                     zoom,
                     x,
@@ -256,7 +256,7 @@ export function surfaceReducer(state = {
     dragEndY: null,
 }, action) {
     switch (action.type) {
-        case types.RESIZE_WINDOW: {
+        case types.WINDOW_RESIZE: {
             const { windowWidth, windowHeight } = action.payload;
             const { offsetX, offsetY, domainWidth, domainHeight, zoom } = state;
             return {
@@ -267,7 +267,7 @@ export function surfaceReducer(state = {
                 offsetY: restrainViewDimension(vertPadding, windowHeight, domainHeight, zoom, offsetY),
             };
         }
-        case types.PAN_SURFACE:
+        case types.SURFACE_PAN:
             return {
                 ...state,
                 offsetX: action.payload.offsetX,
@@ -275,7 +275,7 @@ export function surfaceReducer(state = {
                 boxSelectionEndX: state.boxSelectionEndX + (state.offsetX - action.payload.offsetX) / state.zoom,
                 boxSelectionEndY: state.boxSelectionEndY + (state.offsetY - action.payload.offsetY) / state.zoom,
             };
-        case types.ZOOM_SURFACE: {
+        case types.SURFACE_ZOOM: {
             const { x, y, zoom } = action.payload;
             const {
                 offsetX, offsetY,
@@ -476,8 +476,8 @@ export function detailExpandedReducer(state = null, action) {
             return state === action.payload.id
                 ? null
                 : state;
-        case types.PAN_SURFACE:
-        case types.ZOOM_SURFACE:
+        case types.SURFACE_PAN:
+        case types.SURFACE_ZOOM:
             return null;
         default:
             return state;
@@ -492,8 +492,8 @@ export function tooltipReducer(state = null, action) {
             return state && state.sourceId === action.payload.sourceId
                 ? null
                 : state;
-        case types.PAN_SURFACE:
-        case types.ZOOM_SURFACE:
+        case types.SURFACE_PAN:
+        case types.SURFACE_ZOOM:
             return null;
         default:
             return state;
