@@ -20,8 +20,8 @@ export const types = {
     DRAG_SELECTION_END: 'DRAG_SELECTION_END',
     LOAD_PLAN: 'LOAD_PLAN',
     LOAD_ICON: 'LOAD_ICON',
-    FOCUS: 'FOCUS',
-    BLUR: 'BLUR',
+    DETAIL_EXPAND: 'DETAIL_EXPAND',
+    DETAIL_COLLAPSE: 'DETAIL_COLLAPSE',
     SHOW_TOOLTIP: 'SHOW_TOOLTIP',
     HIDE_TOOLTIP: 'HIDE_TOOLTIP',
 };
@@ -194,17 +194,17 @@ export const actions = {
         }
     },
 
-    focus: (id) => ({
-        type: types.FOCUS,
+    detailExpand: (id) => ({
+        type: types.DETAIL_EXPAND,
         payload: {
             id,
         },
     }),
 
-    blur: (id) => (dispatch, getState) => {
-        if (getState().focused === id) {
+    detailCollapse: (id) => (dispatch, getState) => {
+        if (getState().detailExpanded === id) {
             dispatch({
-                type: types.BLUR,
+                type: types.DETAIL_COLLAPSE,
                 payload: {
                     id,
                 },
@@ -468,11 +468,11 @@ export function iconsReducer(state = {}, action) {
     }
 }
 
-export function focusedReducer(state = null, action) {
+export function detailExpandedReducer(state = null, action) {
     switch (action.type) {
-        case types.FOCUS:
+        case types.DETAIL_EXPAND:
             return action.payload.id;
-        case types.BLUR:
+        case types.DETAIL_COLLAPSE:
             return state === action.payload.id
                 ? null
                 : state;
@@ -504,7 +504,7 @@ export default combineReducers({
     surface: surfaceReducer,
     icons: iconsReducer,
     tooltip: tooltipReducer,
-    focused: focusedReducer,
+    detailExpanded: detailExpandedReducer,
     blockIds: blockIdsReducer,
     blocks: blocksReducer,
     connectionIds: connectionIdsReducer,

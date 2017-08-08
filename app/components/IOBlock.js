@@ -295,7 +295,7 @@ const mapStateToProps = (state, { blockId }) => {
         simpleMode: state.surface.zoom < 0.5,
         isSelected: !!state.surface.selectedById[blockId],
         isHoverDisabled: state.surface.isBoxSelecting || state.surface.isDragging,
-        isHovered: state.focused === blockId,
+        isHovered: state.detailExpanded === blockId,
         isRecipeHovered: !!state.tooltip && state.tooltip.sourceId === `${blockId}_io`,
     };
 };
@@ -305,8 +305,8 @@ const mapDispatchToProps = (dispatch, { blockId }) => ({
     onSelectRemove: () => dispatch(actions.selectionRemove(blockId)),
     onSelectSet: () => dispatch(actions.selectionSet([blockId])),
     onDragSelectionStart: () => dispatch(actions.dragSelectionStart()),
-    onHoverOver: () => dispatch(actions.focus(blockId)),
-    onHoverOut: () => dispatch(actions.blur(blockId)),
+    onHoverOver: () => dispatch(actions.detailExpand(blockId)),
+    onHoverOut: () => dispatch(actions.detailCollapse(blockId)),
     onHoverRecipeOver: () => dispatch(actions.showTooltip(`${blockId}_io`, 'block-io', { blockId: blockId })),
     onHoverRecipeOut: () => dispatch(actions.hideTooltip(`${blockId}_io`)),
 });

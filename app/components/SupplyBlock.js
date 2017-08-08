@@ -105,7 +105,7 @@ const mapStateToProps = (state, { blockId }) => ({
     blockId: blockId,
     isSelected: !!state.surface.selectedById[blockId],
     dragDelta: dragDeltaSelector(state),
-    isHovered: state.focused === blockId,
+    isHovered: state.detailExpanded === blockId,
     ...(state.blocks[blockId] || {}),
 });
 
@@ -114,8 +114,8 @@ const mapDispatchToProps = (dispatch, { blockId }) => ({
     onSelectRemove: () => dispatch(actions.selectionRemove(blockId)),
     onSelectSet: () => dispatch(actions.selectionSet([blockId])),
     onDragSelectionStart: () => dispatch(actions.dragSelectionStart()),
-    onHoverOver: () => dispatch(actions.focus(blockId)),
-    onHoverOut: () => dispatch(actions.blur(blockId)),
+    onHoverOver: () => dispatch(actions.detailExpand(blockId)),
+    onHoverOut: () => dispatch(actions.detailCollapse(blockId)),
 });
 
 export default connect(

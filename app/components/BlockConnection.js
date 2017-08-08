@@ -272,8 +272,8 @@ const mapStateToProps = (state, { connectionId }) => {
         isCyclic,
         isSelected: !!state.surface.selectedById[connectionId],
         isHoverDisabled,
-        isHovered: state.focused === connectionId,
-        isRelatedHovered: state.focused === connection.srcBlockId || state.focused === connection.destBlockId,
+        isHovered: state.detailExpanded === connectionId,
+        isRelatedHovered: state.detailExpanded === connection.srcBlockId || state.detailExpanded === connection.destBlockId,
 
         isSrcDragging,
         isDestDragging,
@@ -281,11 +281,11 @@ const mapStateToProps = (state, { connectionId }) => {
 
         srcCX: srcBlock && srcBlock.x,
         srcCY: srcBlock && srcBlock.y,
-        srcRadius: getBlockTypeRadius(srcBlock && srcBlock.type, !isHoverDisabled && state.focused === connection.srcBlockId),
+        srcRadius: getBlockTypeRadius(srcBlock && srcBlock.type, !isHoverDisabled && state.detailExpanded === connection.srcBlockId),
 
         destCX: destBlock && destBlock.x,
         destCY: destBlock && destBlock.y,
-        destRadius: getBlockTypeRadius(destBlock && destBlock.type, !isHoverDisabled && state.focused === connection.destBlockId),
+        destRadius: getBlockTypeRadius(destBlock && destBlock.type, !isHoverDisabled && state.detailExpanded === connection.destBlockId),
     };
 };
 
@@ -293,8 +293,8 @@ const mapDispatchToProps = (dispatch, { connectionId }) => ({
     onSelectAdd: () => dispatch(actions.selectionAdd(connectionId)),
     onSelectRemove: () => dispatch(actions.selectionRemove(connectionId)),
     onSelectSet: () => dispatch(actions.selectionSet([connectionId])),
-    onHoverOver: () => dispatch(actions.focus(connectionId)),
-    onHoverOut: () => dispatch(actions.blur(connectionId)),
+    onHoverOver: () => dispatch(actions.detailExpand(connectionId)),
+    onHoverOut: () => dispatch(actions.detailCollapse(connectionId)),
 });
 
 export default connect(
