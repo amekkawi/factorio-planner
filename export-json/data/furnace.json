@@ -20,7 +20,8 @@
       "fuel_category": "chemical",
       "effectivity": 1,
       "fuel_inventory_size": 1
-    }
+    },
+    "fast_replaceable_group": "furnace"
   },
   "steel-furnace": {
     "type": "furnace",
@@ -43,7 +44,8 @@
       "fuel_category": "chemical",
       "effectivity": 1,
       "fuel_inventory_size": 1
-    }
+    },
+    "fast_replaceable_group": "furnace"
   },
   "electric-furnace": {
     "type": "furnace",
@@ -72,6 +74,7 @@
     "source_inventory_size": 1,
     "energy_source": {
       "type": "electric"
-    }
+    },
+    "fast_replaceable_group": "furnace"
   }
 }

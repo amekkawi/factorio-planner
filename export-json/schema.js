@@ -241,6 +241,7 @@ function createSchemaForType(type) {
                 module_specification,
                 allowed_effects,
                 fluid_boxes,
+                fast_replaceable_group: Joi.string(),
 
                 result_inventory_size: Joi.number().greater(0).integer().disallow()
                     .when('type', { is: 'furnace', then: Joi.required() }),
@@ -256,7 +257,6 @@ function createSchemaForType(type) {
                 collision_box: Joi.any().strip(),
                 selection_box: Joi.any().strip(),
                 animation: Joi.any().strip(),
-                fast_replaceable_group: Joi.any().strip(),
                 scale_entity_info_icon: Joi.boolean().strip(),
                 has_backer_name: Joi.boolean().strip(),
                 working_visualisations: Joi.array().strip(),
@@ -283,6 +283,7 @@ function createSchemaForType(type) {
                 resource_searching_radius: Joi.number().greater(0).required(),
                 input_fluid_box,
                 output_fluid_box,
+                fast_replaceable_group: Joi.string(),
 
                 // Strip
                 animations: Joi.any().strip(),
@@ -293,7 +294,6 @@ function createSchemaForType(type) {
                 collision_box: Joi.any().strip(),
                 selection_box: Joi.any().strip(),
                 animation: Joi.any().strip(),
-                fast_replaceable_group: Joi.any().strip(),
                 circuit_wire_connection_points: Joi.any().strip(),
                 circuit_wire_max_distance: Joi.any().strip(),
                 dying_explosion: Joi.string().strip(),

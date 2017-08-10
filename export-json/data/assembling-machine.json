@@ -8,6 +8,7 @@
       "placeable-player",
       "player-creation"
     ],
+    "fast_replaceable_group": "assembling-machine",
     "crafting_categories": [
       "crafting"
     ],
@@ -35,6 +36,7 @@
         "production_type": "output"
       }
     ],
+    "fast_replaceable_group": "assembling-machine",
     "crafting_categories": [
       "crafting",
       "advanced-crafting",
@@ -73,6 +75,7 @@
         "production_type": "output"
       }
     ],
+    "fast_replaceable_group": "assembling-machine",
     "crafting_categories": [
       "crafting",
       "advanced-crafting",
