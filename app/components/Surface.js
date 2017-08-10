@@ -271,7 +271,7 @@ export class Surface extends Component {
                 onKeyDown={this.handleKeyDown}
                 onKeyUp={this.handleKeyUp}
                 onMouseDown={this.handleMouseDown}
-                onMouseUp={isBoxSelecting || isDragging ? this.handleMouseUp : null}
+                onMouseUp={this.handleMouseUp}
                 onMouseMove={isBoxSelecting || isDragging ? this.handleMouseMove : null}
                 onBlur={this.handleBlur}
                 ref={(elem) => { this.svgRef = elem; }}

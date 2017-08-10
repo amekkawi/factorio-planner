@@ -20,6 +20,16 @@ const render = (Component, store, cb) => {
 
 const store = configureStore(rootReducer);
 
+// Catch window blur to cancel in-progress actions (e.g. dragging).
+window.addEventListener('blur', () => {
+    store.dispatch(reducerActions.windowBlur());
+});
+
+// Catch window mouse up to cancel in-progress actions (e.g. dragging) that may not properly catch
+window.addEventListener('mouseup', () => {
+    store.dispatch(reducerActions.windowMouseUp());
+});
+
 window.addEventListener('focus', checkDefaultFocus);
 document.addEventListener('focusout', () => {
     setTimeout(checkDefaultFocus, 1);

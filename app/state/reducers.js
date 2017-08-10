@@ -5,7 +5,9 @@ import { createConnection } from '../models/Connection';
 
 export const types = {
     KEY_ESCAPE: 'KEY_ESCAPE',
+    WINDOW_BLUR: 'WINDOW_BLUR',
     WINDOW_RESIZE: 'WINDOW_RESIZE',
+    WINDOW_MOUSEUP: 'WINDOW_MOUSEUP',
     SURFACE_PAN: 'SURFACE_PAN',
     SURFACE_ZOOM: 'SURFACE_ZOOM',
     BOX_SELECTION_START: 'BOX_SELECTION_START',
@@ -37,6 +39,14 @@ function restrainViewDimension(padding, windowSize, domainSize, zoom, offset) {
 export const actions = {
     keyEscape: () => ({
         type: types.KEY_ESCAPE,
+    }),
+
+    windowBlur: () => ({
+        type: types.WINDOW_BLUR,
+    }),
+
+    windowMouseUp: () => ({
+        type: types.WINDOW_MOUSEUP,
     }),
 
     resizeWindow: (windowWidth, windowHeight) => ({
@@ -256,6 +266,18 @@ export function surfaceReducer(state = {
     dragEndY: null,
 }, action) {
     switch (action.type) {
+        case types.WINDOW_BLUR:
+        case types.WINDOW_MOUSEUP:
+        case types.KEY_ESCAPE:
+            return {
+                ...state,
+                isDragging: false,
+                dragStartX: null,
+                dragStartY: null,
+                dragEndX: null,
+                dragEndY: null,
+                isBoxSelecting: false,
+            };
         case types.WINDOW_RESIZE: {
             const { windowWidth, windowHeight } = action.payload;
             const { offsetX, offsetY, domainWidth, domainHeight, zoom } = state;
@@ -296,16 +318,6 @@ export function surfaceReducer(state = {
                 offsetY: restrainViewDimension(vertPadding, windowHeight, domainHeight, zoom, offsetY - ((y ? y : windowHeight / 2) * (zoom - prevZoom))),
             };
         }
-        case types.KEY_ESCAPE:
-            return {
-                ...state,
-                isDragging: false,
-                dragStartX: null,
-                dragStartY: null,
-                dragEndX: null,
-                dragEndY: null,
-                isBoxSelecting: false,
-            };
         case types.BOX_SELECTION_START:
             return {
                 ...state,
