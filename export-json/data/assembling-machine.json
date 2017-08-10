@@ -27,6 +27,14 @@
       "placeable-player",
       "player-creation"
     ],
+    "fluid_boxes": [
+      {
+        "production_type": "input"
+      },
+      {
+        "production_type": "output"
+      }
+    ],
     "crafting_categories": [
       "crafting",
       "advanced-crafting",
@@ -56,6 +64,14 @@
       "placeable-neutral",
       "placeable-player",
       "player-creation"
+    ],
+    "fluid_boxes": [
+      {
+        "production_type": "input"
+      },
+      {
+        "production_type": "output"
+      }
     ],
     "crafting_categories": [
       "crafting",
@@ -103,7 +119,24 @@
       "type": "electric"
     },
     "energy_usage": "420kW",
-    "ingredient_count": 4
+    "ingredient_count": 4,
+    "fluid_boxes": [
+      {
+        "production_type": "input"
+      },
+      {
+        "production_type": "input"
+      },
+      {
+        "production_type": "output"
+      },
+      {
+        "production_type": "output"
+      },
+      {
+        "production_type": "output"
+      }
+    ]
   },
   "chemical-plant": {
     "type": "assembling-machine",
@@ -131,6 +164,20 @@
     "ingredient_count": 4,
     "crafting_categories": [
       "chemistry"
+    ],
+    "fluid_boxes": [
+      {
+        "production_type": "input"
+      },
+      {
+        "production_type": "input"
+      },
+      {
+        "production_type": "output"
+      },
+      {
+        "production_type": "output"
+      }
     ]
   },
   "centrifuge": {

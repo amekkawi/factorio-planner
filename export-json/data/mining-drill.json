@@ -10,6 +10,9 @@
     "resource_categories": [
       "basic-solid"
     ],
+    "input_fluid_box": {
+      "production_type": "input-output"
+    },
     "mining_speed": 0.5,
     "energy_source": {
       "type": "electric"
@@ -56,6 +59,9 @@
     ],
     "energy_source": {
       "type": "electric"
+    },
+    "output_fluid_box": {
+      "production_type": "output"
     },
     "energy_usage": "90kW",
     "mining_speed": 1,

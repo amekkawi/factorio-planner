@@ -145,7 +145,8 @@
     "fuel_category": "chemical",
     "fuel_value": "4MJ",
     "subgroup": "storage",
-    "order": "a[items]-a[wooden-chest]"
+    "order": "a[items]-a[wooden-chest]",
+    "place_result": "wooden-chest"
   },
   "stone-furnace": {
     "type": "item",
@@ -155,7 +156,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "smelting-machine",
-    "order": "a[stone-furnace]"
+    "order": "a[stone-furnace]",
+    "place_result": "stone-furnace"
   },
   "burner-mining-drill": {
     "type": "item",
@@ -165,7 +167,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "extraction-machine",
-    "order": "a[items]-a[burner-mining-drill]"
+    "order": "a[items]-a[burner-mining-drill]",
+    "place_result": "burner-mining-drill"
   },
   "electric-mining-drill": {
     "type": "item",
@@ -175,7 +178,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "extraction-machine",
-    "order": "a[items]-b[electric-mining-drill]"
+    "order": "a[items]-b[electric-mining-drill]",
+    "place_result": "electric-mining-drill"
   },
   "transport-belt": {
     "type": "item",
@@ -185,7 +189,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "a[transport-belt]-a[transport-belt]"
+    "order": "a[transport-belt]-a[transport-belt]",
+    "place_result": "transport-belt"
   },
   "burner-inserter": {
     "type": "item",
@@ -195,7 +200,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "inserter",
-    "order": "a[burner-inserter]"
+    "order": "a[burner-inserter]",
+    "place_result": "burner-inserter"
   },
   "inserter": {
     "type": "item",
@@ -205,7 +211,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "inserter",
-    "order": "b[inserter]"
+    "order": "b[inserter]",
+    "place_result": "inserter"
   },
   "offshore-pump": {
     "type": "item",
@@ -215,7 +222,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "extraction-machine",
-    "order": "b[fluids]-a[offshore-pump]"
+    "order": "b[fluids]-a[offshore-pump]",
+    "place_result": "offshore-pump"
   },
   "pipe": {
     "type": "item",
@@ -225,7 +233,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy-pipe-distribution",
-    "order": "a[pipe]-a[pipe]"
+    "order": "a[pipe]-a[pipe]",
+    "place_result": "pipe"
   },
   "boiler": {
     "type": "item",
@@ -235,7 +244,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy",
-    "order": "b[steam-power]-a[boiler]"
+    "order": "b[steam-power]-a[boiler]",
+    "place_result": "boiler"
   },
   "steam-engine": {
     "type": "item",
@@ -245,7 +255,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy",
-    "order": "b[steam-power]-b[steam-engine]"
+    "order": "b[steam-power]-b[steam-engine]",
+    "place_result": "steam-engine"
   },
   "small-electric-pole": {
     "type": "item",
@@ -256,6 +267,7 @@
     ],
     "subgroup": "energy-pipe-distribution",
     "order": "a[energy]-a[small-electric-pole]",
+    "place_result": "small-electric-pole",
     "fuel_category": "chemical",
     "fuel_value": "4MJ"
   },
@@ -267,7 +279,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "defensive-structure",
-    "order": "d[radar]-a[radar]"
+    "order": "d[radar]-a[radar]",
+    "place_result": "radar"
   },
   "computer": {
     "type": "item",
@@ -299,7 +312,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "circuit-network",
-    "order": "a[light]-a[small-lamp]"
+    "order": "a[light]-a[small-lamp]",
+    "place_result": "small-lamp"
   },
   "pipe-to-ground": {
     "type": "item",
@@ -309,7 +323,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy-pipe-distribution",
-    "order": "a[pipe]-b[pipe-to-ground]"
+    "order": "a[pipe]-b[pipe-to-ground]",
+    "place_result": "pipe-to-ground"
   },
   "assembling-machine-1": {
     "type": "item",
@@ -319,7 +334,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "production-machine",
-    "order": "a[assembling-machine-1]"
+    "order": "a[assembling-machine-1]",
+    "place_result": "assembling-machine-1"
   },
   "red-wire": {
     "type": "item",
@@ -349,7 +365,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "defensive-structure",
-    "order": "a[stone-wall]-a[stone-wall]"
+    "order": "a[stone-wall]-a[stone-wall]",
+    "place_result": "stone-wall"
   },
   "gun-turret": {
     "type": "item",
@@ -359,7 +376,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "defensive-structure",
-    "order": "b[turret]-a[gun-turret]"
+    "order": "b[turret]-a[gun-turret]",
+    "place_result": "gun-turret"
   },
   "solar-panel-equipment": {
     "type": "item",
@@ -500,7 +518,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "gun",
-    "order": "f[land-mine]"
+    "order": "f[land-mine]",
+    "place_result": "land-mine"
   },
   "iron-chest": {
     "type": "item",
@@ -510,7 +529,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "storage",
-    "order": "a[items]-b[iron-chest]"
+    "order": "a[items]-b[iron-chest]",
+    "place_result": "iron-chest"
   },
   "steel-chest": {
     "type": "item",
@@ -520,7 +540,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "storage",
-    "order": "a[items]-c[steel-chest]"
+    "order": "a[items]-c[steel-chest]",
+    "place_result": "steel-chest"
   },
   "fast-transport-belt": {
     "type": "item",
@@ -530,7 +551,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "a[transport-belt]-b[fast-transport-belt]"
+    "order": "a[transport-belt]-b[fast-transport-belt]",
+    "place_result": "fast-transport-belt"
   },
   "express-transport-belt": {
     "type": "item",
@@ -540,7 +562,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "a[transport-belt]-c[express-transport-belt]"
+    "order": "a[transport-belt]-c[express-transport-belt]",
+    "place_result": "express-transport-belt"
   },
   "long-handed-inserter": {
     "type": "item",
@@ -550,7 +573,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "inserter",
-    "order": "c[long-handed-inserter]"
+    "order": "c[long-handed-inserter]",
+    "place_result": "long-handed-inserter"
   },
   "fast-inserter": {
     "type": "item",
@@ -560,7 +584,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "inserter",
-    "order": "d[fast-inserter]"
+    "order": "d[fast-inserter]",
+    "place_result": "fast-inserter"
   },
   "filter-inserter": {
     "type": "item",
@@ -570,7 +595,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "inserter",
-    "order": "e[filter-inserter]"
+    "order": "e[filter-inserter]",
+    "place_result": "filter-inserter"
   },
   "stack-inserter": {
     "type": "item",
@@ -580,7 +606,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "inserter",
-    "order": "f[stack-inserter]"
+    "order": "f[stack-inserter]",
+    "place_result": "stack-inserter"
   },
   "stack-filter-inserter": {
     "type": "item",
@@ -590,7 +617,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "inserter",
-    "order": "g[stack-filter-inserter]"
+    "order": "g[stack-filter-inserter]",
+    "place_result": "stack-filter-inserter"
   },
   "assembling-machine-2": {
     "type": "item",
@@ -600,7 +628,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "production-machine",
-    "order": "b[assembling-machine-2]"
+    "order": "b[assembling-machine-2]",
+    "place_result": "assembling-machine-2"
   },
   "assembling-machine-3": {
     "type": "item",
@@ -610,7 +639,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "production-machine",
-    "order": "c[assembling-machine-3]"
+    "order": "c[assembling-machine-3]",
+    "place_result": "assembling-machine-3"
   },
   "solar-panel": {
     "type": "item",
@@ -620,7 +650,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy",
-    "order": "d[solar-panel]-a[solar-panel]"
+    "order": "d[solar-panel]-a[solar-panel]",
+    "place_result": "solar-panel"
   },
   "player-port": {
     "type": "item",
@@ -631,7 +662,8 @@
       "hidden"
     ],
     "subgroup": "defensive-structure",
-    "order": "z[not-used]"
+    "order": "z[not-used]",
+    "place_result": "player-port"
   },
   "gate": {
     "type": "item",
@@ -641,7 +673,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "defensive-structure",
-    "order": "a[wall]-b[gate]"
+    "order": "a[wall]-b[gate]",
+    "place_result": "gate"
   },
   "lab": {
     "type": "item",
@@ -651,7 +684,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "production-machine",
-    "order": "g[lab]"
+    "order": "g[lab]",
+    "place_result": "lab"
   },
   "train-stop": {
     "type": "item",
@@ -661,7 +695,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "transport",
-    "order": "a[train-system]-c[train-stop]"
+    "order": "a[train-system]-c[train-stop]",
+    "place_result": "train-stop"
   },
   "rail-signal": {
     "type": "item",
@@ -671,7 +706,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "transport",
-    "order": "a[train-system]-d[rail-signal]"
+    "order": "a[train-system]-d[rail-signal]",
+    "place_result": "rail-signal"
   },
   "rail-chain-signal": {
     "type": "item",
@@ -681,7 +717,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "transport",
-    "order": "a[train-system]-e[rail-signal-chain]"
+    "order": "a[train-system]-e[rail-signal-chain]",
+    "place_result": "rail-chain-signal"
   },
   "steel-plate": {
     "type": "item",
@@ -701,7 +738,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "b[underground-belt]-a[underground-belt]"
+    "order": "b[underground-belt]-a[underground-belt]",
+    "place_result": "underground-belt"
   },
   "fast-underground-belt": {
     "type": "item",
@@ -711,7 +749,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "b[underground-belt]-b[fast-underground-belt]"
+    "order": "b[underground-belt]-b[fast-underground-belt]",
+    "place_result": "fast-underground-belt"
   },
   "express-underground-belt": {
     "type": "item",
@@ -721,7 +760,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "b[underground-belt]-c[express-underground-belt]"
+    "order": "b[underground-belt]-c[express-underground-belt]",
+    "place_result": "express-underground-belt"
   },
   "splitter": {
     "type": "item",
@@ -731,7 +771,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "c[splitter]-a[splitter]"
+    "order": "c[splitter]-a[splitter]",
+    "place_result": "splitter"
   },
   "fast-splitter": {
     "type": "item",
@@ -741,7 +782,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "c[splitter]-b[fast-splitter]"
+    "order": "c[splitter]-b[fast-splitter]",
+    "place_result": "fast-splitter"
   },
   "express-splitter": {
     "type": "item",
@@ -751,7 +793,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "c[splitter]-c[express-splitter]"
+    "order": "c[splitter]-c[express-splitter]",
+    "place_result": "express-splitter"
   },
   "loader": {
     "type": "item",
@@ -762,7 +805,8 @@
       "hidden"
     ],
     "subgroup": "belt",
-    "order": "d[loader]-a[basic-loader]"
+    "order": "d[loader]-a[basic-loader]",
+    "place_result": "loader"
   },
   "fast-loader": {
     "type": "item",
@@ -773,7 +817,8 @@
       "hidden"
     ],
     "subgroup": "belt",
-    "order": "d[loader]-b[fast-loader]"
+    "order": "d[loader]-b[fast-loader]",
+    "place_result": "fast-loader"
   },
   "express-loader": {
     "type": "item",
@@ -784,7 +829,8 @@
       "hidden"
     ],
     "subgroup": "belt",
-    "order": "d[loader]-c[express-loader]"
+    "order": "d[loader]-c[express-loader]",
+    "place_result": "express-loader"
   },
   "advanced-circuit": {
     "type": "item",
@@ -814,7 +860,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "logistic-network",
-    "order": "a[robot]-a[logistic-robot]"
+    "order": "a[robot]-a[logistic-robot]",
+    "place_result": "logistic-robot"
   },
   "construction-robot": {
     "type": "item",
@@ -824,7 +871,8 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "logistic-network",
-    "order": "a[robot]-b[construction-robot]"
+    "order": "a[robot]-b[construction-robot]",
+    "place_result": "construction-robot"
   },
   "logistic-chest-passive-provider": {
     "type": "item",
@@ -834,7 +882,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "logistic-network",
-    "order": "b[storage]-c[logistic-chest-passive-provider]"
+    "order": "b[storage]-c[logistic-chest-passive-provider]",
+    "place_result": "logistic-chest-passive-provider"
   },
   "logistic-chest-active-provider": {
     "type": "item",
@@ -844,7 +893,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "logistic-network",
-    "order": "b[storage]-c[logistic-chest-active-provider]"
+    "order": "b[storage]-c[logistic-chest-active-provider]",
+    "place_result": "logistic-chest-active-provider"
   },
   "logistic-chest-storage": {
     "type": "item",
@@ -854,7 +904,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "logistic-network",
-    "order": "b[storage]-c[logistic-chest-storage]"
+    "order": "b[storage]-c[logistic-chest-storage]",
+    "place_result": "logistic-chest-storage"
   },
   "logistic-chest-requester": {
     "type": "item",
@@ -864,7 +915,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "logistic-network",
-    "order": "b[storage]-c[logistic-chest-requester]"
+    "order": "b[storage]-c[logistic-chest-requester]",
+    "place_result": "logistic-chest-requester"
   },
   "rocket-silo": {
     "type": "item",
@@ -874,7 +926,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "defensive-structure",
-    "order": "e[rocket-silo]"
+    "order": "e[rocket-silo]",
+    "place_result": "rocket-silo"
   },
   "roboport": {
     "type": "item",
@@ -884,7 +937,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "logistic-network",
-    "order": "c[signal]-a[roboport]"
+    "order": "c[signal]-a[roboport]",
+    "place_result": "roboport"
   },
   "coin": {
     "type": "item",
@@ -905,7 +959,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy-pipe-distribution",
-    "order": "a[energy]-c[big-electric-pole]"
+    "order": "a[energy]-c[big-electric-pole]",
+    "place_result": "big-electric-pole"
   },
   "medium-electric-pole": {
     "type": "item",
@@ -915,7 +970,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy-pipe-distribution",
-    "order": "a[energy]-b[medium-electric-pole]"
+    "order": "a[energy]-b[medium-electric-pole]",
+    "place_result": "medium-electric-pole"
   },
   "substation": {
     "type": "item",
@@ -925,7 +981,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy-pipe-distribution",
-    "order": "a[energy]-d[substation]"
+    "order": "a[energy]-d[substation]",
+    "place_result": "substation"
   },
   "accumulator": {
     "type": "item",
@@ -935,7 +992,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy",
-    "order": "e[accumulator]-a[accumulator]"
+    "order": "e[accumulator]-a[accumulator]",
+    "place_result": "accumulator"
   },
   "steel-furnace": {
     "type": "item",
@@ -945,7 +1003,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "smelting-machine",
-    "order": "b[steel-furnace]"
+    "order": "b[steel-furnace]",
+    "place_result": "steel-furnace"
   },
   "electric-furnace": {
     "type": "item",
@@ -955,7 +1014,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "smelting-machine",
-    "order": "c[electric-furnace]"
+    "order": "c[electric-furnace]",
+    "place_result": "electric-furnace"
   },
   "beacon": {
     "type": "item",
@@ -965,7 +1025,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "module",
-    "order": "a[beacon]"
+    "order": "a[beacon]",
+    "place_result": "beacon"
   },
   "storage-tank": {
     "type": "item",
@@ -975,7 +1036,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "storage",
-    "order": "b[fluid]-a[storage-tank]"
+    "order": "b[fluid]-a[storage-tank]",
+    "place_result": "storage-tank"
   },
   "pump": {
     "type": "item",
@@ -985,7 +1047,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy-pipe-distribution",
-    "order": "b[pipe]-c[pump]"
+    "order": "b[pipe]-c[pump]",
+    "place_result": "pump"
   },
   "pumpjack": {
     "type": "item",
@@ -995,7 +1058,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "extraction-machine",
-    "order": "b[fluids]-b[pumpjack]"
+    "order": "b[fluids]-b[pumpjack]",
+    "place_result": "pumpjack"
   },
   "oil-refinery": {
     "type": "item",
@@ -1005,7 +1069,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "production-machine",
-    "order": "d[refinery]"
+    "order": "d[refinery]",
+    "place_result": "oil-refinery"
   },
   "chemical-plant": {
     "type": "item",
@@ -1015,7 +1080,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "production-machine",
-    "order": "e[chemical-plant]"
+    "order": "e[chemical-plant]",
+    "place_result": "chemical-plant"
   },
   "sulfur": {
     "type": "item",
@@ -1117,6 +1183,7 @@
       "goes-to-quickbar"
     ],
     "subgroup": "circuit-network",
+    "place_result": "arithmetic-combinator",
     "order": "c[combinators]-a[arithmetic-combinator]"
   },
   "decider-combinator": {
@@ -1127,6 +1194,7 @@
       "goes-to-quickbar"
     ],
     "subgroup": "circuit-network",
+    "place_result": "decider-combinator",
     "order": "c[combinators]-b[decider-combinator]"
   },
   "constant-combinator": {
@@ -1137,6 +1205,7 @@
       "goes-to-quickbar"
     ],
     "subgroup": "circuit-network",
+    "place_result": "constant-combinator",
     "order": "c[combinators]-c[constant-combinator]"
   },
   "power-switch": {
@@ -1147,6 +1216,7 @@
       "goes-to-quickbar"
     ],
     "subgroup": "circuit-network",
+    "place_result": "power-switch",
     "order": "d[other]-a[power-switch]"
   },
   "programmable-speaker": {
@@ -1157,7 +1227,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "circuit-network",
-    "order": "d[other]-b[programmable-speaker]"
+    "order": "d[other]-b[programmable-speaker]",
+    "place_result": "programmable-speaker"
   },
   "low-density-structure": {
     "type": "item",
@@ -1261,7 +1332,8 @@
       "hidden"
     ],
     "subgroup": "energy",
-    "order": "e[electric-energy-interface]-b[electric-energy-interface]"
+    "order": "e[electric-energy-interface]-b[electric-energy-interface]",
+    "place_result": "electric-energy-interface"
   },
   "uranium-ore": {
     "type": "item",
@@ -1281,7 +1353,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy",
-    "order": "f[nuclear-energy]-a[reactor]"
+    "order": "f[nuclear-energy]-a[reactor]",
+    "place_result": "nuclear-reactor"
   },
   "uranium-235": {
     "type": "item",
@@ -1311,7 +1384,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "production-machine",
-    "order": "g[centrifuge]"
+    "order": "g[centrifuge]",
+    "place_result": "centrifuge"
   },
   "uranium-fuel-cell": {
     "type": "item",
@@ -1343,7 +1417,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy",
-    "order": "f[nuclear-energy]-b[heat-exchanger]"
+    "order": "f[nuclear-energy]-b[heat-exchanger]",
+    "place_result": "heat-exchanger"
   },
   "steam-turbine": {
     "type": "item",
@@ -1353,7 +1428,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy",
-    "order": "b[steam-power]-c[steam-turbine]"
+    "order": "b[steam-power]-c[steam-turbine]",
+    "place_result": "steam-turbine"
   },
   "heat-pipe": {
     "type": "item",
@@ -1363,7 +1439,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "energy",
-    "order": "f[nuclear-energy]-c[heat-pipe]"
+    "order": "f[nuclear-energy]-c[heat-pipe]",
+    "place_result": "heat-pipe"
   },
   "simple-entity-with-force": {
     "type": "item",
@@ -1374,7 +1451,8 @@
       "hidden"
     ],
     "subgroup": "other",
-    "order": "s[simple-entity-with-force]-f[simple-entity-with-force]"
+    "order": "s[simple-entity-with-force]-f[simple-entity-with-force]",
+    "place_result": "simple-entity-with-force"
   },
   "simple-entity-with-owner": {
     "type": "item",
@@ -1385,7 +1463,8 @@
       "hidden"
     ],
     "subgroup": "other",
-    "order": "s[simple-entity-with-owner]-o[simple-entity-with-owner]"
+    "order": "s[simple-entity-with-owner]-o[simple-entity-with-owner]",
+    "place_result": "simple-entity-with-owner"
   },
   "laser-turret": {
     "type": "item",
@@ -1395,7 +1474,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "defensive-structure",
-    "order": "b[turret]-b[laser-turret]"
+    "order": "b[turret]-b[laser-turret]",
+    "place_result": "laser-turret"
   },
   "flamethrower-turret": {
     "type": "item",
@@ -1405,7 +1485,8 @@
       "goes-to-quickbar"
     ],
     "subgroup": "defensive-structure",
-    "order": "b[turret]-c[flamethrower-turret]"
+    "order": "b[turret]-c[flamethrower-turret]",
+    "place_result": "flamethrower-turret"
   },
   "water-barrel": {
     "type": "item",

@@ -1,6 +1,23 @@
 'use strict';
 
-const Joi = require('joi');
+const Joi = require('joi')
+    .extend((joi) => {
+        return {
+            base: joi.object(),
+            name: 'object',
+            rules: [
+                {
+                    name: 'transform',
+                    params: {
+                        func: joi.func().required(),
+                    },
+                    validate(params, value, state, options) {
+                        return params.func(value);
+                    },
+                },
+            ],
+        };
+    });
 
 const schemaByType = {};
 
@@ -15,14 +32,12 @@ const commonStrip = {
     mined_sound: Joi.any().strip(),
     shadow_animations: Joi.any().strip(),
     base_picture: Joi.any().strip(),
-    input_fluid_box: Joi.any().strip(),
     input_fluid_patch_sprites: Joi.any().strip(),
     input_fluid_patch_shadow_sprites: Joi.any().strip(),
     input_fluid_patch_shadow_animations: Joi.any().strip(),
     input_fluid_patch_window_sprites: Joi.any().strip(),
     input_fluid_patch_window_flow_sprites: Joi.any().strip(),
     input_fluid_patch_window_base_sprites: Joi.any().strip(),
-    output_fluid_box: Joi.any().strip(),
     radius_visualisation_picture: Joi.any().strip(),
     monitor_visualization_tint: Joi.any().strip(),
     circuit_connector_sprites: Joi.any().strip(),
@@ -59,7 +74,7 @@ const ingredients = Joi.array()
                 type: Joi.string().valid('item', 'fluid').required(),
                 name: Joi.string().required().min(1),
                 amount: Joi.number().integer().required().min(1),
-            })
+            }),
     ]);
 
 const results = Joi.array()
@@ -116,6 +131,47 @@ const energy_source = Joi.object().keys({
     smoke: Joi.any().strip(),
 });
 
+const fluid_box = Joi.object().keys({
+    production_type: Joi.string().required().valid([
+        'input',
+        'output',
+        'input-output',
+    ]),
+
+    base_area: Joi.number().integer().strip(),
+    height: Joi.number().integer().strip(),
+    base_level: Joi.number().required().integer().strip(),
+    pipe_covers: Joi.object().strip(),
+    pipe_connections: Joi.array().strip(),
+    pipe_picture: Joi.object().strip(),
+    secondary_draw_orders: Joi.object().strip(),
+});
+
+const input_fluid_box = fluid_box.keys({
+    production_type: Joi.optional().default('input'),
+});
+
+const output_fluid_box = fluid_box.keys({
+    production_type: Joi.optional().default('output'),
+});
+
+const fluid_boxes = Joi.alternatives().try(
+    Joi.array().items(fluid_box),
+    Joi.object()
+        .keys({
+            off_when_no_fluid_recipe: Joi.boolean(),
+        })
+        .pattern(/^\d+$/, fluid_box)
+        .transform((value) => {
+            return Object.keys(value).reduce((ret, key) => {
+                if (key.match(/^\d+$/)) {
+                    ret.push(value[key]);
+                }
+                return ret;
+            }, []);
+        })
+);
+
 const energy_usage = Joi.string().regex(/^\d+[mk]W$/);
 
 const module_specification = Joi.object().keys({
@@ -127,7 +183,7 @@ const module_specification = Joi.object().keys({
 const localised_name = Joi.array().items(
     Joi.string().required(),
     Joi.array().items(Joi.string())
-)
+);
 
 const baseSchema = Joi.object().keys({
     type: Joi.string().required().min(1),
@@ -184,6 +240,7 @@ function createSchemaForType(type) {
                     .when('type', { is: 'furnace', then: Joi.optional().disallow() }),
                 module_specification,
                 allowed_effects,
+                fluid_boxes,
 
                 result_inventory_size: Joi.number().greater(0).integer().disallow()
                     .when('type', { is: 'furnace', then: Joi.required() }),
@@ -192,7 +249,6 @@ function createSchemaForType(type) {
 
                 // Stripped
                 minable: minable.strip(),
-                fluid_boxes: Joi.any().strip(),
                 max_health: Joi.number().strip(),
                 corpse: Joi.string().strip(),
                 dying_explosion: Joi.string().strip(),
@@ -213,7 +269,6 @@ function createSchemaForType(type) {
     }
     else if (type === 'mining-drill') {
         return baseSchema
-            //.pattern(/_(animations?|sound|sprites|picture|tint|fluid_box)$/, Joi.any().strip())
             .keys(commonStrip)
             .keys({
                 icon: Joi.string().min(1),
@@ -226,12 +281,13 @@ function createSchemaForType(type) {
                 energy_usage: energy_usage.required(),
                 module_specification,
                 resource_searching_radius: Joi.number().greater(0).required(),
+                input_fluid_box,
+                output_fluid_box,
 
                 // Strip
                 animations: Joi.any().strip(),
                 corpse: Joi.string().strip(),
                 minable: minable.strip(),
-                //fluid_boxes: Joi.any().strip(),
                 max_health: Joi.number().strip(),
                 resistances: Joi.any().strip(),
                 collision_box: Joi.any().strip(),
