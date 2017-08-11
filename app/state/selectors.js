@@ -151,3 +151,8 @@ export const blockIOSelector = createSelector(
             )
     )
 );
+
+export const selectedIdsSelector = createSelector(
+    (state) => state.surface.selectedById,
+    Object.keys
+);

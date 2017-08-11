@@ -26,6 +26,9 @@ export const types = {
     DETAIL_COLLAPSE: 'DETAIL_COLLAPSE',
     SHOW_TOOLTIP: 'SHOW_TOOLTIP',
     HIDE_TOOLTIP: 'HIDE_TOOLTIP',
+    BLOCK_RECIPE_CHANGE: 'BLOCK_RECIPE_CHANGE',
+    BLOCK_PROTO_CHANGE: 'BLOCK_PROTO_CHANGE',
+    BLOCK_QUANTITY_CHANGE: 'BLOCK_QUANTITY_CHANGE',
 };
 
 const horizPadding = 18;
@@ -242,6 +245,23 @@ export const actions = {
             });
         }
     },
+
+    changeBlockRecipe: (blockId, type, name) => ({
+        type: types.BLOCK_RECIPE_CHANGE,
+        payload: {
+            blockId,
+            type,
+            name,
+        },
+    }),
+
+    changeBlockProto: (blockId, name) => ({
+        type: types.BLOCK_PROTO_CHANGE,
+        payload: {
+            blockId,
+            name,
+        },
+    }),
 };
 
 export function surfaceReducer(state = {
@@ -432,6 +452,31 @@ export function blocksReducer(state = {}, action) {
                 return ret;
             }, {});
         }
+        case types.BLOCK_RECIPE_CHANGE:
+            if (!state[action.payload.blockId]) {
+                return state;
+            }
+
+            return {
+                ...state,
+                [action.payload.blockId]: {
+                    ...state[action.payload.blockId],
+                    recipeType: action.payload.type,
+                    recipeName: action.payload.name,
+                },
+            };
+        case types.BLOCK_PROTO_CHANGE:
+            if (!state[action.payload.blockId]) {
+                return state;
+            }
+
+            return {
+                ...state,
+                [action.payload.blockId]: {
+                    ...state[action.payload.blockId],
+                    name: action.payload.name,
+                },
+            };
         default:
             return state;
     }

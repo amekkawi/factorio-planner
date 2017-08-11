@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Surface from './Surface';
 import Tooltip from './Tooltip';
+import PropertiesPanel from './PropertiesPanel';
 import IconDefs from './IconDefs';
 import SurfaceGrid from './SurfaceGrid';
 import SelectionBox from './SelectionBox';
@@ -103,6 +104,7 @@ class Workspace extends Component {
                     {this.renderConnections()}
                     <SelectionBox/>
                 </Surface>
+                <PropertiesPanel/>
                 <Tooltip/>
             </div>
         );

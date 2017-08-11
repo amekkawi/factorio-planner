@@ -41,6 +41,7 @@ svg text {
 }
 
 .workspace {
+  position: relative;
   background-color: #EEE;
   flex-grow: 1;
 
@@ -273,12 +274,6 @@ svg image {
 
     > div {
       position: relative;
-      top: 40px;
-      padding: 0 6px;
-      border: 1px solid #666;
-      background-color: #EEE;
-      border-radius: 5px;
-      box-shadow: 0 0 4px rgba(0, 0, 0, .5);
 
       > div {
         margin: 6px 0;
@@ -289,6 +284,21 @@ svg image {
   &__content {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
+    top: 5px;
+    padding: 2px 6px;
+    border: 1px solid #666;
+    background-color: #EEE;
+    border-radius: 5px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+
+    &--proto-name {
+      padding: 2px 6px;
+    }
+
+    &--io {
+      padding: 0 6px;
+      top: 40px;
+    }
   }
 
   &__items-box-container {
@@ -343,4 +353,71 @@ svg image {
 
 .inline-icon {
   margin-bottom: -3px;
+}
+
+.properties-panel {
+  position: absolute;
+  padding: 8px;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(78, 78, 78, 0.8);
+  border: 2px solid rgba(78, 78, 78, 1);
+  color: #FFF;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.icon-box {
+  margin: 2px;
+
+  &--pointer {
+    cursor: pointer;
+  }
+
+  rect {
+    fill: #666;
+    stroke: #333;
+    stroke-width: 3;
+  }
+
+  &--selected {
+    rect {
+      //stroke: #FFF;
+      fill: #CCC;
+    }
+  }
+
+  &--invalid {
+    rect {
+      fill: #F99;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.5;
+  }
+
+  &__text {
+    pointer-events: none;
+    font-weight: bold;
+    font-size: 34px;
+    text-anchor: middle;
+  }
+}
+
+.io-block-props {
+  &__recipe-icon {
+    position: relative;
+  }
+
+  &__recipe-select {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+  }
 }

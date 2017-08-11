@@ -284,31 +284,49 @@ export function getIcon(proto) {
     return null;
 }
 
+const isValidRecipeForProto_cache = new Map();
 export function isValidRecipeForProto(proto, recipeProto) {
     if (!proto || !recipeProto) {
         return false;
     }
 
+    let protoCache = isValidRecipeForProto_cache.get(proto);
+    let ret = protoCache && protoCache.get(recipeProto);
+    if (ret === true || ret === false) {
+        return ret;
+    }
+
+    // TODO: Also use fluid_boxes/input_fluid_box/output_fluid_box to validate.
+
+    ret = true;
+
     if (recipeProto.type === 'recipe') {
         if (!proto.crafting_categories || proto.crafting_categories.indexOf(recipeProto.category) < 0) {
-            return false;
+            ret = false;
         }
-
-        const ingredients = recipeGetIngredients(recipeProto);
-        if (ingredients && ingredients.length > proto.ingredient_count) {
-            return false;
+        else {
+            const ingredients = recipeGetIngredients(recipeProto);
+            if (ingredients && ingredients.length > proto.ingredient_count) {
+                ret = false;
+            }
         }
     }
     else if (recipeProto.type === 'resource') {
         if (!proto.resource_categories || proto.resource_categories.indexOf(recipeProto.category) < 0) {
-            return false;
+            ret = false;
         }
     }
     else {
-        return false;
+        ret = false;
     }
 
-    return true;
+    if (!protoCache) {
+        protoCache = new Map();
+        isValidRecipeForProto_cache.set(proto, protoCache);
+    }
+
+    protoCache.set(recipeProto, ret);
+    return ret;
 }
 
 export function isValidModulesForProto(blockProto, modules) {
@@ -364,6 +382,10 @@ export function isValidModuleForRecipe(recipeProto, module) {
 }
 
 export function isValidModulesForRecipe(recipeProto, modules) {
+    if (!recipeProto || !modules) {
+        return false;
+    }
+
     if (modules.length) {
         for (const module of modules) {
             if (!isValidModuleForRecipe(recipeProto, module)) {

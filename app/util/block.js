@@ -1,5 +1,6 @@
 import { warn } from '../util';
 import {
+    data,
     getProto,
     getRecipeCycle,
     isValidModulesForProto,
@@ -27,6 +28,18 @@ export function validRecipesForBlock(block) {
     else {
         return [];
     }
+}
+
+export function getProtosForBlockType(blockType) {
+    const protoType = getProtoNameForBlockType(blockType);
+    if (!data[protoType]) {
+        return null;
+    }
+
+    return Object.keys(data[protoType]).reduce((ret, key) => {
+        ret.push(data[protoType][key]);
+        return ret;
+    }, []);
 }
 
 export function getBlockBaseCycle(block) {
@@ -120,8 +133,8 @@ export function validateBlock(block) {
         const blockProto = getBlockProto(block);
         const isValidProto = !!blockProto;
         const recipeProto = getBlockRecipeProto(block);
-        const isValidRecipe = isValidProto && isValidRecipeForProto(blockProto, recipeProto);
-        const isValidModules = isValidProto && !block.modules || isValidModulesForProto(blockProto, block.modules)
+        const isValidRecipe = isValidRecipeForProto(blockProto, recipeProto);
+        const isValidModules = !block.modules || isValidModulesForProto(blockProto, block.modules)
             && isValidModulesForRecipe(recipeProto, block.modules);
 
         return {

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Icon } from './Icon';
 import { IconDefs } from './IconDefs';
 import { blockIOSelector } from '../state/selectors';
+import { getLocalizedName, getProto } from '../factorio';
 
 let pageX = 0;
 let pageY = 0;
@@ -42,6 +43,28 @@ class TooltipIcon extends Component {
         );
     }
 }
+
+const TooltipProtoLabelContent = connect((state) => {
+    const { type, name } = state.tooltip.meta;
+    const proto = getProto(type, name);
+    return {
+        text: proto && getLocalizedName(proto) || `${type}.${name}`,
+    };
+})(class TooltipProtoLabelContent extends Component {
+
+    static propTypes = {
+        text: PropTypes.string.isRequired,
+    };
+
+    render() {
+        const { text } = this.props;
+        return (
+            <div className="tooltip__content tooltip__content--proto-name">
+                {text}
+            </div>
+        );
+    }
+});
 
 const TooltipIOContent = connect((state) => {
     const { blockId } = state.tooltip.meta;
@@ -169,8 +192,11 @@ class Tooltip extends Component {
         if (contentType === 'block-io') {
             contentHTML = <TooltipIOContent/>;
         }
+        else if (contentType === 'proto-label') {
+            contentHTML = <TooltipProtoLabelContent/>;
+        }
         else {
-            contentHTML = <div>Unknown contentType: {contentType}</div>;
+            contentHTML = <div className="tooltip__content">Unknown contentType: {contentType}</div>;
         }
 
         if (!contentHTML) {

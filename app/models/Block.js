@@ -22,7 +22,7 @@ schemaByType.AssemblingMachineBlock = V.object()
         ...baseKeys,
         quantity: V.default(1).number().integer().min(1),
         name: V.string().min(1),
-        recipeType: V.string().min(1),
+        recipeType: V.default('recipe').string().min(1),
         recipeName: V.string().min(1),
         modules: V.array()
             .default(Array)
@@ -53,7 +53,7 @@ schemaByType.SupplyBlock = V.object()
         ...baseKeys,
         name: V.string().min(1),
         result: V.object().required().keys({
-            type: V.string().min(1),
+            type: V.default('item').string().min(1),
             name: V.string().min(1),
             rate: V.alternatives().try([
                 V.allow(['infinite']),
