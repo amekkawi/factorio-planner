@@ -136,9 +136,6 @@ export function buildGraph(blocks, connections) {
 
             if (node.isRoot) {
                 network.roots.push(node.blockId);
-
-                // Remove nodes that are part of the same network,
-                // as traversing them again would create duplicate networks.
                 rootNodes.delete(node);
             }
 
@@ -160,7 +157,7 @@ export function buildGraph(blocks, connections) {
                     network.isCyclic = true;
                     network.cyclicConnections[connectionId] = blockId;
                 }
-                else {
+                else if (!network.nodes[blockId]) {
                     propagateDownstream(nodes, node, destNode);
                     outboundQueue.push(nodes[blockId]);
                 }
