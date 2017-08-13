@@ -1,5 +1,6 @@
 export const isMac = navigator.userAgent.indexOf('Mac OS X') != -1;
 export const mouseMultiSelectionEventProp = isMac ? 'metaKey' : 'ctrlKey';
+export const isRetina = window.devicePixelRatio > 1;
 
 export function isMouseEventMultiSelection(evt) {
     const isMultiModifier = evt.shiftKey || evt.ctrlKey || evt[mouseMultiSelectionEventProp];
