@@ -1,3 +1,8 @@
+/**
+ * @param {object.<string,ValidatedBlock>} blocks
+ * @param {object.<string,ValidatedConnection>} connections
+ * @returns {Graph}
+ */
 export function buildGraph(blocks, connections) {
     const nodes = {};
 
@@ -41,6 +46,15 @@ export function buildGraph(blocks, connections) {
     // Go through the actual blocks and determine roots.
     for (const blockId of Object.keys(blocks)) {
 
+        /**
+         * @typedef {object} GraphNode
+         * @property {string} blockId
+         * @property {object.<string,string>} outbound
+         * @property {object.<string,string>} inbound
+         * @property {object.<string,boolean>} downstream
+         * @property {object.<string,boolean>} upstream
+         */
+
         // Create node if it doesn't exist (which means the block has no connections).
         const node = nodes[blockId] || (nodes[blockId] = {
             blockId: blockId,
@@ -69,7 +83,18 @@ export function buildGraph(blocks, connections) {
 
     for (const rootNode of rootNodes) {
         const networkId = `n${nextNetworkId++}`;
+
+        /**
+         * @typedef {object} GraphNetwork
+         * @property {string} networkId
+         * @property {object.<string,GraphNode>} nodes
+         * @property {string[]} roots
+         * @property {string[]} leafs
+         * @property {boolean} isCyclic
+         * @property {object.<string,string>} cyclicConnections
+         */
         const network = networks[networkId] = {
+            networkId,
             nodes: {},
             roots: [],
             leafs: [],
@@ -156,6 +181,12 @@ export function buildGraph(blocks, connections) {
         connectionToNetwork,
     });
 
+    /**
+     * @typedef {object} Graph
+     * @property {object.<string,GraphNetwork>} networks
+     * @property {object.<string,string>} nodeToNetwork
+     * @property {object.<string,string>} connectionToNetwork
+     */
     return {
         networks,
         nodeToNetwork,
