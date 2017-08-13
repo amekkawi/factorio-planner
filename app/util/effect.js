@@ -80,6 +80,13 @@ function addModuleEffectBonuses(moduleEffect, effect, effectivity = 1) {
 }
 
 function defaultEffect() {
+    /**
+     * @typedef {object} Effect
+     * @property {number} productivity
+     * @property {number} consumption
+     * @property {number} pollution
+     * @property {number} speed
+     */
     return {
         productivity: 0,
         consumption: 0,

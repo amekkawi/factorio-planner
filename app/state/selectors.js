@@ -33,6 +33,11 @@ export const graphSelector = createSelectorCreator(memoize, { skipHead: 2 })(
     (blocks, connections) => buildGraph(blocks, connections)
 );
 
+/**
+ * @function
+ * @params {object} state
+ * @returns {object.<string,ValidatedBlock>}
+ */
 export const validatedBlocksSelector = createSelector(
     (state) => state.blockIds,
     (state) => state.blocks,
@@ -40,14 +45,28 @@ export const validatedBlocksSelector = createSelector(
         (blockId) =>
             createSelector(
                 (blocks) => blocks[blockId],
-                (block) => ({
-                    ...block,
-                    ...validateBlock(block),
-                })
+                (block) => {
+                    /**
+                     * @typedef {Block} ValidatedBlock
+                     * @property {boolean} isValid
+                     * @property {boolean} isValidProto
+                     * @property {boolean} isValidRecipe
+                     * @property {boolean} isValidModules
+                     */
+                    return {
+                        ...block,
+                        ...validateBlock(block),
+                    };
+                }
             )
     )
 );
 
+/**
+ * @function
+ * @params {object} state
+ * @returns {object.<string,ValidatedConnection>}
+ */
 export const validatedConnectionsSelector = createSelector(
     (state) => state.connectionIds,
     (state) => state.connections,
@@ -59,6 +78,12 @@ export const validatedConnectionsSelector = createSelector(
                 (connections, blocks) => blocks[connections[connectionId].srcBlockId],
                 (connections, blocks) => blocks[connections[connectionId].destBlockId],
                 (connection, srcBlock, destBlock) => {
+                    /**
+                     * @typedef {Connection} ValidatedConnection
+                     * @property {boolean} isValid
+                     * @property {Block} srcBlock
+                     * @property {Block} destBlock
+                     */
                     return {
                         ...connection,
                         isValid: isValidConnection(connection, srcBlock, destBlock),
@@ -70,6 +95,11 @@ export const validatedConnectionsSelector = createSelector(
     )
 );
 
+/**
+ * @function
+ * @params {object} state
+ * @returns {object.<string,BlockIO>}
+ */
 export const blockIOSelector = createSelector(
     (state) => state.blockIds,
     validatedBlocksSelector,
@@ -88,6 +118,12 @@ export const blockIOSelector = createSelector(
                     },
                     (v) => v
                 ),
+
+                /**
+                 * @param {ValidatedBlock} block
+                 * @param {ValidatedConnection[]} effectConnections
+                 * @return {*}
+                 */
                 (block, effectConnections) => {
                     const isSender = isIngredientSender(block.type);
                     const isReceiver = isIngredientReceiver(block.type);
@@ -122,6 +158,13 @@ export const blockIOSelector = createSelector(
                             }
                         }
                     }
+
+                    /**
+                     * @typedef {object} BlockIO
+                     * @property {Effect} effect
+                     * @property {InputOutputRate[]} output
+                     * @property {InputOutputRate[]} input
+                     */
 
                     const ret = {
                         effect: effects.length > 1

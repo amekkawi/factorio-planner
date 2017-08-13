@@ -17,6 +17,21 @@ const baseSchema = V.object().keys(baseKeys);
 
 const schemaByType = {};
 
+/**
+ * @typedef {object} Block
+ * @property {string} blockId
+ * @property {string} type
+ * @property {number} x
+ * @property {number} y
+ * @property {number} quantity
+ * @property {string} name
+ * @property {string} recipeType
+ * @property {string} recipeName
+ * @property {string[]} modules
+ * @property {number} ringRotate
+ * @property {{ type: string, name: string, rate: string|number }} result
+ */
+
 schemaByType.AssemblingMachineBlock = V.object()
     .keys({
         ...baseKeys,
@@ -62,6 +77,11 @@ schemaByType.SupplyBlock = V.object()
         }),
     });
 
+/**
+ * @param {string} blockId
+ * @param {object} props
+ * @return {Block}
+ */
 export function createBlock(blockId, props) {
     try {
         if (!props || !schemaByType[props.type]) {

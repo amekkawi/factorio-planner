@@ -14,6 +14,37 @@ const baseSchema = V.object().keys(baseKeys);
 
 const schemaByType = {};
 
+/**
+ * @typedef {object} Connection
+ * @property {string} connectionId
+ * @property {string} type
+ * @property {string} srcBlockId
+ * @property {string} destBlockId
+ * @property {ConnectionMeta} meta
+ */
+
+/**
+ * @typedef {object} ConnectionMeta
+ * @property {ConnectionMetaResult[]} results
+ * @property {ConnectionMetaDistribution[]} distributions
+ */
+
+/**
+ * @typedef {object} ConnectionMetaResult
+ * @property {string} type
+ * @property {string} name
+ * @property {number} inboundWeight
+ * @property {number} inboundPriority
+ * @property {number} outboundWeight
+ * @property {number} outboundPriority
+ */
+
+/**
+ * @typedef {object} ConnectionMetaDistribution
+ * @property {number} effectPerBlock
+ * @property {number} blocksAffected
+ */
+
 schemaByType.result = V.object()
     .keys({
         ...baseKeys,
@@ -54,6 +85,11 @@ schemaByType.effect = V.object()
         }),
     });
 
+/**
+ * @param {string} connectionId
+ * @param {object} props
+ * @return {ResultConnection|EffectConnection}
+ */
 export function createConnection(connectionId, props) {
     try {
         if (!props || !schemaByType[props.type]) {

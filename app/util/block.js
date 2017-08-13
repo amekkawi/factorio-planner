@@ -224,6 +224,18 @@ export function isValidConnectionResult(srcResults, destIngredients, result) {
     return srcResults.some(resultComparator) && destIngredients.some(resultComparator);
 }
 
+/**
+ * @typedef {object} InputOutputRate
+ * @property {string} type
+ * @property {string} type
+ * @property {number} rate
+ */
+
+/**
+ * @param {Block} block
+ * @param {Effect} effect
+ * @returns {InputOutputRate[]}
+ */
 export function calculateOutputRates(block, effect) {
     const cycle = getBlockBaseCycle(block) / (1 + (effect ? effect.speed : 0));
     return getIngredientSenderResults(block)
@@ -234,6 +246,11 @@ export function calculateOutputRates(block, effect) {
         }));
 }
 
+/**
+ * @param {Block} block
+ * @param {Effect} effect
+ * @returns {InputOutputRate[]}
+ */
 export function calculateInputRates(block, effect) {
     const cycle = getBlockBaseCycle(block) / (1 + (effect ? effect.speed : 0));
     return getIngredientReceiverIngredients(block)
