@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectedIdsSelector, validatedBlocksSelector } from '../state/selectors';
-import { isBlockId } from '../util/block';
+import * as Block from '../models/Block';
 import IOBlockProperties from './properties/IOBlockProperties';
 
 const BlockPropertiesFactory = connect((state, { blockId }) => ({
@@ -53,7 +53,7 @@ class PropertiesPanel extends Component {
         }
 
         let contentHTML;
-        if (isBlockId(selectedId)) {
+        if (Block.isBlockId(selectedId)) {
             contentHTML = <BlockPropertiesFactory blockId={selectedId} />;
         }
 

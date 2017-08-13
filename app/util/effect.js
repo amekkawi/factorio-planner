@@ -1,19 +1,5 @@
 import { data as factorioData } from '../factorio';
 
-/**
- * Check if the block type can receieve effects.
- *
- * @param {string} type
- * @return {boolean}
- */
-export function isEffectReceiver(type) {
-    return type === 'AssemblingMachineBlock' || type === 'MiningDrillBlock' || type === 'FurnaceBlock';
-}
-
-export function isEffectSender(type) {
-    return type === 'BeaconBlock';
-}
-
 export function isValidEffectDistribution(distribution, destBlockQuantity) {
     return distribution.blocksAffected <= 0 && destBlockQuantity - distribution.blocksAffected >= 1
         || distribution.blocksAffected > 0 && distribution.blocksAffected <= destBlockQuantity;

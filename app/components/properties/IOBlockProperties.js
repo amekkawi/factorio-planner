@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import { actions } from '../../state/reducers';
-import { getProtoNameForBlockType, getProtosForBlockType, validRecipesForBlock } from '../../util/block';
+import * as Block from '../../models/Block';
 import { getLocalizedName, getProto, isValidRecipeForProto } from '../../factorio';
 import { validatedBlocksSelector } from '../../state/selectors';
 import { Icon } from '../Icon';
@@ -115,9 +115,9 @@ class IOBlockProperties extends Component {
     renderProtoIcons() {
         const { block: { type, name, recipeType, recipeName, isValidRecipe } } = this.props;
 
-        const protoType = getProtoNameForBlockType(type);
+        const protoType = Block.getProtoNameForBlockType(type);
         const blockProto = getProto(protoType, name);
-        const protosForBlockType = getProtosForBlockType(type);
+        const protosForBlockType = Block.getProtosForBlockType(type);
         const fastReplaceableGroup = blockProto && blockProto.fast_replaceable_group || null;
 
         const recipeProto = getProto(recipeType, recipeName);
@@ -170,7 +170,7 @@ class IOBlockProperties extends Component {
         const { block } = this.props;
         const { recipeType, recipeName, isValidProto, isValidRecipe } = block;
 
-        const validRecipes = isValidProto && validRecipesForBlock(block);
+        const validRecipes = isValidProto && Block.getValidRecipes(block);
         const recipeProto = getProto(recipeType, recipeName);
         const recipeKey = recipeProto
             ? JSON.stringify({ type: recipeProto.type, name: recipeProto.name })

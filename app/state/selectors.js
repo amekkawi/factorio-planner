@@ -1,10 +1,7 @@
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
 import { buildGraph } from '../util/graph';
-import {
-    calculateInputRates, calculateOutputRates,
-    isIngredientReceiver, isIngredientSender,
-    isValidConnection, validateBlock,
-} from '../util/block';
+import * as Block from '../models/Block';
+import * as Connection from '../models/Connection';
 import {
     calculateBeaconEffect, calculateModulesEffect,
     isEffectSender, mergeEffects, scaleEffect,
@@ -55,7 +52,7 @@ export const validatedBlocksSelector = createSelector(
                      */
                     return {
                         ...block,
-                        ...validateBlock(block),
+                        ...Block.validateBlock(block),
                     };
                 }
             )
@@ -86,7 +83,7 @@ export const validatedConnectionsSelector = createSelector(
                      */
                     return {
                         ...connection,
-                        isValid: isValidConnection(connection, srcBlock, destBlock),
+                        isValid: Connection.isValidConnection(connection, srcBlock, destBlock),
                         srcBlock,
                         destBlock,
                     };
@@ -125,8 +122,8 @@ export const blockIOSelector = createSelector(
                  * @return {*}
                  */
                 (block, effectConnections) => {
-                    const isSender = isIngredientSender(block.type);
-                    const isReceiver = isIngredientReceiver(block.type);
+                    const isSender = Block.isIngredientSender(block.type);
+                    const isReceiver = Block.isIngredientReceiver(block.type);
                     if (!block.isValid || !isSender && !isReceiver) {
                         return false;
                     }
@@ -173,14 +170,14 @@ export const blockIOSelector = createSelector(
                     };
 
                     if (isSender) {
-                        ret.output = calculateOutputRates(
+                        ret.output = Block.calculateOutputRates(
                             block,
                             ret.effect
                         );
                     }
 
                     if (isReceiver) {
-                        ret.input = calculateInputRates(
+                        ret.input = Block.calculateInputRates(
                             block,
                             ret.effect
                         );

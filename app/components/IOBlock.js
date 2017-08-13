@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 import * as factorio from '../factorio';
 import { actions } from '../state/reducers';
+import * as Block from '../models/Block';
 import { dragDeltaSelector, validatedBlocksSelector } from '../state/selectors';
 import * as platformUtil from '../util/platform';
 import HoverContainer from './HoverContainer';
@@ -11,7 +12,6 @@ import IORing from './IORing';
 import Icon from './Icon';
 import BlockModules from './BlockModules';
 import BlockConnector, { BlockConnector as BlockConnectorMini } from './BlockConnector';
-import { getBlockRecipeProto, getIngredientReceiverIngredients, getIngredientSenderResults, getProtoNameForBlockType } from '../util/block';
 
 class IOBlock extends Component {
 
@@ -112,7 +112,7 @@ class IOBlock extends Component {
             onHoverRecipeOut,
         } = this.props;
 
-        const recipeProto = getBlockRecipeProto(this.props);
+        const recipeProto = Block.getBlockRecipeProto(this.props);
         const hoverEnabled = !isHoverDisabled && isHovered && onHoverRecipeOver && onHoverRecipeOut;
 
         const Container = hoverEnabled ? HoverContainer : 'g';
@@ -139,8 +139,8 @@ class IOBlock extends Component {
 
     renderConnectors(radius, width) {
         const { blockId, isHoverDisabled, isHovered, ringRotate } = this.props;
-        const ingredients = getIngredientReceiverIngredients(this.props);
-        const results = getIngredientSenderResults(this.props);
+        const ingredients = Block.getIngredientReceiverIngredients(this.props);
+        const results = Block.getIngredientSenderResults(this.props);
         const connectors = [];
 
         if (ingredients) {
@@ -236,7 +236,7 @@ class IOBlock extends Component {
             isHoverDisabled, isHovered, onHoverOver, onHoverOut,
         } = this.props;
 
-        const blockProto = isValidProto && factorio.getProto(getProtoNameForBlockType(type), name);
+        const blockProto = isValidProto && factorio.getProto(Block.getProtoNameForBlockType(type), name);
 
         const baseRadius = 54;
         const width = 22;
