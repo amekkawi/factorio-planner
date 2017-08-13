@@ -17,7 +17,7 @@ export function isBlockId(id) {
     return !!id && id[0] === 'b';
 }
 
-export function isConnectorId(id) {
+export function isConnectionId(id) {
     return !!id && id[0] === 'c';
 }
 
