@@ -32,7 +32,7 @@ export function required({
     message = 'is required',
 } = {}) {
     return function(val) {
-        if (val === void 0) {
+        if (val === undefined) {
             throw new Error(message);
         }
         return val;
@@ -41,7 +41,7 @@ export function required({
 
 export function defaultVal(defaultVal) {
     return function(val) {
-        return val === void 0
+        return val === undefined
             ? (typeof defaultVal === 'function' ? defaultVal() : defaultVal)
             : val;
     };
@@ -65,7 +65,7 @@ export function allow(values, {
 
 export function string() {
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (typeof val !== 'string') {
                 throw new Error('must be a string');
             }
@@ -80,7 +80,7 @@ export function stringMin(num) {
     }
 
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (val.length < num) {
                 throw new Error(`must not be less than ${num} characters`);
             }
@@ -95,7 +95,7 @@ export function stringMax(num) {
     }
 
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (val.length > num) {
                 throw new Error(`must not be more than ${num} characters`);
             }
@@ -108,7 +108,7 @@ export function stringRegex(regex, {
     message = `must match pattern ${regex}`,
 } = {}) {
     return function(val) {
-        if (val !== void 0 && !val.match(regex)) {
+        if (val !== undefined && !val.match(regex)) {
             throw new Error(message);
         }
         return val;
@@ -117,7 +117,7 @@ export function stringRegex(regex, {
 
 export function number() {
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (typeof val !== 'number' || !isFinite(val)) {
                 throw new Error('must be a finite number');
             }
@@ -128,7 +128,7 @@ export function number() {
 
 export function numberInteger() {
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (val % 1 !== 0) {
                 throw new Error('must be an integer');
             }
@@ -143,7 +143,7 @@ export function numberMin(num) {
     }
 
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (val < num) {
                 throw new Error(`must not be less than ${num}`);
             }
@@ -158,7 +158,7 @@ export function numberMax(num) {
     }
 
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (val > num) {
                 throw new Error(`must not be more than ${num}`);
             }
@@ -173,7 +173,7 @@ export function numberGreater(num) {
     }
 
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (val <= num) {
                 throw new Error(`must be greater than ${num}`);
             }
@@ -188,7 +188,7 @@ export function numberLess(num) {
     }
 
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (val <= num) {
                 throw new Error(`must be less than ${num}`);
             }
@@ -199,7 +199,7 @@ export function numberLess(num) {
 
 export function object() {
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (!val || typeof val !== 'object' || Array.isArray(val)) {
                 throw new Error('must be an object');
             }
@@ -212,7 +212,7 @@ export function keys(keys, {
     unknown = false,
 } = {}) {
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             const unknownKeys = !unknown && new Set(Object.keys(val));
             let mutated = false;
 
@@ -234,7 +234,7 @@ export function keys(keys, {
                     throw err;
                 }
 
-                if (keyVal !== void 0) {
+                if (keyVal !== undefined) {
                     if (mutated) {
                         val[key] = keyVal;
                     }
@@ -258,11 +258,11 @@ export function andKeys(peers, {
     message = `must have all keys if at least one is present: ${peers.join(',')}`,
 } = {}) {
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             let found = 0;
             let missing = 0;
             for (const key of peers) {
-                if (val[key] === void 0) {
+                if (val[key] === undefined) {
                     missing++;
                     if (found) {
                         throw new Error(message);
@@ -284,10 +284,10 @@ export function nandKeys(peers, {
     message = `must not have more than one keys of: ${peers.join(',')}`,
 } = {}) {
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             let found = false;
             for (const key of peers) {
-                if (val[key] !== void 0) {
+                if (val[key] !== undefined) {
                     if (found) {
                         throw new Error(message);
                     }
@@ -303,10 +303,10 @@ export function orKeys(peers, {
     message = `must have at least one of the following keys: ${peers.join(',')}`,
 } = {}) {
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             let found = false;
             for (const key of peers) {
-                if (val[key] !== void 0) {
+                if (val[key] !== undefined) {
                     found = true;
                 }
             }
@@ -321,7 +321,7 @@ export function orKeys(peers, {
 
 export function array() {
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (!val || !Array.isArray(val)) {
                 throw new Error('must be an array');
             }
@@ -338,12 +338,12 @@ export function arrayItems(types) {
     const alts = alternativesTry(types);
 
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             let mutated = false;
 
             for (let i = 0, l = val.length; i < l; i++) {
                 const itemVal = alts.call(this, val[i]);
-                if (itemVal !== void 0) {
+                if (itemVal !== undefined) {
                     if (mutated) {
                         val[i] = itemVal;
                     }
@@ -366,7 +366,7 @@ export function arrayMin(num) {
     }
 
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (val.length < num) {
                 throw new Error(`must have less than ${num} items`);
             }
@@ -381,7 +381,7 @@ export function arrayMax(num) {
     }
 
     return function(val) {
-        if (val !== void 0) {
+        if (val !== undefined) {
             if (val.length > num) {
                 throw new Error(`must not have more than ${num} items`);
             }
