@@ -186,9 +186,6 @@ export const blockIOSelector = createSelector(
                         );
                     }
 
-                    if (blockId === 'b1')
-                        console.log('b1-calc-eff', blockId, { block, effectConnections, effects, ...ret });
-
                     return ret;
                 }
             )
