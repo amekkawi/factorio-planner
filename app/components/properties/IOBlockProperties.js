@@ -134,7 +134,7 @@ class IOBlockProperties extends Component {
                     missingProtoBox = false;
                 }
 
-                if (!blockProto
+                if (!blockProto || !isValidRecipe
                     || fastReplaceableGroup && fastReplaceableGroup === proto.fast_replaceable_group
                     || !fastReplaceableGroup && blockProto === proto) {
                     iconBoxes.push(
@@ -185,7 +185,7 @@ class IOBlockProperties extends Component {
                     invalid={!isValidRecipe}
                 />
 
-                <select className="io-block-props__recipe-select" value={isValidRecipe ? JSON.stringify({ type: recipeType, name: recipeName }) : recipeKey || ''} onChange={this.handleRecipeChange}>
+                {validRecipes && validRecipes.length > 1 && <select className="io-block-props__recipe-select" value={isValidRecipe ? JSON.stringify({ type: recipeType, name: recipeName }) : recipeKey || ''} onChange={this.handleRecipeChange}>
                     {recipeKey && (!validRecipes || !isValidRecipe) && <option disabled key={recipeKey} value={recipeKey}>
                         {getLocalizedName(recipeProto)}
                     </option>}
@@ -197,7 +197,7 @@ class IOBlockProperties extends Component {
                             </option>
                         );
                     })}
-                </select>
+                </select>}
             </div>
         );
     }
