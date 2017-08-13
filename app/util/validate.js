@@ -3,14 +3,16 @@ import * as validators from './validators';
 const _proto = Symbol('_proto');
 const _validators = Symbol('_validators');
 const protos = {};
+const rootProto = {};
 
-protos.any = {
+protos.any = Object.assign(Object.create(rootProto), {
     required: wrap(validators.required),
     default: wrap(validators.defaultVal),
     allow: wrap(validators.allow),
     validate(val) {
         const context = arguments[1] || {
             rootValue: val,
+            isValidator,
         };
 
         for (const validator of this[_validators]) {
@@ -19,7 +21,7 @@ protos.any = {
 
         return val;
     },
-};
+});
 
 protos.alternatives = Object.assign(Object.create(protos.any), {
     try: wrap(validators.alternativesTry),
@@ -60,7 +62,15 @@ protos.core = Object.assign(Object.create(protos.any), {
     array: wrap(validators.array, 'array'),
 });
 
+export function isValidator(val) {
+    return val && Object.prototype.isPrototypeOf.call(rootProto, val);
+}
+
 export default Object.create(protos.core);
+
+const wrapContext = {
+    isValidator,
+};
 
 function wrap(fn, protoName) {
     return function(...args) {
@@ -72,7 +82,7 @@ function wrap(fn, protoName) {
 
         ret[_validators] = [
             ...(this[_validators] || []),
-            fn(...args),
+            fn.apply(wrapContext, args),
         ];
         return ret;
     };
