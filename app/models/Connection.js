@@ -22,7 +22,10 @@ schemaByType.result = V.object()
                 V.object().keys({
                     type: V.default('item').string().min(1),
                     name: V.required().string().min(1),
-                    percentage: V.default(1).number().greater(0),
+                    inboundWeight: V.default(1).number().greater(0),
+                    inboundPriority: V.default(1).number().integer().min(1),
+                    outboundWeight: V.default(1).number().greater(0),
+                    outboundPriority: V.default(1).number().integer().min(1),
                 }),
             ]),
         }),
@@ -32,7 +35,7 @@ function defaultDistributions() {
     return [
         {
             effectPerBlock: 1,
-            blocksAffected: 0
+            blocksAffected: 0,
         },
     ];
 }
