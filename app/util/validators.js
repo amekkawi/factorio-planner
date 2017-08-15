@@ -47,6 +47,14 @@ export function defaultVal(defaultVal) {
     };
 }
 
+export function transform(func, {
+    undef = false,
+} = {}) {
+    return function(val) {
+        return undef || val === undefined ? func(val) : val;
+    };
+}
+
 export function allow(values, {
     message = 'is not a valid value',
 } = {}) {
@@ -254,6 +262,43 @@ export function keys(keys, {
     };
 }
 
+export function mapKeys(func, {
+    mutate = false,
+} = {}) {
+    return function(obj) {
+        if (obj !== undefined) {
+            let cloned = false;
+            for (const key of Object.keys(obj)) {
+
+                let keyVal;
+                try {
+                    keyVal = func(obj[key], key, obj);
+                }
+                catch (err) {
+                    if (!err.path) {
+                        err.path = [];
+                        err.message = ` ${err.message}`;
+                    }
+
+                    err.path.unshift(key);
+                    err.message = `${key}${err.path.length === 1 ? '' : '.'}${err.message}`;
+                    throw err;
+                }
+
+                if (keyVal !== obj[key]) {
+                    if (!mutate && !cloned) {
+                        obj = { ...obj };
+                        cloned = true;
+                    }
+
+                    obj[key] = keyVal;
+                }
+            }
+        }
+        return obj;
+    };
+}
+
 export function andKeys(peers, {
     message = `must have all keys if at least one is present: ${peers.join(',')}`,
 } = {}) {
@@ -319,6 +364,43 @@ export function orKeys(peers, {
     };
 }
 
+export function keyWhen(key, {
+    is,
+    then = null,
+    otherwise = null,
+}) {
+    if (!this.isValidator(then) && !this.isValidator(otherwise)) {
+        throw new Error('must have schema "then" and/or "otherwise" for object().when()');
+    }
+
+    return function(val) {
+        if (val !== undefined && val[key] !== undefined) {
+            let matched;
+
+            if (this.isValidator(is)) {
+                try {
+                    is.validate(val, this);
+                    matched = true;
+                }
+                catch (err) {
+                    matched = false;
+                }
+            }
+            else {
+                matched = val === is;
+            }
+
+            if (matched && then) {
+                return then.validate(val, this);
+            }
+            else if (!matched && otherwise) {
+                return otherwise.validate(val, this);
+            }
+        }
+        return val;
+    };
+}
+
 export function array() {
     return function(val) {
         if (val !== undefined) {
@@ -327,6 +409,12 @@ export function array() {
             }
         }
         return val;
+    };
+}
+
+export function arrayMap(func) {
+    return function(val) {
+        return val === undefined ? val : val.map(func);
     };
 }
 

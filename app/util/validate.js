@@ -9,6 +9,7 @@ protos.any = Object.assign(Object.create(rootProto), {
     required: wrap(validators.required),
     default: wrap(validators.defaultVal),
     allow: wrap(validators.allow),
+    transform: wrap(validators.transform),
     validate(val) {
         const context = arguments[1] || {
             rootValue: val,
@@ -43,13 +44,16 @@ protos.string = Object.assign(Object.create(protos.any), {
 
 protos.object = Object.assign(Object.create(protos.any), {
     keys: wrap(validators.keys),
+    mapKeys: wrap(validators.mapKeys),
     and: wrap(validators.andKeys),
     nand: wrap(validators.nandKeys),
     or: wrap(validators.orKeys),
+    when: wrap(validators.keyWhen),
 });
 
 protos.array = Object.assign(Object.create(protos.any), {
     items: wrap(validators.arrayItems),
+    map: wrap(validators.arrayMap),
     min: wrap(validators.arrayMin),
     max: wrap(validators.arrayMax),
 });
