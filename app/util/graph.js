@@ -96,6 +96,7 @@ export function buildGraph(blocks, connections) {
         const network = networks[networkId] = {
             networkId,
             nodes: {},
+            connections: [],
             roots: [],
             leafs: [],
             isCyclic: false,
@@ -147,6 +148,8 @@ export function buildGraph(blocks, connections) {
             for (const blockId of Object.keys(node.outbound)) {
                 const connectionId = node.outbound[blockId];
                 const connection = connections[connectionId];
+
+                network.connections.push(connectionId);
                 connectionToNetwork[connectionId] = networkId;
 
                 const destNode = nodes[connection.destBlockId];
