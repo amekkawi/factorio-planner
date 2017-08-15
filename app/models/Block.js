@@ -94,11 +94,11 @@ schemaByType.SupplyBlock = V.object()
     });
 
 /**
- * @param {string} blockId
  * @param {object} props
+ * @param {string} blockId
  * @return {Block}
  */
-export function createBlock(blockId, props) {
+export function createBlock(props, blockId) {
     try {
         if (!props || !schemaByType[props.type]) {
             baseSchema.validate(props);

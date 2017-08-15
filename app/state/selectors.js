@@ -4,7 +4,7 @@ import * as Block from '../models/Block';
 import * as Connection from '../models/Connection';
 import {
     calculateBeaconEffect, calculateModulesEffect,
-    isEffectSender, mergeEffects, scaleEffect,
+    mergeEffects, scaleEffect,
 } from '../util/effect';
 import { memoize, createKeyMemoizedSelector, arrayValuesEqualityCheck } from '../util/selector';
 import { getProto } from '../factorio';
@@ -20,6 +20,16 @@ export const dragDeltaSelector = createSelector(
             x: x2 - x1,
             y: y2 - y1,
         } : false,
+);
+
+export const selectedIdsSelector = createSelector(
+    (state) => state.surface.selectedById,
+    Object.keys
+);
+
+export const networkIdsSelector = createSelector(
+    (state) => graphSelector(state).networks,
+    (networks) => Object.keys(networks),
 );
 
 export const graphSelector = createSelectorCreator(memoize, { skipHead: 2 })(
@@ -75,15 +85,19 @@ export const validatedConnectionsSelector = createSelector(
                 (connections, blocks) => blocks[connections[connectionId].srcBlockId],
                 (connections, blocks) => blocks[connections[connectionId].destBlockId],
                 (connection, srcBlock, destBlock) => {
+                    let validationMessages = [];
+
                     /**
                      * @typedef {Connection} ValidatedConnection
                      * @property {boolean} isValid
+                     * @property {string[]} validationMessages
                      * @property {Block} srcBlock
                      * @property {Block} destBlock
                      */
                     return {
                         ...connection,
-                        isValid: Connection.isValidConnection(connection, srcBlock, destBlock),
+                        isValid: Connection.isValidConnection(connection, srcBlock, destBlock, validationMessages),
+                        validationMessages,
                         srcBlock,
                         destBlock,
                     };
@@ -105,7 +119,10 @@ export const blockIOSelector = createSelector(
     createKeyMemoizedSelector(
         (blockId) =>
             createSelector(
+                // Select block.
                 (blocks) => blocks[blockId],
+
+                // Select (memozied) effect connections for the block.
                 createSelectorCreator(defaultMemoize, arrayValuesEqualityCheck)(
                     (blocks, connections, graph) => {
                         const graphNode = graph.networks[graph.nodeToNetwork[blockId]].nodes[blockId];
@@ -135,7 +152,7 @@ export const blockIOSelector = createSelector(
                     // Add effects from inbound blocks
                     for (const effectConnection of effectConnections) {
                         for (const distribution of effectConnection.meta.distributions) {
-                            if (isEffectSender(effectConnection.srcBlock.type)) {
+                            if (Block.isEffectSender(effectConnection.srcBlock.type)) {
 
                                 const beaconEffect = calculateBeaconEffect(
                                     getProto('beacon', effectConnection.srcBlock.name),
@@ -187,9 +204,4 @@ export const blockIOSelector = createSelector(
                 }
             )
     )
-);
-
-export const selectedIdsSelector = createSelector(
-    (state) => state.surface.selectedById,
-    Object.keys
 );

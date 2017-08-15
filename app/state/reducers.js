@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { dragDeltaSelector } from './selectors';
 import { createBlock } from '../models/Block';
 import { createConnection } from '../models/Connection';
+import { createPlan } from '../models/Plan';
 
 export const types = {
     KEY_ESCAPE: 'KEY_ESCAPE',
@@ -20,7 +21,9 @@ export const types = {
     DRAG_SELECTION_INIT: 'DRAG_SELECTION_INIT',
     DRAG_SELECTION_MOVE: 'DRAG_SELECTION_MOVE',
     DRAG_SELECTION_END: 'DRAG_SELECTION_END',
-    LOAD_PLAN: 'LOAD_PLAN',
+    LOAD_PLAN_REQUEST: 'LOAD_PLAN_REQUEST',
+    LOAD_PLAN_SUCCESS: 'LOAD_PLAN_SUCCESS',
+    LOAD_PLAN_FAILURE: 'LOAD_PLAN_FAILURE',
     LOAD_ICON: 'LOAD_ICON',
     DETAIL_EXPAND: 'DETAIL_EXPAND',
     DETAIL_COLLAPSE: 'DETAIL_COLLAPSE',
@@ -188,12 +191,32 @@ export const actions = {
         });
     },
 
-    loadPlan: (plan) => ({
-        type: types.LOAD_PLAN,
-        payload: {
-            plan,
-        },
-    }),
+    loadPlan: (plan) => (dispatch) => {
+        dispatch({
+            type: types.LOAD_PLAN_REQUEST,
+        });
+
+        try {
+            dispatch({
+                type: types.LOAD_PLAN_SUCCESS,
+                payload: {
+                    plan: createPlan(plan),
+                },
+            });
+        }
+        catch (err) {
+            console.error('Load plan failure', err);
+            dispatch({
+                type: types.LOAD_PLAN_FAILURE,
+                payload: {
+                    error: {
+                        message: err.message,
+                        path: err.path,
+                    },
+                },
+            });
+        }
+    },
 
     loadIcon: (type, name) => (dispatch, getState) => {
         if (!getState().icons[`${type}.${name}`]) {
@@ -421,8 +444,8 @@ export function surfaceReducer(state = {
 
 export function blockIdsReducer(state = [], action) {
     switch (action.type) {
-        case types.LOAD_PLAN:
-            return Object.keys(action.payload.plan.blocks || {});
+        case types.LOAD_PLAN_SUCCESS:
+            return Object.keys(action.payload.plan.blocks);
         default:
             return state;
     }
@@ -430,12 +453,8 @@ export function blockIdsReducer(state = [], action) {
 
 export function blocksReducer(state = {}, action) {
     switch (action.type) {
-        case types.LOAD_PLAN:
-            return Object.keys(action.payload.plan.blocks || {})
-                .reduce((ret, blockId) => {
-                    ret[blockId] = createBlock(blockId, action.payload.plan.blocks[blockId]);
-                    return ret;
-                }, {});
+        case types.LOAD_PLAN_SUCCESS:
+            return action.payload.plan.blocks;
         case types.DRAG_SELECTION_END: {
             const keysSet = new Set(action.payload.ids);
             return Object.keys(state).reduce((ret, blockId) => {
@@ -484,8 +503,8 @@ export function blocksReducer(state = {}, action) {
 
 export function connectionIdsReducer(state = [], action) {
     switch (action.type) {
-        case types.LOAD_PLAN:
-            return Object.keys(action.payload.plan.connections || {});
+        case types.LOAD_PLAN_SUCCESS:
+            return Object.keys(action.payload.plan.connections);
         default:
             return state;
     }
@@ -493,12 +512,8 @@ export function connectionIdsReducer(state = [], action) {
 
 export function connectionsReducer(state = {}, action) {
     switch (action.type) {
-        case types.LOAD_PLAN:
-            return Object.keys(action.payload.plan.connections || {})
-                .reduce((ret, connectionId) => {
-                    ret[connectionId] = createConnection(connectionId, action.payload.plan.connections[connectionId]);
-                    return ret;
-                }, {});
+        case types.LOAD_PLAN_SUCCESS:
+            return action.payload.plan.connections;
         default:
             return state;
     }
@@ -506,8 +521,9 @@ export function connectionsReducer(state = {}, action) {
 
 export function iconsReducer(state = {}, action) {
     switch (action.type) {
-        case types.LOAD_PLAN:
-            return action.payload.plan.icons || {};
+        // TODO: Would the plan include icons? Maybe this was meant to pre-load plans referenced by the plan?
+        //case types.LOAD_PLAN_SUCCESS:
+        //    return action.payload.plan.icons || {};
         case types.LOAD_ICON: {
             const iconKey = `${action.payload.type}.${action.payload.name}`;
 

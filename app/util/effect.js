@@ -1,10 +1,5 @@
 import { data as factorioData } from '../factorio';
 
-export function isValidEffectDistribution(distribution, destBlockQuantity) {
-    return distribution.blocksAffected <= 0 && destBlockQuantity - distribution.blocksAffected >= 1
-        || distribution.blocksAffected > 0 && distribution.blocksAffected <= destBlockQuantity;
-}
-
 export function calculateModulesEffect(moduleIds) {
     const effect = defaultEffect();
     for (const moduleId of moduleIds) {

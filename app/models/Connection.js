@@ -1,7 +1,13 @@
 import V from '../util/validate';
 import { warn, isProtoEqual } from '../util';
 import * as Block from '../models/Block';
-import { isValidEffectDistribution } from '../util/effect';
+import { findByProto, getProtoId } from '../util/index';
+import { getLocalizedName } from '../factorio';
+import {
+    isValidEffectDistribution,
+    defaultDistributions,
+    createEffectDistribution,
+} from './EffectDistribution';
 
 /* =============================================
  *                   Schema
@@ -33,7 +39,7 @@ const schemaByType = {};
 /**
  * @typedef {object} ConnectionMeta
  * @property {ConnectionMetaResult[]} results
- * @property {ConnectionMetaDistribution[]} distributions
+ * @property {EffectDistribution[]} distributions
  */
 
 /**
@@ -44,12 +50,6 @@ const schemaByType = {};
  * @property {number} inboundPriority
  * @property {number} outboundWeight
  * @property {number} outboundPriority
- */
-
-/**
- * @typedef {object} ConnectionMetaDistribution
- * @property {number} effectPerBlock
- * @property {number} blocksAffected
  */
 
 schemaByType.result = V.object()
@@ -69,35 +69,23 @@ schemaByType.result = V.object()
         }),
     });
 
-function defaultDistributions() {
-    return [
-        {
-            effectPerBlock: 1,
-            blocksAffected: 0,
-        },
-    ];
-}
-
 schemaByType.effect = V.object()
     .keys({
         ...baseKeys,
         meta: V.required().object().keys({
             distributions: V.default(defaultDistributions)
                 .array().items([
-                    V.object().keys({
-                        effectPerBlock: V.required().number().integer().min(1),
-                        blocksAffected: V.required().number().integer(),
-                    }),
+                    V.transform(createEffectDistribution),
                 ]),
         }),
     });
 
 /**
- * @param {string} connectionId
  * @param {object} props
+ * @param {string} connectionId
  * @return {Connection}
  */
-export function createConnection(connectionId, props) {
+export function createConnection(props, connectionId) {
     try {
         if (!props || !schemaByType[props.type]) {
             baseSchema.validate(props);
@@ -122,47 +110,106 @@ export function isConnectionId(id) {
     return !!id && id[0] === 'c';
 }
 
-export function isValidConnection(connection, srcBlock, destBlock) {
-    if (connection.type === 'result') {
-        if (!Block.isIngredientSender(srcBlock.type) || !Block.isIngredientReceiver(destBlock.type)) {
-            return false;
-        }
+export function isResultConnection(connection) {
+    return connection && connection.type === 'result';
+}
 
-        const srcResults = Block.getIngredientSenderResults(srcBlock);
-        const destIngredients = Block.getIngredientReceiverIngredients(destBlock);
-        if (!srcResults || !destIngredients) {
-            return false;
-        }
+export function isEffectConnection(connection) {
+    return connection && connection.type === 'effect';
+}
 
-        // Make sure the src outputs the results and the dest needs the results as ingredients.
-        for (const result of connection.meta.results) {
-            if (!isValidConnectionResult(srcResults, destIngredients, result)) {
+export function isValidConnection(connection, srcBlock, destBlock, messages = null) {
+    if (isResultConnection(connection)) {
+        const isSender = Block.isIngredientSender(srcBlock.type);
+        if (!isSender) {
+            if (!messages) {
                 return false;
+            }
+
+            messages.push('Source block does send results');
+        }
+
+        const isReceiver = Block.isIngredientReceiver(destBlock.type);
+        if (!isReceiver) {
+            if (!messages) {
+                return false;
+            }
+
+            messages.push('Destination block does receive ingredients');
+        }
+
+        if (isSender && isReceiver) {
+            const srcResults = Block.getIngredientSenderResults(srcBlock);
+            if (!srcResults) {
+                if (!messages) {
+                    return false;
+                }
+
+                messages.push('Source block recipe does not output any results');
+            }
+
+            const destIngredients = Block.getIngredientReceiverIngredients(destBlock);
+            if (!destIngredients) {
+                if (!messages) {
+                    return false;
+                }
+
+                messages.push('Destination block recipe does have any ingredients');
+            }
+
+            if (srcResults && destIngredients) {
+                // Make sure the src outputs the results and the dest needs the results as ingredients.
+                for (const result of connection.meta.results) {
+                    if (!isValidConnectionResult(srcResults, destIngredients, result, messages)) {
+                        if (!messages) {
+                            return false;
+                        }
+                    }
+                }
             }
         }
 
-        return true;
+        return !messages || messages.length === 0;
     }
-    else if (connection.type === 'effect') {
-        if (!Block.isEffectSender(srcBlock.type) || !Block.isEffectReceiver(destBlock.type)) {
-            return false;
+    else if (isEffectConnection(connection)) {
+        if (!Block.isEffectSender(srcBlock.type)) {
+            if (!messages) {
+                return false;
+            }
+
+            messages.push('Source block does not transmit effects (i.e. speed)');
+        }
+
+        if (!Block.isEffectReceiver(destBlock.type)) {
+            if (!messages) {
+                return false;
+            }
+
+            messages.push('Destination block does not receive effects (i.e. speed)');
         }
 
         for (const distribution of connection.meta.distributions) {
-            if (!isValidEffectDistribution(distribution, destBlock.quantity)) {
-                return false;
+            if (!isValidEffectDistribution(distribution, destBlock.quantity, messages)) {
+                if (!messages) {
+                    return false;
+                }
             }
         }
 
-        // TODO: Check if effects are allowed to recipe? Maybe not since Beacons can't have production?
+        // TODO: Check if effects are allowed to recipe? Might not be needed though since Beacons can't have production modules.
 
-        return true;
+        return !messages || messages.length === 0;
     }
     else {
         warn(`Unexpected connection type: ${connection.type}`);
     }
 
-    return false;
+    return {
+        isValid: false,
+        messages: [
+            `Unknown connection type: ${connection.type}`,
+        ],
+    };
 }
 
 /**
@@ -171,9 +218,27 @@ export function isValidConnection(connection, srcBlock, destBlock) {
  * @param srcResults
  * @param destIngredients
  * @param result
+ * @param {string[]} [messages]
  * @returns {boolean}
  */
-export function isValidConnectionResult(srcResults, destIngredients, result) {
+export function isValidConnectionResult(srcResults, destIngredients, result, messages = null) {
     const resultComparator = isProtoEqual.bind(null, result);
-    return srcResults.some(resultComparator) && destIngredients.some(resultComparator);
+
+    if (!srcResults.some(resultComparator)) {
+        if (!messages) {
+            return false;
+        }
+
+        messages.push(`Source block does not output result: ${getLocalizedName(result)}`);
+    }
+
+    if (!destIngredients.some(resultComparator)) {
+        if (!messages) {
+            return false;
+        }
+
+        messages.push(`Destination block does not have ingredient: ${getLocalizedName(result)}`);
+    }
+
+    return !messages || messages.length === 0;
 }
