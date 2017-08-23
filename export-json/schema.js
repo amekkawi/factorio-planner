@@ -116,17 +116,16 @@ const energy_source = Joi.object().keys({
     type: Joi.string().valid('electric', 'burner', 'nuclear').required(),
 
     usage_priority: Joi.string().strip()
-        .when('type', { is: 'electric', then: Joi.required(), otherwise: Joi.disallow() }),
-    emissions: Joi.number().greater(0).strip()
-        .when('type', { is: 'electric', otherwise: Joi.disallow() }),
+        .when('type', { is: 'electric', then: Joi.required(), otherwise: Joi.forbidden() }),
+    emissions: Joi.number().greater(0).strip(),
 
-    fuel_category: Joi.string().disallow()
+    fuel_category: Joi.string().forbidden()
         .when('type', { is: 'burner', then: Joi.valid('chemical').required() })
         .when('type', { is: 'nuclear', then: Joi.valid('nuclear').required() }),
-    fuel_inventory_size: Joi.number().min(1).integer().disallow()
+    fuel_inventory_size: Joi.number().min(1).integer().forbidden()
         .when('type', { is: 'burner', then: Joi.required() })
         .when('type', { is: 'nuclear', then: Joi.required() }),
-    effectivity: Joi.number().greater(0).disallow()
+    effectivity: Joi.number().greater(0).forbidden()
         .when('type', { is: 'burner', then: Joi.required() }),
     smoke: Joi.any().strip(),
 });
