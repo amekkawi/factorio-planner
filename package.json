@@ -6,7 +6,7 @@
   "scripts": {
     "preinstall": "node .checkversion.js",
     "start": "webpack-dev-server",
-    "lint": "eslint app",
+    "lint": "eslint .",
     "test": "jest",
     "prebuild": "rimraf dist",
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
