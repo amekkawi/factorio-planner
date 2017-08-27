@@ -1,5 +1,5 @@
 import * as validators from './validators';
-import * as stateUtil from './schema/util/state';
+import * as stateUtil from './state';
 
 const _proto = /*Symbol*/('_proto');
 const _validators = /*Symbol*/('_validators');

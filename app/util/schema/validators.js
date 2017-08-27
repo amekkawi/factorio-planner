@@ -1,15 +1,13 @@
-import * as stateUtil from './schema/util/state';
-import * as errorUtil from './schema/util/error';
+import * as stateUtil from './state';
+import * as errorUtil from './error';
 
-exports.alternatives = alternatives;
-function alternatives() {
+export function alternatives() {
     return function(val) {
         return val;
     };
 }
 
-exports.alternativesTry = alternativesTry;
-function alternativesTry(schemas, {
+export function alternativesTry(schemas, {
     message = 'must be one of the valid types',
 } = {}) {
     if (!Array.isArray(schemas) || !schemas.length) {
@@ -37,15 +35,13 @@ function alternativesTry(schemas, {
     };
 }
 
-exports.any = any;
-function any() {
+export function any() {
     return function(val) {
         return val;
     };
 }
 
-exports.required = required;
-function required({
+export function required({
     message = 'is required',
 } = {}) {
     return function(val) {
@@ -56,8 +52,7 @@ function required({
     };
 }
 
-exports.defaultVal = defaultVal;
-function defaultVal(defaultVal) {
+export function defaultVal(defaultVal) {
     return function(val) {
         return val === undefined
             ? (typeof defaultVal === 'function' ? defaultVal() : defaultVal)
@@ -65,8 +60,7 @@ function defaultVal(defaultVal) {
     };
 }
 
-exports.transform = transform;
-function transform(func, {
+export function transform(func, {
     undef = false,
 } = {}) {
     if (typeof func !== 'function') {
@@ -78,8 +72,7 @@ function transform(func, {
     };
 }
 
-exports.allow = allow;
-function allow(values, {
+export function allow(values, {
     message = 'is not a valid value',
 } = {}) {
     if (!Array.isArray(values)) {
@@ -95,8 +88,7 @@ function allow(values, {
     };
 }
 
-exports.when = when;
-function when(key, {
+export function when(key, {
     is,
     then = null,
     otherwise = null,
@@ -136,8 +128,7 @@ function when(key, {
     };
 }
 
-exports.string = string;
-function string() {
+export function string() {
     return function(val) {
         if (val !== undefined) {
             if (typeof val !== 'string') {
@@ -148,8 +139,7 @@ function string() {
     };
 }
 
-exports.stringMin = stringMin;
-function stringMin(num) {
+export function stringMin(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for string().min()');
     }
@@ -164,8 +154,7 @@ function stringMin(num) {
     };
 }
 
-exports.stringMax = stringMax;
-function stringMax(num) {
+export function stringMax(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for string().min()');
     }
@@ -180,8 +169,7 @@ function stringMax(num) {
     };
 }
 
-exports.stringRegex = stringRegex;
-function stringRegex(regex, {
+export function stringRegex(regex, {
     message = `must match pattern ${regex}`,
 } = {}) {
     return function(val) {
@@ -192,8 +180,7 @@ function stringRegex(regex, {
     };
 }
 
-exports.number = number;
-function number() {
+export function number() {
     return function(val) {
         if (val !== undefined) {
             if (typeof val !== 'number' || !isFinite(val)) {
@@ -204,8 +191,7 @@ function number() {
     };
 }
 
-exports.numberInteger = numberInteger;
-function numberInteger() {
+export function numberInteger() {
     return function(val) {
         if (val !== undefined) {
             if (val % 1 !== 0) {
@@ -216,8 +202,7 @@ function numberInteger() {
     };
 }
 
-exports.numberMin = numberMin;
-function numberMin(num) {
+export function numberMin(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for number().min()');
     }
@@ -232,8 +217,7 @@ function numberMin(num) {
     };
 }
 
-exports.numberMax = numberMax;
-function numberMax(num) {
+export function numberMax(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for number().max()');
     }
@@ -248,8 +232,7 @@ function numberMax(num) {
     };
 }
 
-exports.numberGreater = numberGreater;
-function numberGreater(num) {
+export function numberGreater(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for number().greater()');
     }
@@ -264,8 +247,7 @@ function numberGreater(num) {
     };
 }
 
-exports.numberLess = numberLess;
-function numberLess(num) {
+export function numberLess(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for number().less()');
     }
@@ -280,8 +262,7 @@ function numberLess(num) {
     };
 }
 
-exports.object = object;
-function object() {
+export function object() {
     return function(val) {
         this._knownKeySet = new Set();
         if (val !== undefined) {
@@ -293,8 +274,7 @@ function object() {
     };
 }
 
-exports.objectKeys = objectKeys;
-function objectKeys(keys, {
+export function objectKeys(keys, {
     unknown = false,
 } = {}) {
     return function(val) {
@@ -335,8 +315,7 @@ function objectKeys(keys, {
     };
 }
 
-exports.objectPattern = objectPattern;
-function objectPattern(pattern, schema, {
+export function objectPattern(pattern, schema, {
     mutate = false,
 } = {}) {
     let keyCheck;
@@ -397,8 +376,7 @@ function objectPattern(pattern, schema, {
     };
 }
 
-exports.objectMap = objectMap;
-function objectMap(func, {
+export function objectMap(func, {
     mutate = false,
 } = {}) {
     if (typeof func !== 'function') {
@@ -428,8 +406,7 @@ function objectMap(func, {
     };
 }
 
-/*exports.andKeys = andKeys;
-function andKeys(peers, {
+/*export function andKeys(peers, {
     message = `must have all keys if at least one is present: ${peers.join(',')}`,
 } = {}) {
     return function(val) {
@@ -455,8 +432,7 @@ function andKeys(peers, {
     };
 }
 
-exports.nandKeys = nandKeys;
-function nandKeys(peers, {
+export function nandKeys(peers, {
     message = `must not have more than one keys of: ${peers.join(',')}`,
 } = {}) {
     return function(val) {
@@ -475,8 +451,7 @@ function nandKeys(peers, {
     };
 }
 
-exports.orKeys = orKeys;
-function orKeys(peers, {
+export function orKeys(peers, {
     message = `must have at least one of the following keys: ${peers.join(',')}`,
 } = {}) {
     return function(val) {
@@ -496,8 +471,7 @@ function orKeys(peers, {
     };
 }*/
 
-exports.array = array;
-function array() {
+export function array() {
     return function(val) {
         if (val !== undefined) {
             if (!val || !Array.isArray(val)) {
@@ -508,8 +482,7 @@ function array() {
     };
 }
 
-exports.arrayMap = arrayMap;
-function arrayMap(func) {
+export function arrayMap(func) {
     if (typeof func !== 'function') {
         throw new Error('invalid argument for array().map()');
     }
@@ -519,8 +492,7 @@ function arrayMap(func) {
     };
 }
 
-exports.arrayItems = arrayItems;
-function arrayItems(types) {
+export function arrayItems(types) {
     if (!Array.isArray(types) || !types.length) {
         throw new Error('invalid argument for array().items()');
     }
@@ -550,8 +522,7 @@ function arrayItems(types) {
     };
 }
 
-exports.arrayMin = arrayMin;
-function arrayMin(num) {
+export function arrayMin(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for array().min()');
     }
@@ -566,8 +537,7 @@ function arrayMin(num) {
     };
 }
 
-exports.arrayMax = arrayMax;
-function arrayMax(num) {
+export function arrayMax(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for array().max()');
     }
