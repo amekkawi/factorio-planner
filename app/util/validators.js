@@ -1,10 +1,15 @@
-export function alternatives() {
+import * as stateUtil from './schema/util/state';
+import * as errorUtil from './schema/util/error';
+
+exports.alternatives = alternatives;
+function alternatives() {
     return function(val) {
         return val;
     };
 }
 
-export function alternativesTry(schemas, {
+exports.alternativesTry = alternativesTry;
+function alternativesTry(schemas, {
     message = 'must be one of the valid types',
 } = {}) {
     if (!Array.isArray(schemas) || !schemas.length) {
@@ -12,6 +17,10 @@ export function alternativesTry(schemas, {
     }
 
     return function(val) {
+        if (val === undefined) {
+            return val;
+        }
+
         const errors = [];
         for (const schema of schemas) {
             try {
@@ -22,24 +31,33 @@ export function alternativesTry(schemas, {
             }
         }
 
-        throw Object.assign(new Error(message), {
+        throw Object.assign(errorUtil.createError(message, this), {
             errors,
         });
     };
 }
 
-export function required({
+exports.any = any;
+function any() {
+    return function(val) {
+        return val;
+    };
+}
+
+exports.required = required;
+function required({
     message = 'is required',
 } = {}) {
     return function(val) {
         if (val === undefined) {
-            throw new Error(message);
+            throw errorUtil.createError(message, this);
         }
         return val;
     };
 }
 
-export function defaultVal(defaultVal) {
+exports.defaultVal = defaultVal;
+function defaultVal(defaultVal) {
     return function(val) {
         return val === undefined
             ? (typeof defaultVal === 'function' ? defaultVal() : defaultVal)
@@ -47,42 +65,91 @@ export function defaultVal(defaultVal) {
     };
 }
 
-export function transform(func, {
+exports.transform = transform;
+function transform(func, {
     undef = false,
 } = {}) {
+    if (typeof func !== 'function') {
+        throw new Error('invalid argument for transform()');
+    }
+
     return function(val) {
-        return undef || val === undefined ? func(val) : val;
+        return undef || val !== undefined ? func(val) : val;
     };
 }
 
-export function allow(values, {
+exports.allow = allow;
+function allow(values, {
     message = 'is not a valid value',
 } = {}) {
-    if (!values || !Array.isArray(values)) {
+    if (!Array.isArray(values)) {
         throw new Error('invalid argument for allow()');
     }
 
     values = new Set(values);
     return function(val) {
-        if (!values.has(val)) {
-            throw new Error(message);
+        if (val !== undefined && !values.has(val)) {
+            throw errorUtil.createError(message, this);
         }
         return val;
     };
 }
 
-export function string() {
+exports.when = when;
+function when(key, {
+    is,
+    then = null,
+    otherwise = null,
+}) {
+    if (!this.isValidator(then) && !this.isValidator(otherwise)) {
+        throw new Error('must have schema "then" and/or "otherwise" for object().when()');
+    }
+
+    const isIsValidator = this.isValidator(is);
+    const pathGetter = buildPathGetter(key, '.');
+
+    return function(val) {
+        const refValue = pathGetter(this.parent);
+        let matched;
+
+        if (isIsValidator) {
+            try {
+                is.validate(refValue, this);
+                matched = true;
+            }
+            catch (err) {
+                matched = false;
+            }
+        }
+        else {
+            matched = refValue === is;
+        }
+
+        if (matched && then) {
+            return then.validate(val, this);
+        }
+        else if (!matched && otherwise) {
+            return otherwise.validate(val, this);
+        }
+
+        return val;
+    };
+}
+
+exports.string = string;
+function string() {
     return function(val) {
         if (val !== undefined) {
             if (typeof val !== 'string') {
-                throw new Error('must be a string');
+                throw errorUtil.createError('must be a string', this);
             }
         }
         return val;
     };
 }
 
-export function stringMin(num) {
+exports.stringMin = stringMin;
+function stringMin(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for string().min()');
     }
@@ -90,14 +157,15 @@ export function stringMin(num) {
     return function(val) {
         if (val !== undefined) {
             if (val.length < num) {
-                throw new Error(`must not be less than ${num} characters`);
+                throw errorUtil.createError(`must not be less than ${num} characters`, this);
             }
         }
         return val;
     };
 }
 
-export function stringMax(num) {
+exports.stringMax = stringMax;
+function stringMax(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for string().min()');
     }
@@ -105,47 +173,51 @@ export function stringMax(num) {
     return function(val) {
         if (val !== undefined) {
             if (val.length > num) {
-                throw new Error(`must not be more than ${num} characters`);
+                throw errorUtil.createError(`must not be more than ${num} characters`, this);
             }
         }
         return val;
     };
 }
 
-export function stringRegex(regex, {
+exports.stringRegex = stringRegex;
+function stringRegex(regex, {
     message = `must match pattern ${regex}`,
 } = {}) {
     return function(val) {
         if (val !== undefined && !val.match(regex)) {
-            throw new Error(message);
+            throw errorUtil.createError(message, this);
         }
         return val;
     };
 }
 
-export function number() {
+exports.number = number;
+function number() {
     return function(val) {
         if (val !== undefined) {
             if (typeof val !== 'number' || !isFinite(val)) {
-                throw new Error('must be a finite number');
+                throw errorUtil.createError('must be a finite number', this);
             }
         }
         return val;
     };
 }
 
-export function numberInteger() {
+exports.numberInteger = numberInteger;
+function numberInteger() {
     return function(val) {
         if (val !== undefined) {
             if (val % 1 !== 0) {
-                throw new Error('must be an integer');
+                throw errorUtil.createError('must be an integer', this);
             }
         }
         return val;
     };
 }
 
-export function numberMin(num) {
+exports.numberMin = numberMin;
+function numberMin(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for number().min()');
     }
@@ -153,14 +225,15 @@ export function numberMin(num) {
     return function(val) {
         if (val !== undefined) {
             if (val < num) {
-                throw new Error(`must not be less than ${num}`);
+                throw errorUtil.createError(`must not be less than ${num}`, this);
             }
         }
         return val;
     };
 }
 
-export function numberMax(num) {
+exports.numberMax = numberMax;
+function numberMax(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for number().max()');
     }
@@ -168,14 +241,15 @@ export function numberMax(num) {
     return function(val) {
         if (val !== undefined) {
             if (val > num) {
-                throw new Error(`must not be more than ${num}`);
+                throw errorUtil.createError(`must not be more than ${num}`, this);
             }
         }
         return val;
     };
 }
 
-export function numberGreater(num) {
+exports.numberGreater = numberGreater;
+function numberGreater(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for number().greater()');
     }
@@ -183,123 +257,179 @@ export function numberGreater(num) {
     return function(val) {
         if (val !== undefined) {
             if (val <= num) {
-                throw new Error(`must be greater than ${num}`);
+                throw errorUtil.createError(`must be greater than ${num}`, this);
             }
         }
         return val;
     };
 }
 
-export function numberLess(num) {
+exports.numberLess = numberLess;
+function numberLess(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for number().less()');
     }
 
     return function(val) {
         if (val !== undefined) {
-            if (val <= num) {
-                throw new Error(`must be less than ${num}`);
+            if (val >= num) {
+                throw errorUtil.createError(`must be less than ${num}`, this);
             }
         }
         return val;
     };
 }
 
-export function object() {
+exports.object = object;
+function object() {
     return function(val) {
+        this._knownKeySet = new Set();
         if (val !== undefined) {
             if (!val || typeof val !== 'object' || Array.isArray(val)) {
-                throw new Error('must be an object');
+                throw errorUtil.createError('must be an object', this);
             }
         }
         return val;
     };
 }
 
-export function keys(keys, {
+exports.objectKeys = objectKeys;
+function objectKeys(keys, {
     unknown = false,
 } = {}) {
     return function(val) {
         if (val !== undefined) {
-            const unknownKeys = !unknown && new Set(Object.keys(val));
+            const unknownKeys = unknown
+                ? null
+                : new Set(getUnknownKeys(Object.keys(val), this._knownKeySet));
+
             let mutated = false;
 
             for (const key of Object.keys(keys)) {
-                unknownKeys && unknownKeys.delete(key);
-                let keyVal;
+                this._knownKeySet.add(key);
 
-                try {
-                    keyVal = keys[key].validate(val[key], this);
-                }
-                catch (err) {
-                    if (!err.path) {
-                        err.path = [];
-                        err.message = ` ${err.message}`;
-                    }
-
-                    err.path.unshift(key);
-                    err.message = `${key}${err.path.length === 1 ? '' : '.'}${err.message}`;
-                    throw err;
+                if (unknownKeys) {
+                    unknownKeys.delete(key);
                 }
 
-                if (keyVal !== undefined) {
-                    if (mutated) {
-                        val[key] = keyVal;
-                    }
-                    else if (val[key] !== keyVal) {
-                        mutated = true;
-                        val = { ...val };
-                        val[key] = keyVal;
-                    }
+                const keyVal = keys[key].validate(
+                    val[key],
+                    stateUtil.createChildState(this, val, key)
+                );
+
+                if (mutated) {
+                    val[key] = keyVal;
+                }
+                else if (val[key] !== keyVal) {
+                    mutated = true;
+                    val = Object.assign({}, val);
+                    val[key] = keyVal;
                 }
             }
 
             if (unknownKeys && unknownKeys.size) {
-                throw new Error(`cannot include keys: ${Array.from(unknownKeys).join(',')}`);
+                throw errorUtil.createError(`cannot include keys: ${Array.from(unknownKeys).join(',')}`, this);
             }
         }
         return val;
     };
 }
 
-export function mapKeys(func, {
+exports.objectPattern = objectPattern;
+function objectPattern(pattern, schema, {
     mutate = false,
 } = {}) {
-    return function(obj) {
-        if (obj !== undefined) {
-            let cloned = false;
-            for (const key of Object.keys(obj)) {
+    let keyCheck;
 
-                let keyVal;
-                try {
-                    keyVal = func(obj[key], key, obj);
-                }
-                catch (err) {
-                    if (!err.path) {
-                        err.path = [];
-                        err.message = ` ${err.message}`;
+    if (this.isValidator(pattern)) {
+        keyCheck = (key, state) => {
+            try {
+                pattern.validate(
+                    key,
+                    stateUtil.createState(state),
+                );
+                return true;
+            }
+            catch (err) {
+                return false;
+            }
+        };
+    }
+    else if (pattern instanceof RegExp) {
+        keyCheck = (key) => key.match(pattern);
+    }
+    else if (typeof pattern === 'function') {
+        keyCheck = (key) => pattern(key);
+    }
+    else {
+        throw new Error('invalid pattern argument for object().pattern()');
+    }
+
+    if (!this.isValidator(schema)) {
+        throw new Error('invalid schema argument for object().pattern()');
+    }
+
+    return function(val) {
+        if (val !== undefined) {
+            let mutated = false;
+
+            for (const key of Object.keys(val)) {
+                if (keyCheck(key, this)) {
+                    this._knownKeySet.add(key);
+
+                    const keyVal = schema.validate(
+                        val[key],
+                        stateUtil.createChildState(this, val, key)
+                    );
+
+                    if (keyVal !== val[key]) {
+                        if (!mutate && !mutated) {
+                            val = Object.assign({}, val);
+                            mutated = true;
+                        }
+
+                        val[key] = keyVal;
                     }
-
-                    err.path.unshift(key);
-                    err.message = `${key}${err.path.length === 1 ? '' : '.'}${err.message}`;
-                    throw err;
-                }
-
-                if (keyVal !== obj[key]) {
-                    if (!mutate && !cloned) {
-                        obj = { ...obj };
-                        cloned = true;
-                    }
-
-                    obj[key] = keyVal;
                 }
             }
         }
-        return obj;
+        return val;
     };
 }
 
-export function andKeys(peers, {
+exports.objectMap = objectMap;
+function objectMap(func, {
+    mutate = false,
+} = {}) {
+    if (typeof func !== 'function') {
+        throw new Error('invalid argument for object().map()');
+    }
+
+    return function(val) {
+        if (val !== undefined) {
+            let mutated = false;
+
+            for (const key of Object.keys(val)) {
+                this._knownKeySet.add(key);
+
+                const keyVal = func(val[key], key, val);
+
+                if (keyVal !== val[key]) {
+                    if (!mutate && !mutated) {
+                        val = Object.assign({}, val);
+                        mutated = true;
+                    }
+
+                    val[key] = keyVal;
+                }
+            }
+        }
+        return val;
+    };
+}
+
+/*exports.andKeys = andKeys;
+function andKeys(peers, {
     message = `must have all keys if at least one is present: ${peers.join(',')}`,
 } = {}) {
     return function(val) {
@@ -310,13 +440,13 @@ export function andKeys(peers, {
                 if (val[key] === undefined) {
                     missing++;
                     if (found) {
-                        throw new Error(message);
+                        throw errorUtil.createError(message, this);
                     }
                 }
                 else {
                     found++;
                     if (missing) {
-                        throw new Error(message);
+                        throw errorUtil.createError(message, this);
                     }
                 }
             }
@@ -325,7 +455,8 @@ export function andKeys(peers, {
     };
 }
 
-export function nandKeys(peers, {
+exports.nandKeys = nandKeys;
+function nandKeys(peers, {
     message = `must not have more than one keys of: ${peers.join(',')}`,
 } = {}) {
     return function(val) {
@@ -334,7 +465,7 @@ export function nandKeys(peers, {
             for (const key of peers) {
                 if (val[key] !== undefined) {
                     if (found) {
-                        throw new Error(message);
+                        throw errorUtil.createError(message, this);
                     }
                     found = true;
                 }
@@ -344,7 +475,8 @@ export function nandKeys(peers, {
     };
 }
 
-export function orKeys(peers, {
+exports.orKeys = orKeys;
+function orKeys(peers, {
     message = `must have at least one of the following keys: ${peers.join(',')}`,
 } = {}) {
     return function(val) {
@@ -357,80 +489,50 @@ export function orKeys(peers, {
             }
 
             if (!found) {
-                throw new Error(message);
+                throw errorUtil.createError(message, this);
             }
         }
         return val;
     };
-}
+}*/
 
-export function keyWhen(key, {
-    is,
-    then = null,
-    otherwise = null,
-}) {
-    if (!this.isValidator(then) && !this.isValidator(otherwise)) {
-        throw new Error('must have schema "then" and/or "otherwise" for object().when()');
-    }
-
-    return function(val) {
-        if (val !== undefined && val[key] !== undefined) {
-            let matched;
-
-            if (this.isValidator(is)) {
-                try {
-                    is.validate(val, this);
-                    matched = true;
-                }
-                catch (err) {
-                    matched = false;
-                }
-            }
-            else {
-                matched = val === is;
-            }
-
-            if (matched && then) {
-                return then.validate(val, this);
-            }
-            else if (!matched && otherwise) {
-                return otherwise.validate(val, this);
-            }
-        }
-        return val;
-    };
-}
-
-export function array() {
+exports.array = array;
+function array() {
     return function(val) {
         if (val !== undefined) {
             if (!val || !Array.isArray(val)) {
-                throw new Error('must be an array');
+                throw errorUtil.createError('must be an array', this);
             }
         }
         return val;
     };
 }
 
-export function arrayMap(func) {
+exports.arrayMap = arrayMap;
+function arrayMap(func) {
+    if (typeof func !== 'function') {
+        throw new Error('invalid argument for array().map()');
+    }
+
     return function(val) {
         return val === undefined ? val : val.map(func);
     };
 }
 
-export function arrayItems(types) {
+exports.arrayItems = arrayItems;
+function arrayItems(types) {
     if (!Array.isArray(types) || !types.length) {
         throw new Error('invalid argument for array().items()');
     }
 
-    const alts = alternativesTry(types);
+    const alts = alternativesTry.call(this, types);
 
     return function(val) {
         if (val !== undefined) {
             let mutated = false;
 
             for (let i = 0, l = val.length; i < l; i++) {
-                const itemVal = alts.call(this, val[i]);
+                const itemVal = alts.call(stateUtil.createChildState(this, val, i), val[i]);
                 if (itemVal !== undefined) {
                     if (mutated) {
                         val[i] = itemVal;
@@ -448,7 +550,8 @@ export function arrayItems(types) {
     };
 }
 
-export function arrayMin(num) {
+exports.arrayMin = arrayMin;
+function arrayMin(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for array().min()');
     }
@@ -456,14 +559,15 @@ export function arrayMin(num) {
     return function(val) {
         if (val !== undefined) {
             if (val.length < num) {
-                throw new Error(`must have less than ${num} items`);
+                throw errorUtil.createError(`must not have less than ${num} items`, this);
             }
         }
         return val;
     };
 }
 
-export function arrayMax(num) {
+exports.arrayMax = arrayMax;
+function arrayMax(num) {
     if (typeof num !== 'number' || !isFinite(num)) {
         throw new Error('invalid argument for array().max()');
     }
@@ -471,9 +575,34 @@ export function arrayMax(num) {
     return function(val) {
         if (val !== undefined) {
             if (val.length > num) {
-                throw new Error(`must not have more than ${num} items`);
+                throw errorUtil.createError(`must not have more than ${num} items`, this);
             }
         }
         return val;
     };
+}
+
+function getUnknownKeys(keys, knownKeySet) {
+    return keys.filter((key) => !knownKeySet.has(key));
+}
+
+function buildPathGetter(path, sep) {
+    const split = path.split(sep);
+    if (split.length === 1) {
+        return propGetter.bind(null, split[0]);
+    }
+    else {
+        return pathGetter.bind(null, split);
+    }
+}
+
+function propGetter(key, value) {
+    return value && value[key];
+}
+
+function pathGetter(keys, value) {
+    for (let i = 0, l = keys.length; i < l && value; i++) {
+        value = value[keys[i]];
+    }
+    return value;
 }
