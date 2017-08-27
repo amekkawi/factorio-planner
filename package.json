@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "node .checkversion.js",
     "start": "webpack-dev-server",
     "lint": "eslint app",
     "prebuild": "rimraf dist",
