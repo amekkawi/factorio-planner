@@ -1,15 +1,14 @@
 {
   "presets": [
     [
-      "es2015",
+      "env",
       {
-        "modules": false
+        "targets": {
+          "node": "current"
+        }
       }
     ],
     "stage-2",
     "react"
-  ],
-  "plugins": [
-    "react-hot-loader/babel"
   ]
 }
