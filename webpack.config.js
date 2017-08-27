@@ -2,21 +2,30 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const nodeModulesPath = path.join(__dirname, 'node_modules/');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    devtool: 'inline-source-map',
+    devtool: isProduction
+        ? 'source-map'
+        : 'inline-source-map',
 
-    entry: [
+    entry: (isProduction ? [] : [
         'react-hot-loader/patch',
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
+    ]).concat([
         path.join(__dirname, 'app/index.js'),
-    ],
+    ]),
 
     output: {
-        filename: 'bundle.js',
+        filename: isProduction
+            ? '[name]-[chunkhash].js'
+            : '[name].js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/static/',
     },
 
     module: {
@@ -30,16 +39,23 @@ module.exports = {
                             presets: [
                                 [
                                     'env',
-                                    {
+                                    isProduction ? {
+                                        targets: {
+                                            browsers: 'last 2 versions',
+                                        },
+                                    } : {
                                         targets: {
                                             chrome: 60,
                                         },
+                                        include: [
+                                            'transform-es2015-classes',
+                                        ],
                                     },
                                 ],
                                 'stage-2',
                                 'react',
                             ],
-                            plugins: [
+                            plugins: isProduction ? [] : [
                                 'react-hot-loader/babel',
                             ],
                         },
@@ -79,22 +95,61 @@ module.exports = {
                 test: /\.(jpg|png|svg)$/,
                 loader: 'url-loader',
                 options: {
-                    limit: 25000,
+                    limit: 2000,
                 },
             },
         ],
     },
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
-        }),
-    ],
+        isProduction ? new UglifyJsPlugin({
+            sourceMap: true,
+            uglifyOptions: {
+                ecma: 8,
+            },
+        }) : null,
 
-    devServer: {
+        isProduction ? null : new webpack.HotModuleReplacementPlugin(),
+        isProduction ? null : new webpack.NamedModulesPlugin(),
+        isProduction ? null : new webpack.NoEmitOnErrorsPlugin(),
+
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development'),
+        }),
+
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'node-static',
+            minChunks(module) {
+                var context = module.context;
+                return context && context.startsWith(nodeModulesPath);
+            },
+        }),
+
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'manifest',
+            filename: isProduction
+                ? undefined
+                : 'manifest.js',
+        }),
+
+        new HtmlWebpackPlugin({
+            inject: true,
+            filename: 'index.html',
+            template: path.join(__dirname, 'index.ejs'),
+            config: {
+                //gitCommitHash: process.env.GIT_COMMIT_HASH,
+            },
+        }),
+
+        // new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)({
+        //     analyzerMode: 'static',
+        // }),
+
+    ].filter(Boolean),
+};
+
+if (!isProduction) {
+    module.exports.devServer = {
         host: 'localhost',
         port: 3000,
 
@@ -103,5 +158,5 @@ module.exports = {
 
         hot: true,
         // enable HMR on the server
-    },
-};
+    };
+}

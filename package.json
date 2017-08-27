@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "test": "jest",
     "prebuild": "rimraf dist",
-    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
+    "build": "cross-env NODE_ENV=production webpack",
     "postbuild": "copyfiles index.html dist"
   },
   "author": "",
@@ -29,6 +29,7 @@
     "eslint": "^4.5.0",
     "eslint-plugin-react": "^7.3.0",
     "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
     "jest": "^20.0.4",
     "joi": "^10.6.0",
     "json-loader": "^0.5.4",
@@ -45,8 +46,10 @@
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^1.0.0-beta.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.5.5",
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.7.1"
   }
 }
