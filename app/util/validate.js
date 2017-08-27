@@ -19,11 +19,11 @@ function wrapValidator(fn, protoName) {
     return function(...args) {
         const proto = this[_proto] || protoName;
 
-        // Create the schema, defaulting the proto to 'any'
+        // Create the schema, defaulting the proto to 'core'
         // if we have yet to switch to a specific proto (e.g. 'string').
-        const ret = Object.create(protos[proto || 'any']);
+        const ret = Object.create(protos[proto || 'core']);
 
-        // Maintain the proto if not 'any'
+        // Maintain the proto if not 'core'
         if (proto) {
             ret[_proto] = proto;
         }
@@ -120,13 +120,7 @@ protos.array = Object.assign(
     }),
 );
 
-protos.core = Object.keys(anyValidators).reduce((ret, key) => {
-    ret[key] = (...args) => {
-        const chain = ret.any();
-        return chain[key].apply(chain, args);
-    };
-    return ret;
-}, {
+protos.core = Object.assign(Object.create(protos.any), {
     any: wrapValidator(validators.any),
     alternatives: wrapValidator(validators.alternatives, 'alternatives'),
     string: wrapValidator(validators.string, 'string'),

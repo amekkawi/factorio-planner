@@ -1065,6 +1065,3 @@ describe('array', () => {
         });
     });
 });
-
-//validators\.(\w+)(\(.*?\))(\(.*?\))
-//V.string()\.$1$2\.validate$3
