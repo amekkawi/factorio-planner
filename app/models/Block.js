@@ -1,5 +1,5 @@
-import V from '../util/validate';
-import { warn } from '../util';
+import V from '../util/schema/validate';
+import { warn, getProtoId } from '../util';
 import {
     data,
     getProto,
@@ -263,7 +263,12 @@ export function isIngredientSender(type) {
 
 export function getIngredientSenderResults(block) {
     if (block.type === 'SupplyBlock') {
-        return [block.result];
+        return {
+            list: [block.result],
+            byId: {
+                [getProtoId([block.result])]: [block.result],
+            },
+        };
     }
     else {
         const recipeProto = getBlockRecipeProto(block);
@@ -292,38 +297,79 @@ export function isEffectSender(type) {
 }
 
 /**
+ * @typedef {object} InputOutputRates
+ * @property [InputOutputRate[]] list
+ * @property {object.<string,InputOutputRate[]>} byId
+ * @property {object.<string,number>} totalById
+ */
+
+/**
  * @typedef {object} InputOutputRate
  * @property {string} type
- * @property {string} type
+ * @property {string} name
  * @property {number} rate
  */
 
 /**
  * @param {Block} block
  * @param {Effect} effect
- * @returns {InputOutputRate[]}
+ * @returns {InputOutputRates}
  */
 export function calculateOutputRates(block, effect) {
     const cycle = getBlockBaseCycle(block) / (1 + (effect ? effect.speed : 0));
-    return getIngredientSenderResults(block)
-        .map(({ type, name, amount, probability = 1 }) => ({
-            type,
-            name,
-            rate: amount / cycle * (1 + (effect ? effect.productivity : 0)) * block.quantity * probability,
-        }));
+    return getIngredientSenderResults(block).list
+        .reduce((ret, { type, name, amount, probability = 1 }) => {
+            const resultOutput = {
+                type,
+                name,
+                rate: amount / cycle * (1 + (effect ? effect.productivity : 0)) * block.quantity * probability,
+            };
+
+            const id = getProtoId(resultOutput);
+            ret.list.push(resultOutput);
+            (ret.byId[id] || (ret.byId[id] = [])).push(resultOutput);
+
+            if (ret.totalById[id]) {
+                ret.totalById[id].rate += resultOutput.rate;
+            }
+            else {
+                ret.totalById[id] = {
+                    ...resultOutput,
+                };
+            }
+
+            return ret;
+        }, { list: [], byId: {}, totalById: {} });
 }
 
 /**
  * @param {Block} block
  * @param {Effect} effect
- * @returns {InputOutputRate[]}
+ * @returns {InputOutputRates}
  */
 export function calculateInputRates(block, effect) {
     const cycle = getBlockBaseCycle(block) / (1 + (effect ? effect.speed : 0));
-    return getIngredientReceiverIngredients(block)
-        .map(({ type, name, amount }) => ({
-            type,
-            name,
-            rate: amount / cycle * block.quantity,
-        }));
+    return getIngredientReceiverIngredients(block).list
+        .reduce((ret, { type, name, amount }) => {
+            const ingredientInput = {
+                type,
+                name,
+                rate: amount / cycle * block.quantity,
+            };
+
+            const id = getProtoId(ingredientInput);
+            ret.list.push(ingredientInput);
+            (ret.byId[id] || (ret.byId[id] = [])).push(ingredientInput);
+
+            if (ret.totalById[id]) {
+                ret.totalById[id].rate += ingredientInput.rate;
+            }
+            else {
+                ret.totalById[id] = {
+                    ...ingredientInput,
+                };
+            }
+
+            return ret;
+        }, { list: [], byId: {}, totalById: {} });
 }

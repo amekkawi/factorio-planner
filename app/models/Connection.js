@@ -46,10 +46,6 @@ const schemaByType = {};
  * @typedef {object} ConnectionMetaResult
  * @property {string} type
  * @property {string} name
- * @property {number} inboundWeight
- * @property {number} inboundPriority
- * @property {number} outboundWeight
- * @property {number} outboundPriority
  */
 
 schemaByType.result = V.object()
@@ -60,10 +56,6 @@ schemaByType.result = V.object()
                 V.object().keys({
                     type: V.default('item').string().min(1),
                     name: V.required().string().min(1),
-                    inboundWeight: V.default(1).number().greater(0),
-                    inboundPriority: V.default(1).number().integer().min(1),
-                    outboundWeight: V.default(1).number().greater(0),
-                    outboundPriority: V.default(1).number().integer().min(1),
                 }),
             ]),
         }),
@@ -140,7 +132,7 @@ export function isValidConnection(connection, srcBlock, destBlock, messages = nu
 
         if (isSender && isReceiver) {
             const srcResults = Block.getIngredientSenderResults(srcBlock);
-            if (!srcResults) {
+            if (!srcResults || !srcResults.list.length) {
                 if (!messages) {
                     return false;
                 }
@@ -149,7 +141,7 @@ export function isValidConnection(connection, srcBlock, destBlock, messages = nu
             }
 
             const destIngredients = Block.getIngredientReceiverIngredients(destBlock);
-            if (!destIngredients) {
+            if (!destIngredients || !destIngredients.list.length) {
                 if (!messages) {
                     return false;
                 }
@@ -222,22 +214,22 @@ export function isValidConnection(connection, srcBlock, destBlock, messages = nu
  * @returns {boolean}
  */
 export function isValidConnectionResult(srcResults, destIngredients, result, messages = null) {
-    const resultComparator = isProtoEqual.bind(null, result);
+    const resultId = getProtoId(result);
 
-    if (!srcResults.some(resultComparator)) {
+    if (!srcResults.byId[resultId]) {
         if (!messages) {
             return false;
         }
 
-        messages.push(`Source block does not output result: ${getLocalizedName(result)}`);
+        messages.push(`Source block does not output result: ${getLocalizedName(getProto(result.type, result.name))}`);
     }
 
-    if (!destIngredients.some(resultComparator)) {
+    if (!destIngredients.byId[resultId]) {
         if (!messages) {
             return false;
         }
 
-        messages.push(`Destination block does not have ingredient: ${getLocalizedName(result)}`);
+        messages.push(`Destination block does not have ingredient: ${getLocalizedName(getProto(result.type, result.name))}`);
     }
 
     return !messages || messages.length === 0;

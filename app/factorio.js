@@ -2,6 +2,7 @@ import { warn } from './util';
 import * as exportData from '../export-json/data/index';
 import * as exportIcons from '../export-json/data/icons';
 import * as exportLang from '../export-json/lang/index';
+import { getProtoId } from './util/index';
 
 // TODO: Detect lang and also allow user-override.
 export const langId = 'en';
@@ -102,6 +103,8 @@ export function recipeGetIngredients(recipeProto) {
         return ret;
     }
 
+    ret = { list: [], byId: {} };
+
     if (recipeProto.type === 'recipe') {
         const ingredients = recipeProto.ingredients
             || recipeProto.normal && recipeProto.normal.ingredients;
@@ -114,47 +117,47 @@ export function recipeGetIngredients(recipeProto) {
             throw new Error(`Missing ingredients for ${recipeProto.name}`);
         }
 
-        ret = ingredients.map((ingredient) => {
+        for (let ingredient of ingredients) {
             if (Array.isArray(ingredient)) {
-                return {
+                ingredient = {
                     type: getTypeForName(ingredient[0]),
                     name: ingredient[0],
                     amount: ingredient[1],
                 };
             }
             else {
-                return ingredient.type
+                ingredient = ingredient.type
                     ? ingredient
                     : {
                         type: getTypeForName(ingredient.name),
                         ...ingredient,
                     };
             }
-        });
 
-        recipeGetIngredients_cache.set(recipeProto, ret);
-        return ret;
+            const id = getProtoId(ingredient);
+            ret.list.push(ingredient);
+            (ret.byId[id] || (ret.byId[id] = [])).push(ingredient);
+        }
     }
     else if (recipeProto.type === 'resource') {
         if (recipeProto.minable && recipeProto.minable.required_fluid) {
-            ret = [
-                {
-                    type: 'fluid',
-                    name: recipeProto.minable.required_fluid,
-                    amount: recipeProto.minable.fluid_amount,
-                },
-            ];
-        }
+            const ingredient = {
+                type: 'fluid',
+                name: recipeProto.minable.required_fluid,
+                amount: recipeProto.minable.fluid_amount,
+            };
 
-        recipeGetIngredients_cache.set(recipeProto, ret);
-        return ret;
+            const id = getProtoId(ingredient);
+            ret.list.push(ingredient);
+            (ret.byId[id] || (ret.byId[id] = [])).push(ingredient);
+        }
     }
     else {
-        ret = [];
-        //warn(`No ingredients for proto: ${recipeProto.type}.${recipeProto.name}`);
-        recipeGetIngredients_cache.set(recipeProto, ret);
-        return ret;
+        warn(`No ingredients for proto: ${recipeProto.type}.${recipeProto.name}`);
     }
+
+    recipeGetIngredients_cache.set(recipeProto, ret);
+    return ret;
 }
 
 const recipeGetResults_cache = new Map();
@@ -164,61 +167,54 @@ export function recipeGetResults(recipeProto) {
         return ret;
     }
 
+    ret = { list: [], byId: {} };
+
+    let results;
+
     if (recipeProto.type === 'recipe') {
         const result = recipeProto.result
             || recipeProto.normal && recipeProto.normal.result;
 
         if (result) {
-            ret = [
-                {
-                    type: getTypeForName(result),
-                    name: result,
-                    amount: recipeProto.result_count || recipeProto.normal && recipeProto.normal.result_count || 1,
-                },
-            ];
+            results = [{
+                type: getTypeForName(result),
+                name: result,
+                amount: recipeProto.result_count || recipeProto.normal && recipeProto.normal.result_count || 1,
+            }];
         }
         else {
-            ret = recipeProto.results
+            results = recipeProto.results
                 || recipeProto.normal && recipeProto.normal.results;
         }
-
-        if (!ret) {
-            warn(`Recipe ${recipeProto.type}.${recipeProto.name} missing results`);
-            ret = [];
-        }
-
-        recipeGetResults_cache.set(recipeProto, ret);
-        return ret;
     }
     else if (recipeProto.type === 'resource') {
         const result = recipeProto.minable && recipeProto.minable.result;
 
         if (result) {
-            ret = [
-                {
-                    type: getTypeForName(result),
-                    name: result,
-                    amount: 1,
-                },
-            ];
+            results = [{
+                type: getTypeForName(result),
+                name: result,
+                amount: 1,
+            }];
         }
         else {
-            ret = recipeProto.minable && recipeProto.minable.results;
+            results = recipeProto.minable && recipeProto.minable.results;
         }
+    }
 
-        if (!ret) {
-            throw new Error('Resource missing minable results');
-        }
-
-        recipeGetResults_cache.set(recipeProto, ret);
-        return ret;
+    if (!results) {
+        warn(`Recipe ${recipeProto.type}.${recipeProto.name} missing results`);
     }
     else {
-        //warn(`No results for proto: ${recipeProto.type}.${recipeProto.name}`);
-        ret = [];
-        recipeGetResults_cache.set(recipeProto, ret);
-        return ret;
+        for (const result of results) {
+            const id = getProtoId(result);
+            ret.list.push(result);
+            (ret.byId[id] || (ret.byId[id] = [])).push(result);
+        }
     }
+
+    recipeGetResults_cache.set(recipeProto, ret);
+    return ret;
 }
 
 export function getRecipeCycle(blockProto, recipeProto) {
@@ -256,7 +252,7 @@ export function getIcon(proto) {
         }
         else if (proto.type === 'recipe') {
             const results = recipeGetResults(proto);
-            const resultIcon = results.length === 1 && getIcon(exportData[results[0].type] && exportData[results[0].type][results[0].name]);
+            const resultIcon = results.list.length === 1 && getIcon(exportData[results.list[0].type] && exportData[results.list[0].type][results.list[0].name]);
             if (resultIcon) {
                 ret = resultIcon;
             }
@@ -306,7 +302,7 @@ export function isValidRecipeForProto(proto, recipeProto) {
         }
         else {
             const ingredients = recipeGetIngredients(recipeProto);
-            if (ingredients && ingredients.length > proto.ingredient_count) {
+            if (ingredients && ingredients.list.length > proto.ingredient_count) {
                 ret = false;
             }
         }
@@ -443,7 +439,7 @@ export function getLocalizedName(proto, defaultNull = false) {
 
     if (ret === null) {
         const results = recipeGetResults(proto);
-        const resultProto = results.length && getProto(results[0].type, results[0].name);
+        const resultProto = results.list.length && getProto(results.list[0].type, results.list[0].name);
         if (resultProto) {
             ret = getLocalizedName(resultProto, true);
         }

@@ -78,19 +78,19 @@ const TooltipIOContent = connect((state) => {
 
     static propTypes = {
         blockId: PropTypes.string.isRequired,
-        input: PropTypes.array,
-        output: PropTypes.array,
+        ingredientRates: PropTypes.object,
+        resultRates: PropTypes.object,
         effect: PropTypes.object,
     };
 
     static defaultProps = {
-        input: null,
-        output: null,
+        ingredientRates: null,
+        resultRates: null,
         effect: null,
     };
 
     render() {
-        const { input, output, effect } = this.props;
+        const { ingredientRates, resultRates, effect } = this.props;
 
         const effectsHTML = [];
 
@@ -114,13 +114,13 @@ const TooltipIOContent = connect((state) => {
         return (
             <div className="tooltip__content tooltip__content--io">
                 {effectsHTML.length > 0 && <div className="tooltip__items-box tooltip__items-box--modules">{effectsHTML}</div>}
-                {(input || output) && <div className="tooltip__items-box-container">
-                    {input && <div className="tooltip__items-box tooltip__items-box--ingredients">
-                        {input.map((ingredient, i) => <div key={i}><TooltipIcon type={ingredient.type} name={ingredient.name}/> {parseFloat(ingredient.rate.toFixed(3))}<span style={{ opacity: 0.5 }}>/sec</span></div>)}
+                {(ingredientRates || resultRates) && <div className="tooltip__items-box-container">
+                    {ingredientRates && <div className="tooltip__items-box tooltip__items-box--ingredients">
+                        {ingredientRates.list.map((ingredient, i) => <div key={i}><TooltipIcon type={ingredient.type} name={ingredient.name}/> {parseFloat(ingredient.rate.toFixed(3))}<span style={{ opacity: 0.5 }}>/sec</span></div>)}
                     </div>}
-                    {input && output && <div className="tooltip__items-box-arrow">►</div>}
-                    {output && <div className="tooltip__items-box tooltip__items-box--results">
-                        {output.map((result, i) => <div key={i}><TooltipIcon type={result.type} name={result.name}/> {parseFloat(result.rate.toFixed(3))}<span style={{ opacity: 0.5 }}>/sec</span></div>)}
+                    {ingredientRates && resultRates && <div className="tooltip__items-box-arrow">►</div>}
+                    {resultRates && <div className="tooltip__items-box tooltip__items-box--results">
+                        {resultRates.list.map((result, i) => <div key={i}><TooltipIcon type={result.type} name={result.name}/> {parseFloat(result.rate.toFixed(3))}<span style={{ opacity: 0.5 }}>/sec</span></div>)}
                     </div>}
                 </div>}
             </div>

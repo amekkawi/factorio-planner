@@ -144,7 +144,7 @@ class IOBlock extends Component {
         const connectors = [];
 
         if (ingredients) {
-            for (let i = 0; i < ingredients.length; i++) {
+            for (let i = 0; i < ingredients.list.length; i++) {
                 connectors.push({
                     tooltip: {
                         sourceId: `${blockId}_ingredient_${i}`,
@@ -155,14 +155,14 @@ class IOBlock extends Component {
                         },
                     },
                     direction: 'in',
-                    deg: 270 - ((ingredients.length - 1) * 25 / 2) + i * 25 + ringRotate,
-                    ...ingredients[i],
+                    deg: 270 - ((ingredients.list.length - 1) * 25 / 2) + i * 25 + ringRotate,
+                    ...ingredients.list[i],
                 });
             }
         }
 
-        if (results) {
-            for (let i = 0; i < results.length; i++) {
+        if (results && results.list) {
+            for (let i = 0; i < results.list.length; i++) {
                 connectors.push({
                     tooltip: {
                         sourceId: `${blockId}_result_${i}`,
@@ -173,8 +173,8 @@ class IOBlock extends Component {
                         },
                     },
                     direction: 'out',
-                    deg: 90 - ((results.length - 1) * 25 / 2) + i * 25 + ringRotate,
-                    ...results[i],
+                    deg: 90 - ((results.list.length - 1) * 25 / 2) + i * 25 + ringRotate,
+                    ...results.list[i],
                 });
             }
         }
