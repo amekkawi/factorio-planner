@@ -1,4 +1,4 @@
-import V from '../util/validate';
+import V from '../util/schema/validate';
 import { warn, isProtoEqual } from '../util';
 import * as Block from '../models/Block';
 import { findByProto, getProtoId } from '../util/index';

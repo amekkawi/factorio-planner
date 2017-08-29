@@ -1,4 +1,4 @@
-import V from '../util/validate';
+import V from '../util/schema/validate';
 import { createBlock } from './Block';
 import { createConnection } from './Connection';
 
@@ -10,8 +10,8 @@ import { createConnection } from './Connection';
 
 const schema = V.object().keys({
     ver: V.number().default(1),
-    blocks: V.object().mapKeys(createBlock),
-    connections: V.object().mapKeys(createConnection),
+    blocks: V.object().map(createBlock),
+    connections: V.object().map(createConnection),
 });
 
 /**

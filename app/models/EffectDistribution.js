@@ -1,4 +1,4 @@
-import V from '../util/validate';
+import V from '../util/schema/validate';
 
 /**
  * @typedef {object} EffectDistribution
