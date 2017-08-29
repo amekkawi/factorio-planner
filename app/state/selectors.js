@@ -176,8 +176,8 @@ export const blockIOSelector = createSelector(
                     /**
                      * @typedef {object} BlockIO
                      * @property {Effect} effect
-                     * @property {InputOutputRate[]} output
-                     * @property {InputOutputRate[]} input
+                     * @property {InputOutputRate} resultRates
+                     * @property {InputOutputRate} ingredientRates
                      */
 
                     const ret = {
@@ -187,14 +187,14 @@ export const blockIOSelector = createSelector(
                     };
 
                     if (isSender) {
-                        ret.output = Block.calculateOutputRates(
+                        ret.resultRates = Block.calculateOutputRates(
                             block,
                             ret.effect
                         );
                     }
 
                     if (isReceiver) {
-                        ret.input = Block.calculateInputRates(
+                        ret.ingredientRates = Block.calculateInputRates(
                             block,
                             ret.effect
                         );

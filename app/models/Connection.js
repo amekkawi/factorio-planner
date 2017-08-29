@@ -1,8 +1,8 @@
 import V from '../util/schema/validate';
-import { warn, isProtoEqual } from '../util';
+import { warn } from '../util';
 import * as Block from '../models/Block';
-import { findByProto, getProtoId } from '../util/index';
-import { getLocalizedName } from '../factorio';
+import { getProtoId } from '../util/index';
+import { getLocalizedName, getProto } from '../factorio';
 import {
     isValidEffectDistribution,
     defaultDistributions,
